@@ -32,15 +32,16 @@ __strong__
 
 如果仅需要在行前显示数字和 .：
 
-### 无序列表 ol + _ *
-* *Candy.
-+ +Gum.
-_ _Booze.
+### 无序列表 ol + - *
+* *Candy
++ +Gum
+- -Booze
 
 
 ### 有序 隔壁
-. Cate
-. Cate2
+1. Cate
+2. Cate2
+2. Cate2
 
 ### A连接
 这是一个 [连接www.9juren.com](http://www.9jruen.com/ "这里是标题").
@@ -56,3 +57,36 @@ _ _Booze.
 
 ![alt LOGO][src:logo]
 [src:logo]: http://i.9juren.com/template/jrtx/images/logo.png "LOGO"
+
+
+
+五、代码区块
+------------
+
+1.可以使用缩进来插入代码块：
+
+	<html> // Tab开头
+		<title>Markdown</title>
+    </html>  // 四个空格开头
+
+代码块前需要有至少一个空行，且每行代码前需要有至少一个 Tab 或四个空格；
+
+2.也可以通过 \`\`，插入行内代码（` 是 Tab 键上边、数字 1 键左侧的那个按键）：
+
+例如 `<title>Markdown</title>`
+
+3.代码块中的文本（包括 Markdown 语法）都会以原格式显示，而特殊字符会被转换为 HTML 实体。
+
+六、分隔线
+=======
+
+1.可以在一行中使用三个或更多的 \*、\- 或 \_ 产生分隔线：
+
+***
+------
+___
+
+2.多个 \* 之间可以有空格（空白符），但不能有其他字符：
+
+*	* *
+- - -
