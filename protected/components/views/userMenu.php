@@ -1,0 +1,50 @@
+<?php
+$this->widget('zii.widgets.CMenu', array(
+	'items'=>array(
+		array(
+			'label'=>'创建提醒', 
+			'url'=>array('/post/create'), 
+			'visible'=>Yii::app()->user->checkAccess('Post.Create')
+		),
+		array(
+			'label'=>'提醒管理', 
+			'url'=>array('/post/admin'), 
+			'visible'=>Yii::app()->user->checkAccess('Post.Admin')
+		),
+		array(
+			'label'=>'录入员工', 
+			'url'=>array('/manage/create'), 
+			'visible'=>Yii::app()->user->checkAccess('Manage.Create')
+		),
+		array(
+			'label'=>'员工管理', 
+			'url'=>array('/manage/admin'), 
+			'visible'=>Yii::app()->user->checkAccess('Manage.Admin')
+		),
+		array(
+			'label'=>'录入通讯录', 
+			'url'=>array('/clientele/create'), 
+			'visible'=>Yii::app()->user->checkAccess('Clientele.Create')
+		),
+		array(
+			'label'=>'通讯录', 
+			'url'=>array('/clientele/admin'), 
+			'visible'=>Yii::app()->user->checkAccess('Clientele.Admin')
+		),
+		array(
+			'label'=>'操作日志',
+			'url'=>array('/adminLog/'),
+			'visible'=>Yii::app()->user->checkAccess('AdminLog.Admin'),
+		)
+		,
+		array(
+			'label'=>Yii::t('blog', '填写评论 (:commentCount)', array(':commentCount'=>Comment::model()->pendingCommentCount)), 
+			'url'=>array('/comment/index'), 'visible'=>Yii::app()->user->checkAccess('Comment.Approve')
+		),
+		array(
+			'label'=>'退出系统', 
+			'url'=>array('/site/logout'), 
+			'visible'=>!Yii::app()->user->isGuest
+		),
+	),
+));
