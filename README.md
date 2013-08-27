@@ -90,3 +90,30 @@ ___
 
 *	* *
 - - -
+
+
+//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码
+public class Blog
+{
+     public int Id { get; set; }
+     public string Subject { get; set; }
+}
+
+
+/**
+ * nth element in the fibonacci series.
+ * @param n >= 0
+ * @return the nth element, >= 0.
+ */
+function fib(n) {
+    var a = 1, b = 1;
+    var tmp;
+    while (--n >= 0) {
+        tmp = a;
+        a += b;
+       b = tmp;
+    }
+    return a;
+}
+
+document.write(fib(10));
