@@ -210,20 +210,6 @@ ul.yiiPager .first, ul.yiiPager .last {
     </div>
 
 
-<?php $this->widget('application.components.MyMenu', array(
-    'activateItemsOuter'=>false,
-    'linkLabelWrapper' => 'span',
-    'activateItems' => true,
-    'id' => 'search-type',  // using class =>'search-type' fires an exception! 
- 
- 
-    'htmlOptions' => array('class'=>'search-type'), 
-    'items' => array(
-       array('label' => 'Home', 'url' => array('/site/index')),
-       array('label' => 'Add Your Business', 'url' => array('bdlisting/create')),
-    ),
-));
-?>
 <?php
 $this->widget('zii.widgets.CMenu', array(
   'items'=>array(
@@ -275,14 +261,10 @@ $this->widget('zii.widgets.CMenu', array(
   ),
 ));
 ?>
+
   <div id="mainmenu">
     <?php 
     $arr = array(
-
-/*        array('label'=>'主页', 'url'=>array('/post/index')),
-        array('label'=>'关于我们', 'url'=>array('/site/page', 'view'=>'about')),
-        array('label'=>'留言联系', 'url'=>array('/site/contact')),*/
-
         array('label'=>'员工管理', 'url'=>array('/manage/')),
         array('label'=>'操作日志', 'url'=>array('/adminLog/')),
         array('label'=>'权限配置', 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess(Rights::module()->superuserName)),
@@ -300,6 +282,35 @@ $this->widget('zii.widgets.CMenu', array(
     }
     $this->widget('zii.widgets.CMenu',array('items' => $arr)); ?>
   </div><!-- mainmenu -->
+      <?php 
+     $this->widget('application.components.MyMenu',array(
+          'itemTemplate'=>'{menu}',
+          'activateParents'=>true, //父节点显示
+          'itemCssClass' => 'openable',
+          'activeCssClass'=>'active',
+          'firstItemCssClass'=>'',//第一个
+          'lastItemCssClass'=>'',//最后一个
+          'htmlOptions'=>array('class'=>'navigation'),
+          'encodeLabel' => false, //是否过滤HTML代码
+          'submenuHtmlOptions' => array(),
+          /*'linkLabelWrapper' => "", //显示内容的标签*/
+          'items'=>array(  
+            array(
+              'icon' =>'isw-list',
+              'label'=>'<span class="text">Mnage</span>',
+              'url'=>array('/manage/create'),
+            ),
+            array(
+              'icon' =>'isw-list',
+              'label'=>'<span class="text">Mnage</span>',
+              'items'=>array(
+                array('icon'=>'th','label'=>'<span class="text">Mnage</span>', 'url'=>array('/manage')),
+                array('icon'=>'th','label'=>'<span class="text">Mnage-create</span>',  'url'=>array('/manage/create'),),
+              ),
+            ), 
+          )   
+));
+?>      
     <ul class="navigation">
       <li class="active"> <a href="index.html"><span class="isw-grid"></span><span class="text">主页</span> </a> </li>
       <li class="openable"> <a href="#"> <span class="isw-list"></span><span class="text">权限</span> </a>

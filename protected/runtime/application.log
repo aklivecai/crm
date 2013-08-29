@@ -20560,3 +20560,1515 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/github/crm/favicon.ico
 ---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "favicon.ico"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/favicon.ico
+---
+2013/08/29 13:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "favicon.ico"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/favicon.ico
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "query/index"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('query/index')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/query/index
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "query/favicon.ico"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('query/favicon.i...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/query/favicon.ico
+---
+2013/08/29 13:55:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "query/favicon.ico"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('query/favicon.i...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/query/favicon.ico
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:28 [error] [exception.CException] exception 'CException' with message '属性 "CMenu.encodeLable" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('encodeLable', 'false')
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(281): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div class="con...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div class="con...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column1.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\SiteController.php(41): CController->render('index')
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/
+HTTP_REFERER=http://192.168.1.201/github/crm/manage/index
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:58:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 13:59:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:01:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexey_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexe...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexey_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/dmitry_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/dmitr...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/dmitry_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/helen_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/helen...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/helen_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga_...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/alexander_s.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/alexa...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/alexander_s.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/olga.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/olga....')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/olga.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "img/users/aqvatarius.jpg"。' in F:\GitHub\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('img/users/aqvat...')
+#1 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/img/users/aqvatarius.jpg
+HTTP_REFERER=http://192.168.1.201/github/crm/
+---
+2013/08/29 14:03:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "favicon.ico" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('favicon.ico')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('favicon.ico')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/favicon....')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/Manage/favicon.ico
+---
+2013/08/29 14:03:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "favicon.ico" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('favicon.ico')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('favicon.ico')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/favicon....')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/Manage/favicon.ico
+---
+2013/08/29 14:38:56 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:39:40 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:40:32 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:41:10 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:41:41 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:43:07 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:44:09 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:44:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index.html" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index.html')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index.html')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/index.ht...')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/Manage/index.html
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:47:35 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:48:11 [error] [exception.CException] exception 'CException' with message '属性 "MyMenu.activateItemsOuter" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('activateItemsOu...', false)
+#1 F:\GitHub\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ManageController), 'application.com...', Array)
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.com...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\layouts\main.php(223): CBaseController->widget('application.com...', Array)
+#4 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('?<div id="conte...')
+#8 F:\GitHub\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('?<div id="conte...')
+#9 F:\GitHub\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 F:\GitHub\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 F:\GitHub\CRM\themes\crm2013\views\layouts\column2.php(7): CBaseController->endContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#13 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#14 F:\GitHub\Yii\framework\web\CController.php(784): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#15 F:\GitHub\CRM\protected\controllers\ManageController.php(125): CController->render('create', Array)
+#16 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ManageController->actionCreate()
+#17 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#21 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#22 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#24 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#26 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Manage/create')
+#27 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#28 F:\GitHub\CRM\index.php(12): CApplication->run()
+#29 {main}
+REQUEST_URI=/github/crm/Manage/create
+HTTP_REFERER=http://192.168.1.201/github/crm/Manage/create
+---
+2013/08/29 14:54:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "favicon.ico" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('favicon.ico')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('favicon.ico')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('manage/favicon....')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/manage/favicon.ico
+---
