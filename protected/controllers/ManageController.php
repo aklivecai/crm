@@ -23,6 +23,28 @@ class ManageController extends Controller
 			'rights',
 		);
 	}
+	
+	public function init()  
+	{     
+    	parent::init();    
+	  // Yii::app()->clientScript->registerCoreScript('jquery');
+  //   	$cs = Yii::app()->getClientScript();
+		// $cs->enableJavaScript = false;
+	}	
+
+	/**
+	 * This is the action to handle external exceptions.
+	 */
+	public function actionError()
+	{
+	    if($error=Yii::app()->errorHandler->error)
+	    {
+	    	if(Yii::app()->request->isAjaxRequest)
+	    		echo $error['message'];
+	    	else
+	        	$this->render('error', $error);
+	    }
+	}	
 
 	/**
 	 * Filter method for checking whether the currently logged in user
@@ -147,12 +169,10 @@ class ManageController extends Controller
 	 */
 	public function actionIndex()
 	{
-		Tak::KD(yii::app()->theme->baseUrl);
-		$auth = Yii::app()->authManager;
+
 		$criteria = array();
 		if (!Tak::getAdmin()) {
 		   	$criteria['condition'] = "fromid=".Tak::getFormid();
-		   	print_r($criteria);
 		 }   
 		$dataProvider = new CActiveDataProvider('Manage',array(
 			'pagination'=>array(
@@ -178,11 +198,10 @@ class ManageController extends Controller
 			unset($_GET['pageSize']); 
 		}
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Manage']))
+		if(isset($_GET['Manage'])){
 			$model->attributes = $_GET['Manage'] ;
-	  if(Yii::app()->request->isAjaxRequest){
-	  	 $this->layout = '//layouts/columnAjax';
-	  }
+		}
+
 		$this->render('admin',array(
 			'model'=>$model,
 		));

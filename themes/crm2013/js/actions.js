@@ -200,15 +200,15 @@ $(document).ready(function(){
         return false;
     });        
     
+    /*
     $("input[name=select_all]").on('click',function(event){
         if(!$(this).prop('checked'))
             $(this).parents('table').find('.checker span').removeClass('checked');
         else
             $(this).parents('table').find('.checker span').addClass('checked');
         return true;
-            
     });    
-    
+    */
     
     $(".fancybox").fancybox();
 

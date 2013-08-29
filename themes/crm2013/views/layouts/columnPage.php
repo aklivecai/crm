@@ -11,7 +11,7 @@
     <link rel="icon" type="image/ico" href="favicon.ico"/>
     <?php Yii::app()->bootstrap->register(); ?>    
     <!-- Custom styles for this template -->
-    <link href="<?php echo yii::app()->theme->baseUrl;?>/css/signin.css" rel="stylesheet"/>
+    <link href="<?php echo yii::app()->theme->baseUrl;?>/css/page.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="<?php echo yii::app()->theme->baseUrl;?>/js/html5shiv.js"></script>

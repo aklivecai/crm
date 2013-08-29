@@ -13,8 +13,9 @@
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'horizontalForm',
     'type'=>'horizontal',
-    'enableAjaxValidation'=>false,
-)); ?>
+    'enableAjaxValidation'=>true,
+)); 
+?>
 <?php echo $form->errorSummary($model); ?>
 
 <div class="head clearfix">
@@ -25,7 +26,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     <?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span9','size'=>60,'maxlength'=>60)); ?>
 	</div>
 	<div class="row-form clearfix">
-    <?php echo $form->textFieldRow($model, 'user_pass', array('size'=>60,'maxlength'=>64)); ?>
+    <?php echo $form->passwordFieldRow($model, 'user_pass', array('size'=>60,'maxlength'=>64)); ?>
 </div><div class="row-form clearfix">
     <?php echo $form->textFieldRow($model, 'user_nicename', array('size'=>60,'maxlength'=>64)); ?>
 </div><div class="row-form clearfix">
@@ -38,8 +39,10 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
  
 <div class="footer tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>$model->isNewRecord ? '录入' : '保存')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>$model->isNewRecord ? Tk::g('Add') : Tk::g('Save'))); ?>
     <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'重置')); ?>
+
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'danger', 'label'=>Tk::g('Return'),'htmlOptions'=>array('href'=>Yii::app()->request->urlReferrer))); ?>
 </div>
  
 <?php $this->endWidget(); ?>

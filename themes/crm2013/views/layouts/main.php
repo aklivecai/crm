@@ -13,7 +13,6 @@
         <link href="<?php echo yii::app()->theme->baseUrl;?>/css/ie7.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 <link rel='stylesheet' type='text/css' href='<?php echo yii::app()->theme->baseUrl;?>/css/fullcalendar.print.css' media='print' />
-
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery-ui-1.10.1.custom.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery-migrate-1.2.1.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery.mousewheel.min.js'></script>
@@ -42,8 +41,9 @@
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/settings.js'></script>
-
-   <?php Yii::app()->bootstrap->register(); ?>  
+<?php
+  Yii::app()->bootstrap->register();
+?>
 <style type="text/css" media="screen">
 .logo span{
   color: #FFF;
@@ -77,17 +77,78 @@
 }
 
 ul.yiiPager .first, ul.yiiPager .last {
-display: inline;
+  display: inline;
 }
+.pagination .first,
+.pagination .last{
+  display: none;
+}
+.pagination .previous a{ 
+  border-left-width:1px;
+}
+.button-column select{
+  height:20px;
+  line-height: 20px;
+  width:auto !important;
+  min-width: 25px;
+  max-width: 120px;
+  padding:0;
+  margin:0;
+}
+.grid-view{
+  margin:12px;
+
+}
+.grid-view .pagination  .disabled > span,
+.grid-view .pagination  .disabled > a,
+.grid-view .pagination  .disabled > a:hover,
+.grid-view .pagination  .disabled > a:focus {
+  color: #999999;
+  cursor: not-allowed;
+  border-color: #dddddd;
+}
+.grid-view-loading {
+  background-position: 0 0;
+  background-color:#FFF;
+  opacity: .8;
+}
+.grid-view-loading table{
+  opacity: 5;
+}
+.grid-view input[type="text"]{
+  margin:0;
+}
+ .grid-view .dataTables_info{
+    float: left;
+    font-size: 11px;
+    color: #333;
+    line-height: 45px;
+    text-indent: 2em;
+}
+
+.grid-view  .pagination {
+  margin:0;
+  padding: 5px 5px;
+  text-align: right;
+  float: right;
+ }
 </style>
 </head>
 
 <body>
 <div class="wrapper">
-  <div class="header"> <a class="logo" href="" title="<?php echo CHtml::encode(Yii::app()->name); ?>">
-  <span>
-  <?php echo CHtml::encode(Yii::app()->name); ?>
-  </span></a>
+  <div class="header">
+  <?php
+   echo CHtml::tag('a'
+    ,array(
+      'class'=>'logo'
+      ,'href'=>Yii::app()->homeUrl
+      ,'title'=>CHtml::encode(Yii::app()->name)
+      )
+    ,'<span>'.CHtml::encode(Yii::app()->name).'</span>'
+    );
+  ?>
+
     <ul class="header_menu">
       <li class="list_icon"><a href="#">&nbsp;</a></li>
       <li class="settings_icon"> <a href="#" class="link_themeSettings">&nbsp;</a>
@@ -139,37 +200,15 @@ display: inline;
 ?>
       </div>
       <ul class="control">
-        <li><span class="icon-comment"></span> <a href="messages.html">消息</a> <a href="messages.html" class="caption red">12</a></li>
-        <li><span class="icon-cog"></span> <a href="forms.html">设置</a></li>
-        <li><span class="icon-share-alt"></span> <a href="<?php echo $this->createUrl('/site/logout',array('id'=>100))?>" class="logout">退出</a></li>
+        <li><i class="icon-comment"></i> <a href="messages.html">消息</a> <a href="messages.html" class="caption red">12</a></li>
+        <li><i class="icon-cog"></i> <a href="forms.html">设置</a></li>
+
+        <li><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/change-password')?>" class="chage-pwd">修改密码</a></li>
+        <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout">退出</a></li>
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
     </div>
-    <?php $this->widget('bootstrap.widgets.TbMenu', array(
-    'type'=>'list',
-    'items'=>array(
-        array('label'=>'LIST HEADER'),
-        array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
-        array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
-        array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
-        array('label'=>'ANOTHER LIST HEADER'),
-        array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
-        array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
-        array('label'=>'Help', 'icon'=>'flag', 'url'=>'#',
-          'items' => array(
-              array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
-              
-            array('label'=>'LIST HEADER'),
-            array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
-            array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
-            array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
-            array('label'=>'ANOTHER LIST HEADER'),
-            array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
-            array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),              
-            )
-        ),
-    ),
-)); ?>
+
 
 <?php $this->widget('application.components.MyMenu', array(
     'activateItemsOuter'=>false,

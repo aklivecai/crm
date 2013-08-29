@@ -20,10 +20,40 @@ class Controller extends RController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	
+
+	public $isAjax = false;
 	public function init()  
 	{     
-    //parent::init();    
-	  // Yii::app()->clientScript->registerCoreScript('jquery');
+    	// parent::init();   
+    	$this->isAjax  = Yii::app()->request->isAjaxRequest;
+		if($this->isAjax){
+			 $this->layout = '//layouts/columnAjax';
+			Yii::app()->clientScript->enableJavaScript = false;
+		}else{
+			// Yii::app()->bootstrap->register();
+		}    	
+	  // Yii::app()->clientScript->registerCoreScript('jquery');	
+	}	
+	protected function afterRender($view, &$output)
+	{
+		if ($this->isAjax) {
+			Yii::app()->clientScript->reset();
+		}
+		
+		parent::afterRender($view, $output);
+	}	
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}	
 }

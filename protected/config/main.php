@@ -5,28 +5,24 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+$tshiPatch = dirname(__FILE__) ;
+
+Yii::setPathOfAlias('bootstrap', $tshiPatch.'/../extensions/bootstrap');
 
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'basePath'=>$tshiPatch.DIRECTORY_SEPARATOR.'..',
 	// 语言包
 	'language'=>'zh_cn', 
 	'name'=>'具人同行 在线 CRM 测试',
 	 'timeZone' => 'Asia/Shanghai',
     'defaultController'=>'site',
-     
-    'defaultController'=>'site',
+
 	'theme' => 'crm2013',
 	// preloading 'log' component
 	'preload'=>array('log'),
-	
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
-		'defaultPageSize' => '20'
-	),	
+	'params'=> include( $tshiPatch.'/params.conf.php' ),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -83,9 +79,7 @@ return array(
                // 'cssFile'=>'rights.css', // Style sheet file to use for Rights. 
 	    ),  
 
-
 	),
-
 	// application components
 	'components'=>array(
         'authManager'=>array(
@@ -96,8 +90,10 @@ return array(
             'assignmentTable'=>'Tak_Rbac_Authassignment',
             'rightsTable'=>'Tak_Rbac_Rights',
             'defaultRoles' => array('Authenticated', 'Guest'),
-
         ),
+	    'mobileDetect' => array(
+	        'class' => 'ext.MobileDetect.MobileDetect'
+	    ),        
         'bootstrap'=>array(
             'class'=>'bootstrap.components.Bootstrap',
         ),        
@@ -106,78 +102,17 @@ return array(
 	        'allowAutoLogin'=>true,
             'loginUrl' => array('/site/login'),
 	    ),  
-
-
-		// uncomment the following to enable URLs in path-format
-		/*
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
-		*/
-		'db1'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/db.db3',
-			// 表前缀
-			'tablePrefix'=>'Tak_',
-			'enableProfiling'=>true,
-            'enableParamLogging' => true,
-		),
-		// uncomment the following to use a MySQL database
-		'db'=>array(
-    		'connectionString' => 'mysql:host=localhost;dbname=test',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-			'tablePrefix'=>'tak_'
-		),
-	
+	    'urlManager' => include( $tshiPatch.'/url.conf.php' ),
+		'db' => include( $tshiPatch.'/db.conf.php' ),	
 		'errorHandler'=>array(
-			// use 'site/error' action to display errors
+			// 程序有错的时候跳到指定的action
 			'errorAction'=>'site/error',
 		),
-		// 权限管理添加
-		'logss'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
 
-				),
-				// debug toolbar configuration
-				array(
-					'class'=>'XWebDebugRouter',
-					'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
-					'levels'=>'error, warning, trace, profile, info',
-					'allowedIPs'=>array('127.0.0.1'),
-				),
-
-			),
-			),
-
-		'logs'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				
-				array(
-					'class'=>'CWebLogRoute',
-					'levels' => 'trace,info,errory,warning,xdebug',
-					 'categories'=>'system.db.*',
-					'showInFireBug' => true,
-				),
-				
-			),
-		),
+		'log' => array(
+            'class'=>'CLogRouter',
+            'routes'=>include( $tshiPatch.'/log.conf.php'),
+        ),
 	),
 
 );

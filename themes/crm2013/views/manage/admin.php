@@ -25,43 +25,65 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<?php $form=$this->beginWidget('CActiveForm', array(
+    'enableAjaxValidation'=>true,
+)); ?>
+<?php echo CHtml::ajaxSubmitButton('<span class="isw-plus">xx</span>Filter',array('menu/ajaxupdate'), array(),array("style"=>"display:none;")); ?>
+<?php echo CHtml::ajaxSubmitButton('Activate',array('menu/ajaxupdate','act'=>'doActive'), array('success'=>'reloadGrid')); ?>
+<?php echo CHtml::ajaxSubmitButton('In Activate',array('menu/ajaxupdate','act'=>'doInactive'), array('success'=>'reloadGrid')); ?>
+<?php echo CHtml::ajaxSubmitButton('Delete',array('menu/ajaxupdate','act'=>'doDelete'), array('beforeSend'=>'function() { if(confirm("Are You Sure ...")) return true; return false; }', 'success'=>'reloadGrid')); ?>
+<?php echo CHtml::ajaxSubmitButton('Update sort order',array('menu/ajaxupdate','act'=>'doSortOrder'), array('success'=>'reloadGrid')); ?>
 <div class="row-fluid">
 	<div class="span12">
 	<div class="head clearfix">
-                            <div class="isw-grid"></div>
-                            <h1>员工信息</h1>                               
-                        </div>
+        <div class="isw-grid"></div>
+        <h1>员工信息</h1>   
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+        <ul class="dd-list">
+            <li><a href="<?php echo $this->createUrl('create')?>"><span class="isw-plus"></span> 添加</a></li>
+            <li><a href="#"><span class="isw-edit"></span> 修改</a></li>
+            <li><a href="#"><span class="isw-delete"></span> 删除</a></li>
+            <li><a href="javascript:" onClick="$.fn.yiiGridView.update('menu-grid');"><span class="isw-refresh"></span>刷新</a></li>
+        </ul>
+    </li>
+</ul>                                    
+    </div>
 		<div class="block-fluid clearfix">
-		
-<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
-    'type'=>'',
 
+<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
+    'type'=>'striped bordered condensed',
+    'id' => 'list-grid',
 	'dataProvider'=>$model->search(),
 
-	 'template'=>"{items}",
-    'summaryCssClass' => 'SS',
-    'pagerCssClass' => 'SS',
+	'template'=>"{items}",
+
+	//Ajax地址转
+	'enableHistory'=>true,
+
+
+    'loadingCssClass' => 'grid-view-loading',
+    'summaryCssClass' => 'dataTables_info',
+    'pagerCssClass' => 'pagination dataTables_paginate',
     'template' => '{pager}{summary}{items}{pager}',
 
            'cssFile' => Yii::app()->baseUrl . '/media/css/gridview.css',
- 
-            'ajaxUpdate'=>false,    //禁用AJAX
-              'enableSorting'=>true,
-              'summaryText' => '{count} records(s) found.',
-
+            'ajaxUpdate'=>true,    //禁用AJAX
+            'enableSorting'=>true,
+            'summaryText' => '总数：{count}  区间：{start}-{end} 当前:{page} 总页码：{pages}',
 
 	'filter'=>$model,
 	'pager'=>array(
-
+		'header'=>'',
+		'hiddenPageCssClass' => 'disabled'
+		,'selectedPageCssClass' => 'active disabled'
+		,'htmlOptions'=>array('class'=>'')
 	),
 	'selectableRows'=>2, 	
 	'columns'=>array(
 		array('class'=>'CCheckBoxColumn','name'=>'manageid','id'=>'select'), 	
-		array(
-			 'class'=>'bootstrap.widgets.TbButtonColumn',
-			  'header' => '操作',
-			  'htmlOptions'=>array('style'=>'width: 80px'),
-		),
+
 		array(
 			'name' => 'user_status',
 			 'htmlOptions'=>array('style'=>'width: 50px'),
@@ -82,41 +104,36 @@ $('.search-form form').submit(function(){
 		),		
 		array(
 			'name' => 'login_count',
+			'type'=>'raw',			
+            'filter' => false
 		),
 		array(
 			'name'=>'last_login_time',
 			'type'=>'raw',
 			'value'=>'Tak::timetodate($data->last_login_time)',
-
-            'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                'model'=>$model, 
-                'attribute'=>'last_login_time', 
-                'htmlOptions' => array(
-                    'id' => 'datepicker_for_last_login_time',
-                    'size' => '10',
-                ),
-                'defaultOptions' => array(  // (#3)
-                    'showOn' => 'focus', 
-                    'dateFormat' => 'yy/mm/dd',
-                    'showOtherMonths' => true,
-                    'selectOtherMonths' => true,
-                    'changeMonth' => true,
-                    'changeYear' => true,
-                    'showButtonPanel' => true,
-                )
-            ), 
-            true), // (#4)			
+            'filter' => false
 		),		
 		array(
-			'name'=>'active_time',
-			'type'=>'raw',
-			'value'=>'Tak::timetodate($data->active_time)'
-		),
+			 'class'=>'bootstrap.widgets.TbButtonColumn'
+			  ,'header' => CHtml::dropDownList('pageSize'
+					,Yii::app()->user->getState('pageSize')
+					,array(20=>20,50=>50,100=>100)
+					,array( // change 'user-grid' to the actual id of your grid!! 
+						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{pageSize: $(this).val()}})", 
+					)
+				  )
+			  ,'htmlOptions'=>array('style'=>'width: 80px'),
+		),		
 	),
-)); ?>
-               <div id="pagination">
-                    <?php $widget->renderPager(); ?>
-                </div>
+)); 
+
+Yii::app()->clientScript->registerScript('search', "
+function reloadGrid(data) {
+    $.fn.yiiGridView.update('menu-grid');
+}
+");
+?>
 		</div>
 	</div>
 </div>
+<?php $this->endWidget(); ?>

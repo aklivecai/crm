@@ -56,7 +56,7 @@ $(document).ready(function(){
         $("#s2_2").select2();
         
     // CHECKBOXES AND RADIO
-        $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();
+        // $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();
         
  
         

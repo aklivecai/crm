@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-	public $layout='column1';
+	public $layout='columnPage';
 	public function filters()
 	{
 		return array(
@@ -11,7 +11,7 @@ class SiteController extends Controller
 	}
 	public function allowedActions()
 	{
-	 	return 'login';
+	 	return 'login,error';
 	}
 	/**
 	 * Declares class-based actions.
@@ -37,9 +37,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-
-	       $this->render('index');
-
+		$this->layout='column1';
+		$this->render('index');
 	}
 
 	/**
@@ -47,48 +46,30 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
+
 	    if($error=Yii::app()->errorHandler->error)
 	    {
 	    	if(Yii::app()->request->isAjaxRequest)
 	    		echo $error['message'];
 	    	else
 	        	$this->render('error', $error);
+	    }else{
+	    	throw new CHttpException(404, 'Page not found.');
 	    }
 	}
 
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
 
 	/**
 	 * Displays the login page
 	 */
 	public function actionLogin($itemid=false)
 	{
-		$this->layout='columnPage';
 		if (!$itemid) {
 			$itemid = Tak::setCryptKey(2);
 			$this->redirect(array('login','itemid'=>$itemid));
 		}       
 
 		$model = new LoginForm($itemid);
-		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
 			echo CActiveForm::validate($model);
@@ -120,7 +101,7 @@ class SiteController extends Controller
 	
 
 	/**
-	 * Restores the database for the demo application.
+	 * 还原数据库
 	 */
 	public function actionRestore()
 	{

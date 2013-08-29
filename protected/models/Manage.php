@@ -121,7 +121,7 @@ class Manage extends CActiveRecord
 		$criteria->compare('user_nicename',$this->user_nicename,true);
 		$criteria->compare('user_email',$this->user_email,true);
 		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('last_login_time',$this->last_login_time,true);
+		// $criteria->compare('last_login_time',$this->last_login_time,true);
 		$criteria->compare('login_count',$this->login_count);
 		$criteria->compare('user_status',$this->user_status,true);
 		$criteria->compare('note',$this->note,true);
