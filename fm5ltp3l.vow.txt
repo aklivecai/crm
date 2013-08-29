@@ -1,0 +1,38 @@
+﻿tak
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    11wemfxj.znz.txt
+#	deleted:    README.txt
+#	deleted:    eqrts3k2.2ro.txt
+#	deleted:    themes/crm2013/css/signin.css
+#	deleted:    themes/crm2013/views/admin/adminLog/_form.php
+#	deleted:    themes/crm2013/views/admin/adminLog/_search.php
+#	deleted:    themes/crm2013/views/admin/adminLog/_view.php
+#	deleted:    themes/crm2013/views/admin/adminLog/admin.php
+#	deleted:    themes/crm2013/views/admin/adminLog/create.php
+#	deleted:    themes/crm2013/views/admin/adminLog/index.php
+#	deleted:    themes/crm2013/views/admin/adminLog/update.php
+#	deleted:    themes/crm2013/views/admin/adminLog/view.php
+#	deleted:    themes/crm2013/views/clientele/_form.php
+#	deleted:    themes/crm2013/views/clientele/_search.php
+#	deleted:    themes/crm2013/views/clientele/_view.php
+#	deleted:    themes/crm2013/views/clientele/admin.php
+#	deleted:    themes/crm2013/views/clientele/create.php
+#	deleted:    themes/crm2013/views/clientele/index.php
+#	deleted:    themes/crm2013/views/clientele/update.php
+#	deleted:    themes/crm2013/views/clientele/view.php
+#	deleted:    themes/crm2013/views/user/_form.php
+#	deleted:    themes/crm2013/views/user/_search.php
+#	deleted:    themes/crm2013/views/user/_view.php
+#	deleted:    themes/crm2013/views/user/admin.php
+#	deleted:    themes/crm2013/views/user/create.php
+#	deleted:    themes/crm2013/views/user/index.php
+#	deleted:    themes/crm2013/views/user/update.php
+#	deleted:    themes/crm2013/views/user/view.php
+#	deleted:    wlif1tgp.xfd.txt
+#
+
