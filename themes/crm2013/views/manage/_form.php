@@ -3,9 +3,7 @@
 /* @var $model Manage */
 /* @var $form CActiveForm */
 ?>
-<div class="page-header">
-	<h1>员工 <small>信息</small></h1>
-</div>
+
 <div class="row-fluid">
 <div class="span12">
 
@@ -19,7 +17,69 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <?php echo $form->errorSummary($model); ?>
 
 <div class="head clearfix">
-	<i class="isw-documents"></i> <h1>操作</h1>
+	<i class="isw-documents"></i> <h1><?php echo Tk::g(array('Manages','Action'));?></h1>
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+<?php
+ $items = array(  
+    array(
+      'icon' =>'isw-edit',
+      'url' => '#',
+      'label'=>Tk::g('Save'),
+      'linkOptions'=>array('class'=>'save','submit'=>array()),
+    )
+);
+
+if ($model->isNewRecord) {
+    
+}else{
+    array_push($items
+        ,array(
+          'icon' =>'isw-zoom',
+          'url' => array('view','id'=>$model->manageid),
+          'label'=>Tk::g('View'),
+        )
+        ,array(
+          'icon' =>'isw-plus',
+          'url' => array('create'),
+          'label'=>Tk::g('Create New'),
+        )
+        ,array(
+          'icon' =>'isw-delete',
+          'url' => array('delete','id'=>$model->manageid),
+          'label'=>Tk::g('Delete'),
+          'linkOptions'=>array('class'=>'delete'),
+        )
+    );
+}
+array_push($items
+    ,array(
+      'icon' =>'isw-refresh',
+      'url' => Yii::app()->request->url,
+      'label'=>Tk::g('Refresh'),
+    )
+    ,array(
+      'icon' =>'isw-left',
+      'url' => ''.Yii::app()->request->urlReferrer,
+      'label'=>Tk::g('Return'),
+    )
+);
+
+
+    $this->widget('application.components.MyMenu',array(
+          'htmlOptions'=>array('class'=>'dd-list'),
+          'items'=> $items ,
+    ));
+?>        
+<!--         <ul class="dd-list">
+    <li><a href="#"><span class="isw-edit"></span>保存</a></li>
+    <li class="delete"><a href="#"><span class="isw-delete"></span> 删除</a></li>
+    <li><a href=""><span class="isw-refresh"></span>刷新</a></li>
+    <li><a href=""><span class="isw-left"></span></a></li>
+</ul> -->
+    </li>
+</ul>       
 </div>
 <div class="block-fluid">
     <div class="row-form clearfix" style="border-top-width: 0px;">
@@ -37,12 +97,9 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	<?php echo $form->textAreaRow($model, 'note', array('maxlength'=>255)); ?>
 	</div>
 
- 
 <div class="footer tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>$model->isNewRecord ? Tk::g('Add') : Tk::g('Save'))); ?>
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'重置')); ?>
-
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'danger', 'label'=>Tk::g('Return'),'htmlOptions'=>array('href'=>Yii::app()->request->urlReferrer))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'submit', 'label'=>$model->isNewRecord ? Tk::g('Add') : Tk::g('Save'))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>
 </div>
  
 <?php $this->endWidget(); ?>

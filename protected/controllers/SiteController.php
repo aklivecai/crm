@@ -64,9 +64,21 @@ class SiteController extends Controller
 	 */
 	public function actionLogin($itemid=false)
 	{
+		$arr = array(1,2,3);
+
+		/*已经登录，返回上一页，没有就首页*/
+		if (!Yii::app()->user->isGuest) {
+			$this->redirect(Yii::app()->user->returnUrl);
+		}
+		foreach ($arr as $key => $value) {
+			$arr[Tak::setCryptKey($value)] = $value;
+			unset($arr[$key]);
+		}
+		$itemid = $_POST['fromid']?$_POST['fromid']:$_GET['fromid'];
+		/*没有传递itemid 得报错。调试默认*/
 		if (!$itemid) {
 			$itemid = Tak::setCryptKey(2);
-			$this->redirect(array('login','itemid'=>$itemid));
+			$this->redirect(array('login','fromid'=>$itemid));
 		}       
 
 		$model = new LoginForm($itemid);
@@ -85,7 +97,7 @@ class SiteController extends Controller
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login',array('model'=>$model,'listType'=>$arr));
 	}
 
 	/**

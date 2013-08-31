@@ -28,11 +28,8 @@ $('.search-form form').submit(function(){
 <?php $form=$this->beginWidget('CActiveForm', array(
     'enableAjaxValidation'=>true,
 )); ?>
-<?php echo CHtml::ajaxSubmitButton('<span class="isw-plus">xx</span>Filter',array('menu/ajaxupdate'), array(),array("style"=>"display:none;")); ?>
-<?php echo CHtml::ajaxSubmitButton('Activate',array('menu/ajaxupdate','act'=>'doActive'), array('success'=>'reloadGrid')); ?>
-<?php echo CHtml::ajaxSubmitButton('In Activate',array('menu/ajaxupdate','act'=>'doInactive'), array('success'=>'reloadGrid')); ?>
-<?php echo CHtml::ajaxSubmitButton('Delete',array('menu/ajaxupdate','act'=>'doDelete'), array('beforeSend'=>'function() { if(confirm("Are You Sure ...")) return true; return false; }', 'success'=>'reloadGrid')); ?>
-<?php echo CHtml::ajaxSubmitButton('Update sort order',array('menu/ajaxupdate','act'=>'doSortOrder'), array('success'=>'reloadGrid')); ?>
+
+
 <div class="row-fluid">
 	<div class="span12">
 	<div class="head clearfix">
@@ -41,12 +38,37 @@ $('.search-form form').submit(function(){
 <ul class="buttons">
     <li>
         <a href="#" class="isw-settings"></a>
-        <ul class="dd-list">
-            <li><a href="<?php echo $this->createUrl('create')?>"><span class="isw-plus"></span> 添加</a></li>
-            <li><a href="#"><span class="isw-edit"></span> 修改</a></li>
-            <li><a href="#"><span class="isw-delete"></span> 删除</a></li>
-            <li><a href="javascript:" onClick="$.fn.yiiGridView.update('menu-grid');"><span class="isw-refresh"></span>刷新</a></li>
-        </ul>
+<?php 
+ $items = array(  
+    array(
+      'icon' =>'isw-plus',
+      'url' => array('create'),
+      'label'=>Tk::g('Create'),
+    )    
+    ,array(
+      'icon' =>'isw-edit',
+      'url' => '#',
+      'label'=>Tk::g('Update'),
+      'linkOptions'=>array('class'=>'edit'),
+    )    
+    ,array(
+      'icon' =>'isw-delete',
+      'url' => '#',
+      'label'=>Tk::g('Delete'),
+      'linkOptions'=>array('class'=>'delete-select','submit'=>array('click'=>"$.fn.yiiGridView.update('menu-grid');")),
+    )
+    ,array(
+      'icon' =>'isw-refresh',
+      'url' => Yii::app()->request->url,
+      'label'=>Tk::g('Refresh'),
+      'linkOptions'=>array('class'=>'refresh'),
+    )    
+);
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'dd-list'),
+      'items'=> $items ,
+));
+?>        
     </li>
 </ul>                                    
     </div>
@@ -62,7 +84,6 @@ $('.search-form form').submit(function(){
 	//Ajax地址转
 	'enableHistory'=>true,
 
-
     'loadingCssClass' => 'grid-view-loading',
     'summaryCssClass' => 'dataTables_info',
     'pagerCssClass' => 'pagination dataTables_paginate',
@@ -71,7 +92,7 @@ $('.search-form form').submit(function(){
            'cssFile' => Yii::app()->baseUrl . '/media/css/gridview.css',
             'ajaxUpdate'=>true,    //禁用AJAX
             'enableSorting'=>true,
-            'summaryText' => '总数：{count}  区间：{start}-{end} 当前:{page} 总页码：{pages}',
+            'summaryText' => '<span>总数：{count}</span>  <span>区间：{start}-{end}</span> <span>当前:{page}</span> <span>总页数：{pages}</span>',
 
 	'filter'=>$model,
 	'pager'=>array(
@@ -91,13 +112,7 @@ $('.search-form form').submit(function(){
 		array(
 			'name'=>'user_name',
 			'type'=>'raw',
-			'value'=>'CHtml::link(CHtml::encode($data->user_name), "")'
-		),		
-		array(
-			'name'=>'user_email',
-			'type'=>'raw',
-			'value'=>'CHtml::mailto($data->user_email)'
-		),		
+		),	
 		array(
 			'name'=>'user_nicename',
 			'type'=>'raw',
@@ -117,21 +132,15 @@ $('.search-form form').submit(function(){
 			 'class'=>'bootstrap.widgets.TbButtonColumn'
 			  ,'header' => CHtml::dropDownList('pageSize'
 					,Yii::app()->user->getState('pageSize')
-					,array(20=>20,50=>50,100=>100)
+					,array(5=>5,10=>10,20=>20)
 					,array( // change 'user-grid' to the actual id of your grid!! 
-						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{pageSize: $(this).val()}})", 
+						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
 					)
 				  )
 			  ,'htmlOptions'=>array('style'=>'width: 80px'),
 		),		
 	),
 )); 
-
-Yii::app()->clientScript->registerScript('search', "
-function reloadGrid(data) {
-    $.fn.yiiGridView.update('menu-grid');
-}
-");
 ?>
 		</div>
 	</div>

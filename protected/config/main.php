@@ -35,7 +35,7 @@ return array(
 		'application.extensions.debugtoolbar.*',
 
 		/* for ext yii-rights */
- 		'application.modules.rights.*',  		        
+ 		'application.modules.rights.*',
     	'application.modules.rights.models.*',  
     	'application.modules.rights.components.*', // Correct paths if necessary.  
 
@@ -45,12 +45,15 @@ return array(
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(
+			// 以及默认的位置
 			'class'=>'system.gii.GiiModule',
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 			 // 'bootstrap.gii',
+			// Gii 在GiiModule::generatorPaths 属性指定的目录中查找可用的生成器。 当需要定制时，我们可以在应用程序的配置文件中做如下配置，
 			 'generatorPaths'=>array(
+			 	'application.gii',   // a path alias
                 'bootstrap.gii',
             ),
 		),

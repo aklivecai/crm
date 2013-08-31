@@ -26,7 +26,7 @@ class PostController extends Controller
 	 */
 	public function filterUpdateOwn($filterChain)
 	{
-		$post=$this->loadModel();
+		$post = $this->loadModel();
 		
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.

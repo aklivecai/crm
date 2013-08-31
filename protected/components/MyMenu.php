@@ -8,7 +8,7 @@ $mems = array(
 	'AddressBook' => array(),
 	'AddressGroups' => array(),
 	'Files' => array(),
-	'Files' => array(),
+	'Events' => array(),
 
 );
 class MyMenu extends CMenu {

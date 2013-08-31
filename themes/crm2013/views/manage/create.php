@@ -1,10 +1,9 @@
 <?php
 /* @var $this ManageController */
 /* @var $model Manage */
-
 $this->breadcrumbs=array(
-	'Manages'=>array('index'),
-	'Create',
+	Tk::g('Manages')=>array('index'),
+	Tk::g('Create'),
 );
 
 $this->menu=array(

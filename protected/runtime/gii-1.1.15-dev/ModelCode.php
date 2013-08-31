@@ -1,6 +1,6 @@
 <?php
 return array (
-  'template' => 'default',
+  'template' => 'compact',
   'connectionId' => 'db',
   'tablePrefix' => 'Tak_',
   'modelPath' => 'application.models',

@@ -23,6 +23,7 @@
  */
 class Manage extends CActiveRecord
 {
+	public $mName = __CLASS__ ;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -60,7 +61,6 @@ class Manage extends CActiveRecord
     public function defaultScope()
     {
     	$arr = array('order'=>'add_time DESC',);
-
     	return $arr;
     }
 
@@ -69,6 +69,7 @@ class Manage extends CActiveRecord
 	 */
 	public function authenticate($attribute,$params)
 	{
+		Tak::KD($this->user_name);
 		$sql = ' LOWER(user_name)=:user_name AND fromid=:fromid ';
 		$arr = array(':user_name' => strtolower($this->user_name));
 		$arr[':fromid'] = $this->fromid?$this->fromid:Tak::getFormid();
@@ -114,7 +115,7 @@ class Manage extends CActiveRecord
 
 		$criteria = new CDbCriteria;
 		if (!Tak::getAdmin()) {
-			$criteria->addCondition("fromid=".Tak::getFormid());	
+			$criteria->addCondition("fromid=".Tak::getFormid());
 		}		
 
 		$criteria->compare('user_name',$this->user_name,true);
@@ -157,7 +158,7 @@ class Manage extends CActiveRecord
 			'user_name' => '登录帐号',
 			'user_pass' => '登录密码',
 			'salt' => '登录检验码',
-			'user_nicename' => '用户名称',
+			'user_nicename' => '名字',
 			'user_email' => '邮箱',
 			'add_time' => '添加时间',
 			'add_ip' => '添加IP',

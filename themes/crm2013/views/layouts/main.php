@@ -19,7 +19,11 @@
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
 
 
+<script src='/_ak/js/jq.common.js'></script>
+
+
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fullcalendar/fullcalendar.min.js'></script>
+
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/uniform/uniform.js'></script>
 
@@ -45,6 +49,10 @@
   Yii::app()->bootstrap->register();
 ?>
 <style type="text/css" media="screen">
+.red{
+  color: #F00;
+}
+.row-form .required span{color: #F00;} 
 .logo span{
   color: #FFF;
   font: bold 20px/25px '黑体';
@@ -200,16 +208,91 @@ ul.yiiPager .first, ul.yiiPager .last {
 ?>
       </div>
       <ul class="control">
-        <li><i class="icon-comment"></i> <a href="messages.html">消息</a> <a href="messages.html" class="caption red">12</a></li>
-        <li><i class="icon-cog"></i> <a href="forms.html">设置</a></li>
+        <li><i class="icon-comment"></i> <a href="#">消息</a> <a href="messages.html" class="caption red">12</a></li>
+        <li><i class="icon-user"></i><a href="#">个人资料</a></li>
 
         <li><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/change-password')?>" class="chage-pwd">修改密码</a></li>
-        <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout">退出</a></li>
+        <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout "><span class="red">退出系统</span></a></li>
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
     </div>
+      <?php 
+     $this->widget('application.components.MyMenu',array(
+          'itemTemplate'=>'{menu}',
+          'activateParents'=>true, //父节点显示
+          'itemCssClass' => 'openable',
+          'activeCssClass'=>'active',
+          'firstItemCssClass'=>'',//第一个
+          'lastItemCssClass'=>'',//最后一个
+          'htmlOptions'=>array('class'=>'navigation'),
+          'encodeLabel' => false, //是否过滤HTML代码
+          'submenuHtmlOptions' => array(),
+          /*'linkLabelWrapper' => "", //显示内容的标签*/
+          'items'=>array(  
+            array(
+              'icon' =>'isw-grid',
+              'url' => array('/site/index'),
+              'label'=>'<span class="text">主页</span>',
+            ),
+            array(
+              'icon' =>'isw-users',
+              'label'=>'<span class="text">员工资料</span>',
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">员工信息</span>', 'url'=>array('/manage/index')),
+                array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/create'),),
+              ),
+            ), 
+            array(
+              'icon' =>'isw-users',
+              'label'=>'<span class="text">客户资料</span>',
+              'items'=>array(
+
+                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/manage/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/manage/admin'),),
+                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/create'),),
+              ),
+            ), 
+            array(
+              'icon' =>'isw-calendar',
+              'label'=>'<span class="text">日历</span>',
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">日历浏览</span>', 'url'=>array('/events/index')),
+                array('icon'=>'plus','label'=>'<span class="text">日历录入</span>',  'url'=>array('/events/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
+              ),
+            ), 
+            array(
+              'icon' =>'isw-cloud',
+              'label'=>'<span class="text">管理中心</span>',
+              'items'=>array(
+                array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
+                array('icon'=>'fire','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
+              ),
+            ), 
+            array(
+               'icon' =>'isw-cloud',
+              'label'=>'<span class="text">提醒管理</span>', 
+              'url'=>array('/post/admin'), 
+              'visible'=>Yii::app()->user->checkAccess('Post.Admin')
+            ),
+            array(
+               'icon' =>'isw-user',
+              'label'=>'<span class="text">权限管理</span>', 
+              'url'=>array('/rights/assignment/view'), 
+              'visible'=>Yii::app()->user->checkAccess('Post.Admin')
+            ),
+
+          )   
 
 
+));
+?> 
+    <div class="dr"><span></span></div>
 <?php
 $this->widget('zii.widgets.CMenu', array(
   'items'=>array(
@@ -218,11 +301,7 @@ $this->widget('zii.widgets.CMenu', array(
       'url'=>array('/post/create'), 
       'visible'=>Yii::app()->user->checkAccess('Post.Create')
     ),
-    array(
-      'label'=>'提醒管理', 
-      'url'=>array('/post/admin'), 
-      'visible'=>Yii::app()->user->checkAccess('Post.Admin')
-    ),
+
     array(
       'label'=>'录入员工', 
       'url'=>array('/manage/create'), 
@@ -261,70 +340,8 @@ $this->widget('zii.widgets.CMenu', array(
   ),
 ));
 ?>
-
-  <div id="mainmenu">
-    <?php 
-    $arr = array(
-        array('label'=>'员工管理', 'url'=>array('/manage/')),
-        array('label'=>'操作日志', 'url'=>array('/adminLog/')),
-        array('label'=>'权限配置', 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess(Rights::module()->superuserName)),
-    );
-    if (Yii::app()->user->isGuest) {
-      array_push($arr
-        ,array('label'=>'登录1', 'url'=>array('/site/login&itemid=8ea92f73rwL650UE0THAhVCQZWCVIFBgdMQhw')));
-      array_push($arr
-        ,array('label'=>'登录2', 'url'=>array('/site/login&itemid=d6171dda1ujebKBE0bSgAGCQcFBAZSVgRKRR0')));
-      array_push($arr
-        ,array('label'=>'登录3', 'url'=>array('/site/login&itemid=27123dd0fMZe3oCklARgQDVVUHUwkICABIRRg')));
-    }else{
-      array_push($arr
-        ,array('label'=>'退出 ('.Yii::app()->user->name.'_'.Yii::app()->user->fromid.')', 'url'=>array('/site/logout')));       
-    }
-    $this->widget('zii.widgets.CMenu',array('items' => $arr)); ?>
-  </div><!-- mainmenu -->
-      <?php 
-     $this->widget('application.components.MyMenu',array(
-          'itemTemplate'=>'{menu}',
-          'activateParents'=>true, //父节点显示
-          'itemCssClass' => 'openable',
-          'activeCssClass'=>'active',
-          'firstItemCssClass'=>'',//第一个
-          'lastItemCssClass'=>'',//最后一个
-          'htmlOptions'=>array('class'=>'navigation'),
-          'encodeLabel' => false, //是否过滤HTML代码
-          'submenuHtmlOptions' => array(),
-          /*'linkLabelWrapper' => "", //显示内容的标签*/
-          'items'=>array(  
-            array(
-              'icon' =>'isw-list',
-              'label'=>'<span class="text">Mnage</span>',
-              'url'=>array('/manage/create'),
-            ),
-            array(
-              'icon' =>'isw-list',
-              'label'=>'<span class="text">Mnage</span>',
-              'items'=>array(
-                array('icon'=>'th','label'=>'<span class="text">Mnage</span>', 'url'=>array('/manage')),
-                array('icon'=>'th','label'=>'<span class="text">Mnage-create</span>',  'url'=>array('/manage/create'),),
-              ),
-            ), 
-          )   
-));
-?>      
-    <ul class="navigation">
-      <li class="active"> <a href="index.html"><span class="isw-grid"></span><span class="text">主页</span> </a> </li>
-      <li class="openable"> <a href="#"> <span class="isw-list"></span><span class="text">权限</span> </a>
-        <ul>
-          <li> <a href="#"> <span class="icon-th"></span><span class="text">UI Elements</span> </a> </li>
-          <li> <a href="#"> <span class="icon-th-large"></span><span class="text">Widgets</span> </a> </li>
-          <li> <a href="#"> <span class="icon-chevron-right"></span><span class="text">Buttons</span> </a> </li>
-          <li> <a href="#"> <span class="icon-fire"></span><span class="text">Icons</span> </a> </li>
-          <li> <a href="#"> <span class="icon-align-justify"></span><span class="text">Grid system</span> </a> </li>
-        </ul>
-      </li>
-   
-    </ul>
     <div class="dr"><span></span></div>
+
     <div class="widget-fluid">
       <div id="menuDatepicker"></div>
     </div>

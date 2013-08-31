@@ -1,8 +1,6 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-
-
-                <div class="row-fluid">
+               <div class="row-fluid">
                     <div class="span12">
 
                         <div class="widgetButtons">
@@ -46,14 +44,14 @@
 
                         <div class="wBlock green clearfix">
                             <div class="dSpace">
-                                <h3>Users</h3>
+                                <h3>客户总量</h3>
                                 <span class="mChartBar" sparkType="bar" sparkBarColor="white"><!--5,10,15,20,23,21,25,20,15,10,25,20,10--></span>
                                 <span class="number">2,513</span>
                             </div>
                             <div class="rSpace">
-                                <span>351 <b>active</b></span>
-                                <span>2102 <b>passive</b></span>
-                                <span>100 <b>removed</b></span>
+                                <span><b>今日</b> 10 </span>
+                                <span><b>本月</b> 200 </span>
+                                <span><b>今年</b> 1000 </span>
                             </div>
                         </div>
 
@@ -63,7 +61,7 @@
 
                         <div class="wBlock blue clearfix">
                             <div class="dSpace">
-                                <h3>Last visits</h3>
+                                <h3>联系人</h3>
                                 <span class="mChartBar" sparkType="bar" sparkBarColor="white"><!--240,234,150,290,310,240,210,400,320,198,250,222,111,240,221,340,250,190--></span>
                                 <span class="number">6,302</span>
                             </div>
@@ -84,115 +82,106 @@
                     <div class="span4">
                         <div class="head clearfix">
                             <span class="glyphicon glyphicon-ok-sign"></span>
-                            <h1>Orders</h1>
+                            <h1>客户</h1>
                             <ul class="buttons">
                                 <li>
                                     <a href="#" class="isw-settings"></a>
                                     <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-list"></span> Show all</a></li>
-                                        <li><a href="#"><span class="isw-ok"></span> Approved</a></li>
-                                        <li><a href="#"><span class="isw-minus"></span> Unapproved</a></li>
-                                        <li><a href="#"><span class="isw-refresh"></span> Refresh</a></li>
+                                        <li><a href="#"><span class="isw-list"></span> 全部</a></li>
+                                        <li><a href="#"><span class="isw-ok"></span> 代理商</a></li>
+                                        <li><a href="#"><span class="isw-minus"></span> VIP客户</a></li>
+                                        <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                         <div class="block-fluid accordion">
 
-                            <h3>November 2012</h3>
+                            <h3>意向客户</h3>
                             <div>
                                 <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
                                     <thead>
                                         <tr>
-                                            <th width="60">Date</th><th>User</th><th width="60">Price</th>
+                                            <th width="60">日期</th><th>名字</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td><span class="date">Nov 6</span><span class="time">12:35</span></td>
                                             <td><a href="#">Aqvatarius</a></td>
-                                            <td><span class="price">$1366.12</span></td>
                                         </tr>
                                         <tr>
                                             <td><span class="date">Nov 8</span><span class="time">18:42</span></td>
                                             <td><a href="#">Olga</a></td>
-                                            <td><span class="price">$146.00</span></td>
                                         </tr>
                                         <tr>
                                             <td><span class="date">Nov 15</span><span class="time">8:21</span></td>
                                             <td><a href="#">Alex</a></td>
-                                            <td><span class="price">$879.24</span></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" align="right"><button class="btn btn-small">More...</button></td>
+                                            <td colspan="2" align="right"><button class="btn btn-small">更多...</button></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
 
-                            <h3>October 2012</h3>
+                            <h3>普通客户</h3>
                             <div>
                                 <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
                                     <thead>
                                         <tr>
-                                            <th width="60">Date</th><th>User</th><th width="60">Price</th>
+                                            <th width="60">日期</th><th>名字</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><span class="date">Oct 6</span><span class="time">12:35</span></td>
+                                            <td><span class="date">Nov 6</span><span class="time">12:35</span></td>
                                             <td><a href="#">Aqvatarius</a></td>
-                                            <td><span class="price">$1366.12</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span class="date">Oct 8</span><span class="time">18:42</span></td>
+                                            <td><span class="date">Nov 8</span><span class="time">18:42</span></td>
                                             <td><a href="#">Olga</a></td>
-                                            <td><span class="price">$146.00</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span class="date">Oct 15</span><span class="time">8:21</span></td>
+                                            <td><span class="date">Nov 15</span><span class="time">8:21</span></td>
                                             <td><a href="#">Alex</a></td>
-                                            <td><span class="price">$879.24</span></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" align="right"><button class="btn btn-small">More...</button></td>
+                                            <td colspan="2" align="right"><button class="btn btn-small">更多...</button></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
-
-                            <h3>September 2012</h3>
+                           
+                            <h3>VIP客户</h3>
                             <div>
                                 <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
                                     <thead>
                                         <tr>
-                                            <th width="60">Date</th><th>User</th><th width="60">Price</th>
+                                            <th width="60">日期</th><th>名字</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><span class="date">Sep 6</span><span class="time">12:35</span></td>
+                                            <td><span class="date">Nov 6</span><span class="time">12:35</span></td>
                                             <td><a href="#">Aqvatarius</a></td>
-                                            <td><span class="price">$1366.12</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span class="date">Sep 8</span><span class="time">18:42</span></td>
+                                            <td><span class="date">Nov 8</span><span class="time">18:42</span></td>
                                             <td><a href="#">Olga</a></td>
-                                            <td><span class="price">$146.00</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span class="date">Sep 15</span><span class="time">8:21</span></td>
+                                            <td><span class="date">Nov 15</span><span class="time">8:21</span></td>
                                             <td><a href="#">Alex</a></td>
-                                            <td><span class="price">$879.24</span></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" align="right"><button class="btn btn-small">More...</button></td>
+                                            <td colspan="2" align="right"><button class="btn btn-small">更多...</button></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -204,7 +193,7 @@
                     <div class="span4">
                         <div class="head clearfix">
                             <div class="isw-edit"></div>
-                            <h1>Latest news</h1>
+                            <h1>通知公告</h1>
                             <ul class="buttons">
                                 <li>
                                     <a href="#" class="isw-text_document"></a>
@@ -291,7 +280,7 @@
                     <div class="span4">
                         <div class="head clearfix">
                             <div class="isw-cloud"></div>
-                            <h1>Registrations</h1>
+                            <h1>最近联系</h1>
                             <ul class="buttons">
                                 <li>
                                     <a href="#" class="isw-users"></a>
@@ -299,9 +288,9 @@
                                 <li>
                                     <a href="#" class="isw-settings"></a>
                                     <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-list"></span> Show all</a></li>
-                                        <li><a href="#"><span class="isw-mail"></span> Send mail</a></li>
-                                        <li><a href="#"><span class="isw-refresh"></span> Refresh</a></li>
+                                        <li><a href="#"><span class="isw-list"></span> 全部</a></li>
+                                        <li><a href="#"><span class="isw-mail"></span> 发送邮件</a></li>
+                                        <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
                                     </ul>
                                 </li>
                                 <li class="toggle"><a href="#"></a></li>
@@ -312,7 +301,7 @@
                             <div class="scroll" style="height: 270px;">
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/aqvatarius_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/aqvatarius_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Aqvatarius</a>
                                         <div class="controls">
@@ -323,7 +312,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/olga_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/olga_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Olga</a>
                                         <div class="controls">
@@ -334,7 +323,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/alexey_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/alexey_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Alexey</a>
                                         <div class="controls">
@@ -345,7 +334,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/dmitry_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/dmitry_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Dmitry</a>
                                         <span>approved</span>
@@ -353,7 +342,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/helen_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/helen_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Helen</a>
                                         <span>approved</span>
@@ -361,7 +350,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/alexander_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/alexander_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Alexander</a>
                                         <span>approved</span>
@@ -369,7 +358,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/aqvatarius_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/aqvatarius_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Aqvatarius</a>
                                         <span>approved</span>
@@ -377,7 +366,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/olga_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/olga_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Olga</a>
                                         <span>approved</span>
@@ -385,7 +374,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/alexey_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/alexey_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Alexey</a>
                                         <span>approved</span>
@@ -393,7 +382,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/dmitry_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/dmitry_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Dmitry</a>
                                         <span>approved</span>
@@ -401,7 +390,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/helen_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/helen_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Helen</a>
                                         <span>approved</span>
@@ -409,7 +398,7 @@
                                 </div>
 
                                 <div class="item clearfix">
-                                    <div class="image"><a href="#"><img src="img/users/alexander_s.jpg" width="32"/></a></div>
+                                    <div class="image"><a href="#"><img src="#/alexander_s.jpg" width="32"/></a></div>
                                     <div class="info">
                                         <a href="#" class="name">Alexander</a>
                                         <span>approved</span>
@@ -431,7 +420,7 @@
                     <div class="span6">
                         <div class="head clearfix">
                             <div class="isw-chats"></div>
-                            <h1>Messaging</h1>
+                            <h1>站内信息</h1>
                             <ul class="buttons">
                                 <li>
                                     <a href="#" class="isw-attachment"></a>
@@ -449,7 +438,7 @@
                         <div class="block messaging">
 
                             <div class="itemIn">
-                                <a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>
+                                <a href="#" class="image"><img src="#/olga.jpg" class="img-polaroid"/></a>
                                 <div class="text">
                                     <div class="info clearfix">
                                         <span class="name">Olga</span>
@@ -460,7 +449,7 @@
                             </div>
 
                             <div class="itemOut">
-                                <a href="#" class="image"><img src="img/users/aqvatarius.jpg" class="img-polaroid"/></a>
+                                <a href="#" class="image"><img src="#/aqvatarius.jpg" class="img-polaroid"/></a>
                                 <div class="text">
                                     <div class="info clearfix">
                                         <span class="name">Aqvatarius</span>
@@ -471,7 +460,7 @@
                             </div>
 
                             <div class="itemIn">
-                                <a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>
+                                <a href="#" class="image"><img src="#/olga.jpg" class="img-polaroid"/></a>
                                 <div class="text">
                                     <div class="info clearfix">
                                         <span class="name">Olga</span>
@@ -491,16 +480,21 @@
                     </div>
 
                     <div class="span6">
-                        <div class="head clearfix">
-                            <div class="isw-calendar"></div>
-                            <h1>Calendar</h1>
-                        </div>
-                        <div class="block-fluid">
-                            <div id="calendar" class="fc"></div>
-                        </div>
                     </div>
 
                 </div>
+<div class="row-fluid">
+    <div class="span12">
+
+                        <div class="head clearfix">
+                            <div class="isw-calendar"></div>
+                            <h1>日历</h1>
+                        </div>
+                        <div class="block-fluid">
+                            <div id="calendar" class="fc"></div>
+                        </div>        
+    </div>
+</div>
 
                 <div class="row-fluid">
 

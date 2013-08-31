@@ -2,9 +2,8 @@
 /* @var $this ManageController */
 /* @var $data Manage */
 ?>
-
-<div class="view">
-
+               <div class="row-fluid">
+                    <div class="span8">
 	<b><?php echo CHtml::encode($data->getAttributeLabel('manageid')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->manageid), array('view', 'id'=>$data->manageid)); ?>
 	<br />
@@ -72,4 +71,5 @@
 
 	*/ ?>
 
+</div>
 </div>

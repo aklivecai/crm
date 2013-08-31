@@ -15,8 +15,17 @@ class Tk
 	
 	public static function g( $message="",$category="common", $params=array(), $source=null, $language=null)
 	{
-		return Yii::t(''.$category, $message, $params, $source, $language);
+		$str = '';
+		if (is_array($message)) {
+			foreach ($message as $key => $value) {
+				$str.= Yii::t(''.$category, $value, $params, $source, $language);
+			}
+		}else{
+			$str = Yii::t(''.$category, $message, $params, $source, $language);
+		}
+		return $str;
 	}	
+	
 	
 	public static function t($category="common", $message="", $params=array(), $source=null, $language=null)
 	{

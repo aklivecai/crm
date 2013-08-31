@@ -147,4 +147,44 @@ class Tak {
          
             return $realip;   
     }
+    public static function getFileSrc($str){
+        $path_info = pathinfo($str );  
+        $extension = $path_info['extension'];
+        $file1 = md5($str);
+        $file2 = self::getPathBySplitStr($file1);
+
+        self::KD($str);
+        exit;
+        $dir = Yii::app()->params['upload'].str_replace($file1,'',$file2);
+        self::MkDirs($dir);
+        $file2 .= '.'.$extension;
+        file_put_contents($file2, file_get_contents($str));
+        return $file2;
+    }
+
+    /*
+    获取文件路径
+    48d4cb4ef423f858a9576a4e75ecd598ae966a1d -- 48/d4/cb/4e/48d4cb4ef423f858a9576a4e75ecd598ae966a1d
+    */
+    public static function getPathBySplitStr($str) {
+        $parts = str_split(substr($str,0,8), 2);
+        $path = join("/", $parts);
+        $path = $path . "/" . $str;
+        return $path;
+    }   
+
+    /*
+    生成目录
+    */
+    public static function MkDirs($dir, $mode = 0777, $recursive = true) {
+        if (is_null($dir) || $dir == "") {
+            return false;
+        }
+        if (is_dir($dir) || $dir == "/") {
+            return true;
+        }
+        self::MkDirs(dirname($dir), $mode, $recursive);
+        mkdir($dir,$mode);
+        return false;
+    }
 }  

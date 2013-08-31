@@ -16,6 +16,7 @@
 return array (
   ':name assigned.' => ':name 已指派',
   'Add' => '添加',  
+  'Create' => '录入',  
   'Data' => '数据',
   'Delete' => '删除',
   'Description' => '描述',
@@ -29,7 +30,14 @@ return array (
   'Select none' => '不选',  
   'Update' => '修改',
 
+  'Admin' => '管理',
+  'View' => '浏览',
+  'Action' => '操作',
+  'Create New' => '录入新的',
+
   'Return' => '返回',
+  'Reset' => '重置',
+  'Refresh' => '刷新',
 
   'Manages' => '帐号'
  );

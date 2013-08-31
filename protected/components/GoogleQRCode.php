@@ -33,7 +33,7 @@ class GoogleQRCode extends CWidget
             'chld' => $this->level.'|'.$this->margin,
         );
 
-        $src = sprintf("https://chart.googleapis.com/chart?%s", http_build_query($data) );
+        $src = sprintf("https://chart.googleapis.com/chart?%s", http_build_query($data));
         $_htmlOptions = array(
             'src' => $src,
             'width' => $this->size,
