@@ -1,17 +1,50 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Assignments'),
+    Rights::t('core', 'Rights').''=>Rights::getBaseUrl(),
+    Rights::t('core', 'Assignments'),
 ); ?>
+<div class="row-fluid">
 
-<div id="assignments">
+<div class="page-header">
+<h1><?php echo Rights::t('core', 'Assignments'); ?>
+<small><?php echo Rights::t('core', 'Here you can view which permissions has been assigned to each user.'); ?></small></h1>
+</div>
+<div class="row-fluid" id="assignments">
+<div class="head clearfix">
+    <i class="isw-documents"></i> <h1><?php echo Tk::g(array('Update'));?></h1>
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+<?php
+ $items = array();
+if ($model->isNewRecord) {
+    
+}else{
+    array_push($items
+        ,array(
+          'icon' =>'isw-zoom',
+          'url' => array('/manage/admin'),
+          'label'=>'返回员工管理',
+        )
+    );
+}
+array_push($items
+    ,array(
+      'icon' =>'isw-refresh',
+      'url' => Yii::app()->request->url,
+      'label'=>Tk::g('Refresh'),
+    )
+);
 
-	<h2><?php echo Rights::t('core', 'Assignments'); ?></h2>
-
-	<p>
-		<?php echo Rights::t('core', 'Here you can view which permissions has been assigned to each user.'); ?>
-	</p>
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+    $this->widget('application.components.MyMenu',array(
+          'htmlOptions'=>array('class'=>'dd-list'),
+          'items'=> $items ,
+    ));
+?>
+    </li>
+</ul>       
+</div>
+<div class="block-fluid clearfix">
+	<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 	    'dataProvider'=>$dataProvider,
 	    'template'=>"{items}\n{pager}",
 	    'emptyText'=>Rights::t('core', 'No users found.'),
@@ -47,5 +80,6 @@
     		),
 	    )
 	)); ?>
-
+</div>
+</div>
 </div>

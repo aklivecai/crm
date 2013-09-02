@@ -10,6 +10,8 @@ class UserIdentity extends CUserIdentity
 	private $_id;
 	public $fromid;
 
+	const ERROR_NOT = 8;
+
 	public function __construct($fromid,$username,$password)
 	{
 		parent::__construct($username,$password);
@@ -36,14 +38,16 @@ class UserIdentity extends CUserIdentity
 		{
 			if ($user->user_status==0) {
 				// 禁止登录
-			}
-			$this->_id=$user->manageid;
-			$this->username=$user->user_name;
-			//记录平台会员编号
-			$this->setState('last_login_time', Tak::timetodate($user->last_login_time));
-			$this->setState('fromid', $user->fromid);
+				$this->errorCode = self::ERROR_NOT;
+			}else{
+				$this->_id=$user->manageid;
+				$this->username = $user->user_name;
+				//记录平台会员编号
+				$this->setState('last_login_time', Tak::timetodate($user->last_login_time));
+				$this->setState('fromid', $user->fromid);
+				$this->errorCode=self::ERROR_NONE;
 
-			$this->errorCode=self::ERROR_NONE;
+			}
 		}
 		return $this->errorCode==self::ERROR_NONE;
 	}

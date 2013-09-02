@@ -2,7 +2,7 @@
 /* @var $this ManageController */
 /* @var $model Manage */
 $this->breadcrumbs=array(
-	Tk::g('Manages')=>array('index'),
+	Tk::g('Manages')=>array('admin'),
 	Tk::g('Create'),
 );
 

@@ -29,6 +29,7 @@ return array (
   'Select all' => '全选',
   'Select none' => '不选',  
   'Update' => '修改',
+  'Search' => '搜索',
 
   'Admin' => '管理',
   'View' => '浏览',
@@ -39,5 +40,15 @@ return array (
   'Reset' => '重置',
   'Refresh' => '刷新',
 
-  'Manages' => '帐号'
+  'Manages' => '帐号',
+  'Clientele' => '客户',
+  'Clienteles' => '客户',
+  'ContactpPrson' => '联系人',
+  'ContactpPrsons' => '联系人',
+
+  'Contact' => '联系记录',
+  'Contacts' => '联系记录',
+
+  'AddressBook' => '通讯录',
+  'AddressBooks' => '通讯录',
  );

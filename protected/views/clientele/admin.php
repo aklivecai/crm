@@ -3,14 +3,10 @@
 /* @var $model Clientele */
 
 $this->breadcrumbs=array(
-	'Clienteles'=>array('index'),
-	'Manage',
+	Tk::g('Clienteles')=>array('admin'),
+	Tk::g('Admin'),
 );
-
-$this->menu=array(
-	array('label'=>'List Clientele', 'url'=>array('index')),
-	array('label'=>'Create Clientele', 'url'=>array('create')),
-);
+$items = Tak::getListMenu();
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -26,52 +22,122 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Clienteles</h1>
+<div class="row-fluid">
+	<div class="span12">
+	<div class="head clearfix">
+        <div class="isw-grid"></div>
+        <h1><?php echo Tk::g('Clienteles')?></h1>   
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+<?php 
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'dd-list'),
+      'items'=> $items ,
+));
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+?>      
+    </li>
+</ul>                                    
+    </div>
+		<div class="block-fluid clearfix">
+		<?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'clientele-grid',
+<?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
+    'type'=>'striped bordered condensed',
+    'id' => 'list-grid',
 	'dataProvider'=>$model->search(),
+	'template'=>"{items}",
+	'enableHistory'=>true,
+    'loadingCssClass' => 'grid-view-loading',
+    'summaryCssClass' => 'dataTables_info',
+    'pagerCssClass' => 'pagination dataTables_paginate',
+    'template' => '{pager}{summary}{items}{pager}',
+    'ajaxUpdate'=>true,    //禁用AJAX
+    'enableSorting'=>true,
+    'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
 	'filter'=>$model,
-	'columns'=>array(
-		'itemid',
-		'fromid',
-		'manageid',
-		'rating',
-		'annual_revenue',
-		'industry',
-		/*
-		'profession',
-		'origin',
-		'employees',
-		'accountname',
-		'email',
-		'address',
-		'telephone',
-		'fax',
-		'web',
-		'visibility',
-		'add_time',
-		'add_us',
-		'add_ip',
-		'modified_time',
-		'modified_us',
-		'modified_ip',
-		'note',
-		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+	'pager'=>array(
+		'header'=>'',
+		'maxButtonCount' => '5',
+		'hiddenPageCssClass' => 'disabled'
+		,'selectedPageCssClass' => 'active disabled'
+		,'htmlOptions'=>array('class'=>'')
 	),
-)); ?>
+	'columns'=>array(
+		array(
+			'name' => 'display',
+			'header'=>'显示',
+			'htmlOptions'=>array('style'=>'width: 80px'),
+			'value'=>'TakType::getStatus("display",$data->display)',
+			'type'=>'raw',
+			'filter'=>TakType::items('display'),	 
+		)
+		,array(
+			'name' => 'industry',
+			'header'=>'类型',
+			'htmlOptions'=>array('style'=>'width: 80px'),
+			'value'=>'TakType::getStatus("industry",$data->industry)',
+			'type'=>'raw',
+			'filter'=>TakType::items('industry'),	 
+		)
+		
+		,array(
+			'name'=>'clientele_name',
+			'type'=>'raw',
+			'value'=>'CHtml::link($data->clientele_name,array("view","id"=>$data->itemid))',
+		)
+,		array(
+			'name'=>'telephone',
+			'type'=>'raw',
+            'filter' => false,
+            'sortable' => false,
+		)	
+,		array(
+			'name'=>'address',
+			'type'=>'raw',
+            'filter' => false,
+            'sortable' => false,
+		)	
+,		/*
+,		'employees'
+,		'email'
+,		'address'
+,		'telephone'
+,		'fax'
+,		'web'
+,		'last_time'
+,		'add_time'
+,		'note'
+,		*/
+		array(
+			'name'=>'add_time',
+			'type'=>'raw',
+			'value'=>'Tak::timetodate($data->add_time)',
+            'filter' => false
+		),		
+		array(
+			'header'=>'最后联系',
+			'name'=>'last_time',
+			'type'=>'raw',
+			'value'=>'Tak::timetodate($data->last_time)',
+            'filter' => false
+		),		
+		array(
+			 'class'=>'bootstrap.widgets.TbButtonColumn'
+			  ,'header' => CHtml::dropDownList('pageSize'
+					,Yii::app()->user->getState('pageSize')
+					,TakType::items('pageSize')
+					,array(
+						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
+					)
+			  )
+			  ,'htmlOptions'=>array('style'=>'width: 85px')
+		),		
+	),
+)); 
+?>
+		</div>
+	</div>
+</div>

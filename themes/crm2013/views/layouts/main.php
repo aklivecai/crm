@@ -18,18 +18,12 @@
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery.mousewheel.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
 
-
-<script src='/_ak/js/jq.common.js'></script>
-
-
+<!-- <script src='/_ak/js/jq.common.js'></script> -->
+<!-- 日历 -->
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fullcalendar/fullcalendar.min.js'></script>
-
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/uniform/uniform.js'></script>
-
-
 <!-- 滚动条 -->
-
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
 
 <!-- 弹窗 ，图片 -->
@@ -48,103 +42,13 @@
 <?php
   Yii::app()->bootstrap->register();
 ?>
-<style type="text/css" media="screen">
-.red{
-  color: #F00;
-}
-.row-form .required span{color: #F00;} 
-.logo span{
-  color: #FFF;
-  font: bold 20px/25px '黑体';
-}  
-.header{background-color: #DDC;}
-.breadLine{background-color: #ECECEC;}
-.breadcrumb {
-  padding:0 15px;
-  background:none;
-}
-.row-form input[type="text"],
-.row-form input[type="password"], 
-.row-form textarea{height: 35px;}
-
-.form-horizontal .control-group{margin-bottom:8px;}
-
-.block-fluid .grid-view{
-  padding-top:0;
-} 
-
-.admin ul.control{
-  width:120px;
-  float: right;
-}
-.admin .image{
-  width:80px;
-}
-.img-polaroid{
-  padding:0;
-}
-
-ul.yiiPager .first, ul.yiiPager .last {
-  display: inline;
-}
-.pagination .first,
-.pagination .last{
-  display: none;
-}
-.pagination .previous a{ 
-  border-left-width:1px;
-}
-.button-column select{
-  height:20px;
-  line-height: 20px;
-  width:auto !important;
-  min-width: 25px;
-  max-width: 120px;
-  padding:0;
-  margin:0;
-}
-.grid-view{
-  margin:12px;
-
-}
-.grid-view .pagination  .disabled > span,
-.grid-view .pagination  .disabled > a,
-.grid-view .pagination  .disabled > a:hover,
-.grid-view .pagination  .disabled > a:focus {
-  color: #999999;
-  cursor: not-allowed;
-  border-color: #dddddd;
-}
-.grid-view-loading {
-  background-position: 0 0;
-  background-color:#FFF;
-  opacity: .8;
-}
-.grid-view-loading table{
-  opacity: 5;
-}
-.grid-view input[type="text"]{
-  margin:0;
-}
- .grid-view .dataTables_info{
-    float: left;
-    font-size: 11px;
-    color: #333;
-    line-height: 45px;
-    text-indent: 2em;
-}
-
-.grid-view  .pagination {
-  margin:0;
-  padding: 5px 5px;
-  text-align: right;
-  float: right;
- }
-</style>
+<script type="text/javascript">
+  var CrmPath = '<?php echo Yii::app()->homeUrl;?>';
+</script>
 </head>
 
-<body>
-<div class="wrapper">
+<body class="<?php echo Yii::app()->user->getState('themeSettings_bg'); ?>" >
+<div class="wrapper<?php echo ' '.Yii::app()->user->getState('themeSettings_style'); if(Yii::app()->user->getState('themeSettings_fixed')) echo ' fixed'; ?>">
   <div class="header">
   <?php
    echo CHtml::tag('a'
@@ -158,7 +62,7 @@ ul.yiiPager .first, ul.yiiPager .last {
   ?>
 
     <ul class="header_menu">
-      <li class="list_icon"><a href="#">&nbsp;</a></li>
+      <li class="list_icon " <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'style="display: list-item;"'; ?>><a href="#">&nbsp;</a></li>
       <li class="settings_icon"> <a href="#" class="link_themeSettings">&nbsp;</a>
         <div id="themeSettings" class="popup">
           <div class="head clearfix">
@@ -193,10 +97,10 @@ ul.yiiPager .first, ul.yiiPager .last {
       </li>
     </ul>
   </div>
-  <div class="menu">
+  <div class="menu <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'hidden'; ?>">
     <div class="breadLine">
       <div class="arrow"></div>
-      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name;?> </div>
+      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name; echo Yii::app()->user->getState('themeSettings_menu');?> </div>
     </div>
     <div class="admin">
       <div class="image">
@@ -238,10 +142,10 @@ ul.yiiPager .first, ul.yiiPager .last {
               'icon' =>'isw-users',
               'label'=>'<span class="text">员工资料</span>',
               'items'=>array(
-                array('icon'=>'th-list','label'=>'<span class="text">员工信息</span>', 'url'=>array('/manage/index')),
+                // array('icon'=>'th-list','label'=>'<span class="text">员工信息</span>', 'url'=>array('/manage/index')),
                 array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
                 array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/trashs'),),
               ),
             ), 
             array(
@@ -249,11 +153,11 @@ ul.yiiPager .first, ul.yiiPager .last {
               'label'=>'<span class="text">客户资料</span>',
               'items'=>array(
 
-                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/manage/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/manage/create'),),
-                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/manage/admin'),),
-                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/manage/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
+                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/clientele/admin'),),
+                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/clientele/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/clientele/create'),),
               ),
             ), 
             array(
@@ -293,6 +197,10 @@ ul.yiiPager .first, ul.yiiPager .last {
 ));
 ?> 
     <div class="dr"><span></span></div>
+
+    <?php
+      echo $this->createUrl('setting/ajax',array('tak'=>20));
+    ?>
 <?php
 $this->widget('zii.widgets.CMenu', array(
   'items'=>array(
@@ -355,7 +263,7 @@ $this->widget('zii.widgets.CMenu', array(
     <div class="dr"><span></span></div>
  
   </div>
-  <div class="content">
+  <div class="content <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'wide'; ?>">
     <div class="breadLine">
       <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 					'links'=>$this->breadcrumbs,
@@ -400,7 +308,9 @@ $this->widget('zii.widgets.CMenu', array(
         </li>
       </ul>
     </div>
-    <div class="workplace"> <?php echo $content; ?> </div>
+    <div class="workplace">
+      <?php echo $content; ?>
+    </div>
   </div>
 </div>
 </body>

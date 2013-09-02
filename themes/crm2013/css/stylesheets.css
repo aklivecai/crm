@@ -15,12 +15,11 @@
 @import "tagsinput.css";
 @import "stylesheet.css";
 @import "styling.css";
+@import "ak.css";
 
 
 html { height: 100%; }
 body { min-height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; position: relative; background: url("../img/backgrounds/body.jpg") left top repeat;}
-
-
 
 @media only screen and (max-width: 1350px) {
     body .wrapper .menu{display: block;}

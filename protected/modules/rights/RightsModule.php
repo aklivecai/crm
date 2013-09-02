@@ -130,6 +130,8 @@ class RightsModule extends CWebModule
 				),
 			));
 
+			
+
 			// When installing we need to set the default controller to Install.
 			$this->defaultController = 'install';
 		}

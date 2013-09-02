@@ -65,19 +65,11 @@ array_push($items
       'label'=>Tk::g('Return'),
     )
 );
-
-
     $this->widget('application.components.MyMenu',array(
           'htmlOptions'=>array('class'=>'dd-list'),
           'items'=> $items ,
     ));
-?>        
-<!--         <ul class="dd-list">
-    <li><a href="#"><span class="isw-edit"></span>保存</a></li>
-    <li class="delete"><a href="#"><span class="isw-delete"></span> 删除</a></li>
-    <li><a href=""><span class="isw-refresh"></span>刷新</a></li>
-    <li><a href=""><span class="isw-left"></span></a></li>
-</ul> -->
+?>
     </li>
 </ul>       
 </div>
@@ -92,9 +84,12 @@ array_push($items
 </div><div class="row-form clearfix">
     <?php echo $form->textFieldRow($model, 'user_email', array('size'=>60,'maxlength'=>100)); ?>
 </div><div class="row-form clearfix">
-    <?php echo $form->textFieldRow($model, 'user_status', array('size'=>11,'maxlength'=>11)); ?>
-</div><div class="row-form clearfix">
 	<?php echo $form->textAreaRow($model, 'note', array('maxlength'=>255)); ?>
+  </div><div class="row-form">
+  <div class="controls">
+      <?php echo CHtml::checkBox('Manage[user_status]',$model->user_status==1, array('class'=>'ibtn','value'=>1)); ?>
+  </div>
+    </div>    
 	</div>
 
 <div class="footer tar">

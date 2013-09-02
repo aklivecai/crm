@@ -3,7 +3,7 @@
 /* @var $model Manage */
 
 $this->breadcrumbs=array(
-	Tk::g('Manages')=>array('index'),
+	Tk::g('Manages')=>array('admin'),
 	$model->manageid=>array('view','id'=>$model->manageid),
 	Tk::g('Update'),
 );

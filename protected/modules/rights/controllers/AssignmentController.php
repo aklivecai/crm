@@ -69,12 +69,25 @@ class AssignmentController extends RController
 		   		$criteria['condition'] .= ' AND userid!='.Yii::app()->user->id;
 		   	}*/
 		 }
+
+        //$criteria = new CDbCriteria;
+        //$criteria->compare('username', $this->id, true);
 		// Create a data provider for listing the users
 		$dataProvider = new RAssignmentDataProvider(array(
 			'pagination'=>array(
-				'pageSize'=>5,
+				'pageSize'=>12,
 			),
 		    'criteria'=> $criteria,
+		    'sort' =>array(
+				'attributes'=>array(
+				    'name'=>array(
+				        'asc'=>'user_name',
+				        'desc'=>'user_name DESC',
+				        'label'=>'Item name',
+				        'default'=>'desc',
+				    ),
+				)
+			)
 		));
 
 		// Render the view
@@ -96,6 +109,7 @@ class AssignmentController extends RController
 		$assignedItems = $this->_authorizer->getAuthItems(null, $model->getId());
 		$assignments = array_keys($assignedItems);
 
+
 		// Make sure we have items to be selected
 		$assignSelectOptions = Rights::getAuthItemSelectOptions(null, $assignments);
 		if( $assignSelectOptions!==array() )
@@ -108,9 +122,29 @@ class AssignmentController extends RController
 				$formModel->attributes = $_POST['AssignmentForm'];
 				if( $formModel->validate()===true )
 				{
+					
 					// Update and redirect
 					$this->_authorizer->authManager->assign($formModel->itemname, $model->getId());
+					
+					//aklivecai update
+							$query = Yii::app()->db->createCommand("
+							    UPDATE
+							        Tak_Rbac_Authassignment
+							    SET
+							        fromid = :fromid
+							    WHERE
+							    	 fromid = 0
+							         AND userid = :userid
+							         AND itemname = :itemname
+							");
+							$query->execute(array(
+							    'fromid'    => $model->fromid,
+							    'userid'    => $model->getId(),
+							    'itemname' => $formModel->itemname
+							));
+
 					$item = $this->_authorizer->authManager->getAuthItem($formModel->itemname);
+			
 					$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 					Yii::app()->user->setFlash($this->module->flashSuccessKey,

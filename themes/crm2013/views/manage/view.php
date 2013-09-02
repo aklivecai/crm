@@ -3,7 +3,7 @@
 /* @var $model Manage */
 
 $this->breadcrumbs=array(
-	Tk::g('Manages')=>array('index'),
+	Tk::g('Manages')=>array('admin'),
 	$model->manageid,
 );
 
@@ -22,32 +22,30 @@ $this->menu=array(
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'fromid',
-		'manageid',
 		'user_name',
-		'user_pass',
-		'salt',
 		'user_nicename',
 		'user_email',
-		'add_time',
-		'add_ip',
-		'last_login_time',
-		'last_login_ip',
+		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time),),
+		array('name'=>'add_ip', 'value'=>Tak::Num2IP($model->add_ip),),
+		array('name'=>'last_login_time', 'value'=>Tak::timetodate($model->last_login_time),),
+		array('name'=>'last_login_ip', 'value'=>Tak::Num2IP($model->last_login_ip),),
 		'login_count',
-		'user_status',
+		array('name'=>'user_status','type'=>'raw' ,'value'=>TakType::getStatus("status",$model->user_status)),
+
 		'note',
-		'activkey',
-		'active_time',
+		array('name'=>'active_time', 'value'=>Tak::timetodate($model->active_time),),
 	),
 )); ?>
 </div>
 <div class="span2">
 <?php 
  $items = array(
-	array('label'=>Tk::g('View'), 'icon'=>'eye-open', 'url'=>'#', 'active'=>true),
+	array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
 	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
 	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
-	array('label'=>Tk::g('Update'), 'icon'=>'pencil','url'=>array('update', 'id'=>$model->manageid)),
+	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
+	array('label'=>'权限', 'icon'=>'user','url'=>array('rights/assignment/user','id'=>$model->manageid)),
+	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model->manageid)),
 	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model->manageid),'linkOptions'=>array('class'=>'delete')),
 	array('label'=>'列表', 'url'=>'#', 'icon'=>'eye-open','items'=>array(
 	    array('label'=>'上一个', 'url'=>'#'),

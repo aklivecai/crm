@@ -9,7 +9,7 @@ class Controller extends RController
 	 * @var string the default layout for the controller view. Defaults to 'column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
 	 */
-	public $layout = 'column1';
+	public $layout = 'column2';
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
@@ -29,7 +29,7 @@ class Controller extends RController
 	public $isAjax = false;
 	public function init()  
 	{     
-    	// parent::init();   
+    	 parent::init();   
     	$this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
 			 $this->layout = '//layouts/columnAjax';
@@ -82,6 +82,10 @@ class Controller extends RController
 	 */
 	public function filterDeleteOwn($filterChain)
 	{
+		
+
+		$params=array('item'=>$model); // set params array for Rights' BizRule
+		if(Yii::app()->user->checkAccess('accessOwnItems',$params) || Yii::app()->user->checkAccess('Admin'))
 		$itemid = $this->primaryName;
 		$obj = $this->loadModel($_GET['id']);
 		if(Yii::app()->user->checkAccess('DeleteOwn', array('userid'=>$obj->$itemid)))
@@ -95,6 +99,7 @@ class Controller extends RController
 	 */
 	public function loadModel($id)
 	{
+
 		if($this->_model===null)
 		{
 			if(Yii::app()->user->isGuest)

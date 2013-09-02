@@ -124,6 +124,7 @@ class TbInputHorizontal extends TbInput
 	 */
 	protected function radioButton()
 	{
+		
 		$attribute = $this->attribute;
 		echo '<div class="controls">';
 		echo '<label class="radio" for="'.$this->getAttributeId($attribute).'">';

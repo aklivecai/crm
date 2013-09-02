@@ -12,28 +12,58 @@
 $nameColumn=$this->guessNameColumn($this->tableSchema->columns);
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
-	'$label'=>array('index'),
+	Tk::g('$label') => array('admin'),
 	\$model->{$nameColumn},
-);\n";
+);?>\n";
 ?>
 
-$this->menu=array(
-	array('label'=>'List <?php echo $this->modelClass; ?>', 'url'=>array('index')),
-	array('label'=>'Create <?php echo $this->modelClass; ?>', 'url'=>array('create')),
-	array('label'=>'Update <?php echo $this->modelClass; ?>', 'url'=>array('update', 'id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
-	array('label'=>'Delete <?php echo $this->modelClass; ?>', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage <?php echo $this->modelClass; ?>', 'url'=>array('admin')),
-);
-?>
-
-<h1>View <?php echo $this->modelClass." #<?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
-
-<?php echo "<?php"; ?> $this->widget('zii.widgets.CDetailView', array(
+<div class="block-fluid">
+	<div class="row-fluid">
+	    <div class="span10">
+<?php echo "<?php"; ?> $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 <?php
-foreach($this->tableSchema->columns as $column)
-	echo "\t\t'".$column->name."',\n";
+foreach($this->tableSchema->columns as $column){
+	$cname = $column->name; 
+
+	if(Tak::giiCol($cname)){
+		continue ;
+	}	
+	$str = "\t\t";
+	if(strpos($cname, 'time')>0){
+		$str .= "array('name'=>':name', 'value'=>Tak::timetodate(\$model->:name),)";
+	}elseif(strpos($cname, 'ip')>0){
+		$str .= "array('name'=>':name', 'value'=>Tak::Num2IP(\$model->:name),)";
+	}elseif(strpos(',display,status,',$cname)>0){
+		$str .= "array('name'=>':name','type'=>'raw', 'value'=>TakType::getStatus(':name',\$model->:name),)";
+	}else{
+		$str .= "':name'";
+	}
+	$str = str_replace(":name",$cname,$str);
+	$str .= ",\n";
+	echo $str;
+}
 ?>
 	),
 )); ?>
+</div>
+<div class="span2">
+<?php echo "<?php"; ?>
+ $items = array(
+	array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
+	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
+	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
+	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
+	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model-><?php echo "{$this->tableSchema->primaryKey}"; ?>)),
+	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model-><?php echo "{$this->tableSchema->primaryKey}"; ?>),'linkOptions'=>array('class'=>'delete')),
+);
+$this->widget('bootstrap.widgets.TbMenu', array(
+    'type'=>'list',
+    'items'=> $items,
+    )
+); 
+?>
+</div>
+</div>
+</div>

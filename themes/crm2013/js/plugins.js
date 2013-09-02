@@ -119,7 +119,7 @@ eventClick: function(calEvent, jsEvent, view) {
         $("#s2_2").select2();
         
     // CHECKBOXES AND RADIO
-        // $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();
+         $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();
         
  
         
@@ -271,7 +271,41 @@ eventClick: function(calEvent, jsEvent, view) {
       
         
         
-    $('.ibtn').iButton();
+    $('.ibtn').iButton({
+         duration: 200                           // the speed of the animation
+       , easing: "swing"                         // the easing animation to use
+       , labelOn: "启用"                           // the text to show when toggled on
+       , labelOff: "锁定"                         // the text to show when toggled off
+       , resizeHandle: "auto"                    // determines if handle should be resized
+       , resizeContainer: "auto"                 // determines if container should be resized
+       , enableDrag: true                        // determines if we allow dragging
+       , enableFx: true                          // determines if we show animation
+       , allowRadioUncheck: false                // determine if a radio button should be able to
+                                                 // be unchecked
+       , clickOffset: 120                        // if millseconds between a mousedown & mouseup event this
+                                                 // value, then considered a mouse click
+
+       // define the class statements
+       , className:         ""                   // an additional class name to attach to the main container
+       , classContainer:    "ibutton-container"
+       , classDisabled:     "ibutton-disabled"
+       , classFocus:        "ibutton-focus"
+       , classLabelOn:      "ibutton-label-on"
+       , classLabelOff:     "ibutton-label-off"
+       , classHandle:       "ibutton-handle"
+       , classHandleMiddle: "ibutton-handle-middle"
+       , classHandleRight:  "ibutton-handle-right"
+       , classHandleActive: "ibutton-active-handle"
+       , classPaddingLeft:  "ibutton-padding-left"
+       , classPaddingRight: "ibutton-padding-right"
+
+       // event handlers
+       , init: null                              // callback that occurs when a iButton is initialized
+       , change: null                            // callback that occurs when the button state is changed
+       , click: null                             // callback that occurs when the button is clicked
+       , disable: null                           // callback that occurs when the button is disabled/enabled
+       , destroy: null            
+    });
     
     // Scroll up plugin
      $.scrollUp({scrollText: '^'});

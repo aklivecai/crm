@@ -10,8 +10,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="wide form">
-
+<div class="wide">
 <?php echo "<?php \$form=\$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl(\$this->route),
 	'method'=>'get',
@@ -34,5 +33,4 @@
 	</div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
-
 </div><!-- search-form -->

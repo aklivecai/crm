@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->manageid); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('clientele_name')); ?>:</b>
+	<?php echo CHtml::encode($data->clientele_name); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('rating')); ?>:</b>
 	<?php echo CHtml::encode($data->rating); ?>
 	<br />
@@ -29,21 +33,17 @@
 	<?php echo CHtml::encode($data->industry); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('profession')); ?>:</b>
 	<?php echo CHtml::encode($data->profession); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('origin')); ?>:</b>
 	<?php echo CHtml::encode($data->origin); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('employees')); ?>:</b>
 	<?php echo CHtml::encode($data->employees); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('accountname')); ?>:</b>
-	<?php echo CHtml::encode($data->accountname); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
@@ -66,8 +66,16 @@
 	<?php echo CHtml::encode($data->web); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('visibility')); ?>:</b>
-	<?php echo CHtml::encode($data->visibility); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('display')); ?>:</b>
+	<?php echo CHtml::encode($data->display); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('last_time')); ?>:</b>
+	<?php echo CHtml::encode($data->last_time); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('add_time')); ?>:</b>

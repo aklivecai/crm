@@ -37,6 +37,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+
 		$this->layout='column1';
 		$this->render('index');
 	}
@@ -64,7 +65,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogin($itemid=false)
 	{
-		$arr = array(1,2,3);
+		$arr = array(1,2,3,4,5);
 
 		/*已经登录，返回上一页，没有就首页*/
 		if (!Yii::app()->user->isGuest) {
@@ -105,6 +106,9 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+		if (Yii::app()->user->isGuest) {
+			$this->redirect(Yii::app()->user->loginUrl);
+		}		
 		// 更新最后活跃时间
 		Manage::model()->upActivkey();
 		Yii::app()->user->logout();

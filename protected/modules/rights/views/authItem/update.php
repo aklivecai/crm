@@ -1,30 +1,27 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
+	Rights::t('core', 'Rights').''=>Rights::getBaseUrl(),
 	Rights::getAuthItemTypeNamePlural($model->type)=>Rights::getAuthItemRoute($model->type),
 	$model->name,
 ); ?>
 
-<div id="updatedAuthItem">
+<div class="row-fluid" id="updatedAuthItem">
+	<div class="span6">
+		<?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
+	</div>
+	<div class="relations span6">
+<div class="head clearfix">
+ <div class="isw-cloud"></div>
+ <h1><?php echo Rights::t('core', 'Relations'); ?></h1>
+</div>	
 
-	<h2><?php echo Rights::t('core', 'Update :name', array(
-		':name'=>$model->name,
-		':type'=>Rights::getAuthItemTypeName($model->type),
-	)); ?></h2>
-
-	<?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
-
-	<div class="relations span-11 last">
-
-		<h3><?php echo Rights::t('core', 'Relations'); ?></h3>
-
+<div class="block">
 		<?php if( $model->name!==Rights::module()->superuserName ): ?>
-
 			<div class="parents">
-
 				<h4><?php echo Rights::t('core', 'Parents'); ?></h4>
 
-				<?php $this->widget('zii.widgets.grid.CGridView', array(
+				<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 					'dataProvider'=>$parentDataProvider,
+					'type'=>'striped bordered condensed',
 					'template'=>'{items}',
 					'hideHeader'=>true,
 					'emptyText'=>Rights::t('core', 'This item has no parents.'),
@@ -56,10 +53,10 @@
 			</div>
 
 			<div class="children">
-
 				<h4><?php echo Rights::t('core', 'Children'); ?></h4>
 
-				<?php $this->widget('zii.widgets.grid.CGridView', array(
+				<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
+					'type'=>'striped bordered condensed',
 					'dataProvider'=>$childDataProvider,
 					'template'=>'{items}',
 					'hideHeader'=>true,
@@ -92,22 +89,15 @@
 			</div>
 
 			<div class="addChild">
-
 				<h5><?php echo Rights::t('core', 'Add Child'); ?></h5>
-
 				<?php if( $childFormModel!==null ): ?>
-
 					<?php $this->renderPartial('_childForm', array(
 						'model'=>$childFormModel,
 						'itemnameSelectOptions'=>$childSelectOptions,
 					)); ?>
-
 				<?php else: ?>
-
 					<p class="info"><?php echo Rights::t('core', 'No children available to be added to this item.'); ?>
-
 				<?php endif; ?>
-
 			</div>
 
 		<?php else: ?>
@@ -118,6 +108,7 @@
 			</p>
 
 		<?php endif; ?>
+		</div>
 
 	</div>
 

@@ -47,7 +47,7 @@ return array(
 		'gii'=>array(
 			// 以及默认的位置
 			'class'=>'system.gii.GiiModule',
-			'password'=>'123456',
+			'password'=>'1',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 			 // 'bootstrap.gii',
@@ -77,13 +77,13 @@ return array(
                'flashErrorKey'=>'RightsError', // Key to use for setting error flash messages. 
  
                'baseUrl'=>'/rights', // Base URL for Rights. Change if module is nested. 
-               'layout'=>'rights.views.layouts.main',  // Layout to use for displaying Rights. 
+               'layout'=>'//layouts/mainRight',  // Layout to use for displaying Rights. 
                'appLayout'=>'//layouts/main', // Application layout. 
                // 'cssFile'=>'rights.css', // Style sheet file to use for Rights. 
 	    ),  
 
 	),
-	// application components
+	// application components components.authManager.assignmentTable
 	'components'=>array(
         'authManager'=>array(
             'class'=>'RDbAuthManager',

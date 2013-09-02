@@ -3,20 +3,20 @@
 	Rights::t('core', 'Operations'),
 ); ?>
 
-<div id="operations">
-
-	<h2><?php echo Rights::t('core', 'Operations'); ?></h2>
-
-	<p>
-		<?php echo Rights::t('core', 'An operation is a permission to perform a single operation, for example accessing a certain controller action.'); ?><br />
-		<?php echo Rights::t('core', 'Operations exist below tasks in the authorization hierarchy and can therefore only inherit from other operations.'); ?>
-	</p>
-
-	<p><?php echo CHtml::link(Rights::t('core', 'Create a new operation'), array('authItem/create', 'type'=>CAuthItem::TYPE_OPERATION), array(
-		'class'=>'add-operation-link',
-	)); ?></p>
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+<div class="row-fluid" id="operations">
+<div class="head clearfix">
+    <i class="isw-documents"></i> <h1><?php echo Rights::t('core', 'Operations');?></h1>
+<ul class="buttons">
+    <li>
+        <?php echo CHtml::link('', array('authItem/create', 'type'=>CAuthItem::TYPE_OPERATION), array(
+        'class'=>'isw-plus',
+         'title'=>Rights::t('core', 'Create a new operation')
+    )); ?>
+    </li>
+</ul>       
+</div>
+<div class="block-fluid clearfix">
+    <?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 	    'dataProvider'=>$dataProvider,
 	    'template'=>'{items}',
 	    'emptyText'=>Rights::t('core', 'No operations found.'),

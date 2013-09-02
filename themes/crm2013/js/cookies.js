@@ -23,7 +23,7 @@ $(document).ready(function(){
        
        // EOF ADMIN BLOCK
        
-       // Collapsible widgets
+       // Collapsible widgets 折叠窗口还原
        $("div[class^=block]").each(function(){
            
            if($(this).attr('data-cookie')){

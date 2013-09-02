@@ -96,5 +96,9 @@ return array (
   'Values within square brackets tell how many children each item has.' => '括号里的数字表示这个项目有多少个子项。',
   'You are not authorized to perform this action.' => '您没有被授权执行该操作。',
   'Here you can view which permissions has been assigned to each user.' => '在这里你可以查看这权限已经分配给每个用户。',
+  'Here you can view and manage the permissions assigned to each role.' => '在这里你可以查看这权限已经分配给每个用户。',
 
+  'Rights' => '授权',
+  'Generate items' => '生成项目',
+  'Generate items for controller actions' => '生成项目',
 );

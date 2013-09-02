@@ -1,14 +1,13 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
+	Rights::t('core', 'Rights').''=>Rights::getBaseUrl(),
 	Rights::t('core', 'Create :type', array(':type'=>Rights::getAuthItemTypeName($_GET['type']))),
 ); ?>
 
-<div class="createAuthItem">
-
-	<h2><?php echo Rights::t('core', 'Create :type', array(
+<div class="head clearfix">
+    <i class="isw-documents"></i> <h1><?php echo Rights::t('core', 'Create :type', array(
 		':type'=>Rights::getAuthItemTypeName($_GET['type']),
-	)); ?></h2>
-
+	)); ?></h1>
+</div>    
+<div class="createAuthItem">
 	<?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
-
 </div>

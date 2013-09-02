@@ -1,166 +1,86 @@
 <?php
 /* @var $this ClienteleController */
 /* @var $model Clientele */
-/* @var $form CActiveForm */
+/* @var $form bootstrap.widgets.TbActiveForm */
 ?>
+<?php  $action = $model->isNewRecord?'Create':'Update';
+ $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
+?>
+<div class="row-fluid">
+<div class="span12">
 
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'clientele-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
+	 'type'=>'horizontal',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'itemid'); ?>
-		<?php echo $form->textField($model,'itemid'); ?>
-		<?php echo $form->error($model,'itemid'); ?>
+<div class="head clearfix">
+	<i class="isw-documents"></i> <h1><?php echo Tk::g(array('Clientele',$action));?></h1>
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+<?php    $this->widget('application.components.MyMenu',array(
+          'htmlOptions'=>array('class'=>'dd-list'),
+          'items'=> $items ,
+    ));
+?>
+    </li>
+</ul>       
+</div>
+<div class="block-fluid">
+	<div class="row-form clearfix" style="border-top-width: 0px;">
+		<?php echo $form->textFieldRow($model,'clientele_name',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'fromid'); ?>
-		<?php echo $form->textField($model,'fromid'); ?>
-		<?php echo $form->error($model,'fromid'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'rating',TakType::items('rating')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'manageid'); ?>
-		<?php echo $form->textField($model,'manageid'); ?>
-		<?php echo $form->error($model,'manageid'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'annual_revenue',TakType::items('annual_revenue')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'rating'); ?>
-		<?php echo $form->textField($model,'rating',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'rating'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'industry',TakType::items('industry')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'annual_revenue'); ?>
-		<?php echo $form->textField($model,'annual_revenue'); ?>
-		<?php echo $form->error($model,'annual_revenue'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'profession',TakType::items('profession')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'industry'); ?>
-		<?php echo $form->textField($model,'industry',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'industry'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'origin',TakType::items('origin')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'profession'); ?>
-		<?php echo $form->textField($model,'profession',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'profession'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->dropDownListRow($model,'employees',TakType::items('employees')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'origin'); ?>
-		<?php echo $form->textField($model,'origin',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'origin'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textFieldRow($model,'email',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'employees'); ?>
-		<?php echo $form->textField($model,'employees'); ?>
-		<?php echo $form->error($model,'employees'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textFieldRow($model,'address',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'accountname'); ?>
-		<?php echo $form->textField($model,'accountname',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'accountname'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textFieldRow($model,'telephone',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'email'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textFieldRow($model,'fax',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'address'); ?>
-		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'address'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textFieldRow($model,'web',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'telephone'); ?>
-		<?php echo $form->textField($model,'telephone',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'telephone'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->radioButtonListRow($model,'display',array('1'=>'公共','0'=>'私有'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'fax'); ?>
-		<?php echo $form->textField($model,'fax',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'fax'); ?>
+	<div class="row-form clearfix">
+		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
+  </div>	
+</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'web'); ?>
-		<?php echo $form->textField($model,'web',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'web'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'visibility'); ?>
-		<?php echo $form->textField($model,'visibility',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'visibility'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'add_time'); ?>
-		<?php echo $form->textField($model,'add_time',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'add_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'add_us'); ?>
-		<?php echo $form->textField($model,'add_us'); ?>
-		<?php echo $form->error($model,'add_us'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'add_ip'); ?>
-		<?php echo $form->textField($model,'add_ip'); ?>
-		<?php echo $form->error($model,'add_ip'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'modified_time'); ?>
-		<?php echo $form->textField($model,'modified_time',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'modified_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'modified_us'); ?>
-		<?php echo $form->textField($model,'modified_us'); ?>
-		<?php echo $form->error($model,'modified_us'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'modified_ip'); ?>
-		<?php echo $form->textField($model,'modified_ip'); ?>
-		<?php echo $form->error($model,'modified_ip'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'note'); ?>
-		<?php echo $form->textField($model,'note',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'note'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+<div class="footer tar">
+    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'submit', 'label'=>Tk::g($action))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>    
+</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
+</div>
+</div>

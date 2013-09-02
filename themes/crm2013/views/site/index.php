@@ -32,9 +32,9 @@
                                 <span class="number">60%</span>
                             </div>
                             <div class="rSpace">
-                                <span>$1,530 <b>amount paid</b></span>
-                                <span>$2,102 <b>in queue</b></span>
-                                <span>$11,100 <b>total taxes</b></span>
+                                <span><b>今日</b> 10 </span>
+                                <span><b>本月</b> 200 </span>
+                                <span><b>今年</b> 1000 </span>
                             </div>
                         </div>
 
@@ -66,9 +66,9 @@
                                 <span class="number">6,302</span>
                             </div>
                             <div class="rSpace">
-                                <span>65% <b>New</b></span>
-                                <span>35% <b>Returning</b></span>
-                                <span>00:05:12 <b>Average time on site</b></span>
+                                <span><b>今日</b> 10 </span>
+                                <span><b>本月</b> 200 </span>
+                                <span><b>今年</b> 1000 </span>
                             </div>
                         </div>
 
@@ -201,9 +201,8 @@
                                 <li>
                                     <a href="#" class="isw-settings"></a>
                                     <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-list"></span> Show all</a></li>
-                                        <li><a href="#"><span class="isw-edit"></span> Add new</a></li>
-                                        <li><a href="#"><span class="isw-refresh"></span> Refresh</a></li>
+                                        <li><a href="#"><span class="isw-list"></span> 显示更多</a></li>
+                                        <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -213,9 +212,35 @@
                             <div class="scroll" style="height: 270px;">
 
                                 <div class="item">
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
+                                    <a href="#">放假通知</a>
+                                    <p>2013年国企放假通知！！！！！！</span>
+                                    <div class="controls">
+                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
+                                        <a href="#" class="icon-trash tip" title="Remove"></a>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <a href="#">放假通知</a>
+                                    <p>2013年国企放假通知！！！！！！</span>
+                                    <div class="controls">
+                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
+                                        <a href="#" class="icon-trash tip" title="Remove"></a>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <a href="#">放假通知</a>
+                                    <p>2013年国企放假通知！！！！！！</span>
+                                    <div class="controls">
+                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
+                                        <a href="#" class="icon-trash tip" title="Remove"></a>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <a href="#">放假通知</a>
+                                    <p>2013年国企放假通知！！！！！！</span>
                                     <div class="controls">
                                         <a href="#" class="icon-pencil tip" title="Edit"></a>
                                         <a href="#" class="icon-trash tip" title="Remove"></a>
@@ -224,8 +249,7 @@
 
                                 <div class="item">
                                     <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
+                                    <p>2013年国企放假通知！！！！！！</span>
                                     <div class="controls">
                                         <a href="#" class="icon-pencil tip" title="Edit"></a>
                                         <a href="#" class="icon-trash tip" title="Remove"></a>
@@ -233,39 +257,8 @@
                                 </div>
 
                                 <div class="item">
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
-                                    <div class="controls">
-                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
-                                        <a href="#" class="icon-trash tip" title="Remove"></a>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
-                                    <div class="controls">
-                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
-                                        <a href="#" class="icon-trash tip" title="Remove"></a>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
-                                    <div class="controls">
-                                        <a href="#" class="icon-pencil tip" title="Edit"></a>
-                                        <a href="#" class="icon-trash tip" title="Remove"></a>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                    <p>Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus.</p>
-                                    <span class="date">02.11.2012 14:23</span>
+                                    <a href="#">放假通知</a>
+                                    <p>2013年国企放假通知！！！！！！</span>
                                     <div class="controls">
                                         <a href="#" class="icon-pencil tip" title="Edit"></a>
                                         <a href="#" class="icon-trash tip" title="Remove"></a>
@@ -415,74 +408,6 @@
 
                 <div class="dr"><span></span></div>
 
-                <div class="row-fluid">
-
-                    <div class="span6">
-                        <div class="head clearfix">
-                            <div class="isw-chats"></div>
-                            <h1>站内信息</h1>
-                            <ul class="buttons">
-                                <li>
-                                    <a href="#" class="isw-attachment"></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="isw-settings"></a>
-                                    <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-plus"></span> New document</a></li>
-                                        <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
-                                        <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="block messaging">
-
-                            <div class="itemIn">
-                                <a href="#" class="image"><img src="#/olga.jpg" class="img-polaroid"/></a>
-                                <div class="text">
-                                    <div class="info clearfix">
-                                        <span class="name">Olga</span>
-                                        <span class="date">10 min ago</span>
-                                    </div>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut diam quis dolor mollis tristique. Suspendisse vestibulum convallis felis vitae facilisis. Praesent eu nisi vestibulum erat lacinia sollicitudin. Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus. Maecenas nulla felis, commodo et adipiscing vel, accumsan eget augue. Morbi volutpat iaculis molestie.
-                                </div>
-                            </div>
-
-                            <div class="itemOut">
-                                <a href="#" class="image"><img src="#/aqvatarius.jpg" class="img-polaroid"/></a>
-                                <div class="text">
-                                    <div class="info clearfix">
-                                        <span class="name">Aqvatarius</span>
-                                        <span class="date">7 min ago</span>
-                                    </div>
-                                    In id adipiscing diam. Sed lobortis dui ut odio tempor blandit. Suspendisse scelerisque mi nec nunc gravida quis mollis lacus dignissim.
-                                </div>
-                            </div>
-
-                            <div class="itemIn">
-                                <a href="#" class="image"><img src="#/olga.jpg" class="img-polaroid"/></a>
-                                <div class="text">
-                                    <div class="info clearfix">
-                                        <span class="name">Olga</span>
-                                        <span class="date">15 sec ago</span>
-                                    </div>
-                                    Cras nec risus dolor, ut tristique neque. Donec mauris sapien, pellentesque at porta id, varius eu tellus. Maecenas nulla felis, commodo et adipiscing vel, accumsan eget augue morbi volutpat.
-                                </div>
-                            </div>
-
-                            <div class="controls">
-                                <div class="control">
-                                    <textarea name="textarea" placeholder="Your message..." style="height: 70px; width: 100%;"></textarea>
-                                </div>
-                                <button class="btn">Send message</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="span6">
-                    </div>
-
-                </div>
 <div class="row-fluid">
     <div class="span12">
 
@@ -496,78 +421,6 @@
     </div>
 </div>
 
-                <div class="row-fluid">
-
-                    <div class="span12">
-                        <div class="head clearfix">
-                            <div class="isw-grid"></div>
-                            <h1>Simple table</h1>
-                            <ul class="buttons">
-                                <li><a href="#" class="isw-download"></a></li>
-                                <li><a href="#" class="isw-attachment"></a></li>
-                                <li>
-                                    <a href="#" class="isw-settings"></a>
-                                    <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-plus"></span> New document</a></li>
-                                        <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
-                                        <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="block-fluid">
-                            <table cellpadding="0" cellspacing="0" width="100%" class="table">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" name="checkall"/></th>
-                                        <th width="25%">Name</th>
-                                        <th width="25%">E-mail</th>
-                                        <th width="25%">Phone</th>
-                                        <th width="25%">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-                                        <td>Dmitry</td>
-                                        <td>dmitry@domain.com</td>
-                                        <td>+98(765) 432-10-98</td>
-                                        <td><span class="label label-success">aviable</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-                                        <td>Alex</td>
-                                        <td>alex@domain.com</td>
-                                        <td>+98(765) 432-10-99</td>
-                                        <td><span class="label label-success">aviable</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-                                        <td>John</td>
-                                        <td>john@domain.com</td>
-                                        <td>+98(765) 432-10-97</td>
-                                        <td><span class="label label-warning">away</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-                                        <td>Angelina</td>
-                                        <td>angelina@domain.com</td>
-                                        <td>+98(765) 432-10-90</td>
-                                        <td><span class="label label-warning">away</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-                                        <td>Tom</td>
-                                        <td>tom@domain.com</td>
-                                        <td>+98(765) 432-10-92</td>
-                                        <td><span class="label">offline</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
 
 
                 <div class="dr"><span></span></div>

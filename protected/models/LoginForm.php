@@ -72,8 +72,14 @@ class LoginForm extends CFormModel
 	public function authenticate($attribute,$params)
 	{
 		$this->_identity=new UserIdentity($this->getFromid(),$this->username,$this->password);
-		if(!$this->_identity->authenticate())
-			$this->addError('password','帐号或者密码错误！');
+		if(!$this->_identity->authenticate()){
+			$str = '帐号或者密码错误！';
+			if($this->_identity->errorCode==8){
+				$str = '帐号禁止登录!';
+			}
+			$this->addError('password',$str);
+		}
+			
 	}
 
 	/**
@@ -93,7 +99,7 @@ class LoginForm extends CFormModel
 			Yii::app()->user->login($this->_identity,$duration);
 
 			// 更新登录次数，信息
-			$usr = Manage::model()->upLogin();
+			Manage::model()->upLogin();
 
 			return true;
 		}

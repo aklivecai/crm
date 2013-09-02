@@ -183,9 +183,9 @@ class Manage extends CActiveRecord
 	        	$this->manageid = $arr['itemid'];
 	        	$this->add_time = $arr['time'];
 	        	$this->add_ip = $arr['ip'];
+	        	$this->fromid = $arr['fromid']; 
 	        	$this->salt = $this->generateSalt();  
 	        	
-	        	$this->fromid = Tak::getFormid(); 
 	        	if (!$this->user_status) {
 	        		$this->user_status = 1; 
 	        	}
@@ -195,6 +195,9 @@ class Manage extends CActiveRecord
 	        	if (!Tak::isValidMd5($this->user_pass)) {
 	        		$this->user_pass = $this->hashPassword($this->user_pass, $this->salt);
 	        	}
+			    if (!isset($this->user_status)) {
+			    	$this->user_status = 0;
+			    }	        	
 
 	        }
 	    }
@@ -208,9 +211,12 @@ class Manage extends CActiveRecord
 		print_r($this->getTableAlias());
 		print_r($this->getDbCriteria());*/
 		$url = Yii::app()->request->getUrl();
-		if(false&&strpos($url,'login')!==false){
+		if(strpos($url,'login')!==false){
 			AdminLog::log('登录操作');
 		}
+		 elseif ( strpos($url,'logout')!==false ){
+		 	AdminLog::log('退出操作');
+		 }
 		 elseif ( $this->isNewRecord ){
 		 	AdminLog::log('添加会员 - '.$this->manageid);
 		 }else{
@@ -225,33 +231,54 @@ class Manage extends CActiveRecord
 		AdminLog::log('删除会员');
 	}
 
-	function getMsg()
-	{
-		return $this->msg;
-	}
-
 	public  function upActivkey()
 	{
-		AdminLog::log('退出操作');
-		$this->updateByPk(Yii::app()->user->id
-			, array('active_time' => Tak::now())
-		);
+		$arr = Tak::getOM();
+		$sql = " UPDATE :tableName SET
+		    active_time = :active_time
+		WHERE
+			 fromid = :fromid
+		     AND manageid = :manageid
+		";
+		$sql = strtr($sql,array(':tableName'=>$this->tableName()
+			,':active_time' => $arr['time']
+			,':fromid' => $arr['fromid']
+			,':manageid' => $arr['manageid']
+		));
+		$query = Yii::app()->db->createCommand($sql);
+		$query->execute();	
+		 AdminLog::log('退出操作');
+		return true;
 
 	}
 	
 	public  function upLogin(){
-
 		$arr = Tak::getOM();
 		// 更新最后登录时间
-		$user = $this->find('manageid=?',array(Yii::app()->user->id));
-		
+/*		$user = $this->find('manageid=?',array(Yii::app()->user->id));
 		$user->last_login_time = $arr['time'];
 		$user->last_login_ip = $arr['ip'];
-		$user->login_count += 1;		
-		$user->save();
+		$user->user_status = $user->user_status;
+		$user->login_count += 1;
+		$user->save();*/
+		$sql = " UPDATE :tableName SET
+		    last_login_ip = :last_login_ip
+		    ,login_count = login_count+1
+		    ,last_login_time = :last_login_time
+		WHERE
+			 fromid = :fromid
+		     AND manageid = :manageid
+		";
+		$sql = strtr($sql,array(':tableName'=>$this->tableName()
+			,':last_login_ip' => $arr['ip']
+			,':last_login_time' => $arr['time']
+			,':fromid' => $arr['fromid']
+			,':manageid' => $arr['manageid']
+		));
+		$query = Yii::app()->db->createCommand($sql);
+		$query->execute();	
 		AdminLog::log('登录操作');
-		
-		return $user;
+		return true;
 	}	
 
     /**

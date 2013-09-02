@@ -53,7 +53,6 @@
 class <?php echo $modelClass; ?> extends <?php echo $this->baseClass."\n"; ?>
 {
 	
-	public $mName = __CLASS__ ;
 	/**
 	 * @return string 数据表名字
 	 */
@@ -171,7 +170,7 @@ foreach($columns as $name=>$column)
 	}
 
 	//默认继承的搜索条件
-    protected function defaultScope(){
+    public function defaultScope(){
     	$arr = parent::defaultScope();
     	$arr = array('order'=>'add_time DESC',);
     	return $arr;
@@ -196,7 +195,7 @@ foreach($columns as $name=>$column)
 		parent::afterSave();
 	}	
 
-	//删除会员后
+	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
 	}	

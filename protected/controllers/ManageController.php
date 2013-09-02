@@ -6,7 +6,6 @@ class ManageController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='column2';
 	
 	public function init()  
 	{     
@@ -34,7 +33,6 @@ class ManageController extends Controller
 	 */
 	public function actionIndex()
 	{
-
 		$criteria = array();
 		if (!Tak::getAdmin()) {
 		   	$criteria['condition'] = "fromid=".Tak::getFormid();

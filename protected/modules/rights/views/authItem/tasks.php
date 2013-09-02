@@ -1,22 +1,22 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
+    Rights::t('core', 'Rights').''=>Rights::getBaseUrl(),
 	Rights::t('core', 'Tasks'),
 ); ?>
 
-<div id="tasks">
-
-	<h2><?php echo Rights::t('core', 'Tasks'); ?></h2>
-
-	<p>
-		<?php echo Rights::t('core', 'A task is a permission to perform multiple operations, for example accessing a group of controller action.'); ?><br />
-		<?php echo Rights::t('core', 'Tasks exist below roles in the authorization hierarchy and can therefore only inherit from other tasks and/or operations.'); ?>
-	</p>
-
-	<p><?php echo CHtml::link(Rights::t('core', 'Create a new task'), array('authItem/create', 'type'=>CAuthItem::TYPE_TASK), array(
-		'class'=>'add-task-link',
-	)); ?></p>
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+<div class="row-fluid" id="tasks">
+<div class="head clearfix">
+    <i class="isw-documents"></i> <h1><?php echo Rights::t('core', 'Tasks');?></h1>
+<ul class="buttons">
+    <li>
+        <?php echo CHtml::link('', array('authItem/create', 'type'=>CAuthItem::TYPE_TASK), array(
+        'class'=>'isw-plus',
+         'title'=>Rights::t('core', 'Create a new task')
+    )); ?>
+    </li>
+</ul>       
+</div>
+<div class="block-fluid clearfix">
+	<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 	    'dataProvider'=>$dataProvider,
 	    'template'=>'{items}',
 	    'emptyText'=>Rights::t('core', 'No tasks found.'),
@@ -59,5 +59,5 @@
 	)); ?>
 
 	<p class="info"><?php echo Rights::t('core', 'Values within square brackets tell how many children each item has.'); ?></p>
-
+</div>
 </div>

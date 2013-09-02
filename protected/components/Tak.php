@@ -12,8 +12,14 @@ class Tak {
         }
         if ($isexit) exit;
     }
+    public static function checkSuperuser(){
+        return Yii::app()->user->checkAccess(Rights::module()->superuserName);
+    }
     public static function getAdmin(){
         return Yii::app()->user->fromid==1;
+    }
+    public static function getManageid(){
+        return Yii::app()->user->id;
     }
     public static function getFormid(){
         return Yii::app()->user->fromid;
@@ -37,7 +43,6 @@ class Tak {
     }
     /*获取操作数*/
     public static function getOM(){
-
         $ip = Yii::app()->user->getState('ip')!=''?Yii::app()->user->getState('ip'):false;
         if (!$ip) {
             $ip = self::getip();
@@ -50,6 +55,8 @@ class Tak {
             'time' => self::now()
             ,'ip'  => $ip
             ,'itemid' => self::fastUuid()
+            ,'manageid' => self::getManageid()
+            ,'fromid' => self::getFormid()
         );
         return $arr;
     }
@@ -96,7 +103,152 @@ class Tak {
         }
         return $result;
     }  
-   
+    public static function giiColAdmin($col){
+        $result = self::giiCol($col);
+        if (!$result) {
+            $result = strpos('::,status,display,modified_time,',",$col,")>0;
+        }
+        return $result;
+    }
+    public static function giiColNot($col){
+        $result = self::giiCol($col);
+        if (!$result) {
+            $result = strpos('::,add_time,modified_time,last_time,',",$col,")>0;
+        }
+        return $result;  
+    }
+    public static function giiCol($col){
+        $result = strpos('::,itemid,fromid,manageid,add_us,add_ip,modified_us,modified_ip,',",$col,")>0;
+        return $result;
+    }
+
+    public static function getEditMenu($itemid,$isNewRecord=true){
+           $items = array(  
+                array(
+                  'icon' =>'isw-edit',
+                  'url' => 'javascript:;',
+                  'label'=>Tk::g('Save'),
+                  'linkOptions'=>array('class'=>'save','submit'=>array()),
+                )
+            );
+            if ($isNewRecord) {
+                $action = 'Create';
+            }else{
+                $action = 'Update';
+                array_push($items
+                    ,array(
+                      'icon' =>'isw-zoom',
+                      'url' => array('view','id'=>$itemid),
+                      'label'=>Tk::g('View'),
+                    )
+                    ,array(
+                      'icon' =>'isw-plus',
+                      'url' => array('create'),
+                      'label'=>Tk::g('Create New'),
+                    )
+                    ,array(
+                      'icon' =>'isw-delete',
+                      'url' => array('delete','id'=>$itemid),
+                      'label'=>Tk::g('Delete'),
+                      'linkOptions'=>array('class'=>'delete'),
+                    )
+                );
+            }
+            array_push($items
+                ,array(
+                  'icon' =>'isw-refresh',
+                  'url' => Yii::app()->request->url,
+                  'label'=>Tk::g('Refresh'),
+                )
+                ,array(
+                  'icon' =>'isw-left',
+                  'url' => ''.Yii::app()->request->urlReferrer,
+                  'label'=>Tk::g('Return'),
+                )
+            ); 
+        return $items;       
+    }
+    public static function getListMenu(){
+       $listMenu = array(  
+            array(
+              'icon' =>'isw-plus',
+              'url' => array('create'),
+              'label'=>Tk::g('Create'),
+            )    
+         /* ,array(
+              'icon' =>'isw-edit',
+              'url' => '#',
+              'label'=>Tk::g('Update'),
+              'linkOptions'=>array('class'=>'edit'),
+            )    
+            ,array(
+              'icon' =>'isw-delete',
+              'url' => '#',
+              'label'=>Tk::g('Delete'),
+              'linkOptions'=>array('class'=>'delete-select','submit'=>array('click'=>"$.fn.yiiGridView.update('menu-grid');")),
+            )*/
+            ,array(
+              'icon' =>'isw-refresh',
+              'url' => Yii::app()->request->url,
+              'label'=>Tk::g('Refresh'),
+              'linkOptions'=>array('class'=>'refresh'),
+            )    
+        );        
+       return $listMenu;
+    }   
+
+    public static function searchData($key=false){
+       $nowDate = date("Y").'-'.date("m").'-'.date("d");
+       $now = time();
+       $datas =array(
+        '10'=>array(
+            'name' =>'当天',
+            'start' => strtotime($nowDate),
+            'end' => $now,
+        ),
+        '20'=>array(
+            'name' =>'最近三天',
+            'start'=> strtotime("$nowDate -3 day"),
+            'end' => $now,
+        ),
+        '30'=>array(
+            'name' =>'最近一周',
+            'start'=> strtotime("$nowDate -1 week"),
+            'end' => $now,
+        ),
+        '40'=>array(
+            'name' =>'最近半月',
+            'start'=> strtotime("$nowDate -15 day"),
+            'end' => $now,
+        ),
+        '50'=>array(
+            'name' =>'最近一月',
+            'start'=> strtotime("$nowDate -1 month"),
+            'end' => $now,
+        ),
+        '60'=>array(
+            'name' =>'最近两月',
+            'start'=> strtotime("$nowDate -2 month"),
+            'end' => $now,
+        ),
+        '70'=>array(
+            'name' =>'最近三月',
+            'start'=> strtotime("$nowDate -3 month"),
+            'end' => $now,
+        ),
+        '80'=>array(
+            'name' =>'最近六月',
+            'start'=> strtotime("$nowDate -6 month"),
+            'end' => $now,
+        ),);  
+
+        if ($key) {
+            return isset($datas[$key])?$datas[$key]:false;
+        }else{
+            return $datas;
+        }
+    }
+
     public static function getip(){
             static $realip = NULL;         
             if ($realip !== NULL){
@@ -147,6 +299,7 @@ class Tak {
          
             return $realip;   
     }
+    
     public static function getFileSrc($str){
         $path_info = pathinfo($str );  
         $extension = $path_info['extension'];

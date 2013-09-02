@@ -1,28 +1,31 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
+	Rights::t('core', 'Rights').''=>Rights::getBaseUrl(),
 	Rights::t('core', 'Permissions'),
 ); ?>
+<?php if(!Yii::app()->request->isAjaxRequest): ?>
+<div class="page-header">
+<h1><?php echo Rights::t('core', 'Permissions'); ?>
+<small><?php echo Rights::t('core', 'Here you can view and manage the permissions assigned to each role.'); ?></small></h1>
+</div>
+<?php endif; ?>
 
-<div id="permissions">
-
-	<h2><?php echo Rights::t('core', 'Permissions'); ?></h2>
-
-	<p>
-		<?php echo Rights::t('core', 'Here you can view and manage the permissions assigned to each role.'); ?><br />
-		<?php echo Rights::t('core', 'Authorization items can be managed under {roleLink}, {taskLink} and {operationLink}.', array(
-			'{roleLink}'=>CHtml::link(Rights::t('core', 'Roles'), array('authItem/roles')),
-			'{taskLink}'=>CHtml::link(Rights::t('core', 'Tasks'), array('authItem/tasks')),
-			'{operationLink}'=>CHtml::link(Rights::t('core', 'Operations'), array('authItem/operations')),
-		)); ?>
-	</p>
-
-	<p><?php echo CHtml::link(Rights::t('core', 'Generate items for controller actions'), array('authItem/generate'), array(
-	   	'class'=>'generator-link',
-	)); ?></p>
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+<div class="row-fluid" id="permissions">
+<div class="head clearfix">
+    <i class="isw-documents"></i> <h1><?php echo Tk::g(array('Update'));?></h1>
+<ul class="buttons">
+    <li>
+        <?php echo CHtml::link('', array('authItem/generate'), array(
+        'class'=>'isw-plus',
+         'title'=>Rights::t('core', 'Generate items for controller actions')
+    )); ?>
+    </li>
+</ul>       
+</div>
+<div class="block-fluid clearfix">
+	<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 		'dataProvider'=>$dataProvider,
-		'template'=>'{items}',
+			'type'=>'striped bordered condensed',
+			'template' => '{pager}{items}{pager}',
 		'emptyText'=>Rights::t('core', 'No authorization items found.'),
 		'htmlOptions'=>array('class'=>'grid-view permission-table'),
 		'columns'=>$columns,
@@ -49,5 +52,7 @@
 		});
 
 	</script>
+
+</div>
 
 </div>

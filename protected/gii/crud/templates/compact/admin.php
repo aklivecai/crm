@@ -11,15 +11,11 @@
 <?php
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
-	'$label'=>array('index'),
-	'Manage',
+	Tk::g('$label')=>array('admin'),
+	Tk::g('Admin'),
 );\n";
 ?>
-
-$this->menu=array(
-	array('label'=>'List <?php echo $this->modelClass; ?>', 'url'=>array('index')),
-	array('label'=>'Create <?php echo $this->modelClass; ?>', 'url'=>array('create')),
-);
+$items = Tak::getListMenu();
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -35,39 +31,102 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo "<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>"; ?>
-
-<div class="search-form" style="display:none">
+<div class="search-form">
 <?php echo "<?php \$this->renderPartial('_search',array(
 	'model'=>\$model,
 )); ?>\n"; ?>
-</div><!-- search-form -->
+</div>
 
-<?php echo "<?php"; ?> $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
+
+<div class="row-fluid">
+	<div class="span12">
+	<div class="head clearfix">
+        <div class="isw-grid"></div>
+        <h1>员工信息</h1>   
+<ul class="buttons">
+    <li>
+        <a href="#" class="isw-settings"></a>
+<?php echo "<?php"; ?> 
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'dd-list'),
+      'items'=> $items ,
+));
+?>      
+    </li>
+</ul>                                    
+    </div>
+		<div class="block-fluid clearfix">
+<?php echo "<?php"; ?> $widget = $this->widget('bootstrap.widgets.TbGridView', array(
+    'type'=>'striped bordered condensed',
+    'id' => 'list-grid',
 	'dataProvider'=>$model->search(),
+	'template'=>"{items}",
+	'enableHistory'=>true,
+    'loadingCssClass' => 'grid-view-loading',
+    'summaryCssClass' => 'dataTables_info',
+    'pagerCssClass' => 'pagination dataTables_paginate',
+    'template' => '{pager}{summary}{items}{pager}',
+    'ajaxUpdate'=>true,    //禁用AJAX
+    'enableSorting'=>true,
+    'summaryText' => '<span>总数：{count}</span>  <span>区间：{start}-{end}</span> <span>当前:{page}</span> <span>总页数：{pages}</span>',
 	'filter'=>$model,
+	'pager'=>array(
+		'header'=>'',
+		'maxButtonCount' => '5',
+		'hiddenPageCssClass' => 'disabled'
+		,'selectedPageCssClass' => 'active disabled'
+		,'htmlOptions'=>array('class'=>'')
+	),
 	'columns'=>array(
+/*
+		array(
+			'name'=>'user_name',
+			'type'=>'raw',
+			'value'=>'CHtml::link($data->user_name,array("view","id"=>$data->manageid))',
+		),	
+*/		
 <?php
 $count=0;
+$arr = array();
+if ($this->tableSchema->columns['display']) {
+	$arr[] = "
+		array(
+			'name' => 'display',
+			'htmlOptions'=>array('style'=>'width: 50px'),
+			'value'=>'TakType::getStatus(\"display\",\$data->display)',
+			'type'=>'raw',
+			'filter'=>TakType::items('display'),	 
+		)
+	";
+}
 foreach($this->tableSchema->columns as $column)
 {
+	if (Tak::giiColAdmin($column->name)) {
+		continue ;
+	}
 	if(++$count==7)
-		echo "\t\t/*\n";
-	echo "\t\t'".$column->name."',\n";
+		$arr[] = "\t\t/*\n";
+	$arr[] = "\t\t'".$column->name."'\n";
 }
 if($count>=7)
-	echo "\t\t*/\n";
+	$arr[] =  "\t\t*/\n";
+
+echo join($arr,',');
 ?>
 		array(
-			'class'=>'CButtonColumn',
-		),
+			 'class'=>'bootstrap.widgets.TbButtonColumn'
+			  ,'header' => CHtml::dropDownList('pageSize'
+					,Yii::app()->user->getState('pageSize')
+					,TakType::items('pageSize')
+					,array(
+						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
+					)
+			  )
+			  ,'htmlOptions'=>array('style'=>'width: 85px')
+		),		
 	),
-)); ?>
+)); 
+?>
+		</div>
+	</div>
+</div>
