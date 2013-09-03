@@ -21,7 +21,7 @@ jQuery(function($){
 });
 
 $(document).ready(function(){
-    $('.delete').on('click',function(){
+    $('li .delete').on('click',function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;
     });
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
         $(".toggle a").click(function(){
             
             var box = $(this).parents('[class^=head]').parent('div[class^=span]').find('div[class^=block]');
-            
+            console.log(box);
             if(box.length == 1){
                 
                 if(box.is(':visible')){        

@@ -25,23 +25,24 @@
 <?php echo "<?php echo \$form->errorSummary(\$model); ?>\n"; ?>
 
 <div class="head clearfix">
-	<i class="isw-documents"></i> <h1><?php echo "<?php"; ?> echo Tk::g(array('<?php echo $this->modelClass;?>',$action));?></h1>
-<ul class="buttons">
-    <li>
-        <a href="#" class="isw-settings"></a>
+	<i class="isw-documents"></i><h1><?php echo "<?php"; ?> echo Tk::g(array('<?php echo $this->modelClass;?>',$action));?></h1>
+	<ul class="buttons">
+	    <li>
+	        <a href="#" class="isw-settings"></a>
 <?php echo "<?php"; ?>
-    $this->widget('application.components.MyMenu',array(
-          'htmlOptions'=>array('class'=>'dd-list'),
-          'items'=> $items ,
-    ));
-?>
-    </li>
-</ul>       
+			$this->widget('application.components.MyMenu',array(
+	          'htmlOptions'=>array('class'=>'dd-list'),
+	          'items'=> $items ,
+	    	));
+		?>
+	    </li>
+	</ul>       
 </div>
 <div class="block-fluid">
 <?php
 
 $strb = '';
+$count = 0;
 foreach($this->tableSchema->columns as $column)
 {
 	$cname = $column->name;
@@ -63,11 +64,17 @@ foreach($this->tableSchema->columns as $column)
 		$strb += $str;
 		continue ;
 	}
+	$count++;
 ?>
-	<div class="row-form clearfix">
+	<div class="row-form clearfix" <?php $count==1?'style="border-top-width: 0px;"':'' ?>>
 		<?php 
 			$str =  "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; 
-			$str = str_replace('textField','textFieldRow',$str);
+			if($cname=='note'){
+				$str = str_replace('textField','textAreaRow',$str);
+			}
+			else{
+				$str = str_replace('textField','textFieldRow',$str);
+			}
 			echo  $str;
 		?>
 	</div>
@@ -77,9 +84,6 @@ foreach($this->tableSchema->columns as $column)
 	}
 }
 ?>
-    <div class="row-form clearfix" style="border-top-width: 0px;">
- 
-    </div>    
 
 </div>
 
@@ -90,6 +94,5 @@ foreach($this->tableSchema->columns as $column)
 </div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
-</div>
 </div>
 </div>

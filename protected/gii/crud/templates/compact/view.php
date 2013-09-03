@@ -14,7 +14,9 @@ $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
 	Tk::g('$label') => array('admin'),
 	\$model->{$nameColumn},
-);?>\n";
+);
+	\$items = Tak::getViewMenu(\$model->{$this->tableSchema->primaryKey});
+?>\n";
 ?>
 
 <div class="block-fluid">
@@ -49,15 +51,7 @@ foreach($this->tableSchema->columns as $column){
 )); ?>
 </div>
 <div class="span2">
-<?php echo "<?php"; ?>
- $items = array(
-	array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
-	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
-	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
-	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
-	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model-><?php echo "{$this->tableSchema->primaryKey}"; ?>)),
-	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model-><?php echo "{$this->tableSchema->primaryKey}"; ?>),'linkOptions'=>array('class'=>'delete')),
-);
+<?php echo "<?php "; ?>
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=> $items,

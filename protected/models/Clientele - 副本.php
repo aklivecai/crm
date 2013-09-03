@@ -30,7 +30,7 @@
  * @property string $modified_ip
  * @property string $note
  */
-class Clientele extends ModuleRecord
+class Clientele extends CActiveRecord
 {
 	
 	/**
@@ -39,6 +39,11 @@ class Clientele extends ModuleRecord
 	public function tableName()
 	{
 		return '{{clientele}}';
+	}
+
+	public function getName()
+	{
+		return __CLASS__;
 	}
 
 	/**
@@ -107,20 +112,24 @@ class Clientele extends ModuleRecord
 		);
 	}
 
-	//默认继承的搜索条件
-    public function defaultScope()
-    {
-    	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
-    	// $condition[] = 'display>0';
-    	$arr['condition'] = join(" AND ",$condition);
-    	return $arr;
-    }
-
+	/**
+	 * 默认查询搜索的条件
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
 	public function search()
 	{
-		$cActive = parent::search();
-		$criteria = $cActive->criteria;
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
 		$criteria->compare('itemid',$this->itemid,true);
 		$criteria->compare('fromid',$this->fromid,true);
 		$criteria->compare('manageid',$this->manageid,true);
@@ -147,10 +156,100 @@ class Clientele extends ModuleRecord
 		$criteria->compare('modified_ip',$this->modified_ip,true);
 		$criteria->compare('note',$this->note,true);
 
-		return $cActive;
+		// $criteria->addBetweenCondition('add_time', $date['date_start'], $date['date_end']);
+
+		if (isset($_GET['dt'])&&isset($_GET['col'])
+			&&$this->hasAttribute($_GET['col'])
+		 ){
+			$date = Tak::searchData($_GET['dt']);
+			if ($date) {		
+				// $criteria->addInCondition($_GET['dt']., array());		
+				$criteria->addBetweenCondition($_GET['col'], $date['start'], $date['end']);
+			}
+		}
+		
+		if (isset($_GET['setPageSize'])) {
+			$setPageSize = (int)$_GET['setPageSize'];
+			if ($setPageSize>0
+				&&$setPageSize!=Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize'])
+				) {
+				Yii::app()->user->setState('pageSize',$setPageSize);
+			}			
+			unset($_GET['pageSize']); 
+			$pageSize = $setPageSize;
+		}else{
+			$pageSize = Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);			
+		}
+		
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array( 
+				'pageSize' => $pageSize, 
+			), 
+		));
 	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Clientele the static model class
+	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	//默认继承的搜索条件
+    public function defaultScope(){
+    	$arr = parent::defaultScope();
+    	$arr = array('order'=>'add_time DESC');
+    	$arr['condition'] = ' status>0 AND fromid='.Tak::getFormid();
+    	if (!Tak::checkSuperuser()) {
+
+    	}
+    	return $arr;
+    }	
+
+
+	//保存数据前
+	protected function beforeSave(){
+	    $result = parent::beforeSave();
+	    if($result){
+	        //添加数据时候
+	        if ( $this->isNewRecord ){
+	        	$arr = Tak::getOM();
+	        	$this->itemid = $arr['itemid'];
+	        	$this->manageid = $arr['manageid'];
+	        	$this->add_us = $arr['manageid'];
+	        	$this->add_time = $arr['time'];
+	        	$this->add_ip = $arr['ip'];
+	        	$this->fromid = $arr['fromid']; 
+	        }else{
+	        	//修改数据时候
+	        	$arr = Tak::getOM();
+	        	$this->modified_us = $arr['manageid'];
+	        	$this->modified_time = $arr['time'];
+	        	$this->modified_ip = $arr['ip'];
+	        }
+	    }
+	    return $result;
+	}
+
+	//保存数据后
+	protected function afterSave(){
+		parent::afterSave();
+	}
+
+	//删除信息后
+	protected function afterDelete(){
+		parent::afterDelete();
 	}	
+	public function del(){
+		$this->status = 0;
+		$this->save();
+	}
+	public function getM($id){
+
+	}
 }

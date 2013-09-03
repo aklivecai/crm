@@ -21,9 +21,8 @@
  * @property string $activkey
  * @property integer $active_time
  */
-class Manage extends CActiveRecord
+class Manage extends ModuleRecord
 {
-	public $mName = __CLASS__ ;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -69,7 +68,6 @@ class Manage extends CActiveRecord
 	 */
 	public function authenticate($attribute,$params)
 	{
-		Tak::KD($this->user_name);
 		$sql = ' LOWER(user_name)=:user_name AND fromid=:fromid ';
 		$arr = array(':user_name' => strtolower($this->user_name));
 		$arr[':fromid'] = $this->fromid?$this->fromid:Tak::getFormid();
@@ -111,8 +109,6 @@ class Manage extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria = new CDbCriteria;
 		if (!Tak::getAdmin()) {
 			$criteria->addCondition("fromid=".Tak::getFormid());
@@ -122,12 +118,12 @@ class Manage extends CActiveRecord
 		$criteria->compare('user_nicename',$this->user_nicename,true);
 		$criteria->compare('user_email',$this->user_email,true);
 		$criteria->compare('add_time',$this->add_time,true);
-		// $criteria->compare('last_login_time',$this->last_login_time,true);
+		$criteria->compare('last_login_time',$this->last_login_time,true);
 		$criteria->compare('login_count',$this->login_count);
 		$criteria->compare('user_status',$this->user_status,true);
 		$criteria->compare('note',$this->note,true);
 
-		$pageSize = Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);
+		$pageSize = parent::getPageSize();
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -137,19 +133,21 @@ class Manage extends CActiveRecord
 		));
 	}
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Manage the static model class
-	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
+
+	function del(){
+		$result = false;
+		if ($this->user_status!=0) {
+			$this->user_status = 0;
+			$this->save();
+			$result = true;
+		}
+		return result;
+	}
+
 	public function attributeLabels()
 	{
 		return array(
@@ -171,11 +169,10 @@ class Manage extends CActiveRecord
 			'active_time' => '最后活动',
 		);
 	}
-
 	
 	//保存数据前
 	protected function beforeSave(){
-	    $result = parent::beforeSave();
+	    $result = parent::beforeSave(true);
 	    if($result){
 	        //添加数据时候
 	        if ( $this->isNewRecord ){
@@ -187,7 +184,7 @@ class Manage extends CActiveRecord
 	        	$this->salt = $this->generateSalt();  
 	        	
 	        	if (!$this->user_status) {
-	        		$this->user_status = 1; 
+	        		$this->user_status = TakType::STATUS_DEFAULT;
 	        	}
             	$this->user_pass = $this->hashPassword($this->user_pass, $this->salt);
 	        }else{
@@ -196,7 +193,7 @@ class Manage extends CActiveRecord
 	        		$this->user_pass = $this->hashPassword($this->user_pass, $this->salt);
 	        	}
 			    if (!isset($this->user_status)) {
-			    	$this->user_status = 0;
+			    	$this->user_status = TakType::STATUS_DELETED;
 			    }	        	
 
 	        }
@@ -206,29 +203,8 @@ class Manage extends CActiveRecord
 
 	//
 	protected function afterSave(){
-		parent::afterSave();
-/*		$this->setTableAlias('itak');
-		print_r($this->getTableAlias());
-		print_r($this->getDbCriteria());*/
-		$url = Yii::app()->request->getUrl();
-		if(strpos($url,'login')!==false){
-			AdminLog::log('登录操作');
-		}
-		 elseif ( strpos($url,'logout')!==false ){
-		 	AdminLog::log('退出操作');
-		 }
-		 elseif ( $this->isNewRecord ){
-		 	AdminLog::log('添加会员 - '.$this->manageid);
-		 }else{
-			AdminLog::log('修改会员'); 
-		 }
-
-	}
-
-	//删除会员后
-	protected function afterDelete(){
-		parent::afterDelete();
-		AdminLog::log('删除会员');
+		// $result = $parent::afterSave();
+		// return $result;
 	}
 
 	public  function upActivkey()
@@ -254,13 +230,6 @@ class Manage extends CActiveRecord
 	
 	public  function upLogin(){
 		$arr = Tak::getOM();
-		// 更新最后登录时间
-/*		$user = $this->find('manageid=?',array(Yii::app()->user->id));
-		$user->last_login_time = $arr['time'];
-		$user->last_login_ip = $arr['ip'];
-		$user->user_status = $user->user_status;
-		$user->login_count += 1;
-		$user->save();*/
 		$sql = " UPDATE :tableName SET
 		    last_login_ip = :last_login_ip
 		    ,login_count = login_count+1

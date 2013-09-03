@@ -1,27 +1,6 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-               <div class="row-fluid">
-                    <div class="span12">
-
-                        <div class="widgetButtons">
-                            <div class="bb"><a href="#" class="tipb" title="Edit"><span class="ibw-edit"></span></a></div>
-                            <div class="bb">
-                                <a href="#" class="tipb" title="Upload"><span class="ibw-folder"></span></a>
-                                <div class="caption red">31</div>
-                            </div>
-                            <div class="bb"><a href="#" class="tipb" title="Add new"><span class="ibw-plus"></span></a></div>
-                            <div class="bb"><a href="#" class="tipb" title="Add to favorite"><span class="ibw-favorite"></span></a></div>
-                            <div class="bb">
-                                <a href="#" class="tipb" title="Send mail"><span class="ibw-mail"></span></a>
-                                <div class="caption green">31</div>
-                            </div>
-                            <div class="bb"><a href="#" class="tipb" title="Settings"><span class="ibw-settings"></span></a></div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row-fluid">
+                <div class="row-">
 
                     <div class="span4">
 
@@ -77,7 +56,7 @@
 
                 <div class="dr"><span></span></div>
 
-                <div class="row-fluid">
+                <div class="row-">
 
                     <div class="span4">
                         <div class="head clearfix">
@@ -86,14 +65,28 @@
                             <ul class="buttons">
                                 <li>
                                     <a href="#" class="isw-settings"></a>
-                                    <ul class="dd-list">
-                                        <li><a href="#"><span class="isw-list"></span> 全部</a></li>
-                                        <li><a href="#"><span class="isw-ok"></span> 代理商</a></li>
-                                        <li><a href="#"><span class="isw-minus"></span> VIP客户</a></li>
-                                        <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+<?php 
+    $this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'dd-list'),
+      'items'=> array(
+                array(
+                  'icon' =>'isw-list',
+                  'url' => array('clientele/admin','id'=>$itemid),
+                  'label'=>'全部',
+                )
+                ,array(
+                  'icon' =>'isw-ok',
+                  'url' => array('clientele/admin','id'=>$itemid),
+                  'label'=>'代理商',
+                )
+                ,array(
+                  'icon' =>'isw-minus',
+                  'url' => $this->createUrl('clientele/admin').'?Clientele[industry]=5',
+                  'label'=>'VIP客户',
+                )
+        ) ,
+    ));
+?>                                      
                         </div>
                         <div class="block-fluid accordion">
 
@@ -408,17 +401,16 @@
 
                 <div class="dr"><span></span></div>
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row-">
 
-                        <div class="head clearfix">
-                            <div class="isw-calendar"></div>
-                            <h1>日历</h1>
-                        </div>
-                        <div class="block-fluid">
-                            <div id="calendar" class="fc"></div>
-                        </div>        
-    </div>
+
+<div class="head clearfix">
+    <div class="isw-calendar"></div>
+    <h1>日历</h1>
+</div>
+<div class="block-fluid">
+    <div id="calendar" class="fc"></div>
+</div>        
 </div>
 
 

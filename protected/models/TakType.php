@@ -12,11 +12,19 @@
  */
 class TakType extends CActiveRecord
 {
+	//信息状态
+	const STATUS_DELETED = 0;
+	const STATUS_DEFAULT = 1;
+
+	//是否公开
+	const DISPLAY_PRITAVE = 0;
+	const DISPLAY_DEFAULT = 1;
 	
 	private static $_items = array(
 		'status' => array('0'=>'锁定','1'=>'启用')
 		,'display' => array('1'=>'公共','0'=>'私有')
-		,'pageSize' => array('10'=>10,'20'=>20,'50'=>50,'100'=>100),
+		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
+		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100),
 	);
 	
 	/**
@@ -44,7 +52,14 @@ label-inverse,*/
 			$content = CHtml::tag('span', array('class'=>$className), $content);
 		}
 		return $content;
-	}	
+	}
+
+	public static function loadGroups($type='AddressGroups'){
+		$models = AddressGroups::model()->getList();
+		foreach($models as $key => $value)
+			self::$_items[$type][$key]=$value;
+
+	}
 	
 	public static function items($type,$fromid=0)
 	{
@@ -62,6 +77,10 @@ label-inverse,*/
 	
 	private static function loadItems($type,$fromid=0)
 	{
+		if ($type=='AddressGroups') {
+			self::loadGroups($type);
+			return null;
+		}
 		self::$_items[$type]=array();
 		$models=self::model()->findAll(array(
 			'condition'=>'item=:item AND fromid=:fromid',

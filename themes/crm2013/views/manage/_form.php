@@ -11,7 +11,6 @@
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'horizontalForm',
     'type'=>'horizontal',
-    'enableAjaxValidation'=>true,
 )); 
 ?>
 <?php echo $form->errorSummary($model); ?>

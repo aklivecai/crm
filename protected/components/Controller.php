@@ -25,11 +25,11 @@ class Controller extends RController
 	public $primaryName = 'itemid';
 	public $modelName = '';
 
-
 	public $isAjax = false;
+
 	public function init()  
 	{     
-    	 parent::init();   
+    	parent::init();   
     	$this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
 			 $this->layout = '//layouts/columnAjax';
@@ -38,21 +38,17 @@ class Controller extends RController
 			// Yii::app()->bootstrap->register();
 		}
 	}	
-
-	public function afterRender($view, &$output)
-	{
+	public function afterRender($view, &$output){
 		if ($this->isAjax) {
 			Yii::app()->clientScript->reset();
 		}		
 		parent::afterRender($view, $output);
 	}	
 
-
 	/**
 	 * @return array action filters
 	 */
-	public function filters()
-	{
+	public function filters(){
 		return array(
 			'updateOwn + update', // Apply this filter only for the update action.
 			'deleteOwn + delete', // Apply this filter only for the update action.
@@ -64,8 +60,7 @@ class Controller extends RController
 	 * Filter method for checking whether the currently logged in user
 	 * is the author of the post being accessed.
 	 */
-	public function filterUpdateOwn($filterChain)
-	{
+	public function filterUpdateOwn($filterChain){
 		$itemid = $this->primaryName;
 		$obj = $this->loadModel($_GET['id']);
 		// Remove the 'rights' filter if the user is updating an own post
@@ -80,15 +75,12 @@ class Controller extends RController
 	 * Filter method for checking whether the currently logged in user
 	 * is the author of the post being accessed.
 	 */
-	public function filterDeleteOwn($filterChain)
-	{
-		
-
+	public function filterDeleteOwn($filterChain){
 		$params=array('item'=>$model); // set params array for Rights' BizRule
-		if(Yii::app()->user->checkAccess('accessOwnItems',$params) || Yii::app()->user->checkAccess('Admin'))
+
 		$itemid = $this->primaryName;
 		$obj = $this->loadModel($_GET['id']);
-		if(Yii::app()->user->checkAccess('DeleteOwn', array('userid'=>$obj->$itemid)))
+		if(Yii::app()->user->checkAccess('DeleteOwn', array('manageid'=>$obj->$itemid)))
 			$filterChain->removeAt(1);
 		$filterChain->run();
 	}	
@@ -102,11 +94,6 @@ class Controller extends RController
 
 		if($this->_model===null)
 		{
-			if(Yii::app()->user->isGuest)
-				$ite = true;
-				// $condition='status=.'Post::STATUS_PUBLISHED.' OR status='.Post::STATUS_ARCHIVED;
-			else
-				$condition='';
 			$m = $this->modelName;
 			$this->_model = $m::model()->findByPk($id, $condition);
 			if($this->_model===null)
@@ -128,9 +115,6 @@ class Controller extends RController
 		}
 	}	
 
-	/**
-	 * This is the action to handle external exceptions.
-	 */
 	public function actionError()
 	{
 	    if($error=Yii::app()->errorHandler->error)
@@ -142,56 +126,46 @@ class Controller extends RController
 	    }
 	}	
 
+	public function actionView($id)
+	{
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}	
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		$this->loadModel($id)->del();
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}	
 
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
 	public function actionCreate()
 	{
 		$m = $this->modelName;
 		$itemid = $this->primaryName;
-
 		$model =new $m;
 		if(isset($_POST[$m]))
 		{
 			$model->attributes=$_POST[$m];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->$itemid));
+			if($model->save()){
+				$returnUrl = $_POST['returnUrl'];
+				if (!$returnUrl) {
+					$this->redirect(array('view','id'=>$model->$itemid));
+				}
+				$this->redirect($returnUrl);
+			}
 		}
-
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
 	public function actionUpdate($id)
 	{
-
 		$m = $this->modelName;
 		$itemid = $this->primaryName;
-
 		$model = $this->loadModel($id);
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -201,29 +175,15 @@ class Controller extends RController
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->$itemid));
 		}
-
 		$this->render('update',array(
 			'model'=>$model,
 		));
 	}
 
-
-	/**
-	 * Manages all models.
-	 */
 	public function actionAdmin()
 	{
 		$m = $this->modelName;
 		$model = new $m('search');
-		if (isset($_GET['setPageSize'])) {
-			$setPageSize = (int)$_GET['setPageSize'];
-			if ($setPageSize>0
-				&&$setPageSize!=Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize'])
-				) {
-				Yii::app()->user->setState('pageSize',$setPageSize);
-			}			
-			unset($_GET['pageSize']); 
-		}
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET[$m])){
 			$model->attributes = $_GET[$m] ;

@@ -126,11 +126,11 @@ $this->widget('application.components.MyMenu',array(
 					)
 			  )
 			  ,'htmlOptions'=>array('style'=>'width: 85px')
-			  ,'template'=>'{view} {update} {vrights} {delete}'
+			  ,'template'=>'{view} {update} {delete} | <span>{vrights}</span> '
 			  ,'buttons'=>array(
 					'vrights' => array
 					(
-						'label'=>'权限 | ',
+						'label'=>'权限',
 						 'url'=>'Yii::app()->createUrl("rights/assignment/user", array("id"=>$data->manageid))',
 						 'linkOptions'=>array('style'=>'width: 50px'),
 					),

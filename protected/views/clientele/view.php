@@ -5,11 +5,20 @@
 $this->breadcrumbs=array(
 	Tk::g('Clienteles') => array('admin'),
 	$model->itemid,
-);?>
+);
+	$items = Tak::getViewMenu($model->itemid);
+?>
 
-<div class="block-fluid">
-	<div class="row-fluid">
-	    <div class="span10">
+<div class="span11">
+	<div class="head clearfix">
+	<div class="isw-zoom"></div>
+		<h1><?php echo Tk::g('Clienteles')?></h1>
+		<ul class="buttons">
+		    <li class="toggle active"><a href="#"></a></li>
+		</ul>
+	</div>
+<div class="block">
+	    <div class="span8">
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -34,20 +43,14 @@ $this->breadcrumbs=array(
 )); ?>
 </div>
 <div class="span2">
-<?php $items = array(
-	array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
-	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
-	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
-	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
-	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model->itemid)),
-	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model->itemid),'linkOptions'=>array('class'=>'delete')),
-);
-$this->widget('bootstrap.widgets.TbMenu', array(
-    'type'=>'list',
-    'items'=> $items,
-    )
-); 
+<?php 
+	$this->widget('bootstrap.widgets.TbMenu', array(
+	    'type'=>'list',
+	    'items'=> $items,
+	    )
+	); 
 ?>
 </div>
+<div class="clearfix"></div>
 </div>
 </div>

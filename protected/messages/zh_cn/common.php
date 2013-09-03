@@ -44,11 +44,17 @@ return array (
   'Clientele' => '客户',
   'Clienteles' => '客户',
   'ContactpPrson' => '联系人',
-  'ContactpPrsons' => '联系人',
+  'Contactp Prson' => '联系人',
+  'Contactp Prsons' => '联系人',
 
   'Contact' => '联系记录',
   'Contacts' => '联系记录',
 
   'AddressBook' => '通讯录',
   'AddressBooks' => '通讯录',
+  'Address Book' => '通讯录',
+  'Address Books' => '通讯录',
+
+  'Address Groups' => '部门',
+  'AddressGroups' => '部门', 
  );

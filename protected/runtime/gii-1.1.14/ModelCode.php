@@ -4,7 +4,7 @@ return array (
   'connectionId' => 'db',
   'tablePrefix' => 'tak_',
   'modelPath' => 'application.models',
-  'baseClass' => 'CActiveRecord',
+  'baseClass' => 'ModuleRecord',
   'buildRelations' => '1',
   'commentsAsLabels' => '1',
 );

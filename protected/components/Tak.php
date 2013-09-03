@@ -19,10 +19,18 @@ class Tak {
         return Yii::app()->user->fromid==1;
     }
     public static function getManageid(){
-        return Yii::app()->user->id;
+        $result = -1;
+        if (isset(Yii::app()->user->id)) {
+            $result = Yii::app()->user->id;
+        }
+        return  $result;
     }
     public static function getFormid(){
-        return Yii::app()->user->fromid;
+        $result = -1;
+        if (isset(Yii::app()->user->fromid)) {
+            $result = Yii::app()->user->fromid;
+        }
+        return  $result;
     }
     /*加密数字*/
     public static function setCryptKey($str){
@@ -168,6 +176,17 @@ class Tak {
             ); 
         return $items;       
     }
+    public static function getViewMenu($itemid){
+        $items = array(
+            array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
+            array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
+            array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
+            array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
+            array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$itemid)),
+            array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$itemid),'linkOptions'=>array('class'=>'delete')),
+        );
+        return $items;    
+    }
     public static function getListMenu(){
        $listMenu = array(  
             array(
@@ -195,6 +214,7 @@ class Tak {
             )    
         );        
        return $listMenu;
+    
     }   
 
     public static function searchData($key=false){

@@ -224,6 +224,8 @@ eventClick: function(calEvent, jsEvent, view) {
         // SORTABLE       
             $("#sort_1").sortable({placeholder: "placeholder"});
             $("#sort_1").disableSelection();    
+
+            $( ".selector" ).sortable({ connectWith: "#shopping-cart" });
             
         // SELECTABLE
             $("#selectable_1").selectable();

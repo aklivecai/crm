@@ -100,16 +100,16 @@
   <div class="menu <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'hidden'; ?>">
     <div class="breadLine">
       <div class="arrow"></div>
-      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name; echo Yii::app()->user->getState('themeSettings_menu');?> </div>
+      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name; echo Tak::getManageid();?> </div>
     </div>
     <div class="admin">
       <div class="image">
-<?php $this->widget('application.components.GoogleQRCode', array(
-    'size' => 82,
-    'content' => Yii::app()->request->hostInfo.Yii::app()->request->getUrl(),
-    'htmlOptions' => array('class' => 'img-polaroid')
-));
-?>
+      <?php $this->widget('application.components.GoogleQRCode', array(
+          'size' => 82,
+          'content' => Yii::app()->request->hostInfo.Yii::app()->request->getUrl(),
+          'htmlOptions' => array('class' => 'img-polaroid')
+      ));
+      ?>
       </div>
       <ul class="control">
         <li><i class="icon-comment"></i> <a href="#">消息</a> <a href="messages.html" class="caption red">12</a></li>
@@ -120,19 +120,8 @@
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
     </div>
-      <?php 
-     $this->widget('application.components.MyMenu',array(
-          'itemTemplate'=>'{menu}',
-          'activateParents'=>true, //父节点显示
-          'itemCssClass' => 'openable',
-          'activeCssClass'=>'active',
-          'firstItemCssClass'=>'',//第一个
-          'lastItemCssClass'=>'',//最后一个
-          'htmlOptions'=>array('class'=>'navigation'),
-          'encodeLabel' => false, //是否过滤HTML代码
-          'submenuHtmlOptions' => array(),
-          /*'linkLabelWrapper' => "", //显示内容的标签*/
-          'items'=>array(  
+<?php 
+$items = array(  
             array(
               'icon' =>'isw-grid',
               'url' => array('/site/index'),
@@ -141,6 +130,7 @@
             array(
               'icon' =>'isw-users',
               'label'=>'<span class="text">员工资料</span>',
+               'visible'=>Yii::app()->user->checkAccess('Manage.Admin'),
               'items'=>array(
                 // array('icon'=>'th-list','label'=>'<span class="text">员工信息</span>', 'url'=>array('/manage/index')),
                 array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
@@ -152,10 +142,10 @@
               'icon' =>'isw-users',
               'label'=>'<span class="text">客户资料</span>',
               'items'=>array(
-
                 array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),),
                 array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
-                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/clientele/admin'),),
+                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">联系人录入</span>',  'url'=>array('/contactpPrson/create'),),
                 array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/clientele/create'),),
                 array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/clientele/create'),),
               ),
@@ -170,12 +160,14 @@
               ),
             ), 
             array(
-              'icon' =>'isw-cloud',
-              'label'=>'<span class="text">管理中心</span>',
+              'icon' =>'isw-calendar',
+              'label'=>'<span class="text">通讯录管理</span>',
+              'visible'=>Yii::app()->user->checkAccess('AddressBook.Admin'),
               'items'=>array(
-                array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
-                array('icon'=>'fire','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
+                array('icon'=>'th-list','label'=>'<span class="text">通讯录管理</span>', 'url'=>array('/addressBook/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">通讯录录入</span>',  'url'=>array('/addressBook/create'),),
+                array('icon'=>'th-list','label'=>'<span class="text">部门管理</span>', 'url'=>array('/AddressGroups/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">部门录入</span>',  'url'=>array('/AddressGroups/create'),),
               ),
             ), 
             array(
@@ -184,81 +176,43 @@
               'url'=>array('/post/admin'), 
               'visible'=>Yii::app()->user->checkAccess('Post.Admin')
             ),
-            array(
+          );  
+if (Tak::checkSuperuser()) {
+ $items[] = array(
+              'icon' =>'isw-cloud',
+              'label'=>'<span class="text">管理中心</span>',
+              'visible'=>Tak::checkSuperuser(),
+              'items'=>array(
+                array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
+                array('icon'=>'fire','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
+              ),
+            );
+ $items[] = array(
                'icon' =>'isw-user',
               'label'=>'<span class="text">权限管理</span>', 
               'url'=>array('/rights/assignment/view'), 
-              'visible'=>Yii::app()->user->checkAccess('Post.Admin')
-            ),
-
-          )   
-
-
-));
+              'visible'=>Tak::checkSuperuser(),
+            );
+}              
+     $this->widget('application.components.MyMenu',array(
+          'itemTemplate'=>'{menu}',
+          'activateParents'=>true, //父节点显示
+          'itemCssClass' => 'openable',
+          'activeCssClass'=>'active',
+          'firstItemCssClass'=>'',//第一个
+          'lastItemCssClass'=>'',//最后一个
+          'htmlOptions'=>array('class'=>'navigation'),
+          'encodeLabel' => false, //是否过滤HTML代码
+          'submenuHtmlOptions' => array(),
+          /*'linkLabelWrapper' => "", //显示内容的标签*/
+          'items'=> $items
+      ));
 ?> 
-    <div class="dr"><span></span></div>
-
-    <?php
-      echo $this->createUrl('setting/ajax',array('tak'=>20));
-    ?>
-<?php
-$this->widget('zii.widgets.CMenu', array(
-  'items'=>array(
-    array(
-      'label'=>'创建提醒', 
-      'url'=>array('/post/create'), 
-      'visible'=>Yii::app()->user->checkAccess('Post.Create')
-    ),
-
-    array(
-      'label'=>'录入员工', 
-      'url'=>array('/manage/create'), 
-      'visible'=>Yii::app()->user->checkAccess('Manage.Create')
-    ),
-    array(
-      'label'=>'员工管理', 
-      'url'=>array('/manage/admin'), 
-      'visible'=>Yii::app()->user->checkAccess('Manage.Admin')
-    ),
-    array(
-      'label'=>'录入通讯录', 
-      'url'=>array('/clientele/create'), 
-      'visible'=>Yii::app()->user->checkAccess('Clientele.Create')
-    ),
-    array(
-      'label'=>'通讯录', 
-      'url'=>array('/clientele/admin'), 
-      'visible'=>Yii::app()->user->checkAccess('Clientele.Admin')
-    ),
-    array(
-      'label'=>'操作日志',
-      'url'=>array('/adminLog/'),
-      'visible'=>Yii::app()->user->checkAccess('AdminLog.Admin'),
-    )
-    ,
-    array(
-      'label'=>Yii::t('blog', '填写评论 (:commentCount)', array(':commentCount'=>Comment::model()->pendingCommentCount)), 
-      'url'=>array('/comment/index'), 'visible'=>Yii::app()->user->checkAccess('Comment.Approve')
-    ),
-    array(
-      'label'=>'退出系统', 
-      'url'=>array('/site/logout'), 
-      'visible'=>!Yii::app()->user->isGuest
-    ),
-  ),
-));
-?>
     <div class="dr"><span></span></div>
 
     <div class="widget-fluid">
       <div id="menuDatepicker"></div>
-    </div>
-    <div class="dr"><span></span></div>
-    <div class="widget">
-      <div class="input-append">
-        <input id="appendedInputButton" style="width: 118px;" type="text">
-        <button class="btn" type="button">搜索</button>
-      </div>
     </div>
     <div class="dr"><span></span></div>
  
@@ -269,44 +223,6 @@ $this->widget('zii.widgets.CMenu', array(
 					'links'=>$this->breadcrumbs,
 				)); ?>
       <!-- breadcrumbs -->
-      
-      <ul class="buttons">
-        <li> <a href="#" class="link_bcPopupList"><span class="icon-user"></span><span class="text">客户列表</span></a>
-          <div id="bcPopupList" class="popup">
-            <div class="head clearfix">
-              <div class="arrow"></div>
-              <span class="isw-users"></span> <span class="name">客户列表</span> </div>
-            <div class="body-fluid users">
-              <div class="item clearfix">
-                <div class="image"><a href="#"><img src="#about" width="32"/></a></div>
-                <div class="info"> <a href="#" class="name">张三</a> <span>online</span> </div>
-              </div>
-              <div class="item clearfix">
-                <div class="image"><a href="#"><img src="#about" width="32"/></a></div>
-                <div class="info"> <a href="#" class="name">Alexander</a> </div>
-              </div>
-            </div>
-            <div class="footer">
-              <button class="btn" type="button">快速录入</button>
-              <button class="btn btn-danger link_bcPopupList" type="button">关闭</button>
-            </div>
-          </div>
-        </li>
-        <li> <a href="#" class="link_bcPopupSearch"><span class="icon-search"></span><span class="text">Search</span></a>
-          <div id="bcPopupSearch" class="popup">
-            <div class="head clearfix">
-              <div class="arrow"></div>
-              <span class="isw-zoom"></span> <span class="name">Search</span> </div>
-            <div class="body search">
-              <input type="text" placeholder="Some text for search..." name="search"/>
-            </div>
-            <div class="footer">
-              <button class="btn" type="button">添加</button>
-              <button class="btn btn-danger link_bcPopupSearch" type="button">关闭</button>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
     <div class="workplace">
       <?php echo $content; ?>

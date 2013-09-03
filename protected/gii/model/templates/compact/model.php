@@ -111,23 +111,10 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseClass."\n"; ?>
 		);
 	}
 
-	/**
-	 * 默认查询搜索的条件
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
+		$cActive = parent::search();
+		$criteria = $cActive->criteria;
 
 <?php
 foreach($columns as $name=>$column)
@@ -142,10 +129,7 @@ foreach($columns as $name=>$column)
 	}
 }
 ?>
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
+		return $cActive;
 	}
 
 <?php if($connectionId!='db'):?>
@@ -158,23 +142,21 @@ foreach($columns as $name=>$column)
 	}
 
 <?php endif?>
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return <?php echo $modelClass; ?> the static model class
-	 */
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
 	//默认继承的搜索条件
-    public function defaultScope(){
+    public function defaultScope()
+    {
     	$arr = parent::defaultScope();
-    	$arr = array('order'=>'add_time DESC',);
+    	$condition = array($arr['condition']);
+    	// $condition[] = 'display>0';
+    	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
-    }	
+    }
 
 	//保存数据前
 	protected function beforeSave(){

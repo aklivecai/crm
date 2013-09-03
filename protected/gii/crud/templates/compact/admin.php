@@ -16,46 +16,28 @@ echo "\$this->breadcrumbs=array(
 );\n";
 ?>
 $items = Tak::getListMenu();
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#<?php echo $this->class2id($this->modelClass); ?>-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
-
-<div class="search-form">
-<?php echo "<?php \$this->renderPartial('_search',array(
-	'model'=>\$model,
-)); ?>\n"; ?>
-</div>
-
-
 <div class="row-fluid">
 	<div class="span12">
+
 	<div class="head clearfix">
         <div class="isw-grid"></div>
-        <h1>员工信息</h1>   
-<ul class="buttons">
-    <li>
-        <a href="#" class="isw-settings"></a>
+        <h1><?php echo"<?php echo Tk::g('{$this->modelClass}')?>"?></h1>   
+		<ul class="buttons">
+		    <li>
+		        <a href="#" class="isw-settings"></a>
 <?php echo "<?php"; ?> 
-$this->widget('application.components.MyMenu',array(
-      'htmlOptions'=>array('class'=>'dd-list'),
-      'items'=> $items ,
-));
-?>      
-    </li>
-</ul>                                    
-    </div>
-		<div class="block-fluid clearfix">
+				$this->widget('application.components.MyMenu',array(
+				      'htmlOptions'=>array('class'=>'dd-list'),
+				      'items'=> $items ,
+				));
+			?>      
+		    </li>
+		</ul>                                    
+	</div>	
+
+	<div class="block-fluid clearfix">
+<?php echo "<?php \$this->renderPartial('//_search',array('model'=>\$model,)); ?>\n"; ?>
 <?php echo "<?php"; ?> $widget = $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'id' => 'list-grid',
@@ -68,7 +50,7 @@ $this->widget('application.components.MyMenu',array(
     'template' => '{pager}{summary}{items}{pager}',
     'ajaxUpdate'=>true,    //禁用AJAX
     'enableSorting'=>true,
-    'summaryText' => '<span>总数：{count}</span>  <span>区间：{start}-{end}</span> <span>当前:{page}</span> <span>总页数：{pages}</span>',
+    'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
 	'filter'=>$model,
 	'pager'=>array(
 		'header'=>'',
@@ -82,7 +64,7 @@ $this->widget('application.components.MyMenu',array(
 		array(
 			'name'=>'user_name',
 			'type'=>'raw',
-			'value'=>'CHtml::link($data->user_name,array("view","id"=>$data->manageid))',
+			'value'=>'CHtml::link($data->user_name,array("view","id"=>$data->itemid))',
 		),	
 */		
 <?php
@@ -95,7 +77,7 @@ if ($this->tableSchema->columns['display']) {
 			'htmlOptions'=>array('style'=>'width: 50px'),
 			'value'=>'TakType::getStatus(\"display\",\$data->display)',
 			'type'=>'raw',
-			'filter'=>TakType::items('display'),	 
+			'filter'=>TakType::items('display'), 
 		)
 	";
 }

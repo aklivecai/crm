@@ -69,11 +69,12 @@ $items = Tak::getListMenu();
 		
 		,array(
 			'name'=>'clientele_name',
-			'type'=>'html',
+			'type'=>'raw',
 			'value'=>'CHtml::link($data->clientele_name,array("view","id"=>$data->itemid))',
 		)
 ,		array(
 			'name'=>'telephone',
+			'type'=>'raw',
             'filter' => false,
             'sortable' => false,
 		)	
@@ -96,12 +97,14 @@ $items = Tak::getListMenu();
 ,		*/
 		array(
 			'name'=>'add_time',
+			'type'=>'raw',
 			'value'=>'Tak::timetodate($data->add_time)',
             'filter' => false
 		),		
 		array(
 			'header'=>'最后联系',
 			'name'=>'last_time',
+			'type'=>'raw',
 			'value'=>'Tak::timetodate($data->last_time)',
             'filter' => false
 		),		
