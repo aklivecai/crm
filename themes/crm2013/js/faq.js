@@ -12,7 +12,7 @@ $(document).ready(function(){
     $("#faqSearch").click(function(){
         var keyword = $(".faqSearchKeyword").val();
         
-        if(keyword.length >= 3){
+        if(keyword.length >= 1){
             $(".faq").find('.text').fadeOut();
             $("#faqSearchResult").html("");
             $(".faq").removeHighlight();
@@ -20,10 +20,10 @@ $(document).ready(function(){
             var items = $(".faq .item:containsi('"+keyword+"')").find('.text');
             items.highlight(keyword);
             items.fadeIn();            
-            $("#faqSearchResult").html(items.length+" matches");            
+            $("#faqSearchResult").html("找到 "+items.length);            
             
         }else
-            $("#faqSearchResult").html("<span style='color: red;'>Minimum 3 chars</span>");
+            $("#faqSearchResult").html("<span style='color: red;'>最少 1 个字</span>");
          
     });
     

@@ -22,6 +22,7 @@
 <!-- 日历 -->
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fullcalendar/fullcalendar.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2.min.js'></script>
+<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2_locale_zh-CN.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/uniform/uniform.js'></script>
 <!-- 滚动条 -->
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
@@ -39,11 +40,16 @@
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/settings.js'></script>
+
+
 <?php
   Yii::app()->bootstrap->register();
 ?>
 <script type="text/javascript">
   var CrmPath = '<?php echo Yii::app()->homeUrl;?>';
+    if(CrmPath.indexOf('.php')>0){
+        CrmPath+='?r=';
+    };
 </script>
 </head>
 
@@ -112,89 +118,16 @@
       ?>
       </div>
       <ul class="control">
-        <li><i class="icon-comment"></i> <a href="#">消息</a> <a href="messages.html" class="caption red">12</a></li>
-        <li><i class="icon-user"></i><a href="#">个人资料</a></li>
+        <li><i class="icon-comment"></i> <a href="<?php echo Yii::app()->createUrl('site/messate');?>">消息</a> <a href="<?php echo $this->createUrl('/site/message')?>" class="caption red">12</a></li>
+        <li><i class="icon-user"></i><a href="<?php echo $this->createUrl('/site/profile')?>">个人资料</a></li>
 
-        <li><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/change-password')?>" class="chage-pwd">修改密码</a></li>
+        <li><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/chage-pwd')?>" class="chage-pwd">修改密码</a></li>
         <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout "><span class="red">退出系统</span></a></li>
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
     </div>
 <?php 
-$items = array(  
-            array(
-              'icon' =>'isw-grid',
-              'url' => array('/site/index'),
-              'label'=>'<span class="text">主页</span>',
-            ),
-            array(
-              'icon' =>'isw-users',
-              'label'=>'<span class="text">员工资料</span>',
-               'visible'=>Yii::app()->user->checkAccess('Manage.Admin'),
-              'items'=>array(
-                // array('icon'=>'th-list','label'=>'<span class="text">员工信息</span>', 'url'=>array('/manage/index')),
-                array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/trashs'),),
-              ),
-            ), 
-            array(
-              'icon' =>'isw-users',
-              'label'=>'<span class="text">客户资料</span>',
-              'items'=>array(
-                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
-                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">联系人录入</span>',  'url'=>array('/contactpPrson/create'),),
-                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/clientele/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/clientele/create'),),
-              ),
-            ), 
-            array(
-              'icon' =>'isw-calendar',
-              'label'=>'<span class="text">日历</span>',
-              'items'=>array(
-                array('icon'=>'th-list','label'=>'<span class="text">日历浏览</span>', 'url'=>array('/events/index')),
-                array('icon'=>'plus','label'=>'<span class="text">日历录入</span>',  'url'=>array('/events/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
-              ),
-            ), 
-            array(
-              'icon' =>'isw-calendar',
-              'label'=>'<span class="text">通讯录管理</span>',
-              'visible'=>Yii::app()->user->checkAccess('AddressBook.Admin'),
-              'items'=>array(
-                array('icon'=>'th-list','label'=>'<span class="text">通讯录管理</span>', 'url'=>array('/addressBook/admin')),
-                array('icon'=>'plus','label'=>'<span class="text">通讯录录入</span>',  'url'=>array('/addressBook/create'),),
-                array('icon'=>'th-list','label'=>'<span class="text">部门管理</span>', 'url'=>array('/AddressGroups/admin')),
-                array('icon'=>'plus','label'=>'<span class="text">部门录入</span>',  'url'=>array('/AddressGroups/create'),),
-              ),
-            ), 
-            array(
-               'icon' =>'isw-cloud',
-              'label'=>'<span class="text">提醒管理</span>', 
-              'url'=>array('/post/admin'), 
-              'visible'=>Yii::app()->user->checkAccess('Post.Admin')
-            ),
-          );  
-if (Tak::checkSuperuser()) {
- $items[] = array(
-              'icon' =>'isw-cloud',
-              'label'=>'<span class="text">管理中心</span>',
-              'visible'=>Tak::checkSuperuser(),
-              'items'=>array(
-                array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
-                array('icon'=>'fire','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/create'),),
-              ),
-            );
- $items[] = array(
-               'icon' =>'isw-user',
-              'label'=>'<span class="text">权限管理</span>', 
-              'url'=>array('/rights/assignment/view'), 
-              'visible'=>Tak::checkSuperuser(),
-            );
-}              
+$items = Tak::getMainMenu();          
      $this->widget('application.components.MyMenu',array(
           'itemTemplate'=>'{menu}',
           'activateParents'=>true, //父节点显示

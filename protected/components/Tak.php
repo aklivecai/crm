@@ -43,7 +43,7 @@ class Tak {
         return $key->decode($str);
     }
     /*日期显示*/
-    public static function timetodate($time = 0, $type = 6) {
+    public static function timetodate($time = 0, $type = 0) {
         if(!$time) return '';
         $types = array('Y-m-d', 'Y', 'm-d', 'Y-m-d', 'm-d H:i', 'Y-m-d H:i', 'Y-m-d H:i:s');
         if(isset($types[$type])) $type = $types[$type];
@@ -93,7 +93,20 @@ class Tak {
     /*网址判断*/
     public static function isUrl($str){
         return preg_match("/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\’:+!]*([^<>\"])*$/", $str);
-    }       
+    }  
+    /*判断一个数字是不是 时间数
+         return ( 1 === preg_match( '~^[1-9][0-9]*$~', $string ) );
+         return if (preg_match('/[0-9]{4}-[0-9]{2}-[0-9]{2}/', $timestamp));
+         return date("Y") - date("Y", strtotime($date));
+         return preg_match('/[^\d]/', $str)&&strtotime($str)
+    */
+    public static function isTimestamp($timestamp) {
+        $timestamp = (int)$timestamp;
+        // self::KD(strtotime(date('Y-m-d H:i:s',$timestamp)));
+        if(strtotime(date('Y-m-d H:i:s',$timestamp)) === $timestamp) {
+            return $timestamp;
+        } else return false;
+    }         
     /*IP转成无符号数值*/
    public static function IP2Num($ip)
     {
@@ -213,8 +226,7 @@ class Tak {
               'linkOptions'=>array('class'=>'refresh'),
             )    
         );        
-       return $listMenu;
-    
+       return $listMenu;    
     }   
 
     public static function searchData($key=false){
@@ -359,5 +371,173 @@ class Tak {
         self::MkDirs(dirname($dir), $mode, $recursive);
         mkdir($dir,$mode);
         return false;
+    }
+
+    public static function getMainMenu(){
+        $items = array(  
+            array(
+              'icon' =>'isw-grid',
+              'url' => array('/site/index'),
+              'label'=>'<span class="text">主页</span>',
+            ),
+            array(
+              'icon' =>'isw-users',
+              'label'=>'<span class="text">员工</span>',
+              'url'=>array('/manage/admin'),
+               'visible'=>Yii::app()->user->checkAccess('Manage.Admin'),
+              'items'=>array(
+                array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/trashs'),),
+              ),
+            ), 
+            array(
+              'icon' =>'isw-users',
+              'label'=>'<span class="text">客户</span>',
+              'url'=>array('/clientele/admin'),
+              'visible'=>Yii::app()->user->checkAccess('Market')||Yii::app()->user->checkAccess('Clientele.Admin'),
+              'items'=>array(
+                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
+                array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">联系人录入</span>',  'url'=>array('/contactpPrson/create'),),
+                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/admin'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/clientele/trashs'),),
+              ),
+            ), 
+            array(
+              'icon' =>'isw-archive',
+              'label'=>'<span class="text">通讯录</span>',
+              'visible'=>Yii::app()->user->checkAccess('AddressBook.Admin'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">通讯录管理</span>', 'url'=>array('/addressBook/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">通讯录录入</span>',  'url'=>array('/addressBook/create'),),
+                array('icon'=>'th-list','label'=>'<span class="text">部门管理</span>', 'url'=>array('/AddressGroups/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">部门录入</span>',  'url'=>array('/AddressGroups/create'),),
+              ),
+            ),
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Events.Admin'),
+              'icon' =>'isw-calendar',
+              'label'=>'<span class="text">行程</span>',
+              'url'=>array('/events/index'),
+              'visible'=>Yii::app()->user->checkAccess('Events.Admin'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">行程管理</span>', 'url'=>array('/events/index')),
+                array('icon'=>'plus','label'=>'<span class="text">行程录入</span>',  'url'=>array('/events/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/trashs'),),
+              ),
+            ), 
+            array(
+              'visible'=>Yii::app()->user->checkAccess('File.Admin'),
+              'icon' =>'isb-cloud',
+              'label'=>'<span class="text">具云盘</span>',
+              'url'=>array('/file/index'),
+              'items'=>array(
+                array('icon'=>'hdd','label'=>'<span class="text">全部文档</span>', 'url'=>array('/file/index')),
+                array('icon'=>'picture','label'=>'<span class="text">图片</span>', 'url'=>array('/file/image')),
+                array('icon'=>'file','label'=>'<span class="text">文档</span>', 'url'=>array('/file/image')),
+                array('icon'=>'film','label'=>'<span class="text">视频</span>', 'url'=>array('/file/video')),
+                array('icon'=>'tasks','label'=>'<span class="text">其他</span>', 'url'=>array('/file/other ')),
+                array('icon'=>'plus','label'=>'<span class="text">文件上传</span>',  'url'=>array('/file/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/file/trashs'),),
+              ),
+            ), 
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Order.Admin'),
+              'icon' =>'isb-list',
+              'label'=>'<span class="text">订单</span>',
+              'url'=>array('/order/index'),
+              'items'=>array(
+                array('icon'=>'shopping-cart','label'=>'<span class="text">订单管理</span>', 'url'=>array('/order/index')),
+                array('icon'=>'th','label'=>'<span class="text">发货管理</span>',  'url'=>array('/order/create'),),
+                array('icon'=>'th','label'=>'<span class="text">订单留言</span>',  'url'=>array('/order/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/order/trashs'),),
+              ),
+            ), 
+
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Invite.Admin'),
+              'icon' =>'isb-tag',
+              'label'=>'<span class="text">招标</span>',
+              'url'=>array('/invite/index'),
+              'visible'=>Yii::app()->user->checkAccess('Invite.Admin'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">招标管理</span>', 'url'=>array('/invite/index')),
+                array('icon'=>'plus','label'=>'<span class="text">招标录入</span>',  'url'=>array('/invite/create'),),
+                array('icon'=>'star','label'=>'<span class="text">投标记录</span>',  'url'=>array('/invite/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/invite/trashs'),),
+              ),
+            ),   
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Job.Admin'),
+              'icon' =>'isb-graph',
+              'label'=>'<span class="text">招聘</span>',
+              'url'=>array('/job/index'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">招聘管理</span>', 'url'=>array('/job/index')),
+                array('icon'=>'plus','label'=>'<span class="text">招聘录入</span>',  'url'=>array('/job/create'),),
+                array('icon'=>'bookmark','label'=>'<span class="text">收藏的简历</span>',  'url'=>array('/job/create'),),
+                array('icon'=>'fire','label'=>'<span class="text">收到的简历</span>',  'url'=>array('/job/create'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/file/trashs'),),
+              ),
+            ), 
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Job.Admin'),
+              'icon' =>'isb-documents',
+              'label'=>'<span class="text">培训</span>',
+              'url'=>array('/training/index'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">培训管理</span>', 'url'=>array('/training/index')),
+                array('icon'=>'list-alt','label'=>'<span class="text">文档</span>',  'url'=>array('/training/doc'),),
+                array('icon'=>'facetime-video','label'=>'<span class="text">视频</span>',  'url'=>array('/job/video'),),
+                array('icon'=>'music','label'=>'<span class="text">音频</span>',  'url'=>array('/training/music'),),
+                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/training/trashs'),),
+              ),
+            ),           
+          );  
+        if (self::checkSuperuser()) {
+         $items[] = array(
+                      'icon' =>'isw-settings',
+                      'label'=>'<span class="text">管理中心</span>',
+                      'items'=>array(
+                        array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
+                        array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
+                        array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
+                        array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/trashs'),),
+                      ),
+                    );
+         $items[] = array(
+                       'icon' =>'isw-user',
+                      'label'=>'<span class="text">权限管理</span>', 
+                      'url'=>array('/rights/assignment/view'), 
+                    );
+        } 
+         $items[] = array(
+                       'icon' =>'isw-zoom',
+                      'label'=>'<span class="text">帮助中心</span>', 
+                      'url'=>array('/site/help'), 
+                    );
+        return $items;          
+    }
+
+    public static function getAdminPageCol($arr=false,$gid='list-grid',$width='60px'){
+     $items = array(
+             'class'=>'bootstrap.widgets.TbButtonColumn'
+              ,'header' => CHtml::dropDownList('pageSize'
+                    ,Yii::app()->user->getState('pageSize')
+                    ,TakType::items('pageSize')
+                    ,array(
+                        'onchange'=>"$.fn.yiiGridView.update('".$gid."',{data:{setPageSize: $(this).val()}})", 
+                        'style'=>'width: '.$width.' !important',
+                    )   
+              )             
+        );
+     if (is_array($arr)) {
+         // self::KD($arr);
+         $items = array_merge_recursive($items, $arr);
+     }
+
+     return $items;         
     }
 }  

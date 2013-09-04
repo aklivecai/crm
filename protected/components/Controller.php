@@ -152,8 +152,9 @@ class Controller extends RController
 				$returnUrl = $_POST['returnUrl'];
 				if (!$returnUrl) {
 					$this->redirect(array('view','id'=>$model->$itemid));
-				}
-				$this->redirect($returnUrl);
+				}else{
+					$this->redirect($returnUrl);
+				}				
 			}
 		}
 		$this->render('create',array(

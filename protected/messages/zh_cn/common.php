@@ -39,6 +39,8 @@ return array (
   'Return' => '返回',
   'Reset' => '重置',
   'Refresh' => '刷新',
+  
+  'More' => '更多', 
 
   'Manages' => '帐号',
   'Clientele' => '客户',

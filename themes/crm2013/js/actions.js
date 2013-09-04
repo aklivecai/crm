@@ -1,3 +1,37 @@
+/** 
+ dateFormat('yyyy-MM-dd hh:mm:ss');
+dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
+ */
+function dateFormat(date, format) {
+    if(format === undefined){
+        format = date;
+        date = new Date();
+    }
+    var map = {
+        "M": date.getMonth() + 1, //月份 
+        "d": date.getDate(), //日 
+        "h": date.getHours(), //小时 
+        "m": date.getMinutes(), //分 
+        "s": date.getSeconds(), //秒 
+        "q": Math.floor((date.getMonth() + 3) / 3), //季度 
+        "S": date.getMilliseconds() //毫秒 
+    };
+    format = format.replace(/([yMdhmsqS])+/g, function(all, t){
+        var v = map[t];
+        if(v !== undefined){
+            if(all.length > 1){
+                v = '0' + v;
+                v = v.substr(v.length-2);
+            }
+            return v;
+        }
+        else if(t === 'y'){
+            return (date.getFullYear() + '').substr(4 - all.length);
+        }
+        return all;
+    });
+    return format;
+}        
 jQuery(function($){
         $.datepicker.regional['zh-CN'] = {
                 closeText: '关闭',
@@ -18,11 +52,90 @@ jQuery(function($){
                 showMonthAfterYear: true,
                 yearSuffix: '年'};
         $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+
+
+        $.fx.speeds._default = 500;  
+    function movieFormatResult(movie) {
+        var markup = "<table class='movie-result'><tr>";
+        markup += "<td class='movie-info'><div class='movie-title'>" + movie.clientele_name + "</div>";
+        if (movie.clientele_name !== undefined) {
+            markup += "<div class='movie-synopsis'>" + movie.clientele_name + "</div>";
+        }
+        else if (movie.synopsis !== undefined) {
+            markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
+        }
+        markup += "</td></tr></table>"
+        return markup;
+    }
+
+    //用到的指
+    function movieFormatSelection(obj) {
+        return obj.clientele_name;
+    }    
+     $(".sele1ct-clientele").select2({
+            placeholder: "搜索客户",
+            minimumInputLength: 1,
+              loadMorePadding: 300,
+            ajax: { 
+                url: CrmPath+"clientele/select",
+                dataType: 'jsonp',
+                data: function (term, page) {
+                    return {
+                        q: term, // search term
+                        page_limit: 10,
+                         page: page - 1,
+                        // apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
+                    };
+                },
+                results: function (data, page) { 
+                    // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter remote JSON data
+                    console.log(data);
+                    return {results: data['data']};
+                }
+            },
+            id:function(object){
+                return object.itemid;
+            },
+            initSelection: function(element, callback) {
+                // the input tag has a value attribute preloaded that points to a preselected movie's id
+                // this function resolves that id attribute to an object that select2 can render
+                // using its formatResult renderer - that way the movie name is shown preselected
+                var id=$(element).val();
+                if (id!=="") {
+                    $.ajax(CrmPath+"movies.json?"+id+".json", {
+                        data: {
+                            // apikey: "ju6z9mjyajq2djue3gbvv26t"
+                        },
+                        dataType: "jsonp"
+                    }).done(function(data) { 
+                        console.log(data);
+                        callback(data); 
+                   });
+                }
+            },
+            formatResult:movieFormatResult, // omitted for brevity, see the source of this page
+            formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
+            dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+            escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+        });        
 });
 
 $(document).ready(function(){
     $('li .delete').on('click',function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;
+    });
+
+    $('.type-date').each(function(){
+        var t = $(this);
+         date = new Date(t.val()*1000);
+         v = t.val();
+         if (v>0) {
+            t.val(dateFormat(date, 'yyyy-MM-dd'));   
+         }else{
+            t.val('');
+         } 
+        t.datepicker({'dateFormat':'yy-mm-dd'});
     });
 
    var  afterDelete = function(){}
@@ -67,6 +180,7 @@ $(document).ready(function(){
             return false;
         };
     })
+
     $("div[class^='span']").find(".row-form:first").css('border-top', '0px');
     $("div[class^='span']").find(".row-form:last").css('border-bottom', '0px');            
     

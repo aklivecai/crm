@@ -49,8 +49,8 @@ class ContactpPrson extends ModuleRecord
 		return array(
 			array('nicename, clientele', 'required'),
 			array('sex, status', 'numerical', 'integerOnly'=>true),
-			array('itemid, add_us, modified_us', 'length', 'max'=>25),
-			array('fromid, manageid, clientele, last_time, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
+			array(' add_us, modified_us', 'length', 'max'=>25),
+			array('last_time, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
 			array('nicename', 'length', 'max'=>64),
 			array('department, position', 'length', 'max'=>100),
 			array('email, phone, mobile, fax, address, note', 'length', 'max'=>255),
@@ -182,7 +182,14 @@ class ContactpPrson extends ModuleRecord
 			'itemid'=>$this->itemid,
 			'title'=>$this->nicename,
 		));
-	}	
+	}
+	public function getList(){
+		$m = $this->findAll(array(
+		    'select'=>'itemid,nicename',
+		));
+		$items= CHtml::listData($m, 'itemid', 'nicename');
+		return $items;
+	}		
 
 	//删除信息后
 	protected function afterDelete(){

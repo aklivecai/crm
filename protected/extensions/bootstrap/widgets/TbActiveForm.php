@@ -486,6 +486,7 @@ class TbActiveForm extends CActiveForm
 	 */
 	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
+		// Tak::KD($this->getInputClassName());
 		ob_start();
 		$this->getOwner()->widget($this->getInputClassName(), array(
             'form'=>$this,

@@ -15,7 +15,7 @@ $(document).ready(function(){
     var calendar = $('.fc').fullCalendar({
             header: {		
                 left: 'prev,next today',
-                left:  'prevYear,prev,today,next,nextYear',
+                left:  'prev,today,next',//nextYear,prevYear
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
                 ,right: 'month,basicWeek,basicDay,agendaWeek,agendaDay'
@@ -64,7 +64,7 @@ editable: true,
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {
-                    var title = prompt('事件名字:');
+                    var title = prompt('行程的名字:');
                     if (title) {
                             calendar.fullCalendar('renderEvent',
                                     {
@@ -208,7 +208,12 @@ eventClick: function(calEvent, jsEvent, view) {
             max: 10,
             value: 2
         }); 
-        
+ 
+    // new selector case insensivity        
+        $.expr[':'].containsi = function(a, i, m) {
+            return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };        
+   //        
         
     // TABS
     

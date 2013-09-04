@@ -96,7 +96,10 @@ class MyMenu extends CMenu {
 		if (isset($item['icon']))
 		{
 
-			if (strpos($item['icon'], 'icon') === false&&strpos($item['icon'], 'isw-') === false)
+			if (strpos($item['icon'], 'icon') === false
+				&&strpos($item['icon'], 'isw-') === false
+				&&strpos($item['icon'], 'isb-') === false
+			)
 			{
 				$pieces = explode(' ', $item['icon']);
 				$item['icon'] = 'icon-'.implode(' icon-', $pieces);

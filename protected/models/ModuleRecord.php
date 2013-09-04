@@ -68,7 +68,25 @@ class ModuleRecord extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
+	public function checkTime($attribute,$params){
+
+		$time = $this->$attribute;
+		if ($time=='') {
+			$this->$attribute = 0;
+			return true;
+		}
+		if (!is_numeric($time)) {
+			$time = strtotime($time);
+		}
+		$time = Tak::isTimestamp($time);
+		if ($time) {
+			$this->$attribute = $time;
+		}else{
+			$this->addError($attribute,'联系时间错误！');
+		}
+	}
+
 	//保存数据前
 	protected function beforeSave($isok=false){
 	    $result = parent::beforeSave();
@@ -91,7 +109,10 @@ class ModuleRecord extends CActiveRecord
 	    }
 	    return $result;
 	}
-
+	protected function beforeValidate(){
+		 $result = parent::beforeValidate();
+		 return $result;
+	}
 	//
 	protected function afterSave(){
 		parent::afterSave();

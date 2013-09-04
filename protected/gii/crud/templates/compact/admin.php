@@ -47,7 +47,7 @@ $items = Tak::getListMenu();
     'loadingCssClass' => 'grid-view-loading',
     'summaryCssClass' => 'dataTables_info',
     'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}{items}{pager}',
+    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
     'ajaxUpdate'=>true,    //禁用AJAX
     'enableSorting'=>true,
     'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',

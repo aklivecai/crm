@@ -72,7 +72,7 @@ $this->widget('application.components.MyMenu',array(
     'loadingCssClass' => 'grid-view-loading',
     'summaryCssClass' => 'dataTables_info',
     'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}{items}{pager}',
+    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
             'ajaxUpdate'=>true,    //禁用AJAX
             'enableSorting'=>true,
             'summaryText' => '<span>总数：{count}</span>  <span>区间：{start}-{end}</span> <span>当前:{page}</span> <span>总页数：{pages}</span>',
@@ -88,14 +88,21 @@ $this->widget('application.components.MyMenu',array(
 	// 'selectableRows'=>2, 	
 	'columns'=>array(
 		// array('class'=>'CCheckBoxColumn','name'=>'manageid','id'=>'select'), 	
+		Tak::getAdminPageCol(array(
+			  'template'=>'<span>{vrights}</span> | {view} {update} {delete} '
+			  ,'buttons'=>array(
+					'vrights' => array
+					(
+						'label'=>'权限',
+						 'url'=>'Yii::app()->createUrl("rights/assignment/user", array("id"=>$data->manageid))',
+						 'linkOptions'=>array('style'=>'width: 50px'),
+					),
+			  ),
+			)
+			  ,'list-grid'
+			  ,'80px'
+		),	
 
-		array(
-			'name' => 'user_status',
-			'htmlOptions'=>array('style'=>'width: 50px'),
-			'value'=>'TakType::getStatus("status",$data->user_status)',
-			'type'=>'raw',
-			'filter'=>TakType::items('status'),			 
-		),
 		array(
 			'name'=>'user_name',
 			'type'=>'raw',
@@ -113,29 +120,16 @@ $this->widget('application.components.MyMenu',array(
 		array(
 			'name'=>'last_login_time',
 			'type'=>'raw',
-			'value'=>'Tak::timetodate($data->last_login_time)',
+			'value'=>'Tak::timetodate($data->last_login_time,4)',
             'filter' => false
-		),		
+		),	
 		array(
-			 'class'=>'bootstrap.widgets.TbButtonColumn'
-			  ,'header' => CHtml::dropDownList('pageSize'
-					,Yii::app()->user->getState('pageSize')
-					,TakType::items('pageSize')
-					,array( // change 'user-grid' to the actual id of your grid!! 
-						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
-					)
-			  )
-			  ,'htmlOptions'=>array('style'=>'width: 85px')
-			  ,'template'=>'{view} {update} {delete} | <span>{vrights}</span> '
-			  ,'buttons'=>array(
-					'vrights' => array
-					(
-						'label'=>'权限',
-						 'url'=>'Yii::app()->createUrl("rights/assignment/user", array("id"=>$data->manageid))',
-						 'linkOptions'=>array('style'=>'width: 50px'),
-					),
-			  ),
-		),		
+			'name' => 'user_status',
+			'htmlOptions'=>array('style'=>'width: 50px'),
+			'value'=>'TakType::getStatus("status",$data->user_status)',
+			'type'=>'raw',
+			'filter'=>TakType::items('status'),			 
+		),
 	),
 )); 
 ?>

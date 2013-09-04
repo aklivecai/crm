@@ -12,7 +12,8 @@ $(document).ready(function(){
             data:data,
             async: false,
             error: function(request) {
-                alert("系统异常!");
+                console.log(request);
+                // alert("系统异常!");
             },
             success: function(data) {
                 if (data!='') {

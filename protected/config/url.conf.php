@@ -1,4 +1,5 @@
 <?php
+return array();
 return array(
     'urlFormat'=>'path',
     'showScriptName' => !YII_DEBUG,

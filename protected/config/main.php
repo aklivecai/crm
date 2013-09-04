@@ -29,10 +29,11 @@ return array(
 		'application.models.*',
 		'application.components.*',
 
-		'application.components.Globals',
 
 		// 调试的拓展
 		'application.extensions.debugtoolbar.*',
+
+		'application.extensions.jsonDataprovider.*',
 
 		/* for ext yii-rights */
  		'application.modules.rights.*',
