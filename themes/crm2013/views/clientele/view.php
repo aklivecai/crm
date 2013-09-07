@@ -62,6 +62,9 @@ $this->breadcrumbs=array(
           <div class="isw-users"></div>
           <h1><?php echo Tk::g('ContactpPrson') ?></h1>
           <ul class="buttons">
+            <li>
+            <a href="<?php echo Yii::app()->createUrl('contactpPrson/create',array('ContactpPrson[clientele]'=>$model->itemid));?>"><i class="isw-plus"></i></a>
+            </li>
             <li class="toggle"><a href="#"></a></li>
           </ul>
         </div>

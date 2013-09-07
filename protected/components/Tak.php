@@ -384,7 +384,7 @@ class Tak {
               'icon' =>'isw-users',
               'label'=>'<span class="text">员工</span>',
               'url'=>array('/manage/admin'),
-               'visible'=>Yii::app()->user->checkAccess('Manage.Admin'),
+               'visible'=>Yii::app()->user->checkAccess('Manage.*'),
               'items'=>array(
                 array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
                 array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
@@ -395,7 +395,7 @@ class Tak {
               'icon' =>'isw-users',
               'label'=>'<span class="text">客户</span>',
               'url'=>array('/clientele/admin'),
-              'visible'=>Yii::app()->user->checkAccess('Market')||Yii::app()->user->checkAccess('Clientele.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Market')||Yii::app()->user->checkAccess('Clientele.*'),
               'items'=>array(
                 array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),),
                 array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
@@ -408,7 +408,7 @@ class Tak {
             array(
               'icon' =>'isw-archive',
               'label'=>'<span class="text">通讯录</span>',
-              'visible'=>Yii::app()->user->checkAccess('AddressBook.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('AddressBook.*'),
               'items'=>array(
                 array('icon'=>'th-list','label'=>'<span class="text">通讯录管理</span>', 'url'=>array('/addressBook/admin')),
                 array('icon'=>'plus','label'=>'<span class="text">通讯录录入</span>',  'url'=>array('/addressBook/create'),),
@@ -417,11 +417,10 @@ class Tak {
               ),
             ),
             array(
-              'visible'=>Yii::app()->user->checkAccess('Events.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Events.*'),
               'icon' =>'isw-calendar',
               'label'=>'<span class="text">行程</span>',
               'url'=>array('/events/index'),
-              'visible'=>Yii::app()->user->checkAccess('Events.Admin'),
               'items'=>array(
                 array('icon'=>'th-list','label'=>'<span class="text">行程管理</span>', 'url'=>array('/events/index')),
                 array('icon'=>'plus','label'=>'<span class="text">行程录入</span>',  'url'=>array('/events/create'),),
@@ -429,7 +428,7 @@ class Tak {
               ),
             ), 
             array(
-              'visible'=>Yii::app()->user->checkAccess('File.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('File.*'),
               'icon' =>'isb-cloud',
               'label'=>'<span class="text">具云盘</span>',
               'url'=>array('/file/index'),
@@ -444,7 +443,7 @@ class Tak {
               ),
             ), 
             array(
-              'visible'=>Yii::app()->user->checkAccess('Order.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Order.*'),
               'icon' =>'isb-list',
               'label'=>'<span class="text">订单</span>',
               'url'=>array('/order/index'),
@@ -457,11 +456,10 @@ class Tak {
             ), 
 
             array(
-              'visible'=>Yii::app()->user->checkAccess('Invite.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Invite.*'),
               'icon' =>'isb-tag',
               'label'=>'<span class="text">招标</span>',
               'url'=>array('/invite/index'),
-              'visible'=>Yii::app()->user->checkAccess('Invite.Admin'),
               'items'=>array(
                 array('icon'=>'th-list','label'=>'<span class="text">招标管理</span>', 'url'=>array('/invite/index')),
                 array('icon'=>'plus','label'=>'<span class="text">招标录入</span>',  'url'=>array('/invite/create'),),
@@ -470,7 +468,7 @@ class Tak {
               ),
             ),   
             array(
-              'visible'=>Yii::app()->user->checkAccess('Job.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Job.*'),
               'icon' =>'isb-graph',
               'label'=>'<span class="text">招聘</span>',
               'url'=>array('/job/index'),
@@ -483,7 +481,7 @@ class Tak {
               ),
             ), 
             array(
-              'visible'=>Yii::app()->user->checkAccess('Job.Admin'),
+              'visible'=>Yii::app()->user->checkAccess('Training.*'),
               'icon' =>'isb-documents',
               'label'=>'<span class="text">培训</span>',
               'url'=>array('/training/index'),

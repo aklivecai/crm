@@ -50530,3 +50530,890 @@ Stack trace:
 REQUEST_URI=/github/crm/index.php?r=contact/view&id=52851934639717118
 HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Contact_sort=stage.desc&r=contact/admin
 ---
+2013/09/04 11:07:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('528773329481860...')
+#1 [internal function]: Controller->actionView('528773329481860...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ContactpPrsonController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ContactpPrsonController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('contactpPrson/v...')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=contactpPrson/view&id=52877332948186015
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/update&id=52877332948186015
+---
+2013/09/04 11:10:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529165237687791...')
+#1 [internal function]: Controller->actionView('529165237687791...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('contact/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/view&id=52916523768779161
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/admin
+---
+2013/09/04 11:11:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52916976900099194.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52916976900099194.json&callback=jQuery18307358453667256981_1378264268744&_=1378264268948
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/update&id=52916976900497211
+---
+2013/09/04 11:25:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\controllers\ManageController.php(27): Controller->loadModel('529169768741581...')
+#1 [internal function]: ManageController->actionView('529169768741581...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ManageController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ManageController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('manage/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=manage/view&id=52916976874158124
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=manage/admin
+---
+2013/09/04 11:26:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:26:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:26:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:26:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:26:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:26:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529172769458430...')
+#1 [internal function]: Controller->actionView('529172769458430...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917276945843031
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=clientele_name&r=clientele/admin
+---
+2013/09/04 11:29:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529179538351360...')
+#1 [internal function]: Controller->actionView('529179538351360...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52917953835136056
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=add_time.desc&r=clientele/admin
+---
+2013/09/04 11:31:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529181281921671...')
+#1 [internal function]: Controller->actionView('529181281921671...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/view&id=52918128192167198
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Clientele_sort=add_time&r=clientele/admin
+---
+2013/09/04 11:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52918236713081174.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52918236713081174.json&callback=jQuery18308641282224758011_1378267017250&_=1378267018699
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contactpPrson/update&id=52918236713367002
+---
+2013/09/04 12:34:24 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您没有被授权执行该操作。' in F:\GitHub\CRM\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 F:\GitHub\CRM\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 F:\GitHub\Yii\framework\yiilite.php(6750): RightsFilter->preFilter(Object(CFilterChain))
+#2 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#4 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#5 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#6 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#8 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/admin')
+#9 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#10 F:\GitHub\CRM\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 12:38:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您没有被授权执行该操作。' in F:\GitHub\CRM\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 F:\GitHub\CRM\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 F:\GitHub\Yii\framework\yiilite.php(6750): RightsFilter->preFilter(Object(CFilterChain))
+#2 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#4 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#5 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#6 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#8 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/admin')
+#9 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#10 F:\GitHub\CRM\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 12:38:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您没有被授权执行该操作。' in F:\GitHub\CRM\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 F:\GitHub\CRM\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 F:\GitHub\Yii\framework\yiilite.php(6750): RightsFilter->preFilter(Object(CFilterChain))
+#2 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#4 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#5 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#6 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('create')
+#8 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/creat...')
+#9 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#10 F:\GitHub\CRM\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/create
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/admin
+---
+2013/09/04 12:40:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您没有被授权执行该操作。' in F:\GitHub\CRM\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 F:\GitHub\CRM\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 F:\GitHub\Yii\framework\yiilite.php(6750): RightsFilter->preFilter(Object(CFilterChain))
+#2 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#4 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#5 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#6 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('create')
+#8 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/creat...')
+#9 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#10 F:\GitHub\CRM\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/create
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 12:42:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922397440662025.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922397440662025.json&callback=jQuery18309067611314821988_1378269750728&_=1378269750862
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/update&id=52922397466777197
+---
+2013/09/04 12:42:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "messate" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('messate')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('messate')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('site/messate')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=site/messate
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/update&id=52922397466777197
+---
+2013/09/04 13:34:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "messate" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('messate')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('messate')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('site/messate')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=site/messate
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/update&id=52922397466777197
+---
+2013/09/04 13:34:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(132): Controller->loadModel('529165237689990...')
+#1 [internal function]: Controller->actionView('529165237689990...')
+#2 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#5 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#6 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#7 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#13 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('contact/view')
+#14 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#15 F:\GitHub\CRM\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/view&id=52916523768999019
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Contact_sort=stage.desc&r=contact/admin
+---
+2013/09/04 13:34:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922397440662025.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922397440662025.json&callback=jQuery183018354385835118592_1378272886718&_=1378272887716
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/update&id=52922397466777197
+---
+2013/09/04 13:40:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "events/index"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('events/index')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 13:44:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "order/index"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('order/index')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=order/index
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 13:46:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395653741026.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395653741026.json&callback=jQuery1830613318010000512_1378273567162&_=1378273567277
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/update&id=52922395659487192
+---
+2013/09/04 16:54:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395653741026.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395653741026.json&callback=jQuery18306574592958204448_1378284869799&_=1378284870070
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395653741026
+---
+2013/09/04 16:54:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395653741026.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395653741026.json&callback=jQuery18306765349581837654_1378284886733&_=1378284887004
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395653741026
+---
+2013/09/04 17:17:38 [error] [php] require() [<a href='function.require'>function.require</a>]: Filename cannot be empty (F:\GitHub\Yii\framework\yiilite.php:3423)
+Stack trace:
+#0 F:\GitHub\Yii\framework\zii\widgets\CListView.php(291): AdminLogController->renderFile()
+#1 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(167): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback()
+#4 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(135): CListView->renderContent()
+#5 F:\GitHub\Yii\framework\yiilite.php(3444): CListView->run()
+#6 F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php(20): AdminLogController->widget()
+#7 F:\GitHub\Yii\framework\yiilite.php(3419): require()
+#8 F:\GitHub\Yii\framework\yiilite.php(3398): AdminLogController->renderInternal()
+#9 F:\GitHub\Yii\framework\yiilite.php(3822): AdminLogController->renderFile()
+#10 F:\GitHub\Yii\framework\yiilite.php(3790): AdminLogController->renderPartial()
+#11 F:\GitHub\CRM\protected\controllers\AdminLogController.php(141): AdminLogController->render()
+#12 F:\GitHub\Yii\framework\yiilite.php(4058): AdminLogController->actionIndex()
+#13 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams()
+#14 F:\GitHub\Yii\framework\yiilite.php(6743): AdminLogController->runAction()
+#15 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#16 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): RightsFilter->filter()
+#17 F:\GitHub\Yii\framework\yiilite.php(6785): AdminLogController->filterRights()
+#18 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter()
+#19 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#20 F:\GitHub\Yii\framework\yiilite.php(3545): AdminLogController->runActionWithFilters()
+#21 F:\GitHub\Yii\framework\yiilite.php(1746): AdminLogController->run()
+#22 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController()
+#23 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#24 F:\GitHub\CRM\index.php(14): CWebApplication->run()
+REQUEST_URI=/github/crm/index.php?r=adminLog/index
+in F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php (20)
+in F:\GitHub\CRM\protected\controllers\AdminLogController.php (141)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+2013/09/04 17:18:26 [error] [php] require() [<a href='function.require'>function.require</a>]: Filename cannot be empty (F:\GitHub\Yii\framework\yiilite.php:3423)
+Stack trace:
+#0 F:\GitHub\Yii\framework\zii\widgets\CListView.php(291): AdminLogController->renderFile()
+#1 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(167): TbListView->renderItems()
+#2 unknown(0): TbListView->renderSection()
+#3 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback()
+#4 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(135): TbListView->renderContent()
+#5 F:\GitHub\Yii\framework\yiilite.php(3444): TbListView->run()
+#6 F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php(20): AdminLogController->widget()
+#7 F:\GitHub\Yii\framework\yiilite.php(3419): require()
+#8 F:\GitHub\Yii\framework\yiilite.php(3398): AdminLogController->renderInternal()
+#9 F:\GitHub\Yii\framework\yiilite.php(3822): AdminLogController->renderFile()
+#10 F:\GitHub\Yii\framework\yiilite.php(3790): AdminLogController->renderPartial()
+#11 F:\GitHub\CRM\protected\controllers\AdminLogController.php(141): AdminLogController->render()
+#12 F:\GitHub\Yii\framework\yiilite.php(4058): AdminLogController->actionIndex()
+#13 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams()
+#14 F:\GitHub\Yii\framework\yiilite.php(6743): AdminLogController->runAction()
+#15 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#16 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): RightsFilter->filter()
+#17 F:\GitHub\Yii\framework\yiilite.php(6785): AdminLogController->filterRights()
+#18 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter()
+#19 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#20 F:\GitHub\Yii\framework\yiilite.php(3545): AdminLogController->runActionWithFilters()
+#21 F:\GitHub\Yii\framework\yiilite.php(1746): AdminLogController->run()
+#22 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController()
+#23 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#24 F:\GitHub\CRM\index.php(14): CWebApplication->run()
+REQUEST_URI=/github/crm/index.php?r=adminLog/index
+in F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php (20)
+in F:\GitHub\CRM\protected\controllers\AdminLogController.php (141)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+2013/09/04 17:23:07 [error] [exception.CException] exception 'CException' with message '属性 "CDetailView.itemView" 未被定义.' in F:\GitHub\Yii\framework\yiilite.php:638
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(5930): CComponent->__set('itemView', '_view')
+#1 F:\GitHub\Yii\framework\yiilite.php(3427): CWidgetFactory->createWidget(Object(AdminLogController), 'zii.widgets.CDe...', Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(3443): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\adminLog\view.php(21): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3419): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\yiilite.php(3398): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\yiilite.php(3822): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\yiilite.php(3790): CController->renderPartial('view', Array, true)
+#8 F:\GitHub\CRM\protected\controllers\AdminLogController.php(56): CController->render('view', Array)
+#9 [internal function]: AdminLogController->actionView('415923630382702...')
+#10 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(AdminLogController), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(AdminLogController), Object(ReflectionMethod), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#13 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#14 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#15 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#17 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#18 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#19 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#21 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('adminLog/view')
+#22 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#23 F:\GitHub\CRM\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/github/crm/index.php?r=adminLog/view&id=41592363038270206
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=adminLog/index
+---
+2013/09/04 17:23:39 [error] [exception.CException] exception 'CException' with message '别名 "bootstrap.widgets.CDetailView" 无效。请确认它指向一个存在的PHP文件。' in F:\GitHub\Yii\framework\yiilite.php:165
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(5916): YiiBase::import('bootstrap.widge...', true)
+#1 F:\GitHub\Yii\framework\yiilite.php(3427): CWidgetFactory->createWidget(Object(AdminLogController), 'bootstrap.widge...', Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(3443): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\adminLog\view.php(21): CBaseController->widget('bootstrap.widge...', Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3419): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\yiilite.php(3398): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\yiilite.php(3822): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\yiilite.php(3790): CController->renderPartial('view', Array, true)
+#8 F:\GitHub\CRM\protected\controllers\AdminLogController.php(56): CController->render('view', Array)
+#9 [internal function]: AdminLogController->actionView('415923630382702...')
+#10 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(AdminLogController), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(AdminLogController), Object(ReflectionMethod), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#13 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#14 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#15 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#17 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#18 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#19 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#21 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('adminLog/view')
+#22 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#23 F:\GitHub\CRM\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/github/crm/index.php?r=adminLog/view&id=41592363038270206
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=adminLog/index
+---
+2013/09/04 17:24:24 [error] [exception.CException] exception 'CException' with message '属性 "TbDetailView.itemView" 未被定义.' in F:\GitHub\Yii\framework\yiilite.php:638
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(5930): CComponent->__set('itemView', '_view')
+#1 F:\GitHub\Yii\framework\yiilite.php(3427): CWidgetFactory->createWidget(Object(AdminLogController), 'bootstrap.widge...', Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(3443): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\adminLog\view.php(21): CBaseController->widget('bootstrap.widge...', Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3419): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\yiilite.php(3398): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\yiilite.php(3822): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\yiilite.php(3790): CController->renderPartial('view', Array, true)
+#8 F:\GitHub\CRM\protected\controllers\AdminLogController.php(56): CController->render('view', Array)
+#9 [internal function]: AdminLogController->actionView('415923630382702...')
+#10 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(AdminLogController), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(AdminLogController), Object(ReflectionMethod), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#13 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#14 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#15 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#17 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#18 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#19 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#21 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('adminLog/view')
+#22 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#23 F:\GitHub\CRM\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/github/crm/index.php?r=adminLog/view&id=41592363038270206
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=adminLog/index
+---
+2013/09/04 17:24:38 [error] [exception.CException] exception 'CException' with message '属性 "TbDetailView.template" 未被定义.' in F:\GitHub\Yii\framework\yiilite.php:638
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(5930): CComponent->__set('template', '_view')
+#1 F:\GitHub\Yii\framework\yiilite.php(3427): CWidgetFactory->createWidget(Object(AdminLogController), 'bootstrap.widge...', Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(3443): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\adminLog\view.php(21): CBaseController->widget('bootstrap.widge...', Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3419): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\yiilite.php(3398): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\yiilite.php(3822): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\yiilite.php(3790): CController->renderPartial('view', Array, true)
+#8 F:\GitHub\CRM\protected\controllers\AdminLogController.php(56): CController->render('view', Array)
+#9 [internal function]: AdminLogController->actionView('415923630382702...')
+#10 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(AdminLogController), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(AdminLogController), Object(ReflectionMethod), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#13 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#14 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#15 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#17 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#18 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#19 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#21 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('adminLog/view')
+#22 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#23 F:\GitHub\CRM\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/github/crm/index.php?r=adminLog/view&id=41592363038270206
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=adminLog/index
+---
+2013/09/04 17:24:58 [error] [exception.CException] exception 'CException' with message '属性 "TbDetailView.itemView" 未被定义.' in F:\GitHub\Yii\framework\yiilite.php:638
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(5930): CComponent->__set('itemView', '_view')
+#1 F:\GitHub\Yii\framework\yiilite.php(3427): CWidgetFactory->createWidget(Object(AdminLogController), 'bootstrap.widge...', Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(3443): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 F:\GitHub\CRM\themes\crm2013\views\adminLog\view.php(30): CBaseController->widget('bootstrap.widge...', Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(3419): require('F:\GitHub\CRM\t...')
+#5 F:\GitHub\Yii\framework\yiilite.php(3398): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#6 F:\GitHub\Yii\framework\yiilite.php(3822): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#7 F:\GitHub\Yii\framework\yiilite.php(3790): CController->renderPartial('view', Array, true)
+#8 F:\GitHub\CRM\protected\controllers\AdminLogController.php(56): CController->render('view', Array)
+#9 [internal function]: AdminLogController->actionView('415923630382702...')
+#10 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(AdminLogController), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(AdminLogController), Object(ReflectionMethod), Array)
+#12 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#13 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#14 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#15 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#17 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#18 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#19 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('view')
+#21 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('adminLog/view')
+#22 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#23 F:\GitHub\CRM\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/github/crm/index.php?r=adminLog/view&id=41592363038270206
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=adminLog/index
+---
+2013/09/04 18:10:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "mange"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('mange')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/?r=mange
+---
+2013/09/04 18:11:36 [error] [php] require() [<a href='function.require'>function.require</a>]: Filename cannot be empty (F:\GitHub\Yii\framework\yiilite.php:3423)
+Stack trace:
+#0 F:\GitHub\Yii\framework\zii\widgets\CListView.php(291): ManageController->renderFile()
+#1 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(167): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback()
+#4 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(135): CListView->renderContent()
+#5 F:\GitHub\Yii\framework\yiilite.php(3444): CListView->run()
+#6 F:\GitHub\CRM\themes\crm2013\views\manage\index.php(20): ManageController->widget()
+#7 F:\GitHub\Yii\framework\yiilite.php(3419): require()
+#8 F:\GitHub\Yii\framework\yiilite.php(3398): ManageController->renderInternal()
+#9 F:\GitHub\Yii\framework\yiilite.php(3822): ManageController->renderFile()
+#10 F:\GitHub\Yii\framework\yiilite.php(3790): ManageController->renderPartial()
+#11 F:\GitHub\CRM\protected\controllers\ManageController.php(48): ManageController->render()
+#12 F:\GitHub\Yii\framework\yiilite.php(4058): ManageController->actionIndex()
+#13 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams()
+#14 F:\GitHub\Yii\framework\yiilite.php(6743): ManageController->runAction()
+#15 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#16 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): RightsFilter->filter()
+#17 F:\GitHub\Yii\framework\yiilite.php(6785): ManageController->filterRights()
+#18 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter()
+#19 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#20 F:\GitHub\Yii\framework\yiilite.php(3545): ManageController->runActionWithFilters()
+#21 F:\GitHub\Yii\framework\yiilite.php(1746): ManageController->run()
+#22 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController()
+#23 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#24 F:\GitHub\CRM\index.php(14): CWebApplication->run()
+REQUEST_URI=/github/crm/index.php?r=manage
+in F:\GitHub\CRM\themes\crm2013\views\manage\index.php (20)
+in F:\GitHub\CRM\protected\controllers\ManageController.php (48)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+2013/09/04 18:48:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "order/index"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('order/index')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=order/index
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Manage[user_name]=&Manage[user_nicename]=admin&Manage[user_status]=&Manage_page=1&Manage_sort=last_login_time&r=manage/admin
+---
+2013/09/04 18:51:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "events/index"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('events/index')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Manage[user_name]=&Manage[user_nicename]=admin&Manage[user_status]=&Manage_page=1&Manage_sort=last_login_time&r=manage/admin
+---
+2013/09/04 18:51:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "events/index"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('events/index')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?Manage[user_name]=&Manage[user_nicename]=admin&Manage[user_status]=&Manage_page=1&Manage_sort=last_login_time&r=manage/admin
+---
+2013/09/04 22:18:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in F:\GitHub\Yii\framework\yiilite.php:8427
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(8399): CDbConnection->open()
+#1 F:\GitHub\Yii\framework\yiilite.php(8388): CDbConnection->setActive(true)
+#2 F:\GitHub\Yii\framework\yiilite.php(1060): CDbConnection->init()
+#3 F:\GitHub\Yii\framework\yiilite.php(1312): CModule->getComponent('db')
+#4 F:\GitHub\Yii\framework\yiilite.php(7450): CApplication->getDb()
+#5 F:\GitHub\Yii\framework\yiilite.php(8288): CActiveRecord->getDbConnection()
+#6 F:\GitHub\Yii\framework\yiilite.php(7392): CActiveRecordMetaData->__construct(Object(ContactpPrson))
+#7 F:\GitHub\Yii\framework\yiilite.php(7221): CActiveRecord->getMetaData()
+#8 F:\GitHub\CRM\protected\components\Controller.php(189): CActiveRecord->__construct('search')
+#9 F:\GitHub\Yii\framework\yiilite.php(4058): Controller->actionAdmin()
+#10 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#19 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('contactpPrson/a...')
+#20 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?r=contactpPrson/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 22:18:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in F:\GitHub\Yii\framework\yiilite.php:8427
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(8399): CDbConnection->open()
+#1 F:\GitHub\Yii\framework\yiilite.php(8388): CDbConnection->setActive(true)
+#2 F:\GitHub\Yii\framework\yiilite.php(1060): CDbConnection->init()
+#3 F:\GitHub\Yii\framework\yiilite.php(1312): CModule->getComponent('db')
+#4 F:\GitHub\Yii\framework\yiilite.php(7450): CApplication->getDb()
+#5 F:\GitHub\Yii\framework\yiilite.php(8288): CActiveRecord->getDbConnection()
+#6 F:\GitHub\Yii\framework\yiilite.php(7392): CActiveRecordMetaData->__construct(Object(Contact))
+#7 F:\GitHub\Yii\framework\yiilite.php(7221): CActiveRecord->getMetaData()
+#8 F:\GitHub\CRM\protected\components\Controller.php(189): CActiveRecord->__construct('search')
+#9 F:\GitHub\Yii\framework\yiilite.php(4058): Controller->actionAdmin()
+#10 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#19 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('contact/admin')
+#20 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?Contact_sort=stage.desc&r=contact/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contact/view&id=52916523768999019
+---
+2013/09/04 22:18:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in F:\GitHub\Yii\framework\yiilite.php:8427
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(8399): CDbConnection->open()
+#1 F:\GitHub\Yii\framework\yiilite.php(8388): CDbConnection->setActive(true)
+#2 F:\GitHub\Yii\framework\yiilite.php(1060): CDbConnection->init()
+#3 F:\GitHub\Yii\framework\yiilite.php(1312): CModule->getComponent('db')
+#4 F:\GitHub\Yii\framework\yiilite.php(7450): CApplication->getDb()
+#5 F:\GitHub\Yii\framework\yiilite.php(8288): CActiveRecord->getDbConnection()
+#6 F:\GitHub\Yii\framework\yiilite.php(7392): CActiveRecordMetaData->__construct(Object(Manage))
+#7 F:\GitHub\Yii\framework\yiilite.php(7221): CActiveRecord->getMetaData()
+#8 F:\GitHub\CRM\protected\components\Controller.php(189): CActiveRecord->__construct('search')
+#9 F:\GitHub\Yii\framework\yiilite.php(4058): Controller->actionAdmin()
+#10 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#19 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('manage/admin')
+#20 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?r=manage/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395653741026
+---
+2013/09/04 22:18:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in F:\GitHub\Yii\framework\yiilite.php:8427
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(8399): CDbConnection->open()
+#1 F:\GitHub\Yii\framework\yiilite.php(8388): CDbConnection->setActive(true)
+#2 F:\GitHub\Yii\framework\yiilite.php(1060): CDbConnection->init()
+#3 F:\GitHub\Yii\framework\yiilite.php(1312): CModule->getComponent('db')
+#4 F:\GitHub\Yii\framework\yiilite.php(7450): CApplication->getDb()
+#5 F:\GitHub\Yii\framework\yiilite.php(8288): CActiveRecord->getDbConnection()
+#6 F:\GitHub\Yii\framework\yiilite.php(7392): CActiveRecordMetaData->__construct(Object(Clientele))
+#7 F:\GitHub\Yii\framework\yiilite.php(7221): CActiveRecord->getMetaData()
+#8 F:\GitHub\CRM\protected\components\Controller.php(189): CActiveRecord->__construct('search')
+#9 F:\GitHub\Yii\framework\yiilite.php(4058): Controller->actionAdmin()
+#10 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('admin')
+#19 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/admin')
+#20 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?Clientele[clientele_name]=%E5%AE%B6%E5%85%B7%E6%9C%89&Clientele[industry]=&Clientele[display]=&Clientele_page=1&Clientele_sort=add_time&r=clientele/admin
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=clientele/create
+---
+2013/09/04 22:37:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395266106073.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395266106073.json&callback=jQuery18305770863257348537_1378305445209&_=1378305445321
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395266106073
+---
+2013/09/04 22:37:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395266106073.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395266106073.json&callback=jQuery1830838847683975473_1378305456449&_=1378305456567
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395266106073
+---
+2013/09/04 22:37:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395266106073.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395266106073.json&callback=jQuery18309495085380040109_1378305460307&_=1378305460406
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395266106073
+---
+2013/09/04 22:37:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922395266106073.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922395266106073.json&callback=jQuery18306689676023088396_1378305463006&_=1378305463103
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922395266106073
+---
+2013/09/04 22:38:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "profile" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('profile')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('profile')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('site/profile')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=site/profile
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/admin
+---
+2013/09/04 22:38:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "messate" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('messate')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('messate')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('site/messate')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=site/messate
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php
+---

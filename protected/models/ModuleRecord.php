@@ -123,9 +123,9 @@ class ModuleRecord extends CActiveRecord
 		 	$this->logDel();
 		 }
 		 elseif ($this->isNewRecord ){
-		 	AdminLog::log('Create');
+		 	AdminLog::log(Tk::g('Create').$this->sName.' - 编号:'.$this->itemid);
 		 }else{
-			AdminLog::log(Tk::g('Update').$this->sName);
+			AdminLog::log(Tk::g('Update').$this->sName.' - 编号:'.$this->itemid);
 		 }
 	}
 

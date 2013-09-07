@@ -42,7 +42,113 @@ $items = array(
 <?php $form=$this->beginWidget('CActiveForm', array(
     'enableAjaxValidation'=>true,
 )); ?>
+	<!--[if !IE]><!-->
+	<style>
+	
+	/* 
+	Max width before this PARTICULAR table gets nasty
+	This query will take effect for any screen smaller than 760px
+	and also iPads specifically.
+	*/
+	@media 
+	only screen and (max-width: 500px),
+	(min-device-width: 568px) and (max-device-width: 1024px)  {
+	
+	#list-grid a
+	#list-grid span,{
+		float: none;
+		display: inline;
+	}
+#list-grid .button-column {
+	width: 48%;
+	text-align: right;
+	background-color: #EEE;
+}	
+		/* Force table to not be like tables anymore */
+		#list-grid table,#list-grid thead,#list-grid tbody,#list-grid th,#list-grid td,#list-grid tr { 
+			display: block; 
+		}
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		#list-grid thead tr { 
 
+		}
+		#list-grid .filter-container{
+			display: block;
+		}
+		#list-grid thead a{
+			background: none;
+		}
+		#list-grid thead a,
+		#list-grid thead input,
+		#list-grid thead select{
+			display: block;
+			background: none;
+			min-width:90%;
+			margin:0 auto;
+		}
+		#list-grid thead td{
+			padding:0 0;
+			margin:0 2px;
+			height:28px;
+			line-height: 25px;
+			border:0;
+			background: none;
+		}
+		#list-grid thead tr{
+			border:0;
+			background-color: none;
+			float: left;
+			width:48%;
+
+		}
+		#list-grid thead tr:first-child{
+		}
+		#list-grid thead tr:last-child{
+		
+		}
+		#list-grid tbody tr:first-child{
+			clear:both;
+		}
+
+		
+		#list-grid tr { border: 1px solid #CCC; }
+		
+		#list-grid td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #EEE; 
+			position: relative;
+			padding-left: 50%; 
+		}
+		
+		#list-grid  td:before { 
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%; 
+			padding-right: 10px; 
+			white-space: nowrap;
+		}
+		
+		/*
+		Label the data
+		*/
+		/*#list-grid td:nth-of-type(1):before { content: "操作"; }*/
+		#list-grid tbody td:nth-of-type(2):before { content: "登录帐号"; }
+		#list-grid tbody td:nth-of-type(3):before { content: "名字"; }
+
+		#list-grid tbody td:nth-of-type(4):before { content: "最后登录"; }
+		#list-grid tbody td:nth-of-type(5):before { content: "登录次数"; }
+		#list-grid tbody td:nth-of-type(6):before { content: "状态"; }
+	}
+	
+
+	
+	</style>
+	<!--<![endif]-->
 
 <div class="row-fluid">
 	<div class="span12">

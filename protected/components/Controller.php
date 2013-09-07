@@ -156,6 +156,8 @@ class Controller extends RController
 					$this->redirect($returnUrl);
 				}				
 			}
+		}elseif(isset($_GET[$m])){
+			$model->attributes = $_GET[$m] ;
 		}
 		$this->render('create',array(
 			'model'=>$model,

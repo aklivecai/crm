@@ -58,12 +58,12 @@ jQuery(function($){
     function movieFormatResult(movie) {
         var markup = "<table class='movie-result'><tr>";
         markup += "<td class='movie-info'><div class='movie-title'>" + movie.clientele_name + "</div>";
-        if (movie.clientele_name !== undefined) {
-            markup += "<div class='movie-synopsis'>" + movie.clientele_name + "</div>";
+/*        if (movie.tak !== undefined) {
+            markup += "<div class='movie-synopsis'>" + movie.tak + "</div>";
         }
         else if (movie.synopsis !== undefined) {
             markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
-        }
+        }*/
         markup += "</td></tr></table>"
         return markup;
     }
@@ -90,7 +90,6 @@ jQuery(function($){
                 results: function (data, page) { 
                     // parse the results into the format expected by Select2.
                     // since we are using custom formatting functions we do not need to alter remote JSON data
-                    console.log(data);
                     return {results: data['data']};
                 }
             },
@@ -109,7 +108,6 @@ jQuery(function($){
                         },
                         dataType: "jsonp"
                     }).done(function(data) { 
-                        console.log(data);
                         callback(data); 
                    });
                 }
@@ -189,7 +187,6 @@ $(document).ready(function(){
         $(".toggle a").click(function(){
             
             var box = $(this).parents('[class^=head]').parent('div[class^=span]').find('div[class^=block]');
-            console.log(box);
             if(box.length == 1){
                 
                 if(box.is(':visible')){        
@@ -268,7 +265,7 @@ $(document).ready(function(){
     });
     
     
-    $(".navigation .openable > a").click(function(){
+    $(".navigation .openable > a").on('click',function(event){
         var par = $(this).parent('.openable');
         var sub = par.find("ul");
 
@@ -278,7 +275,7 @@ $(document).ready(function(){
         }else{
             par.addClass('active');            
         }
-        
+        event.preventDefault();
         return false;
     });
     

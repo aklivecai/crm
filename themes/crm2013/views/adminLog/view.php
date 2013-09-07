@@ -15,10 +15,7 @@ $this->menu=array(
 	array('label'=>'Manage AdminLog', 'url'=>array('admin')),
 );
 ?>
-
-<h1>View AdminLog #<?php echo $model->itemid; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'itemid',

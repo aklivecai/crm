@@ -17,8 +17,8 @@
 	<li><?php echo CHtml::encode($data->getAttributeLabel('info')); ?>:
 	<?php echo CHtml::encode($data->info); ?></li>
 	<li><?php echo CHtml::encode($data->getAttributeLabel('ip')); ?>:
-	<?php echo CHtml::encode($data->ip); ?></li>
+	<?php echo Tak::Num2IP($data->ip); ?></li>
 	<li><?php echo CHtml::encode($data->getAttributeLabel('add_time')); ?>:
-	<?php echo  Tak::timetodate($data->add_time); ?></li>
+	<?php echo  Tak::timetodate($data->add_time,6); ?></li>
 	</ul>
 </div>
