@@ -36,6 +36,13 @@
 
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/scrollup/jquery.scrollUp.min.js'></script>
 
+<link href="/_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
+<script src='/_ak/js/plugins/datepicker/WdatePicker.js'></script>
+<script src='/_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
+
+<script src='/_ak/js/plugins/spectrum/spectrum.js'></script>
+<link href="/_ak/js/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
+
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/cookies.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins.js'></script>

@@ -191,10 +191,17 @@ class Controller extends RController
 		if(isset($_GET[$m])){
 			$model->attributes = $_GET[$m] ;
 		}
-
 		$this->render('admin',array(
 			'model'=>$model,
 		));
-	}	
+	}
+
+	public function writeData($data){
+		header('Content-Type: application/json');
+		$callback = $_GET['callback'];
+		$str = $callback.'('.$data.');';
+		echo($str);
+		exit;
+	}
 
 }

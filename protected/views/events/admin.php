@@ -1,9 +1,9 @@
 <?php
-/* @var $this ContactpPrsonController */
-/* @var $model ContactpPrson */
+/* @var $this EventsController */
+/* @var $model Events */
 
 $this->breadcrumbs=array(
-	Tk::g('Contactp Prsons')=>array('admin'),
+	Tk::g('Events')=>array('admin'),
 	Tk::g('Admin'),
 );
 $items = Tak::getListMenu();
@@ -13,7 +13,7 @@ $items = Tak::getListMenu();
 
 	<div class="head clearfix">
         <div class="isw-grid"></div>
-        <h1><?php echo Tk::g('ContactpPrson')?></h1>   
+        <h1><?php echo Tk::g('Events')?></h1>   
 		<ul class="buttons">
 		    <li>
 		        <a href="#" class="isw-settings"></a>
@@ -51,63 +51,47 @@ $items = Tak::getListMenu();
 		,'htmlOptions'=>array('class'=>'')
 	),
 	'columns'=>array(
-		Tak::getAdminPageCol(),
+/*
 		array(
-			'name'=>'nicename',
+			'name'=>'user_name',
 			'type'=>'raw',
-			'htmlOptions'=>array('style'=>'width: 80px'),
-		)
-		,array(
-			'name'=>'clienteleid',
+			'value'=>'CHtml::link($data->user_name,array("view","id"=>$data->itemid))',
+		),	
+*/		
+
+		array(
+			'name' => 'display',
+			'htmlOptions'=>array('style'=>'width: 50px'),
+			'value'=>'TakType::getStatus("display",$data->display)',
 			'type'=>'raw',
-			'value'=>'$data->iClientele->clientele_name',
-			'htmlOptions'=>array('style'=>'width: 80px'),
+			'filter'=>TakType::items('display'), 
 		)
-		,array(
-			'name'=>'phone',
-			'type'=>'raw',
-            'filter' => false,
-            'sortable' => false,
-		)
-		,array(
-			'name'=>'mobile',
-			'type'=>'raw',
-            'filter' => true,
-            'sortable' => false,
-		)
-		,array(
-			'name'=>'email',
-			'type'=>'email',
-            'filter' => false,
-            'sortable' => false,
-		)
-		,array(
-			'name'=>'qq',
-			'type'=>'raw',
-            'sortable' => false,
-            'filter' => false,
-		)
-		,array(
-			'name'=>'address',
-			'type'=>'raw',
-            'filter' => false,
-            'sortable' => false,
-		)
-		,array(
-			'header'=>'最后联系',
-			'name'=>'last_time',
-			'type'=>'raw',
-			'value'=>'Tak::timetodate($data->last_time,4)',
-            'filter' => false
-		)	
-		,array(
-			'name' => 'sex',
-			'htmlOptions'=>array('style'=>'width: 40px'),
-			'value'=>'TakType::getStatus("sex",$data->sex)',
-			'type'=>'raw',
-			'filter'=>false,
-            'sortable' => false,
-		)
+	,		'subject'
+,		'email'
+,		'start_time'
+,		'end_time'
+,		'color'
+,		'text_color'
+,		/*
+,		'location'
+,		'url'
+,		'type'
+,		'priority'
+,		'event_status'
+,		'add_time'
+,		'note'
+,		*/
+		array(
+			 'class'=>'bootstrap.widgets.TbButtonColumn'
+			  ,'header' => CHtml::dropDownList('pageSize'
+					,Yii::app()->user->getState('pageSize')
+					,TakType::items('pageSize')
+					,array(
+						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
+					)
+			  )
+			  ,'htmlOptions'=>array('style'=>'width: 85px')
+		),		
 	),
 )); 
 ?>

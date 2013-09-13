@@ -59,4 +59,9 @@ return array (
 
   'Address Groups' => '部门',
   'AddressGroups' => '部门', 
+
+  'Events' => '行程', 
+
+
+  'Illegal operation' => '非法操作！', 
  );

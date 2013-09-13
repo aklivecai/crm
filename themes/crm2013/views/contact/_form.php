@@ -35,7 +35,7 @@
 		<?php echo $form->textFieldRow($model,'clienteleid',array('class'=>'sele1ct-clientele','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
 	</div>
 	<div class="row-form clearfix">
-		<?php echo $form->dropDownListRow($model,'prsonid',ContactpPrson::model()->getList()); ?>
+		<?php echo $form->textFieldRow($model,'prsonid',array('class'=>'sele1ct-prsonid','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
 	</div>		
 
 		<div class="row-form clearfix">

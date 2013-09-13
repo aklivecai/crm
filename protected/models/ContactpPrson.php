@@ -47,7 +47,7 @@ class ContactpPrson extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nicename, clientele', 'required'),
+			array('nicename, clienteleid', 'required'),
 			array('sex, status', 'numerical', 'integerOnly'=>true),
 			array(' add_us, modified_us', 'length', 'max'=>25),
 			array('last_time, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
@@ -57,7 +57,7 @@ class ContactpPrson extends ModuleRecord
 			array('qq', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('itemid, fromid, manageid, clientele, nicename, sex, department, position, email, phone, mobile, fax, qq, address, last_time, add_time, add_us, add_ip, modified_time, modified_us, modified_ip, note, status', 'safe', 'on'=>'search'),
+			array('itemid, fromid, manageid, clienteleid, nicename, sex, department, position, email, phone, mobile, fax, qq, address, last_time, add_time, add_us, add_ip, modified_time, modified_us, modified_ip, note, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class ContactpPrson extends ModuleRecord
 		return array(
 			'iClientele' => array(self::BELONGS_TO
 				, 'Clientele'
-				, 'clientele'
+				, 'clienteleid'
 				,'condition'=>''
 				,'order'=>''
 				),
@@ -87,7 +87,7 @@ class ContactpPrson extends ModuleRecord
 				'itemid' => '编号',
 				'fromid' => '平台会员ID',
 				'manageid' => '会员ID',
-				'clientele' => '客户',
+				'clienteleid' => '客户',
 				'nicename' => '名字',
 				'sex' => '性别',
 				'department' => '部门',
@@ -118,7 +118,7 @@ class ContactpPrson extends ModuleRecord
 		$criteria->compare('itemid',$this->itemid,true);
 		$criteria->compare('fromid',$this->fromid,true);
 		$criteria->compare('manageid',$this->manageid,true);
-		$criteria->compare('clientele',$this->clientele,true);
+		$criteria->compare('clienteleid',$this->clienteleid,true);
 		$criteria->compare('nicename',$this->nicename,true);
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('department',$this->department,true);

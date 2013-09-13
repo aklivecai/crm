@@ -1,6 +1,6 @@
 <?php
-/* @var $this ContactpPrsonController */
-/* @var $model ContactpPrson */
+/* @var $this EventsController */
+/* @var $model Events */
 /* @var $form bootstrap.widgets.TbActiveForm */
 ?>
 <?php  $action = $model->isNewRecord?'Create':'Update';
@@ -10,7 +10,7 @@
 <div class="span12">
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'contactp-prson-form',
+	'id'=>'events-form',
 	 'type'=>'horizontal',
 	'enableAjaxValidation'=>false,
 )); ?>
@@ -18,7 +18,7 @@
 <?php echo $form->errorSummary($model); ?>
 
 <div class="head clearfix">
-	<i class="isw-documents"></i><h1><?php echo Tk::g(array('ContactpPrson',$action));?></h1>
+	<i class="isw-documents"></i><h1><?php echo Tk::g(array('Events',$action));?></h1>
 	<ul class="buttons">
 	    <li>
 	        <a href="#" class="isw-settings"></a>
@@ -32,39 +32,40 @@
 </div>
 <div class="block-fluid">
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'clienteleid',array('class'=>'sele1ct-clientele','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
-
-	</div>
-
-	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'nicename',array('size'=>60,'maxlength'=>64)); ?>
+		<?php echo $form->textFieldRow($model,'subject',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->radioButtonListRow($model,'sex',Taktype::items('sex'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
+		<?php echo $form->textFieldRow($model,'email',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'department',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textFieldRow($model,'start_time',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'position',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textFieldRow($model,'end_time',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'color',array('size'=>15,'maxlength'=>15)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'phone',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'text_color',array('size'=>15,'maxlength'=>15)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'mobile',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'location',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'fax',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'url',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'qq',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textFieldRow($model,'type',array('size'=>15,'maxlength'=>15)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'address',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'priority',array('size'=>15,'maxlength'=>15)); ?>
+	</div>
+	<div class="row-form clearfix" >
+		<?php echo $form->textFieldRow($model,'event_status',array('size'=>15,'maxlength'=>15)); ?>
+	</div>
+	<div class="row-form clearfix" >
+		<?php echo $form->textFieldRow($model,'display'); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
@@ -81,4 +82,4 @@
 
 <?php $this->endWidget(); ?>
 </div>
-
+</div>

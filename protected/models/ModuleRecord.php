@@ -23,6 +23,28 @@ class ModuleRecord extends CActiveRecord
     	return $arr;
     }
 
+   public function scopes()
+    {
+        return array(
+            'published'=>array(
+                'condition'=>'status=1',
+            ),
+            'recently'=>array(
+                'order'=>'add_time DESC',
+                'limit'=>5,
+            ),
+        );
+    }   
+    
+	public function recently($limit=5)
+	{
+	    $this->getDbCriteria()->mergeWith(array(
+	        'order'=>'add_time DESC',
+	        'limit'=>$add_time,
+	    ));
+	    return $this;
+	}     
+
     public function getPageSize(){
 		if (isset($_GET['setPageSize'])) {
 			$setPageSize = (int)$_GET['setPageSize'];
@@ -94,7 +116,9 @@ class ModuleRecord extends CActiveRecord
 	        //添加数据时候
 	        $arr = Tak::getOM();
 	        if ( $this->isNewRecord ){
-	        	$this->itemid = $arr['itemid'];
+	        	if (!$this->itemid) {
+	        		$this->itemid = $arr['itemid'];
+	        	}	        	
 	        	$this->manageid = $arr['manageid'];
 	        	$this->add_us = $arr['manageid'];
 	        	$this->add_time = $arr['time'];
@@ -129,7 +153,7 @@ class ModuleRecord extends CActiveRecord
 		 }
 	}
 
-	function del(){
+	public function del(){
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {
 			$this->status = TakType::STATUS_DELETED;

@@ -2,6 +2,11 @@
  dateFormat('yyyy-MM-dd hh:mm:ss');
 dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
  */
+
+var log = function(msg){
+    console.log(msg);
+}
+
 function dateFormat(date, format) {
     if(format === undefined){
         format = date;
@@ -33,6 +38,25 @@ function dateFormat(date, format) {
     return format;
 }        
 jQuery(function($){
+
+        // 颜色插件
+        var localization = $.spectrum.localization["cn"] = {
+            cancelText: "取消",
+            chooseText: "选择",
+            preferredFormat:'name' //格式
+        };
+        $.extend($.fn.spectrum.defaults, localization);
+        $(".color").spectrum({
+            showPaletteOnly: true,
+            showPalette:true,
+            palette: [
+                ['black', 'white', 'blanchedalmond',
+                '#FF8000', '#488026'],
+                ['red', 'yellow', 'green', 'blue', 'violet']
+            ]
+        });          
+
+
         $.datepicker.regional['zh-CN'] = {
                 closeText: '关闭',
                 prevText: '<上月',
@@ -53,70 +77,137 @@ jQuery(function($){
                 yearSuffix: '年'};
         $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 
-
-        $.fx.speeds._default = 500;  
-    function movieFormatResult(movie) {
+var tselect = function(){
+    var clientele = $(".sele1ct-clientele,#list-grid input[name*='[clienteleid]']")
+    , prson = $(".sele1ct-prsonid,#list-grid input[name='Contact[prsonid]']")
+    , page_limit = 20
+    , page_limit = 20
+    ,  movieFormatSelection = function(obj) {
+        return obj.clientele_name;
+    } 
+    , movieFormatResult = function(data) {
         var markup = "<table class='movie-result'><tr>";
-        markup += "<td class='movie-info'><div class='movie-title'>" + movie.clientele_name + "</div>";
-/*        if (movie.tak !== undefined) {
-            markup += "<div class='movie-synopsis'>" + movie.tak + "</div>";
-        }
-        else if (movie.synopsis !== undefined) {
-            markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
-        }*/
+        markup += "<td class='movie-info'><div class='movie-title'>" + data.clientele_name + "</div>";
         markup += "</td></tr></table>"
         return markup;
     }
-
-    //用到的指
-    function movieFormatSelection(obj) {
-        return obj.clientele_name;
-    }    
-     $(".sele1ct-clientele").select2({
+    ;
+    clientele.css('width','100%');
+    prson.css('width','100%');
+ 
+     clientele.select2({
             placeholder: "搜索客户",
-            minimumInputLength: 1,
-              loadMorePadding: 300,
+            allowClear: true,//显示取消按钮
+            minimumInputLength: 0,
+            loadMorePadding: 300,
+            quietMillis:100,
+            openOnEnter:true,
+            selectOnBlur:true,
             ajax: { 
                 url: CrmPath+"clientele/select",
                 dataType: 'jsonp',
                 data: function (term, page) {
                     return {
-                        q: term, // search term
-                        page_limit: 10,
-                         page: page - 1,
-                        // apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
+                        q: term, 
+                        page_limit: page_limit,
+                        Clientele_page: page,
                     };
                 },
                 results: function (data, page) { 
-                    // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to alter remote JSON data
-                    return {results: data['data']};
+                    var more = (page * page_limit) < data.totalItemCount; 
+                    return {results: data['data'],more:more};
                 }
             },
             id:function(object){
                 return object.itemid;
             },
             initSelection: function(element, callback) {
-                // the input tag has a value attribute preloaded that points to a preselected movie's id
-                // this function resolves that id attribute to an object that select2 can render
-                // using its formatResult renderer - that way the movie name is shown preselected
                 var id=$(element).val();
                 if (id!=="") {
-                    $.ajax(CrmPath+"movies.json?"+id+".json", {
+                    $.ajax(CrmPath+"clientele/selectById&id="+id, {
                         data: {
-                            // apikey: "ju6z9mjyajq2djue3gbvv26t"
                         },
                         dataType: "jsonp"
-                    }).done(function(data) { 
-                        callback(data); 
+                    }).done(function(data) {
+                        if (data!=''&&typeof data=='object') {
+                            callback(data.data[0]);
+                        };
+                         
                    });
                 }
             },
-            formatResult:movieFormatResult, // omitted for brevity, see the source of this page
-            formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
-            dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-            escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
-        });        
+            createSearchChoice: function (term) {
+                // console.log(term);
+            },
+            formatResult:movieFormatResult,
+            formatSelection: movieFormatSelection,
+            dropdownCssClass: "bigdrop",
+            // formatNoMatches: function () { return "Nessun risultato trovato!";},
+            // formatSearching: function () { return "Ricerco.."; },
+            escapeMarkup: function (m) { return m; } 
+        });    
+        
+        if (prson.length>0) {
+            (function(){
+
+             prson.select2({
+                    placeholder: "搜索联系人",
+                    allowClear: true,//显示取消按钮
+                    minimumInputLength: 0,
+                    loadMorePadding: 300,
+                    quietMillis:100,
+                    openOnEnter:true,
+                    selectOnBlur:true,
+                    ajax: { 
+                        url: CrmPath+"contactpPrson/select",
+                        dataType: 'jsonp',
+                        data: function (term, page) {
+                            return {
+                                q: term, 
+                                page_limit: page_limit,
+                                clienteleid : clientele.val(),
+                                Clientele_page: page,
+                            };
+                        },
+                        results: function (data, page) { 
+                            var more = (page * page_limit) < data.totalItemCount; 
+                            return {results: data['data'],more:more};
+                        }
+                    },
+                    id:function(object){
+                        return object.itemid;
+                    },
+                    initSelection: function(element, callback) {
+                        var id=$(element).val();
+                        if (id!=="") {
+                            $.ajax(CrmPath+"contactpPrson/selectById&id="+id, {
+                                data: {
+                                },
+                                dataType: "jsonp"
+                            }).done(function(data) {
+                                if (data!=''&&typeof data=='object') {
+                                    callback(data.data[0]);
+                                };
+                                 
+                           });
+                        }
+                    },
+                    formatResult:function(data){return data.nicename;},
+                    formatSelection: function(obj){ return obj.nicename},
+                    dropdownCssClass: "bigdrop",
+                });    
+            clientele.on("change", function(e) { 
+                prson.select2('val','');
+            }) 
+            })()
+        };      
+} 
+
+$('#list-grid,body').on('takLoad',function(){
+    tselect();        
+});
+tselect();
+
 });
 
 $(document).ready(function(){
@@ -124,17 +215,29 @@ $(document).ready(function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;
     });
 
-    $('.type-date').each(function(){
-        var t = $(this);
-         date = new Date(t.val()*1000);
-         v = t.val();
-         if (v>0) {
-            t.val(dateFormat(date, 'yyyy-MM-dd'));   
-         }else{
-            t.val('');
-         } 
-        t.datepicker({'dateFormat':'yy-mm-dd'});
-    });
+    var listDate = $('.type-date');
+  if (listDate.length>0) {
+    $.ajax({
+      url: '/_ak/js/plugins/datepicker/WdatePicker.js',
+      dataType: "script",
+      success: function(){
+        $('.type-date').each(function(){
+            var t = $(this);
+             date = new Date(t.val()*1000);
+             v = t.val();
+             if (v>0) {
+                t.val(dateFormat(date, 'yyyy-MM-dd hh:mm:ss'));   
+             }else{
+                t.val('');
+             } 
+            t.on('focus',function(){
+               WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})
+            });
+        });        
+      }
+    });    
+  };    
+
 
    var  afterDelete = function(){}
    , refreshGridView = function(){

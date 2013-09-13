@@ -53,12 +53,14 @@ $items = Tak::getListMenu();
 	'columns'=>array(
 	Tak::getAdminPageCol(),
 		array(
-			'name'=>'iClientele.clientele_name',
+			'name'=>'clienteleid',
 			'type'=>'raw',
+			'value'=>'$data->iClientele->clientele_name'
 		)		
 		,array(
-			'name'=>'iContactpPrson.nicename',
+			'name'=>'prsonid',
 			'type'=>'raw',
+			'value'=>'$data->iContactpPrson->nicename'
 		)
 		,array(
 			'name'=>'contact_time',

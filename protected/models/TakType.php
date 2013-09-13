@@ -24,6 +24,7 @@ class TakType extends CActiveRecord
 		'status' => array('0'=>'锁定','1'=>'启用')
 		,'display' => array('1'=>'公共','0'=>'私有')
 		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
+		,'priority' => array('0'=>'底','1'=>'中','2'=>'高')
 		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100),
 	);
 	

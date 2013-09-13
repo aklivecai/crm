@@ -46,7 +46,7 @@ class Contact extends ModuleRecord
 			array('clienteleid, prsonid', 'required'),
 			array('stage, status', 'numerical', 'integerOnly'=>true),
 			array(' add_us, modified_us', 'length', 'max'=>25),
-			array('contact_time, next_contact_time, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
+			array('add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
 			array('type', 'length', 'max'=>15),
 			array('next_subject, accessory, note', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -90,8 +90,8 @@ class Contact extends ModuleRecord
 				'itemid' => '编号',
 				'fromid' => '平台会员ID',
 				'manageid' => '会员ID',
-				'clienteleid' => '客户编号',
-				'prsonid' => '联系人编号',
+				'clienteleid' => '客户',
+				'prsonid' => '联系人',
 				'type' => '类型', /*(电话,电子邮件,上门,邮寄,短信,其他)*/
 				'stage' => '销售阶段', /*(1：初期沟通,2:立项评估,3:需求分析,4:方案制定,5:招投标,6:商务谈判,7:合同签订,8:得单,9:失单)*/
 				'contact_time' => '联系时间',
@@ -139,7 +139,6 @@ class Contact extends ModuleRecord
 		return $cActive;
 	}
 
-
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -171,13 +170,47 @@ class Contact extends ModuleRecord
 	    return $result;
 	}
 
+	public function getLink($itemid=false){
+		if (!$itemid) {
+			$itemid = $this->itemid;
+		}		
+		$link = Yii::app()->createUrl('contact/view',array('id'=>$itemid));
+		return $link;
+	}
+
+	public function getHtmlLink($name=false,$itemid=false)
+	{
+		if (!$name) {
+			$name = $this->iContactpPrson->nicename;
+		}
+		$link = CHtml::link($name, $this->getLink($itemid));
+		return $link;
+	}
+
 	//保存数据后
 	protected function afterSave(){
-		parent::afterSave();
+		parent::afterSave();	
+
+		//插入到行程中	
+        $event = new Events;
+        $event->deleteByPk($this->itemid);
+        $event->itemid = $this->itemid ;
+        $event->subject = ' 联系客户 - '.$this->iContactpPrson->nicename;
+        $event->start_time = $this->next_contact_time;
+        $event->url = $this->getLink();
+        $event->type = $this->type;
+        $event->note = $this->next_subject;
+        $event->save();
 	}	
+
+	public function del(){
+		parent::del();
+		Events::model()->deleteByPk($this->itemid);
+	}
 
 	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
+		
 	}	
 }

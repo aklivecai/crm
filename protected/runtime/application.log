@@ -51417,3 +51417,946 @@ Stack trace:
 REQUEST_URI=/github/crm/index.php?r=site/messate
 HTTP_REFERER=http://127.0.0.1/github/crm/index.php
 ---
+2013/09/09 09:50:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922397643233012.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922397643233012.json&callback=jQuery18309517316455021501_1378691452969&_=1378691453106
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922397643233012
+---
+2013/09/09 10:11:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "movies.json?52922397643233012.json"。' in F:\GitHub\Yii\framework\yiilite.php:1750
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('movies.json?529...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#2 F:\GitHub\CRM\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/github/crm/index.php?r=movies.json?52922397643233012.json&callback=jQuery18307728512992616743_1378692659671&_=1378692659923
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922397643233012
+---
+2013/09/09 10:16:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?sad=123" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?sad=...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?sad=...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?sad=123
+---
+2013/09/09 10:16:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?sad=123" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?sad=...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?sad=...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?sad=123
+---
+2013/09/09 10:17:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?id=213" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?id=2...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?id=2...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?id=213
+---
+2013/09/09 10:17:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?id=213" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?id=2...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?id=2...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?id=213
+---
+2013/09/09 10:17:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?id=213" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?id=2...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?id=2...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?id=213
+---
+2013/09/09 10:18:16 [error] [exception.CHttpException.403] exception 'CHttpException' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&ids=213
+---
+2013/09/09 10:20:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?sad=123" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?sad=...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?sad=...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?sad=123
+---
+2013/09/09 10:20:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?sad=123" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?sad=...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?sad=...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?sad=123
+---
+2013/09/09 10:21:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "selectById?sad=123" 动作.' in F:\GitHub\Yii\framework\yiilite.php:3668
+Stack trace:
+#0 F:\GitHub\Yii\framework\yiilite.php(3550): CController->missingAction('selectById?sad=...')
+#1 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById?sad=...')
+#2 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#3 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById?sad=123
+---
+2013/09/09 10:21:04 [error] [exception.CHttpException.403] exception 'CHttpException' with message '非法操作！' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&sad=123
+---
+2013/09/09 10:21:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message '非法操作！' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&sad=123
+---
+2013/09/09 11:01:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message '非法操作！' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&id=123
+---
+2013/09/09 11:01:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message '非法操作！' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\yiilite.php(4039): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\yiilite.php(4056): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\yiilite.php(3570): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\yiilite.php(6743): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\yiilite.php(6752): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\yiilite.php(6785): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\yiilite.php(6740): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\yiilite.php(3560): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\yiilite.php(3545): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\yiilite.php(1746): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\yiilite.php(1666): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\yiilite.php(1191): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&id=123
+---
+2013/09/09 11:08:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'create_time' in 'order clause'. The SQL statement executed was: SELECT * FROM `tak_clientele` `t` WHERE (status>0 AND fromid=1) AND (status=1) ORDER BY create_time DESC, add_time DESC.
+in F:\GitHub\CRM\protected\controllers\ClienteleController.php (15)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+in F:\GitHub\CRM\index.php (14)
+2013/09/09 11:08:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'create_time' in 'order clause'. The SQL statement executed was: SELECT * FROM `tak_clientele` `t` WHERE (status>0 AND fromid=1) AND (status=1) ORDER BY create_time DESC, add_time DESC' in F:\GitHub\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 F:\GitHub\CRM\protected\controllers\ClienteleController.php(15): CActiveRecord->findAll()
+#4 [internal function]: ClienteleController->actionSelectById('123')
+#5 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#6 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#7 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#11 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#12 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#14 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('selectById')
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#17 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 F:\GitHub\CRM\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&id=123
+---
+2013/09/09 11:10:25 [error] [exception.CHttpException.403] exception 'CHttpException' with message '非法操作！' in F:\GitHub\CRM\protected\controllers\ClienteleController.php:12
+Stack trace:
+#0 [internal function]: ClienteleController->actionSelectById(false)
+#1 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('selectById')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById/&callback=jQuery18307405378834810108_1378696225796&_=1378696225931
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=contactpPrson/create&ContactpPrson%5Bclientele%5D=52922397643233012
+---
+2013/09/10 15:21:05 [error] [exception.CException] exception 'CException' with message '属性 "JSonActiveDataProvider.recently" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('recently', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(45): CActiveDataProvider->__construct('Clientele', Array)
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=1&page_limit=10&page=1&_=1378797665449
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contactpPrson/create
+---
+2013/09/10 15:21:05 [error] [exception.CException] exception 'CException' with message '属性 "JSonActiveDataProvider.recently" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('recently', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(45): CActiveDataProvider->__construct('Clientele', Array)
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=10&page=1&_=1378797665627
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contactpPrson/create
+---
+2013/09/10 15:21:09 [error] [exception.CException] exception 'CException' with message '属性 "JSonActiveDataProvider.recently" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('recently', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(45): CActiveDataProvider->__construct('Clientele', Array)
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=10&page=1&_=1378797665627
+---
+2013/09/10 15:21:20 [error] [exception.CException] exception 'CException' with message '属性 "JSonActiveDataProvider.recently" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('recently', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(45): CActiveDataProvider->__construct('Clientele', Array)
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=10&page=1&_=1378797665627
+---
+2013/09/10 15:22:20 [error] [exception.CException] exception 'CException' with message '属性 "CPagination.page" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CDataProvider.php(106): CComponent->__set('page', '1')
+#1 F:\GitHub\Yii\framework\base\CComponent.php(152): CDataProvider->setPagination(Array)
+#2 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('pagination', Array)
+#3 F:\GitHub\CRM\protected\controllers\ClienteleController.php(41): CActiveDataProvider->__construct('Clientele', Array)
+#4 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#5 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#14 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#15 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 F:\GitHub\CRM\index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=10&page=1&_=1378797665627
+---
+2013/09/10 15:24:11 [error] [exception.CException] exception 'CException' with message '属性 "CPagination.page" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CDataProvider.php(106): CComponent->__set('page', '1')
+#1 F:\GitHub\Yii\framework\base\CComponent.php(152): CDataProvider->setPagination(Array)
+#2 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(96): CComponent->__set('pagination', Array)
+#3 F:\GitHub\CRM\protected\controllers\ClienteleController.php(41): CActiveDataProvider->__construct('Clientele', Array)
+#4 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#5 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#14 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#15 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 F:\GitHub\CRM\index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=10&page=1&_=1378797665627
+---
+2013/09/10 15:34:28 [error] [exception.CException] exception 'CException' with message 'Clientele and its behaviors do not have a method or closure named "attributes".' in F:\GitHub\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('attributes', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(25): CActiveRecord->__call('attributes', Array)
+#2 F:\GitHub\CRM\protected\controllers\ClienteleController.php(25): Clientele->attributes()
+#3 [internal function]: ClienteleController->actionSelectById('534329478589500...')
+#4 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ClienteleController), Array)
+#5 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ClienteleController), Object(ReflectionMethod), Array)
+#6 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#10 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#11 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#13 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('selectById')
+#15 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#16 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 F:\GitHub\CRM\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/selectById&id=53432947858950089&callback=jQuery183008005035016685724_1378798385628&_=1378798386453
+---
+2013/09/10 15:51:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' add_time DESC LIMIT 5' at line 1. The SQL statement executed was: SELECT * FROM `tak_clientele` `t` WHERE (status>0 AND fromid=1) AND (clientele_name LIKE :ycp0) ORDER BY last_time DESC,clientele_name ASC,, add_time DESC LIMIT 5. Bound with :ycp0='%12%'.
+in F:\GitHub\CRM\protected\extensions\jsonDataprovider\JSonActiveDataProvider.php (48)
+in F:\GitHub\CRM\protected\controllers\ClienteleController.php (57)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+2013/09/10 15:51:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' add_time DESC LIMIT 5' at line 1. The SQL statement executed was: SELECT * FROM `tak_clientele` `t` WHERE (status>0 AND fromid=1) AND (clientele_name LIKE :ycp0) ORDER BY last_time DESC,clientele_name ASC,, add_time DESC LIMIT 5. Bound with :ycp0='%12%'' in F:\GitHub\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 F:\GitHub\Yii\framework\web\CActiveDataProvider.php(199): CActiveRecord->findAll(Object(CDbCriteria))
+#4 F:\GitHub\Yii\framework\web\CDataProvider.php(168): CActiveDataProvider->fetchData()
+#5 F:\GitHub\Yii\framework\web\CDataProvider.php(212): CDataProvider->getData(false)
+#6 F:\GitHub\CRM\protected\extensions\jsonDataprovider\JSonActiveDataProvider.php(48): CDataProvider->getItemCount()
+#7 F:\GitHub\CRM\protected\controllers\ClienteleController.php(57): JSonActiveDataProvider->getArrayCountData()
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#16 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#18 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#19 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 F:\GitHub\CRM\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18309092988402117044_1378797661932&q=12&page_limit=5&Clientele_page=4
+---
+2013/09/10 16:17:45 [error] [exception.CException] exception 'CException' with message 'ClienteleController and its behaviors do not have a method or closure named "writeData".' in F:\GitHub\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\GitHub\CRM\protected\controllers\ClienteleController.php(51): CComponent->__call('writeData', Array)
+#1 F:\GitHub\CRM\protected\controllers\ClienteleController.php(51): ClienteleController->writeData('{"itemCount":7,...')
+#2 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): ClienteleController->actionSelect()
+#3 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#7 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('select')
+#12 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('clientele/selec...')
+#13 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 F:\GitHub\CRM\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/github/crm/index.php?r=clientele/select&callback=jQuery18303678225704934448_1378801059644&q=1&page_limit=22&Clientele_page=1&_=1378801065375
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/create
+---
+2013/09/11 09:29:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(65): Controller->loadModel('421199273482270...')
+#1 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#2 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#4 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#6 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#7 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#8 F:\GitHub\CRM\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42119927348227035
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/view&id=42119927348227035
+---
+2013/09/12 15:56:31 [warning] [application] Failed to set unsafe attribute "clientele" of "ContactpPrson".
+in F:\GitHub\CRM\protected\components\Controller.php (160)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+in F:\GitHub\CRM\index.php (14)
+2013/09/12 15:56:36 [warning] [application] Failed to set unsafe attribute "clientele" of "ContactpPrson".
+in F:\GitHub\CRM\protected\components\Controller.php (192)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
+in F:\GitHub\CRM\index.php (14)
+2013/09/12 16:31:10 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in F:\GitHub\Yii\framework\gii\GiiModule.php:170
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/?r=gii
+---
+2013/09/12 16:31:16 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in F:\GitHub\Yii\framework\gii\GiiModule.php:170
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=gii
+---
+2013/09/12 16:31:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in F:\GitHub\Yii\framework\gii\GiiModule.php:170
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=gii
+---
+2013/09/12 16:59:11 [error] [exception.CException] exception 'CException' with message '属性 "Contact.name" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('name')
+#1 F:\GitHub\CRM\protected\models\Contact.php(179): CActiveRecord->__get('name')
+#2 F:\GitHub\CRM\protected\models\Contact.php(196): Contact->getLink()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1097): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(151): CActiveRecord->save()
+#6 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): Controller->actionCreate()
+#7 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#11 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#12 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#14 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('create')
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/create')
+#17 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 F:\GitHub\CRM\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/create
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/create
+---
+2013/09/12 17:00:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=contact
+---
+2013/09/12 17:03:05 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16). Bound with :yp0='1380099547', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976585', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13='<a href="/github/crm/index.php?r=contact/view&amp;id=42295285428523043">张三</a>', :yp14='52922395238803143', :yp15='52922395238803143', :yp16='1'.
+in F:\GitHub\CRM\protected\models\Contact.php (197)
+in F:\GitHub\CRM\protected\components\Controller.php (178)
+in F:\GitHub\CRM\protected\components\Controller.php (71)
+2013/09/12 17:03:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16). Bound with :yp0='1380099547', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976585', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13='<a href="/github/crm/index.php?r=contact/view&amp;id=42295285428523043">张三</a>', :yp14='52922395238803143', :yp15='52922395238803143', :yp16='1'' in F:\GitHub\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\GitHub\CRM\protected\models\Contact.php(197): CActiveRecord->save()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#6 [internal function]: Controller->actionUpdate('422952854285230...')
+#7 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#15 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#18 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 F:\GitHub\CRM\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:06:04 [error] [exception.CException] exception 'CException' with message 'Contact and its behaviors do not have a method or closure named "createUrl".' in F:\GitHub\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('createUrl', Array)
+#1 F:\GitHub\CRM\protected\models\Contact.php(177): CActiveRecord->__call('createUrl', Array)
+#2 F:\GitHub\CRM\protected\models\Contact.php(177): Contact->createUrl('contact/view', Array)
+#3 F:\GitHub\CRM\protected\models\Contact.php(197): Contact->getLink()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#5 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#6 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#7 [internal function]: Controller->actionUpdate('422952854285230...')
+#8 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#9 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#10 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#13 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#16 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#18 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#19 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 F:\GitHub\CRM\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:06:23 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16). Bound with :yp0='1380099547', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976783', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='52922395238803143', :yp15='52922395238803143', :yp16='1'.
+in F:\GitHub\CRM\protected\models\Contact.php (198)
+in F:\GitHub\CRM\protected\components\Controller.php (178)
+in F:\GitHub\CRM\protected\components\Controller.php (71)
+2013/09/12 17:06:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16). Bound with :yp0='1380099547', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976783', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='52922395238803143', :yp15='52922395238803143', :yp16='1'' in F:\GitHub\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\GitHub\CRM\protected\models\Contact.php(198): CActiveRecord->save()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#6 [internal function]: Controller->actionUpdate('422952854285230...')
+#7 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#15 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#18 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 F:\GitHub\CRM\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:09:19 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17). Bound with :yp0='1382519355', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976959', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='0', :yp15='52922395238803143', :yp16='52922395238803143', :yp17='1'.
+in F:\GitHub\CRM\protected\models\Contact.php (199)
+in F:\GitHub\CRM\protected\components\Controller.php (178)
+in F:\GitHub\CRM\protected\components\Controller.php (71)
+2013/09/12 17:09:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17). Bound with :yp0='1382519355', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378976959', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='0', :yp15='52922395238803143', :yp16='52922395238803143', :yp17='1'' in F:\GitHub\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\GitHub\CRM\protected\models\Contact.php(199): CActiveRecord->save()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#6 [internal function]: Controller->actionUpdate('422952854285230...')
+#7 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#15 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#18 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 F:\GitHub\CRM\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:10:02 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17). Bound with :yp0='1382519355', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378977002', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='0', :yp15='52922395238803143', :yp16='52922395238803143', :yp17='1'.
+in F:\GitHub\CRM\protected\models\Contact.php (199)
+in F:\GitHub\CRM\protected\components\Controller.php (178)
+in F:\GitHub\CRM\protected\components\Controller.php (71)
+2013/09/12 17:10:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[HY000]: General error: 1364 Field 'email' doesn't have a default value. The SQL statement executed was: INSERT INTO `tak_events` (`start_time`, `end_time`, `color`, `text_color`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `url`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17). Bound with :yp0='1382519355', :yp1='0', :yp2='', :yp3='', :yp4=0, :yp5=1, :yp6='1378977002', :yp7='3232235977', :yp8='0', :yp9='0', :yp10='0', :yp11='42295285428523043', :yp12=' 联系客户- ', :yp13=NULL, :yp14='0', :yp15='52922395238803143', :yp16='52922395238803143', :yp17='1'' in F:\GitHub\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\GitHub\CRM\protected\models\Contact.php(199): CActiveRecord->save()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#6 [internal function]: Controller->actionUpdate('422952854285230...')
+#7 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#15 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#18 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 F:\GitHub\CRM\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:11:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'manageid' at row 1. The SQL statement executed was: INSERT INTO `tak_events` (`email`, `start_time`, `end_time`, `color`, `text_color`, `location`, `url`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19). Bound with :yp0='', :yp1='1382519355', :yp2='0', :yp3='', :yp4='', :yp5='', :yp6=NULL, :yp7=0, :yp8=1, :yp9='1378977105', :yp10='3232235977', :yp11='0', :yp12='0', :yp13='0', :yp14='42295285428523043', :yp15=' 联系客户- ', :yp16='0', :yp17='52922395238803143', :yp18='52922395238803143', :yp19='1'.
+in F:\GitHub\CRM\protected\models\Contact.php (199)
+in F:\GitHub\CRM\protected\components\Controller.php (178)
+in F:\GitHub\CRM\protected\components\Controller.php (71)
+2013/09/12 17:11:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'manageid' at row 1. The SQL statement executed was: INSERT INTO `tak_events` (`email`, `start_time`, `end_time`, `color`, `text_color`, `location`, `url`, `display`, `status`, `add_time`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `itemid`, `subject`, `type`, `manageid`, `add_us`, `fromid`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19). Bound with :yp0='', :yp1='1382519355', :yp2='0', :yp3='', :yp4='', :yp5='', :yp6=NULL, :yp7=0, :yp8=1, :yp9='1378977105', :yp10='3232235977', :yp11='0', :yp12='0', :yp13='0', :yp14='42295285428523043', :yp15=' 联系客户- ', :yp16='0', :yp17='52922395238803143', :yp18='52922395238803143', :yp19='1'' in F:\GitHub\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\GitHub\CRM\protected\models\Contact.php(199): CActiveRecord->save()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#4 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#5 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#6 [internal function]: Controller->actionUpdate('422952854285230...')
+#7 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#8 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#9 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#12 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#15 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#17 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#18 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 F:\GitHub\CRM\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42295285428523043
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42295285428523043
+---
+2013/09/12 17:30:52 [error] [exception.CException] exception 'CException' with message '属性 "ContactpPrson.clientele_name" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('clientele_name')
+#1 F:\GitHub\Yii\framework\base\CComponent.php(612) : eval()'d code(1): CActiveRecord->__get('clientele_name')
+#2 F:\GitHub\Yii\framework\base\CComponent.php(612): eval()
+#3 F:\GitHub\Yii\framework\zii\widgets\grid\CDataColumn.php(137): CComponent->evaluateExpression('$data->getHtmlL...', Array)
+#4 F:\GitHub\Yii\framework\zii\widgets\grid\CGridColumn.php(151): CDataColumn->renderDataCellContent(0, Object(Contact))
+#5 F:\GitHub\Yii\framework\zii\widgets\grid\CGridView.php(616): CGridColumn->renderDataCell(0)
+#6 F:\GitHub\Yii\framework\zii\widgets\grid\CGridView.php(572): CGridView->renderTableRow(0)
+#7 F:\GitHub\Yii\framework\zii\widgets\grid\CGridView.php(482): CGridView->renderTableBody()
+#8 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(167): CGridView->renderItems()
+#9 [internal function]: CBaseListView->renderSection(Array)
+#10 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback('/{(\w+)}/', Array, '{pager}{summary...')
+#11 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(135): CBaseListView->renderContent()
+#12 F:\GitHub\Yii\framework\web\CBaseController.php(173): CBaseListView->run()
+#13 F:\GitHub\CRM\themes\crm2013\views\contact\admin.php(90): CBaseController->widget('bootstrap.widge...', Array)
+#14 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#15 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#16 F:\GitHub\Yii\framework\web\CController.php(869): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#17 F:\GitHub\Yii\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#18 F:\GitHub\CRM\protected\components\Controller.php(196): CController->render('admin', Array)
+#19 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): Controller->actionAdmin()
+#20 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#21 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#22 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#23 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#24 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#25 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#26 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#27 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#29 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/admin')
+#30 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#31 F:\GitHub\CRM\index.php(14): CApplication->run()
+#32 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/admin
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42296950647017029
+---
+2013/09/12 17:33:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events
+HTTP_REFERER=http://127.0.0.1/github/crm/index.php?r=gii/crud/index
+---
+2013/09/12 17:34:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/index')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?Contact[clienteleid]=&Contact[prsonid]=&Contact[type]=&Contact[stage]=&Contact_page=1&r=contact/admin
+---
+2013/09/12 17:41:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/index')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/admin
+---
+2013/09/12 17:53:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/index')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/view&id=42296950647017029
+---
+2013/09/12 18:06:12 [error] [exception.CException] exception 'CException' with message '属性 "Events.stage" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('stage')
+#1 F:\GitHub\CRM\themes\crm2013\views\events\view.php(20): CActiveRecord->__get('stage')
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#3 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#4 F:\GitHub\Yii\framework\web\CController.php(869): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#5 F:\GitHub\Yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 F:\GitHub\CRM\protected\components\Controller.php(133): CController->render('view', Array)
+#7 [internal function]: Controller->actionView('422969506470170...')
+#8 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EventsController), Array)
+#9 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EventsController), Object(ReflectionMethod), Array)
+#10 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/view')
+#20 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?r=events/view&id=42296950647017029
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=events/update&id=42296950647017029
+---
+2013/09/12 18:09:59 [error] [exception.CException] exception 'CException' with message '属性 "Contact.priority" 未被定义.' in F:\GitHub\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('priority')
+#1 F:\GitHub\CRM\protected\models\Contact.php(201): CActiveRecord->__get('priority')
+#2 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(1126): Contact->afterSave()
+#3 F:\GitHub\Yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->update(NULL)
+#4 F:\GitHub\CRM\protected\components\Controller.php(178): CActiveRecord->save()
+#5 [internal function]: Controller->actionUpdate('422969506470170...')
+#6 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContactController), Array)
+#7 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContactController), Object(ReflectionMethod), Array)
+#8 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 F:\GitHub\CRM\protected\components\Controller.php(71): CFilterChain->run()
+#11 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#12 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#14 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#16 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contact/update')
+#17 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 F:\GitHub\CRM\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/github/crm/index.php?r=contact/update&id=42296950647017029
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/update&id=42296950647017029
+---
+2013/09/12 18:10:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/index')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=contact/view&id=42296950647017029
+---
+2013/09/12 18:18:15 [error] [exception.CException] exception 'CException' with message 'EventsController and its behaviors do not have a method or closure named "getNextUrl".' in F:\GitHub\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\GitHub\CRM\themes\crm2013\views\events\view.php(28): CComponent->__call('getNextUrl', Array)
+#1 F:\GitHub\CRM\themes\crm2013\views\events\view.php(28): EventsController->getNextUrl()
+#2 F:\GitHub\Yii\framework\web\CBaseController.php(126): require('F:\GitHub\CRM\t...')
+#3 F:\GitHub\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('F:\GitHub\CRM\t...', Array, true)
+#4 F:\GitHub\Yii\framework\web\CController.php(869): CBaseController->renderFile('F:\GitHub\CRM\t...', Array, true)
+#5 F:\GitHub\Yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 F:\GitHub\CRM\protected\components\Controller.php(133): CController->render('view', Array)
+#7 [internal function]: Controller->actionView('422969506470170...')
+#8 F:\GitHub\Yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EventsController), Array)
+#9 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EventsController), Object(ReflectionMethod), Array)
+#10 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#14 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#15 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#17 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/view')
+#20 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 F:\GitHub\CRM\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/github/crm/index.php?r=events/view&id=42296950647017029
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=events/admin
+---
+2013/09/13 08:43:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '所请求的页面不存在。' in F:\GitHub\CRM\protected\components\Controller.php:100
+Stack trace:
+#0 F:\GitHub\CRM\protected\components\Controller.php(65): Controller->loadModel('423135616667820...')
+#1 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): Controller->filterUpdateOwn(Object(CFilterChain))
+#2 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#3 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#4 F:\GitHub\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('update')
+#6 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/update')
+#7 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#8 F:\GitHub\CRM\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/github/crm/index.php?r=events/update&id=42313561666782028
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php?r=events/view&id=42313561666782028
+---
+2013/09/13 10:49:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "index" 动作.' in F:\GitHub\Yii\framework\web\CController.php:483
+Stack trace:
+#0 F:\GitHub\Yii\framework\web\CController.php(270): CController->missingAction('index')
+#1 F:\GitHub\Yii\framework\web\CWebApplication.php(282): CController->run('index')
+#2 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('events/index')
+#3 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\GitHub\CRM\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/github/crm/index.php?r=events/index
+HTTP_REFERER=http://192.168.1.201/github/crm/index.php
+---
+2013/09/13 10:52:29 [error] [php] require() [<a href='function.require'>function.require</a>]: Filename cannot be empty (F:\GitHub\Yii\framework\web\CBaseController.php:130)
+Stack trace:
+#0 F:\GitHub\Yii\framework\zii\widgets\CListView.php(291): AdminLogController->renderFile()
+#1 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(167): TbListView->renderItems()
+#2 unknown(0): TbListView->renderSection()
+#3 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback()
+#4 F:\GitHub\Yii\framework\zii\widgets\CBaseListView.php(135): TbListView->renderContent()
+#5 F:\GitHub\Yii\framework\web\CBaseController.php(173): TbListView->run()
+#6 F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php(20): AdminLogController->widget()
+#7 F:\GitHub\Yii\framework\web\CBaseController.php(126): require()
+#8 F:\GitHub\Yii\framework\web\CBaseController.php(95): AdminLogController->renderInternal()
+#9 F:\GitHub\Yii\framework\web\CController.php(869): AdminLogController->renderFile()
+#10 F:\GitHub\Yii\framework\web\CController.php(782): AdminLogController->renderPartial()
+#11 F:\GitHub\CRM\protected\controllers\AdminLogController.php(141): AdminLogController->render()
+#12 F:\GitHub\Yii\framework\web\actions\CInlineAction.php(49): AdminLogController->actionIndex()
+#13 F:\GitHub\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#14 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(133): AdminLogController->runAction()
+#15 F:\GitHub\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 F:\GitHub\CRM\protected\modules\rights\components\RController.php(36): RightsFilter->filter()
+#17 F:\GitHub\Yii\framework\web\filters\CInlineFilter.php(58): AdminLogController->filterRights()
+#18 F:\GitHub\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#19 F:\GitHub\Yii\framework\web\CController.php(291): CFilterChain->run()
+#20 F:\GitHub\Yii\framework\web\CController.php(265): AdminLogController->runActionWithFilters()
+#21 F:\GitHub\Yii\framework\web\CWebApplication.php(282): AdminLogController->run()
+#22 F:\GitHub\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#23 F:\GitHub\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 F:\GitHub\CRM\index.php(14): CWebApplication->run()
+REQUEST_URI=/github/crm/index.php?r=adminLog/index
+in F:\GitHub\CRM\themes\crm2013\views\adminLog\index.php (20)
+in F:\GitHub\CRM\protected\controllers\AdminLogController.php (141)
+in F:\GitHub\CRM\protected\modules\rights\components\RController.php (36)
