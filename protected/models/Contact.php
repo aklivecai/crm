@@ -1,29 +1,4 @@
 <?php
-
-/**
- * 这个模块来自表 "{{contact}}".
- *
- * 数据表的字段 '{{contact}}':
- * @property string $itemid
- * @property string $fromid
- * @property string $manageid
- * @property string $clienteleid
- * @property string $prsonid
- * @property string $type
- * @property integer $stage
- * @property string $contact_time
- * @property string $next_contact_time
- * @property string $next_subject
- * @property string $accessory
- * @property string $add_time
- * @property string $add_us
- * @property string $add_ip
- * @property string $modified_time
- * @property string $modified_us
- * @property string $modified_ip
- * @property string $note
- * @property integer $status
- */
 class Contact extends ModuleRecord
 {
 	
@@ -43,7 +18,7 @@ class Contact extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('clienteleid, prsonid', 'required'),
+			array('contact_time,clienteleid, prsonid', 'required'),
 			array('stage, status', 'numerical', 'integerOnly'=>true),
 			array(' add_us, modified_us', 'length', 'max'=>25),
 			array('add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
@@ -201,6 +176,18 @@ class Contact extends ModuleRecord
         $event->type = $this->type;
         $event->note = $this->next_subject;
         $event->save();
+
+        $c =new CDbCriteria;
+		$c->condition ='last_time<'.$this->contact_time;
+
+		 // 更新联系人最后联系时间
+        ContactpPrson::model()->updateByPk($this->prsonid,array('last_time'=>$this->contact_time),$c);
+
+         // 更新客户最后联系时间
+        Clientele::model()->updateByPk($this->clienteleid,array('last_time'=>$this->contact_time),$c);
+
+        // contact_time
+
 	}	
 
 	public function del(){

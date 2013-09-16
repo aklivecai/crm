@@ -115,10 +115,15 @@ class AdminLog extends CActiveRecord
 	//默认继承的搜索条件
     public function defaultScope()
     {
-    	$arr = array();
+    	$arr = array('order'=>'add_time DESC',);
+    	$condition = array('1=1');
     	if (!Tak::getAdmin()) {
-    		$arr['condition'] = "fromid='".Tak::getFormid()."'";
+    		$condition[] = "fromid='".Tak::getFormid()."'";
+	    	if (!Tak::checkSuperuser()) {
+	    		$condition[] = 'manageid='.Tak::getManageid();
+	    	}
     	}
+    	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }
 
@@ -129,11 +134,12 @@ class AdminLog extends CActiveRecord
 		$m->info = $info; 
 		$m->qstring = Yii::app()->request->getUrl(); 
 		$arr = Tak::getOM();
-    	$m->fromid = Yii::app()->user->fromid;
+    	$m->fromid =  $arr['fromid'];
     	$m->user_name = Yii::app()->user->name;
     	$m->itemid = $arr['itemid'];
     	$m->add_time = $arr['time'];
     	$m->ip = $arr['ip'];
+
     	$m->save();
 	}
 }

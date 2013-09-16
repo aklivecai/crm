@@ -27,9 +27,9 @@ $this->breadcrumbs=array(
 		'fax',
 		'qq',
 		'address',
-		array('name'=>'last_time', 'value'=>Tak::timetodate($model->last_time),),
-		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time),),
-		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time),),
+		array('name'=>'last_time', 'value'=>Tak::timetodate($model->last_time,6),),
+		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
+		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time,6),),
 		'note',
 	),
 )); ?>

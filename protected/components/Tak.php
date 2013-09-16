@@ -72,6 +72,12 @@ class Tak {
     public static function now(){
         return time();
     }
+    /*获取时间结束一天*/
+    public static function getDayEnd($time){
+                $date = date("Y-m-d",$time);
+                $dayEnd = strtotime($date." 23:59:59");
+                return $dayEnd;
+    }
     /*唯一数字*/
     public static function fastUuid($suffix_len=3){
         //! 计算种子数的开始时间

@@ -1,33 +1,4 @@
 <?php
-
-/**
- * 这个模块来自表 "{{contactp_prson}}".
- *
- * 数据表的字段 '{{contactp_prson}}':
- * @property string $itemid
- * @property string $fromid
- * @property string $manageid
- * @property string $clientele
- * @property string $nicename
- * @property integer $sex
- * @property string $department
- * @property string $position
- * @property string $email
- * @property string $phone
- * @property string $mobile
- * @property string $fax
- * @property string $qq
- * @property string $address
- * @property string $last_time
- * @property string $add_time
- * @property string $add_us
- * @property string $add_ip
- * @property string $modified_time
- * @property string $modified_us
- * @property string $modified_ip
- * @property string $note
- * @property integer $status
- */
 class ContactpPrson extends ModuleRecord
 {
 	

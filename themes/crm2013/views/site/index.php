@@ -2,14 +2,6 @@
 
 <div class="row-fluid">
   <div class="span4">
-    <div class="wBlock red clearfix">
-      <div class="dSpace">
-        <h3>进度完成</h3>
-        <span class="mChartBar" sparkType="bar" sparkBarColor="white"><!--130,190,260,230,290,400,340,360,390--></span> <span class="number">30%</span> </div>
-      <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
-    </div>
-  </div>
-  <div class="span4">
     <div class="wBlock green clearfix">
       <div class="dSpace">
         <h3>客户总量</h3>
@@ -25,15 +17,23 @@
       <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
     </div>
   </div>
+  <div class="span4">
+    <div class="wBlock red clearfix">
+      <div class="dSpace">
+        <h3>联系记录</h3>
+        <span class="mChartBar" sparkType="bar" sparkBarColor="white"></span> <span class="number">30%</span> </div>
+      <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
+    </div>
+  </div>  
 </div>
 <div class="dr"><span></span></div>
 <div class="row-fluid">
 <div class="span4">
 <div class="head clearfix">
 <span class="glyphicon glyphicon-ok-sign"></span>
-<h1>客户</h1>
+<h1><?php echo Tk::g('Clientele');?></h1>
 <ul class="buttons">
-<li><a href="<?php echo Yii::app()->createUrl('clientele/create');?>"><i class="isw-plus"></i></a></li>
+<li><a href="<?php echo Yii::app()->createUrl('clientele/create');?>" title="<?php echo Tk::g(array('Create','Clientele'));?>"><i class="isw-plus"></i></a></li>
 <li> <a href="#" class="isw-settings"></a>
   <?php 
     $this->widget('application.components.MyMenu',array(
@@ -42,152 +42,51 @@
 
                 array(
                   'icon' =>'isw-list',
-                  'url' => array('clientele/admin','id'=>$itemid),
+                  'url' => array('clientele/admin'),
                   'label'=>'全部',
                 )
                 ,array(
-                  'icon' =>'isw-ok',
-                  'url' => array('clientele/admin','id'=>$itemid),
-                  'label'=>'代理商',
+                  'icon' =>'isw-target',
+                  'url' => array('clientele/admin','Clientele_sort'=>'last_time.desc'),
+                  'label'=>'最近联系',
                 )
                 ,array(
-                  'icon' =>'isw-minus',
-                  'url' => $this->createUrl('clientele/admin').'?Clientele[industry]=5',
-                  'label'=>'VIP客户',
+                  'icon' =>'isw-text_document',
+                  'url' => array('clientele/admin','Clientele[industry]'=>'1'),
+                  'label'=>'新客户',
                 )
         ) ,
     ));
 ?>
+</li>
+</ul>
 </div>
 <div class="block-fluid accordion">
-  <h3>意向客户</h3>
+<?php 
+$items = array(1,2,5);
+foreach ($items as $value) {
+?>
+  <h3><?php echo TakType::item('industry',$value);?></h3>
   <div>
-    <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
-      <thead>
-        <tr>
-          <th width="80">等级</th>
-          <th>名字</th>
-          <th width="60">日期</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="date">已获得</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">有效的</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">已经关闭</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" align="right">
-<div class="footer">
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>Tk::g('More'),
-    'url'=>Yii::app()->createUrl('clientele/admin'), 
-    'size'=>'small', 
-)); ?>
-</div>   
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+ <?php
+      $pre_html = '<table cellpadding="0" cellspacing="0" width="100%" class="sOrders"> <thead> <tr> <th width="80">等级</th> <th>名字</th> <th width="68">日期</th> </tr> </thead> <tbody>';
+      $post_html = '</tbody> <tfoot> <tr> <td colspan="3" align="right"> '.$this->widget('bootstrap.widgets.TbButton', array('label'=>Tk::g('More'), 'url'=>array('clientele/admin','Clientele[industry]'=>$value), 'size'=>'small', ),true).'</td> </tr> </tfoot> </table>';
+        $this->widget('ext.AkCListView', array(
+        'dataProvider'=>Clientele::model()->sort_time()->recently(5,"industry=$value"),
+        'itemView' => '_clientele',
+        'preItemsTag' => $pre_html,
+        'postItemsTag' => $post_html,
+        'emptyText' => '<p>暂无数据</p>',
+        'htmlOptions' => array('class'=>''),
+         'viewData' => array('tak'=>500)
+      )); ?>
   </div>
-  <h3>普通客户</h3>
-  <div>
-    <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
-      <thead>
-        <tr>
-          <th width="80">等级</th>
-          <th>名字</th>
-          <th width="60">日期</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="date">已获得</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">有效的</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">已经关闭</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">市场失败</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" align="right"><button class="btn btn-small">更多...</button></td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <h3>VIP客户</h3>
-  <div>
-    <table cellpadding="0" cellspacing="0" width="100%" class="sOrders">
-      <thead>
-        <tr>
-          <th width="80">等级</th>
-          <th>名字</th>
-          <th width="60">日期</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="date">已获得</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">有效的</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">已经关闭</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-        <tr>
-          <td><span class="date">市场失败</span></td>
-          <td><a href="#">XX家具有限公司</a></td>
-          <td><span class="time">2013-06-07</span></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" align="right">
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>Tk::g('More'),
-    'url'=>Yii::app()->createUrl('clientele/admin'), 
-    'size'=>'small', 
-)); ?>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+<?php
+}
+?>
 </div>
 </div>
+
 <div class="span4">
   <div class="head clearfix">
     <div class="isw-edit"></div>

@@ -25,7 +25,9 @@ class TakType extends CActiveRecord
 		,'display' => array('1'=>'公共','0'=>'私有')
 		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
 		,'priority' => array('0'=>'底','1'=>'中','2'=>'高')
-		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100),
+		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100)
+
+		,'label' => array('0'=>'','1'=>'label-success','2'=>'label-warning','3'=>'label-important','4'=>'label-info','5'=>'label-inverse')
 	);
 	
 	/**
@@ -37,11 +39,6 @@ class TakType extends CActiveRecord
 	}
 	public static function getStatus($type,$typeid,$fromid=0)
 	{
-			/*label-important,
-label-warning,
-label-success,
-label-info,
-label-inverse,*/
 		$content = '';
 		if(!isset(self::$_items[$type]))
 			self::loadItems($type,$fromid);
@@ -49,7 +46,7 @@ label-inverse,*/
 		if ($content)
 		{
 			$className = 'label ';
-			$typeid>0&&$className .='label-success';
+			$className .= self::$_items['label'][$typeid];
 			$content = CHtml::tag('span', array('class'=>$className), $content);
 		}
 		return $content;

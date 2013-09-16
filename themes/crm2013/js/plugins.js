@@ -93,13 +93,14 @@ eventClick: function(calEvent, jsEvent, view) {
     }      
 
 // 当开始读取的时候是true,当读取完成是false
-,events: "http://192.168.1.201/github/crm/json-events.php"    
+,events: createUrl('events/list')   
 ,eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
-        console.log(
+        log(
             event.title + " was moved " +
             dayDelta + " days and " +
             minuteDelta + " minutes."
         );
+        log(this);
 
         if (allDay) {
             console.log("Event is now all-day");
@@ -114,9 +115,6 @@ eventClick: function(calEvent, jsEvent, view) {
     }
     });
 
-    // SELECT2       
-        $("#s2_1").select2();
-        $("#s2_2").select2();
         
     // CHECKBOXES AND RADIO
          $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();

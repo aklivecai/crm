@@ -22,8 +22,6 @@ $this->breadcrumbs=array(
 		array('name'=>'start_time', 'value'=>Tak::timetodate($model->start_time,6),),
 		array('name'=>'end_time', 'value'=>Tak::timetodate($model->end_time,6),),
 		'email',
-		'color',
-		'text_color',
 		'location',
 		array('name'=>'url', 'type'=>'raw','value'=>$model->getNextUrl()),
 

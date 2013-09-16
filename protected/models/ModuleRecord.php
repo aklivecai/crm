@@ -9,11 +9,29 @@ class ModuleRecord extends CActiveRecord
 		$this->mName = get_class($this);
 		$this->sName = Tk::g($this->mName);
 	}
+    private $_defaultScopeDisabled = false; // Flag - whether defaultScope is disabled or not
+
+    public function disableDefaultScope()
+    {
+          $this->_defaultScopeDisabled = true;
+          return $this->Owner;
+    }
+
+    public function getDefaultScopeDisabled() {
+        return $this->_defaultScopeDisabled;
+    }
 
 	//默认继承的搜索条件
-    public function defaultScope()
+    public function defaultScope($isOrder=true)
     {
-    	$arr = array('order'=>'add_time DESC',);
+    	if ($this->getDefaultScopeDisabled()) {
+    		return array();
+    	}
+
+    	if ($isorder) {
+    		$arr = array('order'=>'add_time DESC',);
+    	}
+
     	$condition = array('status>0');
     	$condition[] = 'fromid='.Tak::getFormid();
     	if (!Tak::checkSuperuser()) {
@@ -29,20 +47,33 @@ class ModuleRecord extends CActiveRecord
             'published'=>array(
                 'condition'=>'status=1',
             ),
-            'recently'=>array(
+            'recently1'=>array(
                 'order'=>'add_time DESC',
-                'limit'=>5,
+            ),
+            'sort_time'=>array(
+                'order'=>'add_time DESC',
             ),
         );
     }   
     
-	public function recently($limit=5)
+	public function recently($limit=5,$pcondition=false,$order='add_time DESC')
 	{
-	    $this->getDbCriteria()->mergeWith(array(
-	        'order'=>'add_time DESC',
-	        'limit'=>$add_time,
-	    ));
-	    return $this;
+		$condition = $this->defaultScope(false);
+		if (is_string($pcondition)) {
+			$condition[] = $pcondition;
+		}elseif(is_array($pcondition)){
+			$condition = array_merge_recursive($condition, $pcondition);
+		}
+		$criteria = new CDbCriteria(array(
+	    	'condition' => join(" AND ",$condition),
+	    	'order' => $order
+		));
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		    'pagination'=>array(
+		        'pageSize'=>$limit,
+		    ),
+		));
 	}     
 
     public function getPageSize(){
@@ -63,6 +94,7 @@ class ModuleRecord extends CActiveRecord
 	public function search()
 	{
 		$criteria = new CDbCriteria;
+		$criteria->order = $stort;
 		$pageSize = $this->getPageSize();
 		if (isset($_GET['dt'])&&isset($_GET['col'])
 			&&$this->hasAttribute($_GET['col'])
@@ -141,16 +173,15 @@ class ModuleRecord extends CActiveRecord
 	protected function afterSave(){
 		parent::afterSave();
 		$url = Yii::app()->request->getUrl();
-		 if(false){
-			 
-		 }elseif (strpos($url,'delete')>0){
+		if (strpos($url,'delete')>0){
 		 	$this->logDel();
 		 }
 		 elseif ($this->isNewRecord ){
 		 	AdminLog::log(Tk::g('Create').$this->sName.' - 编号:'.$this->itemid);
 		 }else{
-			AdminLog::log(Tk::g('Update').$this->sName.' - 编号:'.$this->itemid);
+			AdminLog::log(Tk::g('Update').$this->sName);
 		 }
+
 	}
 
 	public function del(){

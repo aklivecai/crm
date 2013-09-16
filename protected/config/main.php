@@ -107,7 +107,7 @@ return array(
             'loginUrl' => array('/site/login'),
 	    ),  
 	    'urlManager' => include( $tshiPatch.'/url.conf.php' ),
-		'db' => include( $tshiPatch.'/db.conf.php' ),	
+		'db' => include( $tshiPatch.'/db.conf.php' ),
 		'errorHandler'=>array(
 			// 程序有错的时候跳到指定的action
 			'errorAction'=>'site/error',

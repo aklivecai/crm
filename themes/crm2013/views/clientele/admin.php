@@ -54,7 +54,7 @@ $items = Tak::getListMenu();
 		array(
 			'name'=>'clientele_name',
 			'type'=>'html',
-			'value'=>'CHtml::link($data->clientele_name,array("view","id"=>$data->itemid))',
+			'value'=>'$data->getHtmlLink()',
 		)
 		
 ,		array(

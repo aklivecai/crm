@@ -1,35 +1,4 @@
 <?php
-
-/**
- * 这个模块来自表 "{{clientele}}".
- *
- * 数据表的字段 '{{clientele}}':
- * @property string $itemid
- * @property string $fromid
- * @property string $manageid
- * @property string $clientele_name
- * @property string $rating
- * @property integer $annual_revenue
- * @property string $industry
- * @property string $profession
- * @property string $origin
- * @property integer $employees
- * @property string $email
- * @property string $address
- * @property string $telephone
- * @property string $fax
- * @property string $web
- * @property integer $display
- * @property integer $status
- * @property string $last_time
- * @property string $add_time
- * @property string $add_us
- * @property string $add_ip
- * @property string $modified_time
- * @property string $modified_us
- * @property string $modified_ip
- * @property string $note
- */
 class Clientele extends ModuleRecord
 {
 	
@@ -152,5 +121,21 @@ class Clientele extends ModuleRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}	
+
+	public function getLink($itemid=false){
+		if (!$itemid) {
+			$itemid = $this->itemid;
+		}		
+		$link = Yii::app()->createUrl('clientele/view',array('id'=>$itemid));
+		return $link;
+	}	
+	public function getHtmlLink($name=false,$itemid=false)
+	{
+		if (!$name) {
+			$name = $this->clientele_name;
+		}
+		$link = CHtml::link($name, $this->getLink($itemid));
+		return $link;
 	}	
 }

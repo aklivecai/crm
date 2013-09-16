@@ -55,15 +55,20 @@ $this->breadcrumbs=array(
       <div class="clearfix"></div>
     </div>
   </div>
+
   <div class="span4">
+<?php 
+$items = array('ContactpPrson','Contact');
+foreach ($items as $value) {
+?>
     <div class="row-fluid">
       <div class="span12">
         <div class="head clearfix">
           <div class="isw-users"></div>
-          <h1><?php echo Tk::g('ContactpPrson') ?></h1>
+          <h1><?php echo Tk::g($value) ?></h1>
           <ul class="buttons">
             <li>
-            <a href="<?php echo Yii::app()->createUrl('contactpPrson/create',array('ContactpPrson[clientele]'=>$model->itemid));?>"><i class="isw-plus"></i></a>
+            <a href="<?php echo Yii::app()->createUrl("$value/create",array("$value[clienteleid]"=>$model->itemid));?>" title="<?php echo Tk::g(array('Create',$value))?>"><i class="isw-plus"></i></a>
             </li>
             <li class="toggle"><a href="#"></a></li>
           </ul>
@@ -75,73 +80,20 @@ $this->breadcrumbs=array(
               <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
             </div>
           </div>
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a> <span>0755-3424234</span>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-<div class="footer">
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>Tk::g('More'),
-    'url'=>Yii::app()->createUrl('ContactpPrson/admin',array('ContactpPrson[clientele]'=>$model->itemid)), 
-    'size'=>'small', 
-)); ?>
-</div>          
+
+        <div class="footer">
+        <?php $this->widget('bootstrap.widgets.TbButton', array(
+            'label'=>Tk::g('More'),
+            'url'=>array("$value/admin","$value[clienteleid]"=>$model->itemid), 
+            'size'=>'small', 
+        )); ?>
+        </div>          
         </div>
       </div>
+
     </div>
-<div class="row-fluid">
-      <div class="span12">
-        <div class="head clearfix">
-          <div class="isw-users"></div>
-          <h1><?php echo Tk::g('Contact') ?></h1>
-          <ul class="buttons">
-            <li class="toggle"><a href="#"></a></li>
-          </ul>
-        </div>
-        <div class="block-fluid users">
-          <div class="item clearfix">
-            <div class="image"></div>
-            <div class="info"> <a href="#" class="name">王五</a> <span>初期沟通</span>
-               <span class="text">2013-07-09</span>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"></div>
-            <div class="info"> <a href="#" class="name">王五</a> <span>立项评估</span>
-               <span class="text">2013-07-09</span>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"></div>
-            <div class="info"> <a href="#" class="name">王五</a> <span>需求分析</span>
-               <span class="text">2013-07-09</span>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"></div>
-            <div class="info"> <a href="#" class="name">王五</a> <span>商务谈判</span>
-               <span class="text">2013-07-09</span>
-            </div>
-          </div>
-<div class="footer">
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>Tk::g('More'),
-    'url'=>Yii::app()->createUrl('Contact/admin', 
-  array('Contact[clienteleid]'=>$model->itemid)), 
-    'size'=>'small', 
-)); ?>
-</div>          
-        </div>
-      </div>
-    </div>
+<?php } ?>
+
     </div>
   </div>
   <div class="dr"><span></span></div>

@@ -1,33 +1,4 @@
 <?php
-
-/**
- * 这个模块来自表 "{{events}}".
- *
- * 数据表的字段 '{{events}}':
- * @property string $itemid
- * @property string $fromid
- * @property string $manageid
- * @property string $subject
- * @property string $email
- * @property string $start_time
- * @property string $end_time
- * @property string $color
- * @property string $text_color
- * @property string $location
- * @property string $url
- * @property string $type
- * @property string $priority
- * @property string $event_status
- * @property integer $display
- * @property integer $status
- * @property string $add_time
- * @property string $add_us
- * @property string $add_ip
- * @property string $modified_time
- * @property string $modified_us
- * @property string $modified_ip
- * @property string $note
- */
 class Events extends ModuleRecord
 {
 	
@@ -38,7 +9,9 @@ class Events extends ModuleRecord
 	{
 		return '{{events}}';
 	}
-	public $priority = 0;
+	// 默认等级
+	public $priority = 0; 
+	// 默认状态
 	public $event_status = 0;
 	/**
 	 * @return array validation rules for model attributes.字段校验的结果
@@ -164,8 +137,7 @@ class Events extends ModuleRecord
 	        	//修改数据时候
 	        }
 	        if (!$this->end_time) {
-				$date = date("Y-m-d",$this->start_time);
-				$dayEnd = strtotime($date." 23:59:59");
+				$dayEnd = Tak::getDayEnd($this->start_time);
 	        	$this->end_time = $dayEnd ;
 	        }
 	    }

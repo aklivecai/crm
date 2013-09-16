@@ -55,9 +55,6 @@
 		<?php echo $form->textFieldRow($model,'next_subject',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'accessory',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-	<div class="row-form clearfix" >
 		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 

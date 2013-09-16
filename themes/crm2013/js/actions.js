@@ -7,6 +7,28 @@ var log = function(msg){
     console.log(msg);
 }
 
+//用于动态生成网址
+//$route,$params=array(),$ampersand='&'
+function createUrl(route)
+{
+    if(!CrmPath){
+        return false;
+    }
+    var ampersand = typeof arguments[2]!='undefined'?arguments[2]:'&'
+    , params = typeof arguments[1]!='undefined'?arguments[1]:[]
+    ;
+    if(!route || route == "undefined")
+    {
+        return CrmPath;
+    }
+
+    var url = CrmPath + (CrmPath.indexOf('?')>0?'':'?');
+    url += route;
+    if (params.length>0) {
+        url += ampersand+params.join(ampersand);
+    };
+    return url;
+}
 function dateFormat(date, format) {
     if(format === undefined){
         format = date;
@@ -104,7 +126,7 @@ var tselect = function(){
             openOnEnter:true,
             selectOnBlur:true,
             ajax: { 
-                url: CrmPath+"clientele/select",
+                url: createUrl("clientele/select"),
                 dataType: 'jsonp',
                 data: function (term, page) {
                     return {
@@ -124,7 +146,9 @@ var tselect = function(){
             initSelection: function(element, callback) {
                 var id=$(element).val();
                 if (id!=="") {
-                    $.ajax(CrmPath+"clientele/selectById&id="+id, {
+                    $.ajax(
+                        createUrl("clientele/selectById",['id='+id])
+                        , {
                         data: {
                         },
                         dataType: "jsonp"
@@ -159,7 +183,7 @@ var tselect = function(){
                     openOnEnter:true,
                     selectOnBlur:true,
                     ajax: { 
-                        url: CrmPath+"contactpPrson/select",
+                        url: createUrl("contactpPrson/select"),
                         dataType: 'jsonp',
                         data: function (term, page) {
                             return {
@@ -180,7 +204,8 @@ var tselect = function(){
                     initSelection: function(element, callback) {
                         var id=$(element).val();
                         if (id!=="") {
-                            $.ajax(CrmPath+"contactpPrson/selectById&id="+id, {
+                            $.ajax(
+                                createUrl("contactpPrson/selectById",['id='+id]), {
                                 data: {
                                 },
                                 dataType: "jsonp"
@@ -217,25 +242,30 @@ $(document).ready(function(){
 
     var listDate = $('.type-date');
   if (listDate.length>0) {
-    $.ajax({
-      url: '/_ak/js/plugins/datepicker/WdatePicker.js',
-      dataType: "script",
-      success: function(){
-        $('.type-date').each(function(){
-            var t = $(this);
-             date = new Date(t.val()*1000);
+        listDate.each(function(){
+            var t = $(this)
+              , date = new Date(t.val()*1000)
+              , maxDate = t.attr('name').indexOf('start')>0?'#F{$dp.$D(\'Events_end_time\')}':''
+              , minDate = t.attr('name').indexOf('end')>0?'#F{$dp.$D(\'Events_start_time\')}':''
+             ;
+             log(maxDate);
              v = t.val();
              if (v>0) {
                 t.val(dateFormat(date, 'yyyy-MM-dd hh:mm:ss'));   
              }else{
                 t.val('');
-             } 
+             }             
+             
             t.on('focus',function(){
-               WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})
+               WdatePicker({
+                    startDate:'%y-%M-01 00:00:00',
+                    dateFmt:'yyyy-MM-dd HH:mm:ss',
+                    alwaysUseStartDate:true
+                    ,maxDate:maxDate
+                    ,minDate:minDate
+            })
             });
-        });        
-      }
-    });    
+        });
   };    
 
 
