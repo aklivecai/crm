@@ -60,7 +60,7 @@
 </script>
 </head>
 
-<body class="<?php echo Yii::app()->user->getState('themeSettings_bg'); ?>" >
+<body class="<?php echo Yii::app()->user->getState('themeSettings_bg'); ?>" >   
 <div class="wrapper<?php echo ' '.Yii::app()->user->getState('themeSettings_style'); if(Yii::app()->user->getState('themeSettings_fixed')) echo ' fixed'; ?>">
   <div class="header">
   <?php
@@ -128,7 +128,8 @@
         <li><i class="icon-comment"></i> <a href="<?php echo Yii::app()->createUrl('site/messate');?>">消息</a> <a href="<?php echo $this->createUrl('/site/message')?>" class="caption red">12</a></li>
         <li><i class="icon-user"></i><a href="<?php echo $this->createUrl('/site/profile')?>">个人资料</a></li>
 
-        <li><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/chage-pwd')?>" class="chage-pwd">修改密码</a></li>
+        <li style="position:relative;"><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/changepwd')?>" class="chage-pwd">修改密码</a>
+        </li>
         <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout "><span class="red">退出系统</span></a></li>
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
@@ -169,5 +170,6 @@ $items = Tak::getMainMenu();
     </div>
   </div>
 </div>
+
 </body>
 </html>

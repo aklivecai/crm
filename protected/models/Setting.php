@@ -21,7 +21,7 @@ class Setting extends CActiveRecord
 	public function init()  
 	{     
     	parent::init();
-		$this->manageid = Yii::app()->user->id;
+		$this->manageid = Tak::getManageid();
 		$this->itemid = Tak::fastUuid();
 	}
 	/**
@@ -92,7 +92,17 @@ class Setting extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
+    public function scopes()
+    {
+        return array(
+            'published'=>array(
+                'condition'=>'manageid='.Tak::getManageid(),
+            ),
+            'public'=>array(
+                'condition'=>'manageid='.$this->manageid,
+            ),
+        );
+    }
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -105,11 +115,17 @@ class Setting extends CActiveRecord
 	}
 
 	public function getSetings($key){
-		$this->setState('last_login_time', Tak::timetodate($user->last_login_time));
+		Yii::app()->user->getState('last_login_time', Tak::timetodate($user->last_login_time));
 	}
 	
 	public function takSave(){
 		$this->deleteAll(" manageid=:manageid AND item_key=:item_key",array(':manageid'=>$this->manageid,":item_key"=>$this->item_key));
 		return parent::save();
 	}	
+
+	public function getThemes(){
+		$sql = "item_key LIKE 'themeSettings_%'";
+		$list = $this->published()->findAll($sql);
+		return $list;
+	}
 }

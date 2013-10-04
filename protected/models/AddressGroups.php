@@ -29,6 +29,11 @@ class AddressGroups extends ModuleRecord
 		return '{{address_groups}}';
 	}
 
+	public function primaryKey()
+	{
+		return 'address_groups_id';
+	} 	
+
 	/**
 	 * @return array validation rules for model attributes.字段校验的结果
 	 */
@@ -53,7 +58,7 @@ class AddressGroups extends ModuleRecord
 	 */
 	public function authenticate($attribute,$params)
 	{
-		if ($this->address_groups_id>0) {
+		if ($this->primaryKey>0) {
 			return ;
 		}
 		$sql = " SELECT COUNT(*) FROM :table WHERE fromid = :fromid
@@ -124,22 +129,7 @@ class AddressGroups extends ModuleRecord
 	}
 		//保存数据前
 	protected function beforeSave(){
-	    $result = parent::beforeSave(true);
-	    if(!$isok&&$result){
-	        //添加数据时候
-	        $arr = Tak::getOM();
-	        if ( $this->isNewRecord ){
-	        	$this->address_groups_id = $arr['itemid'];
-	        	$this->add_us = $arr['manageid'];
-	        	$this->add_time = $arr['time'];
-	        	$this->fromid = $arr['fromid']; 
-	        }else{
-	        	//修改数据时候
-	        	$this->modified_us = $arr['manageid'];
-	        	$this->modified_time = $arr['time'];
-	        	$this->modified_ip = $arr['ip'];
-	        }
-	    }
+	    $result = parent::beforeSave();
 	    return $result;
 	}
 

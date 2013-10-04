@@ -20,8 +20,8 @@ $this->breadcrumbs=array(
 	'attributes'=>array(
 		'name',
 		array('name'=>'display','type'=>'raw', 'value'=>TakType::getStatus('display',$model->display),),
-		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time),),
-		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time),),
+		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
+		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time,6),),
 		'note',
 	),
 )); ?>

@@ -19,6 +19,33 @@ class TakType extends CActiveRecord
 	//是否公开
 	const DISPLAY_PRITAVE = 0;
 	const DISPLAY_DEFAULT = 1;
+
+	public $mName = "" ;/*当前类名字*/
+	public $sName = "" ;/*显示名字*/
+
+	private $scondition = false;/*默认搜索条件*/
+
+	public function primaryKey()
+	{
+		return 'typeid';
+	} 
+
+	public function init(){
+		$this->mName = get_class($this);
+		$this->sName = Tk::g($this->mName);
+	}	
+
+	public function initak($options = array()){
+		if (is_array($options)) {
+			if ($options['name']) {
+				$this->sName = Tk::g($options['name']).$this->sName;
+			}
+			if ($options['type']) {
+				$this->item  = $options['type'];
+				$this->setType($options['type']);
+			}
+		}
+	}
 	
 	private static $_items = array(
 		'status' => array('0'=>'锁定','1'=>'启用')
@@ -29,6 +56,10 @@ class TakType extends CActiveRecord
 
 		,'label' => array('0'=>'','1'=>'label-success','2'=>'label-warning','3'=>'label-important','4'=>'label-info','5'=>'label-inverse')
 	);
+
+	public function setType($type){
+		$this->scondition = " item = '$type' ";
+	}
 	
 	/**
 	 * @return string 数据表名字
@@ -80,21 +111,33 @@ class TakType extends CActiveRecord
 			return null;
 		}
 		self::$_items[$type]=array();
+		if (!is_numeric($fromid)) {
+			$fromid = Tak::getFormid();
+		}
 		$models=self::model()->findAll(array(
 			'condition'=>'item=:item AND fromid=:fromid',
 			'params'=>array(':item'=>$type,':fromid'=>$fromid),
 			'order'=>'listorder DESC,typeid ASC',
 		));
+		$tags = array();
 		foreach($models as $model)
-			self::$_items[$type][$model->typeid]=$model->typename;
+			$tags[$model->typeid] = $model->typename;
+		self::$_items[$type] = $tags;
+
+		return $tags;
 	}
 	
 	//默认继承的搜索条件
     public function defaultScope(){
     	$arr = parent::defaultScope();
-    	$arr = array('order'=>'listorder DESC',);
+    	$arr = array('order'=>'listorder DESC,typeid DESC',);
+    	if ($this->scondition) {
+    		$condition = array($this->scondition);
+    		$condition[] = 'fromid='.Tak::getFormid();
+			$arr['condition'] = join(" AND ",$condition);
+    	}
     	return $arr;
-    }	
+    }
 	/**
 	 * @return array validation rules for model attributes.字段校验的结果
 	 */
@@ -103,7 +146,7 @@ class TakType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromid, typeid, item', 'required'),
+			array('item ,typename', 'required'),
 			array('listorder', 'numerical', 'integerOnly'=>true),
 			array('fromid, typeid', 'length', 'max'=>10),
 			array('typename', 'length', 'max'=>255),
@@ -139,29 +182,13 @@ class TakType extends CActiveRecord
 		);
 	}
 
-	/**
-	 * 默认查询搜索的条件
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
-
 		$criteria->compare('fromid',$this->fromid,true);
 		$criteria->compare('typeid',$this->typeid,true);
 		$criteria->compare('typename',$this->typename,true);
 		$criteria->compare('item',$this->item,true);
-		$criteria->compare('listorder',$this->listorder);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -185,7 +212,8 @@ class TakType extends CActiveRecord
 	    if($result){
 	        //添加数据时候
 	        if ( $this->isNewRecord ){
-
+	        	$this->typeid = time();
+	        	$this->fromid = Tak::getFormid(); 
 	        }else{
 	        	//修改数据时候
 	        }
@@ -196,10 +224,36 @@ class TakType extends CActiveRecord
 	//保存数据后
 	protected function afterSave(){
 		parent::afterSave();
+		$url = Yii::app()->request->getUrl();
+		if (strpos($url,'delete')>0){
+		 	AdminLog::log(Tk::g('Deletes').$this->sName);
+		 }
+		 elseif ($this->isNewRecord){
+		 	AdminLog::log(Tk::g('Create').$this->sName.' - 编号:'.$this->typeid);
+		 }else{
+			AdminLog::log(Tk::g('Update').$this->sName);
+		 }
 	}	
 
-	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
+		AdminLog::log(Tk::g('Deletes').$this->sName);
 	}	
+
+	public  function getObj($typeid,$item){
+		$msg = $this->find('typeid=:typeid AND item=:item AND fromid=:fromid',
+		 	array(':typeid'=>$typeid,':item'=>$item,':fromid'=>Tak::getFormid())
+		 );
+		return $msg;
+	}
+
+	public function getEidtLink(){
+		$link = Yii::app()->createUrl('takType/admin',array('id'=>$this->typeid,'type'=>$this->item));
+		return $link;
+	}
+
+	public function getDelLink(){
+		$link = Yii::app()->createUrl('takType/delete',array('id'=>$this->typeid,'type'=>$this->item));
+		return $link;
+	}
 }

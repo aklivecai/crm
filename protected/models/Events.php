@@ -21,7 +21,7 @@ class Events extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('subject', 'required'),
+			array('start_time,end_time,subject', 'required'),
 			array('display, status', 'numerical', 'integerOnly'=>true),
 			array('itemid, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),

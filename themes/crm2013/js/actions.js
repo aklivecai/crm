@@ -240,6 +240,10 @@ $(document).ready(function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;
     });
 
+    $('.icon-remove').on('click',function(){
+        if(!confirm('你确定要彻底删除这个信息吗?')) return false;
+    });
+
     var listDate = $('.type-date');
   if (listDate.length>0) {
         listDate.each(function(){

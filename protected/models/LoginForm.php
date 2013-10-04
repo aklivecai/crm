@@ -100,7 +100,6 @@ class LoginForm extends CFormModel
 
 			// 更新登录次数，信息
 			Manage::model()->upLogin();
-
 			return true;
 		}
 		else

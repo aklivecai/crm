@@ -3,7 +3,7 @@
 /* @var $model Events */
 
 $this->breadcrumbs=array(
-	Tk::g('Events')=>array('admin'),
+	$model->sName => array('admin'),
 	Tk::g('Admin'),
 );
 $items = Tak::getListMenu();
@@ -13,7 +13,7 @@ $items = Tak::getListMenu();
 
 	<div class="head clearfix">
         <div class="isw-grid"></div>
-        <h1><?php echo Tk::g('Events')?></h1>   
+        <h1><?php echo $model->sName?></h1>   
 		<ul class="buttons">
 		    <li>
 		        <a href="#" class="isw-settings"></a>
@@ -50,14 +50,7 @@ $items = Tak::getListMenu();
 		,'selectedPageCssClass' => 'active disabled'
 		,'htmlOptions'=>array('class'=>'')
 	),
-	'columns'=>array(
-/*
-		array(
-			'name'=>'user_name',
-			'type'=>'raw',
-			'value'=>'CHtml::link($data->user_name,array("view","id"=>$data->itemid))',
-		),	
-*/		
+	'columns'=>array(	
 
 		array(
 			'name' => 'display',

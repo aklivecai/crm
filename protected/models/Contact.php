@@ -188,7 +188,7 @@ class Contact extends ModuleRecord
 
         // contact_time
 
-	}	
+	}
 
 	public function del(){
 		parent::del();

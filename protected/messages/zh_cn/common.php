@@ -35,6 +35,9 @@ return array (
   'View' => '浏览',
   'Action' => '操作',
   'Create New' => '录入新的',
+  'Restore' => '还原',
+  'Recycle' => '回收站',
+  'Deletes' => '彻底删除',
 
   'Return' => '返回',
   'Reset' => '重置',
@@ -62,6 +65,13 @@ return array (
 
   'Events' => '行程', 
 
+  'Product' => '产品',
+  'Products' => '产品',
+
+  'Purchase' => '入库',
+  'Sell' => '出库',
+  
 
   'Illegal operation' => '非法操作！', 
+  'TakType' => '分类',  
  );

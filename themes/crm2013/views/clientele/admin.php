@@ -27,7 +27,7 @@ $items = Tak::getListMenu();
 		</ul>                                    
 	</div>
 		<div class="block-fluid clearfix">
-		<?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
+<?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
 <?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'id' => 'list-grid',

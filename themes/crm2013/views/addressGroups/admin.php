@@ -87,7 +87,7 @@ $this->breadcrumbs=array(
 <?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
 
 <div class="tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array('onclick'=>'alert(1);'))); ?>
 </div>
 <?php $this->endWidget(); ?>
 				</div>

@@ -171,7 +171,7 @@ $this->widget('application.components.MyMenu',array(
 <?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'id' => 'list-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider' => $model->search(),
 	'template'=>"{items}",
 	//Ajax地址转
 	'enableHistory'=>true,

@@ -75,7 +75,7 @@ ul.yiiPager .first, ul.yiiPager .last {
 .grid-view-loading table{
   opacity: 5;
 }
-.grid-view input[type="text"]{
+.grid-view .filters input[type="text"]{
   margin:0;
   padding:0;
 }
@@ -180,4 +180,10 @@ ul.yiiPager .first, ul.yiiPager .last {
   .span7 {
     width: 670px;
   }
+}
+
+
+.span2 .nav-list > .active > a
+,.span2 .nav-list .nav-header{
+    margin-right: 0;
 }

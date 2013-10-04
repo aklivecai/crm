@@ -8,6 +8,10 @@
 <?php 
 $sdata = Tak::searchData();
 
+$scol = !isset($scol)?$scol:'add_time';
+if ($condition) {
+	$scol = 'modified_time';
+}
 $items = array(
 	array('label'=>'全部', 'url'=>Yii::app()->createUrl($this->route))
 );
@@ -15,12 +19,21 @@ $items = array(
 $isactive = isset($_GET['col'])&&isset($_GET['dt'])?$_GET['dt']:false;
 
 foreach ($sdata as $key => $value) {
-	$items[$key] =  array('label'=>$value['name'], 'url'=>$url = Yii::app()->createUrl($this->route,array('col'=>'add_time','dt'=>$key)));
+	$items[$key] =  array('label'=>$value['name'], 'url'=>$url = Yii::app()->createUrl($this->route,array('col'=>$scol,'dt'=>$key)));
 	$isactive&&$isactive==$key&&isset($sdata[$isactive])&&$items[$key]['active']=true;
 }
+
+if (isset($subItems)&&is_array($subItems)) {
+	$items = array_merge_recursive($items, $subItems);
+}
+
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'tabs', // '', 'tabs', 'pills' (or 'list')
     'stacked'=>false, // whether this is a stacked menu
     'items'=> $items
-)); ?>
+));
+
+?>
+
+
 </div>

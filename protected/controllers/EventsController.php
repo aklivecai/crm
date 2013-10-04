@@ -7,6 +7,7 @@ class EventsController extends Controller
     	parent::init();
     	$this->modelName = 'Events';
 	}
+	
 	public function actionList($start=0,$end=0){
 		if (!is_numeric($start)||!is_numeric($end)) {
 			exit;

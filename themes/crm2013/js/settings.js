@@ -8,7 +8,7 @@ $(document).ready(function(){
         data = data.join('&');
      $.ajax({
             type: "POST",
-            url:CrmPath+'setting/create',
+            url:createUrl('setting/create'),
             data:data,
             async: false,
             error: function(request) {

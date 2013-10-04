@@ -1,29 +1,24 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<?php 
+  $this->pageTitle=Yii::app()->name; 
+?>
 
 <div class="row-fluid">
   <div class="span4">
-    <div class="wBlock green clearfix">
-      <div class="dSpace">
-        <h3>客户总量</h3>
-        <span class="mChartBar" sparkType="bar" sparkBarColor="white"><!--5,10,15,20,23,21,25,20,15,10,25,20,10--></span> <span class="number">3,223</span> </div>
-      <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
-    </div>
+<?php $this->widget('MyTopData'
+  , array('title' => Tk::g('Clientele'),'tags' => Clientele::model()->getIData(),'htmlOptions'=> array('class'=>'red')
+)); ?>  
   </div>
   <div class="span4">
-    <div class="wBlock blue clearfix">
-      <div class="dSpace">
-        <h3>联系人</h3>
-        <span class="mChartBar" sparkType="bar" sparkBarColor="white"><!--240,234,150,290,310,240,210,400,320,198,250,222,111,240,221,340,250,190--></span> <span class="number">5,224</span> </div>
-      <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
-    </div>
+<?php $this->widget('MyTopData'
+  , array('title' => Tk::g('ContactpPrson'),'tags' => ContactpPrson::model()->getIData(),'htmlOptions'=> array('class'=>'green')
+)); ?>  
+
   </div>
   <div class="span4">
-    <div class="wBlock red clearfix">
-      <div class="dSpace">
-        <h3>联系记录</h3>
-        <span class="mChartBar" sparkType="bar" sparkBarColor="white"></span> <span class="number">30%</span> </div>
-      <div class="rSpace"> <span><b>今日</b> 10 </span> <span><b>本月</b> 200 </span> <span><b>今年</b> 1000 </span> </div>
-    </div>
+<?php $this->widget('MyTopData'
+  , array('title' => Tk::g('Contact'),'tags' => Contact::model()->getIData(),'htmlOptions'=> array('class'=>'blue')
+)); ?>  
+    
   </div>  
 </div>
 <div class="dr"><span></span></div>

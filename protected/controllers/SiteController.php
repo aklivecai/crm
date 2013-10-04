@@ -32,18 +32,22 @@ class SiteController extends Controller
 		);
 	}
 
+	protected function _setLayout($layout='column2')
+	{
+		$this->layout=$layout;
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionIndex()
 	{
-
-		$this->layout='column2';
+		$this->_setLayout();
 		$this->render('index');
 	}
 	public function actionHelp()
 	{
-		$this->layout='column2';
+		$this->_setLayout();
 		$this->render('help');
 	}
 
@@ -72,7 +76,7 @@ class SiteController extends Controller
 	{
 		$arr = array(1,2,3,4,5);
 
-		/*已经登录，返回上一页，没有就首页*/
+		/*已经s登录，返回上一页，没有就首页*/
 		if (!Yii::app()->user->isGuest) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
@@ -99,8 +103,14 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()){
+				// 读取用户配置信息
+				 $list = Setting::model()->getThemes();
+				 foreach ($list as $key => $value) {
+				 	Yii::app()->user->setState($value->item_key, $value->item_value);
+				 }
 				$this->redirect(Yii::app()->user->returnUrl);
+			}
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model,'listType'=>$arr));
@@ -119,7 +129,46 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionChangepwd()
+	{
+		$this->_setLayout();
+		$m = 'Manage';
+		$model = $m::model()->findByPk(Tak::getManageid());
+		if(isset($_POST[$m]))
+		{
+			
+			$_POST[$m]['user_name'] = $model->user_name;
+			$model->attributes = $_POST[$m];
+
+			if($model->save())
+				$this->redirect(array('changepwd'));
+		}
+		$this->render('changepwd',array(
+			'model'=>$model,
+		));
+	}
 	
+	public function actionProfile()
+	{
+		$this->_setLayout();
+
+		$m = 'Manage';
+		$model = $m::model()->findByPk(Tak::getManageid());
+		if(isset($_POST[$m]))
+		{
+			$_POST[$m]['user_pass'] = $model->user_pass;
+			$_POST[$m]['user_name'] = $model->user_name;
+
+			$model->attributes = $_POST[$m];
+
+			if($model->save())
+				$this->redirect(array('profile'));
+		}
+		$this->render('profile',array(
+			'model'=>$model,
+		));
+	}
 
 	/**
 	 * 还原数据库

@@ -27,6 +27,9 @@ class Controller extends RController
 
 	public $isAjax = false;
 
+	protected $dir = false;
+	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view');
+
 	public function init()  
 	{     
     	parent::init();   
@@ -37,6 +40,14 @@ class Controller extends RController
 		}else{
 			// Yii::app()->bootstrap->register();
 		}
+			if ($this->dir) {
+				$templates = $this->templates;
+				foreach ($templates as $key => $value) {
+					$templates[$key] = $this->dir.$value;
+				}				
+				$this->templates = $templates;
+			}		
+
 	}	
 	public function afterRender($view, &$output){
 		if ($this->isAjax) {
@@ -61,12 +72,11 @@ class Controller extends RController
 	 * is the author of the post being accessed.
 	 */
 	public function filterUpdateOwn($filterChain){
-		$itemid = $this->primaryName;
 		$obj = $this->loadModel($_GET['id']);
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
 
-		if(Yii::app()->user->checkAccess('UpdateOwn', array('userid'=>$obj->$itemid)))
+		if(Yii::app()->user->checkAccess('UpdateOwn', array('userid'=>$obj->primaryKey)))
 			$filterChain->removeAt(1);
 		$filterChain->run();
 	}	
@@ -78,9 +88,8 @@ class Controller extends RController
 	public function filterDeleteOwn($filterChain){
 		$params=array('item'=>$model); // set params array for Rights' BizRule
 
-		$itemid = $this->primaryName;
 		$obj = $this->loadModel($_GET['id']);
-		if(Yii::app()->user->checkAccess('DeleteOwn', array('manageid'=>$obj->$itemid)))
+		if(Yii::app()->user->checkAccess('DeleteOwn', array('manageid'=>$obj->primaryKey)))
 			$filterChain->removeAt(1);
 		$filterChain->run();
 	}	
@@ -89,13 +98,17 @@ class Controller extends RController
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 */
-	public function loadModel($id)
+	public function loadModel($id,$recycle=false)
 	{
 
 		if($this->_model===null)
 		{
 			$m = $this->modelName;
-			$this->_model = $m::model()->findByPk($id, $condition);
+			$m = $m::model();
+			if ($recycle) {
+				$m->setRecycle();
+			}
+			$this->_model = $m->findByPk($id, $condition);
 			if($this->_model===null)
 				throw new CHttpException(404,'所请求的页面不存在。');
 		}
@@ -143,15 +156,22 @@ class Controller extends RController
 	public function actionCreate()
 	{
 		$m = $this->modelName;
-		$itemid = $this->primaryName;
-		$model =new $m;
+		$model = new $m;
 		if(isset($_POST[$m]))
 		{
+
 			$model->attributes=$_POST[$m];
 			if($model->save()){
 				$returnUrl = $_POST['returnUrl'];
 				if (!$returnUrl) {
-					$this->redirect(array('view','id'=>$model->$itemid));
+					if ($this->isAjax) {
+						if ($_POST['getItemid']) {
+							echo $model->primaryKey;
+							exit;
+						}
+					}else{
+						$this->redirect(array('view','id'=>$model->primaryKey));
+					}
 				}else{
 					$this->redirect($returnUrl);
 				}				
@@ -159,30 +179,62 @@ class Controller extends RController
 		}elseif(isset($_GET[$m])){
 			$model->attributes = $_GET[$m] ;
 		}
-		$this->render('create',array(
+		$this->render($this->templates['create'],array(
 			'model'=>$model,
 		));
 	}
 
 	public function actionUpdate($id)
 	{
-		$m = $this->modelName;
-		$itemid = $this->primaryName;
 		$model = $this->loadModel($id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
+		$m = $this->modelName;
+		
 		if(isset($_POST[$m]))
 		{
 			$model->attributes=$_POST[$m];
+
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->$itemid));
+				$this->redirect(array('view','id'=>$model->primaryKey));
 		}
-		$this->render('update',array(
+		$this->render($this->templates['update'],array(
 			'model'=>$model,
 		));
 	}
 
+	public function actionRecycle(){
+		$m = $this->modelName;
+		$model = new $m('search');
+		$model->sName .= Tk::g('Recycle');
+		$model->setRecycle();
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET[$m])){
+			$model->attributes = $_GET[$m] ;
+		}
+		$this->render($this->templates['admin'],array(
+			'model'=>$model,
+		));
+	}
+
+	
+	public function actionRestore($id)
+	{
+		$model = $this->loadModel($id,true);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		$model->setRestore();
+		$this->redirect(array('recycle'));
+	}	
+
+	// 彻底删除
+	public function actionDel($id)
+	{
+		$this->loadModel($id,1)->delete();
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('recycle'));
+	}	
 	public function actionAdmin()
 	{
 		$m = $this->modelName;
@@ -191,7 +243,7 @@ class Controller extends RController
 		if(isset($_GET[$m])){
 			$model->attributes = $_GET[$m] ;
 		}
-		$this->render('admin',array(
+		$this->render($this->templates['admin'],array(
 			'model'=>$model,
 		));
 	}

@@ -9,7 +9,7 @@
 
 .wrapper{margin: 0px auto;}
     
-.header{display: block; height: 40px; width: 100%; position: absolute; z-index: 1999; background: url("../img/styles/default/backgrounds/header.jpg") left top repeat-x;}
+.header{display: block; height: 40px; width: 100%; position: absolute; z-index: 999; background: url("../img/styles/default/backgrounds/header.jpg") left top repeat-x;}
     .header .logo{display: block; float: left; padding: 8px 3px; }
         .header .header_menu{display: block; float: right; padding: 3px 20px; margin: 0px; list-style: none;}
             .header .header_menu li { display: block; float: left; padding: 0px; margin: 4px 5px 4px 0px;}

@@ -77,9 +77,9 @@ class Clientele extends ModuleRecord
 	}
 
 	//默认继承的搜索条件
-    public function defaultScope()
+    public function defaultScope($isOrder=true)
     {
-    	$arr = parent::defaultScope();
+    	$arr = parent::defaultScope($isOrder);
     	$condition = array($arr['condition']);
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
@@ -130,6 +130,7 @@ class Clientele extends ModuleRecord
 		$link = Yii::app()->createUrl('clientele/view',array('id'=>$itemid));
 		return $link;
 	}	
+
 	public function getHtmlLink($name=false,$itemid=false)
 	{
 		if (!$name) {
@@ -137,5 +138,5 @@ class Clientele extends ModuleRecord
 		}
 		$link = CHtml::link($name, $this->getLink($itemid));
 		return $link;
-	}	
+	}
 }

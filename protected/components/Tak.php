@@ -32,6 +32,10 @@ class Tak {
         }
         return  $result;
     }
+    public static function formatNumber($num){
+        $result = number_format($num,0,'',',');
+        return $result;
+    }
     /*加密数字*/
     public static function setCryptKey($str){
         $key = new TakCrypt();
@@ -68,21 +72,61 @@ class Tak {
         );
         return $arr;
     }
+
     /*获取当前时间*/
     public static function now(){
         return time();
     }
+
     /*获取时间结束一天*/
-    public static function getDayEnd($time){
-                $date = date("Y-m-d",$time);
-                $dayEnd = strtotime($date." 23:59:59");
-                return $dayEnd;
+    public static function getDayEnd($time=false){
+        if (!$time) {
+            $time = time();
+        }
+        $date = date("Y-m-d",$time);
+        $dayEnd = strtotime($date." 23:59:59");
+        return $dayEnd;
     }
+
+    public static function getDateTop($key=false){
+        $t = time(); 
+        $t1 = mktime(0,0,0,date("m",$t),date("d",$t),date("Y",$t)); 
+        $t2 = mktime(0,0,0,date("m",$t),1,date("Y",$t)); 
+        $t3 = mktime(0,0,0,date("m",$t)-1,1,date("Y",$t)); 
+        $t4 = mktime(0,0,0,1,1,date("Y",$t)); 
+        $e1 = mktime(23,59,59,date("m",$t),date("d",$t),date("Y",$t)); 
+        $e2 = mktime(23,59,59,date("m",$t),date("t"),date("Y",$t)); 
+        $e3 = mktime(23,59,59,date("m",$t)-1,date("t",$t3),date("Y",$t)); 
+        $e4 = mktime(23,59,59,12,31,date("Y",$t)); 
+       $datas =array(
+        'd'=>array(
+            'name' =>'今天',
+            'start' => $t1,
+            'end' => $e1,
+        ),
+        'm'=>array(
+            'name' =>'这个月',
+            'start'=> $t2,
+            'end' => $e2,
+        ),
+        'y'=>array(
+            'name' =>'今年',
+            'start'=> $t4,
+            'end' => $e4,
+        ),);  
+
+        if ($key) {
+            return isset($datas[$key])?$datas[$key]:false;
+        }else{
+            return $datas;
+        }           
+
+    }
+
     /*唯一数字*/
     public static function fastUuid($suffix_len=3){
         //! 计算种子数的开始时间
         static $being_timestamp = 1336681180;// 2012-5-10
-
         $time = explode(' ', microtime());
         $id = ($time[1] - $being_timestamp) . sprintf('%06u', substr($time[0], 2, 6));
         if ($suffix_len > 0)
@@ -91,15 +135,18 @@ class Tak {
         }
         return $id;
     }   
+
     /*判断字符串是不是MD5加密的*/
     public static function isValidMd5($md5 ='')
     {
-        return   preg_match('/^[a-f0-9]{32}$/', $md5);
+        return  preg_match('/^[a-f0-9]{32}$/', $md5);
     }
+
     /*网址判断*/
     public static function isUrl($str){
         return preg_match("/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\’:+!]*([^<>\"])*$/", $str);
     }  
+
     /*判断一个数字是不是 时间数
          return ( 1 === preg_match( '~^[1-9][0-9]*$~', $string ) );
          return if (preg_match('/[0-9]{4}-[0-9]{2}-[0-9]{2}/', $timestamp));
@@ -113,6 +160,7 @@ class Tak {
             return $timestamp;
         } else return false;
     }         
+
     /*IP转成无符号数值*/
    public static function IP2Num($ip)
     {
@@ -122,6 +170,7 @@ class Tak {
         }
         return $result;
     }
+
     /*无符号转成IP地址*/
     public static function Num2IP($num){
         $result = '';
@@ -130,6 +179,7 @@ class Tak {
         }
         return $result;
     }  
+
     public static function giiColAdmin($col){
         $result = self::giiCol($col);
         if (!$result) {
@@ -137,6 +187,7 @@ class Tak {
         }
         return $result;
     }
+
     public static function giiColNot($col){
         $result = self::giiCol($col);
         if (!$result) {
@@ -144,6 +195,7 @@ class Tak {
         }
         return $result;  
     }
+
     public static function giiCol($col){
         $result = strpos('::,itemid,fromid,manageid,add_us,add_ip,modified_us,modified_ip,',",$col,")>0;
         return $result;
@@ -195,6 +247,7 @@ class Tak {
             ); 
         return $items;       
     }
+
     public static function getViewMenu($itemid){
         $items = array(
             array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
@@ -206,13 +259,22 @@ class Tak {
         );
         return $items;    
     }
+
     public static function getListMenu(){
        $listMenu = array(  
             array(
               'icon' =>'isw-plus',
               'url' => array('create'),
               'label'=>Tk::g('Create'),
-            )    
+            )
+            );
+       if(self::checkSuperuser()){
+            $listMenu[] = array(
+              'icon' =>'isw-delete',
+              'url' => array('recycle'),
+              'label'=>Tk::g('Recycle'),
+            );
+        }
          /* ,array(
               'icon' =>'isw-edit',
               'url' => '#',
@@ -225,19 +287,20 @@ class Tak {
               'label'=>Tk::g('Delete'),
               'linkOptions'=>array('class'=>'delete-select','submit'=>array('click'=>"$.fn.yiiGridView.update('menu-grid');")),
             )*/
-            ,array(
+
+         $listMenu[] =array(
               'icon' =>'isw-refresh',
               'url' => Yii::app()->request->url,
               'label'=>Tk::g('Refresh'),
               'linkOptions'=>array('class'=>'refresh'),
-            )    
-        );        
+            );
+           
        return $listMenu;    
     }   
 
     public static function searchData($key=false){
        $nowDate = date("Y").'-'.date("m").'-'.date("d");
-       $now = time();
+       $now = self::getDayEnd();
        $datas =array(
         '10'=>array(
             'name' =>'当天',
@@ -354,8 +417,8 @@ class Tak {
     }
 
     /*
-    获取文件路径
-    48d4cb4ef423f858a9576a4e75ecd598ae966a1d -- 48/d4/cb/4e/48d4cb4ef423f858a9576a4e75ecd598ae966a1d
+       获取文件路径
+        48d4cb4ef423f858a9576a4e75ecd598ae966a1d -- 48/d4/cb/4e/48d4cb4ef423f858a9576a4e75ecd598ae966a1d
     */
     public static function getPathBySplitStr($str) {
         $parts = str_split(substr($str,0,8), 2);
@@ -379,6 +442,7 @@ class Tak {
         return false;
     }
 
+    //左栏菜单 
     public static function getMainMenu(){
         $items = array(  
             array(
@@ -394,7 +458,7 @@ class Tak {
               'items'=>array(
                 array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
                 array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/manage/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/manage/recycle'),),
               ),
             ), 
             array(
@@ -404,14 +468,11 @@ class Tak {
               'visible'=>Yii::app()->user->checkAccess('Market')||Yii::app()->user->checkAccess('Clientele.*'),
               'items'=>array(
                 array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),
-                 'active'=>Yii::app()->controller->modelName=='Clientele',
                 ),
                 array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
                 array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">联系人录入</span>',  'url'=>array('/contactpPrson/create'),),
                 array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">添加联系记录</span>',  'url'=>array('/contact/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/clientele/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/clientele/recycle'),),
               ),
             ), 
             array(
@@ -433,7 +494,7 @@ class Tak {
               'items'=>array(
                 array('icon'=>'th-list','label'=>'<span class="text">行程管理</span>', 'url'=>array('/events/admin')),
                 array('icon'=>'plus','label'=>'<span class="text">行程录入</span>',  'url'=>array('/events/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/events/recycle'),),
               ),
             ), 
             array(
@@ -448,7 +509,20 @@ class Tak {
                 array('icon'=>'film','label'=>'<span class="text">视频</span>', 'url'=>array('/file/video')),
                 array('icon'=>'tasks','label'=>'<span class="text">其他</span>', 'url'=>array('/file/other ')),
                 array('icon'=>'plus','label'=>'<span class="text">文件上传</span>',  'url'=>array('/file/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/file/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/file/recycle'),),
+              ),
+            ), 
+            array(
+              'visible'=>Yii::app()->user->checkAccess('Pss.*'),
+              'icon' =>'isb-list',
+              'label'=>'<span class="text">进销存</span>',
+              'url'=>array('/pss/index'),
+              'items'=>array(
+                array('icon'=>'shopping-cart','label'=>'<span class="text">入库管理</span>', 'url'=>array('/purchase/admin')),
+                array('icon'=>'th','label'=>'<span class="text">出库管理</span>',  'url'=>array('/sell/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">库存管理</span>',  'url'=>array('/stock/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">产品管理</span>',  'url'=>array('/product/admin'),),
+                    array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/product/recycle'),),
               ),
             ), 
             array(
@@ -460,7 +534,7 @@ class Tak {
                 array('icon'=>'shopping-cart','label'=>'<span class="text">订单管理</span>', 'url'=>array('/order/index')),
                 array('icon'=>'th','label'=>'<span class="text">发货管理</span>',  'url'=>array('/order/create'),),
                 array('icon'=>'th','label'=>'<span class="text">订单留言</span>',  'url'=>array('/order/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/order/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/order/recycle'),),
               ),
             ), 
 
@@ -473,7 +547,7 @@ class Tak {
                 array('icon'=>'th-list','label'=>'<span class="text">招标管理</span>', 'url'=>array('/invite/index')),
                 array('icon'=>'plus','label'=>'<span class="text">招标录入</span>',  'url'=>array('/invite/create'),),
                 array('icon'=>'star','label'=>'<span class="text">投标记录</span>',  'url'=>array('/invite/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/invite/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/invite/recycle'),),
               ),
             ),   
             array(
@@ -486,7 +560,7 @@ class Tak {
                 array('icon'=>'plus','label'=>'<span class="text">招聘录入</span>',  'url'=>array('/job/create'),),
                 array('icon'=>'bookmark','label'=>'<span class="text">收藏的简历</span>',  'url'=>array('/job/create'),),
                 array('icon'=>'fire','label'=>'<span class="text">收到的简历</span>',  'url'=>array('/job/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/file/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/file/recycle'),),
               ),
             ), 
             array(
@@ -499,7 +573,7 @@ class Tak {
                 array('icon'=>'list-alt','label'=>'<span class="text">文档</span>',  'url'=>array('/training/doc'),),
                 array('icon'=>'facetime-video','label'=>'<span class="text">视频</span>',  'url'=>array('/job/video'),),
                 array('icon'=>'music','label'=>'<span class="text">音频</span>',  'url'=>array('/training/music'),),
-                array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/training/trashs'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/training/recycle'),),
               ),
             ),           
           );  
@@ -509,9 +583,9 @@ class Tak {
                       'label'=>'<span class="text">管理中心</span>',
                       'items'=>array(
                         array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/events/index')),
-                        array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/index'),),
+                        array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/admin'),),
                         array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
-                        array('icon'=>'trash','label'=>'<span class="text">回收站</span>',  'url'=>array('/events/trashs'),),
+                        array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/events/recycle'),),
                       ),
                     );
          $items[] = array(
@@ -528,7 +602,14 @@ class Tak {
         return $items;          
     }
 
-    public static function getAdminPageCol($arr=false,$gid='list-grid',$width='60px'){
+    public static function isRecycle(){
+        $result = Yii::app()->getController()->getAction()->id == 'recycle';
+        return $result;
+    }
+
+    public static function getAdminPageCol($arr=false
+        ,$gid='list-grid',$width='60px'){
+    
      $items = array(
              'class'=>'bootstrap.widgets.TbButtonColumn'
               ,'header' => CHtml::dropDownList('pageSize'
@@ -544,7 +625,45 @@ class Tak {
          // self::KD($arr);
          $items = array_merge_recursive($items, $arr);
      }
+     // '.Tk::g('Recycle').'
+     // self::KD($control->id);
+     if(self::isRecycle()){
+        $newItems = array('template'=>'{restore} | {del}'
+              ,'buttons'=>array(
+                    'restore' => array
+                    (
+                        'label'=>'',
+                         'url'=>'Yii::app()->controller->createUrl("restore", array("id"=>$data->primaryKey))',
+                         'options'=>array('title'=>'还原','class'=>'icon-repeat'),
+                    ),
+                    'del' => array
+                    (
+                        'label'=>'',
+                         'url'=>'Yii::app()->controller->createUrl("del", array("id"=>$data->primaryKey))',
+                         'options'=>array('title'=>'彻底删除','class'=>'icon-remove'),
+                    ),
+
+              ),
+            );
+          // 'imageUrl'=>$this->{$id.'ButtonImageUrl'},
+        $items = array_merge_recursive($items, $newItems);
+     }
+
+              
+
 
      return $items;         
+    }
+
+    public static function getTakTypes(){
+        $arr = array();
+        $arr['product'] = array(
+            'name' => 'Product',
+            'file' => 'product',   
+            'type' => 'product',   
+
+        );
+
+        return $arr;
     }
 }  

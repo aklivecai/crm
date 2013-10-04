@@ -1,15 +1,30 @@
 <?php
 class ModuleRecord extends CActiveRecord
 {
-	public $mName = "" ;
-	public $sName = "" ;
-	protected $tableName = '';
+	public $mName = "" ;/*当前类名字*/
+	public $sName = "" ;/*显示名字*/
+	
+	public $scondition = ' status>0 ';/*默认搜索条件*/
+	public $isLog = true;/*是否记录日志*/
+
+    private $_defaultScopeDisabled = false; /* Flag - whether defaultScope is disabled or not*/
+
+	protected $tableName = '';/*表名*/
+
 
 	public function init(){
 		$this->mName = get_class($this);
 		$this->sName = Tk::g($this->mName);
 	}
-    private $_defaultScopeDisabled = false; // Flag - whether defaultScope is disabled or not
+
+	protected function setItemid($value){
+		if ($this->hasAttribute('itemid')) {
+			$this->itemid = $value;
+		}else{
+			$primary = $this->primaryKey();
+			$this->{$primary} = $value;
+		}
+	}
 
     public function disableDefaultScope()
     {
@@ -20,6 +35,7 @@ class ModuleRecord extends CActiveRecord
     public function getDefaultScopeDisabled() {
         return $this->_defaultScopeDisabled;
     }
+
 
 	//默认继承的搜索条件
     public function defaultScope($isOrder=true)
@@ -32,9 +48,9 @@ class ModuleRecord extends CActiveRecord
     		$arr = array('order'=>'add_time DESC',);
     	}
 
-    	$condition = array('status>0');
+    	$condition = array($this->scondition);
     	$condition[] = 'fromid='.Tak::getFormid();
-    	if (!Tak::checkSuperuser()) {
+    	if (!Tak::checkSuperuser()&&$this->hasAttribute('manageid')) {
     		$condition[] = 'manageid='.Tak::getManageid();
     	}
     	$arr['condition'] = join(" AND ",$condition);
@@ -59,6 +75,7 @@ class ModuleRecord extends CActiveRecord
 	public function recently($limit=5,$pcondition=false,$order='add_time DESC')
 	{
 		$condition = $this->defaultScope(false);
+
 		if (is_string($pcondition)) {
 			$condition[] = $pcondition;
 		}elseif(is_array($pcondition)){
@@ -141,6 +158,22 @@ class ModuleRecord extends CActiveRecord
 		}
 	}
 
+    // 设置搜索
+    public function setRecycle(){
+    	$this->scondition = 'status=0';
+    }
+
+    // 还原
+    public function setRestore(){
+		$result = false;
+		if ($this->status!=TakType::STATUS_DEFAULT) {
+			$this->status = TakType::STATUS_DEFAULT;
+			$this->save();
+			$result = true;
+		}
+		return result;
+    }
+
 	//保存数据前
 	protected function beforeSave($isok=false){
 	    $result = parent::beforeSave();
@@ -148,14 +181,14 @@ class ModuleRecord extends CActiveRecord
 	        //添加数据时候
 	        $arr = Tak::getOM();
 	        if ( $this->isNewRecord ){
-	        	if (!$this->itemid) {
-	        		$this->itemid = $arr['itemid'];
+	        	if (!$this->primaryKey) {
+	        		$this->setItemid($arr['itemid']);
 	        	}	        	
-	        	$this->manageid = $arr['manageid'];
 	        	$this->add_us = $arr['manageid'];
 	        	$this->add_time = $arr['time'];
 	        	$this->add_ip = $arr['ip'];
 	        	$this->fromid = $arr['fromid']; 
+
 	        }else{
 	        	//修改数据时候
 	        	$this->modified_us = $arr['manageid'];
@@ -172,19 +205,36 @@ class ModuleRecord extends CActiveRecord
 	//
 	protected function afterSave(){
 		parent::afterSave();
+		if (!$this->isLog) {
+			return false;
+		}
 		$url = Yii::app()->request->getUrl();
 		if (strpos($url,'delete')>0){
 		 	$this->logDel();
 		 }
+		 elseif (strpos($url, 'del')>0){
+		 	AdminLog::log(Tk::g('Deletes').$this->sName);
+		 }
+		 elseif (strpos($url, 'restore')>0){
+		 	AdminLog::log(Tk::g('Restore').$this->sName);
+		 }
 		 elseif ($this->isNewRecord ){
-		 	AdminLog::log(Tk::g('Create').$this->sName.' - 编号:'.$this->itemid);
+		 	AdminLog::log(Tk::g('Create').$this->sName.' - 编号:'.$this->primaryKey);
 		 }else{
 			AdminLog::log(Tk::g('Update').$this->sName);
 		 }
-
 	}
 
 	public function del(){
+		$result = false;
+		if ($this->status!=TakType::STATUS_DELETED) {
+			$this->status = TakType::STATUS_DELETED;
+			$this->save();
+			$result = true;
+		}
+		return result;
+	}
+	public function dels(){
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {
 			$this->status = TakType::STATUS_DELETED;
@@ -202,20 +252,40 @@ class ModuleRecord extends CActiveRecord
 		AdminLog::log(Tk::g('Delete').$this->sName);
 	}
 	
-	public  function upLogin(){
-		$arr = Tak::getOM();
-		$sql = " UPDATE :tableName SET
-		    last_login_ip = :last_login_ip
-		WHERE
-			 fromid = :fromid
-		     AND manageid = :manageid
-		";
-		$sql = strtr($sql,array(':tableName'=>$this->tableName()
-			,':last_login_ip' => $arr['ip']
-		));
-		$query = Yii::app()->db->createCommand($sql);
-		$query->execute();	
-		AdminLog::log('登录操作');
-		return true;
-	}	
+	public function getIData($col='add_time',$dtime=false,$sqlWhere=false){
+
+		if (!$sqlWhere) {
+			$sqlWhere = $this->defaultScope(false);
+			$sqlWhere = join(' AND ',$sqlWhere);
+		}
+		if (!$dtime) {
+			$dtime = Tak::getDateTop();
+		}
+		$arrSql  = array(' SELECT COUNT(itemid) AS num, \'allData\' AS ikey FROM :tableName WHERE :sqlWhere ');	
+		foreach ($dtime as $key => $value) {
+			$sql = ' SELECT COUNT(itemid) AS num, \''.$key.'Data\' AS ikey FROM  :tableName WHERE :sqlWhere AND :col BETWEEN '.$value['start'].' AND '.$value['end'];
+			$arrSql [] = $sql;
+		}
+		$sql = join(' UNION ',$arrSql);
+		$sql = strtr($sql,array(
+			':tableName'=>$this->tableName()
+			,':yea' => $dtime['y']['start']
+			,':yeaend' => $dtime['y']['end']
+			,':month' => $dtime['m']['start']
+			,':monthend' => $dtime['m']['end']
+			,':day' => $dtime['d']['start']
+			,':dayend' => $dtime['d']['end']
+			,':sqlWhere' => $sqlWhere
+			,':col' => $col
+		));	
+		// Tak::KD($sql,1);
+		$command = Yii::app()->db->createCommand($sql);
+		$dataReader=$command->query();
+		$tags = array();
+		foreach($dataReader as $row) {
+			$tags[$row['ikey']] = $row['num'];
+		}
+		// Tak::KD($tags);
+		return $tags;
+	}
 }	

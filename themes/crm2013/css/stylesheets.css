@@ -96,3 +96,7 @@ body { min-height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 1
     
     .block, .block-fluid{overflow: hidden; overflow-x: auto;}
 }
+
+.modal-header h3{
+    color: #FFF;
+}

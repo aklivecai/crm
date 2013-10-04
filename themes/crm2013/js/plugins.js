@@ -66,17 +66,29 @@ editable: true,
             select: function(start, end, allDay) {
                     var title = prompt('行程的名字:');
                     if (title) {
-                            calendar.fullCalendar('renderEvent',
-                                    {
-                                            title: title,
-                                            start: start,
-                                            end: end,
-                                            allDay: allDay
-                                    },
-                                    true // make the event "stick"
-                            );
+                            var postData = [];
+                            postData.push('Events[subject]='+title);
+                            postData.push('Events[start_time]='+Math.round(start.getTime() / 1000));
+                            postData.push('Events[end_time]='+Math.round(end.getTime() / 1000));
+                            postData.push('getItemid=1');
+                         $.ajax({
+                                type: "POST",
+                                url:createUrl('events/create'),
+                                data:postData.join('&'),
+                                async: false,
+                                error: function(request) {
+                                    console.log(request);
+                                    // alert("系统异常!");
+                                },
+                                success: function(data) {
+                                    if (data!='') {
+                                        calendar.resetElement();
+                                    };
+                                }
+                            });                            
                     }
                     calendar.fullCalendar('unselect');
+                    window.calendar = calendar;
             },
 // 当点击某一个事件时触发此操作            
 eventClick: function(calEvent, jsEvent, view) {

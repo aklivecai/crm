@@ -42,6 +42,7 @@ class Manage extends ModuleRecord
 			array('user_name, user_pass', 'required'),
 			array('login_count', 'numerical', 'integerOnly'=>true),
 			array('user_name', 'length', 'max'=>60),
+			array('user_pass', 'length', 'min'=>6),
 			array('user_pass, user_nicename, activkey', 'length', 'max'=>64),
 			array('salt, add_time, last_login_time', 'length', 'max'=>10),
 			array('user_email', 'length', 'max'=>100),
@@ -227,7 +228,8 @@ class Manage extends ModuleRecord
 		return true;
 
 	}
-	
+
+		// 更新登录次数，时间信息
 	public  function upLogin(){
 		$arr = Tak::getOM();
 		$sql = " UPDATE :tableName SET
