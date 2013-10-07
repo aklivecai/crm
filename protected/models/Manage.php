@@ -173,7 +173,7 @@ class Manage extends ModuleRecord
 	
 	//保存数据前
 	protected function beforeSave(){
-	    $result = parent::beforeSave(true);
+	    $result = true||parent::beforeSave(true);
 	    if($result){
 	        //添加数据时候
 	        if ( $this->isNewRecord ){
@@ -182,7 +182,7 @@ class Manage extends ModuleRecord
 	        	$this->add_time = $arr['time'];
 	        	$this->add_ip = $arr['ip'];
 	        	$this->fromid = $arr['fromid']; 
-	        	$this->salt = $this->generateSalt();  
+	        	$this->salt = $this->generateSalt();
 	        	
 	        	if (!$this->user_status) {
 	        		$this->user_status = TakType::STATUS_DEFAULT;
@@ -192,6 +192,7 @@ class Manage extends ModuleRecord
 	        //修改数据时候
 	        	if (!Tak::isValidMd5($this->user_pass)) {
 	        		$this->user_pass = $this->hashPassword($this->user_pass, $this->salt);
+	        		
 	        	}
 			    if (!isset($this->user_status)) {
 			    	$this->user_status = TakType::STATUS_DELETED;
@@ -217,7 +218,7 @@ class Manage extends ModuleRecord
 			 fromid = :fromid
 		     AND manageid = :manageid
 		";
-		$sql = strtr($sql,array(':tableName'=>$this->tableName()
+		$sql = strtr($sql,array(':tableName' => $this->tableName()
 			,':active_time' => $arr['time']
 			,':fromid' => $arr['fromid']
 			,':manageid' => $arr['manageid']
@@ -229,7 +230,7 @@ class Manage extends ModuleRecord
 
 	}
 
-		// 更新登录次数，时间信息
+	// 更新登录次数，时间信息
 	public  function upLogin(){
 		$arr = Tak::getOM();
 		$sql = " UPDATE :tableName SET

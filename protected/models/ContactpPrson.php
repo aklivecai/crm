@@ -2,6 +2,7 @@
 class ContactpPrson extends ModuleRecord
 {
 	
+	protected $linkName = 'nicename';
 	/**
 	 * @return string 数据表名字
 	 */

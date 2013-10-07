@@ -12,7 +12,7 @@
 $nameColumn=$this->guessNameColumn($this->tableSchema->columns);
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
-	Tk::g('$label')=>array('admin'),
+	Tk::g(\$model->sName)=>array('admin'),
 	\$model->{$nameColumn}=>array('view','id'=>\$model->{$this->tableSchema->primaryKey}),
 	Tk::g('Update'),
 );\n";

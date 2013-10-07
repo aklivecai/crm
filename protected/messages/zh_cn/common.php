@@ -44,7 +44,9 @@ return array (
   'Refresh' => '刷新',
   
   'More' => '更多', 
+  'Detail' => '明细', 
 
+  'AdminLog' => '网站日志',
   'Manages' => '帐号',
   'Clientele' => '客户',
   'Clienteles' => '客户',
@@ -63,13 +65,26 @@ return array (
   'Address Groups' => '部门',
   'AddressGroups' => '部门', 
 
-  'Events' => '行程', 
+  'Events' => '备忘录', 
 
   'Product' => '产品',
   'Products' => '产品',
 
   'Purchase' => '入库',
   'Sell' => '出库',
+  'Stocks' =>'库存',
+
+  'bill' => '单',
+  'Print' => '打印',
+  'Close' => '关闭',
+  'Affirm' => '确认',
+
+  'Purchase enterprise' => '来源',
+  'Sell enterprise' => '客户',
+  'enterprise' => '单位名称',
+
+  'Purchase typeid' => '入库方式',
+  'Sell typeid' => '出库方式',
   
 
   'Illegal operation' => '非法操作！', 

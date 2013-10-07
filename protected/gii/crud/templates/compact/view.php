@@ -12,7 +12,7 @@
 $nameColumn=$this->guessNameColumn($this->tableSchema->columns);
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
-	Tk::g('$label') => array('admin'),
+	Tk::g(\$model->sName) => array('admin'),
 	\$model->{$nameColumn},
 );
 	\$items = Tak::getViewMenu(\$model->{$this->tableSchema->primaryKey});
@@ -34,7 +34,7 @@ foreach($this->tableSchema->columns as $column){
 	}	
 	$str = "\t\t";
 	if(strpos($cname, 'time')>0){
-		$str .= "array('name'=>':name', 'value'=>Tak::timetodate(\$model->:name),)";
+		$str .= "array('name'=>':name', 'value'=>Tak::timetodate(\$model->:name),6)";
 	}elseif(strpos($cname, 'ip')>0){
 		$str .= "array('name'=>':name', 'value'=>Tak::Num2IP(\$model->:name),)";
 	}elseif(strpos(',display,status,',$cname)>0){

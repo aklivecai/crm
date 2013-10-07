@@ -21,7 +21,10 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
-<?php echo $form->dropDownListRow($model, 'fromid',$listType); ?>
+<?php 
+	echo $form->dropDownListRow($model, 'fromid',$listType); 
+// echo $formid;
+?>
 
 <?php echo $form->textFieldRow($model, 'username', array('class'=>'span3','autofocus'=>'autofocus')); ?>
 <?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>

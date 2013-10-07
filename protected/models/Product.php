@@ -23,6 +23,8 @@
 class Product extends ModuleRecord
 {
 	
+	protected $linkName = 'name'; /*连接的显示的字段名字*/
+	protected $_stocks = null;
 	/**
 	 * @return string 数据表名字
 	 */
@@ -39,7 +41,7 @@ class Product extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array(' name, typeid, spec', 'required'),
+			array(' name, typeid', 'required'),
 			array('stocks, status', 'numerical', 'integerOnly'=>true),
 			array('itemid, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, typeid, unit, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
@@ -67,7 +69,7 @@ class Product extends ModuleRecord
 				, 'typeid'
 				, 'select' => 'typename'
 				, 'condition'=> join(" AND ",$condition)
-				),
+			),
 		);
 	}
 
@@ -155,10 +157,60 @@ class Product extends ModuleRecord
 	//保存数据后
 	protected function afterSave(){
 		parent::afterSave();
+		if ($this->isNewRecord) {
+			$m = new Stocks;
+			$m->product_id = $this->primaryKey;
+			$m->stocks = 0;
+			$m->status = 1;
+			$m->save();
+		}
 	}	
+
+	protected function loadStock($type=1){
+		if ($this->_stocks === null) {
+			$m = Stocks::model();
+			if ($type=2) {
+				$m->setRecycle();/*搜索回收站*/
+			}
+			$this->_stocks = $m->findByAttributes(array('product_id'=>$this->primaryKey));
+		}
+
+		return $this->_stocks;
+	}
+
+	public function del(){
+		if (parent::del()) {
+			$m = $this->loadStock();
+			if ($m) {
+				$m->del();
+			}
+		}
+	}
+
+	public function setRestore(){
+		if (parent::setRestore()) {
+			$m = $this->loadStock(2);
+			if ($m) {
+				$m->setRestore();
+			}
+		}
+	}
+
+
 
 	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
+		$m = $this->loadStock();
+		if ($m) {
+			$m->delete();
+		}
+	}	
+	protected function beforeDeletes(){
+		$m = $this->loadStock();	
+		Tak::KD($m,1);		
+		return false;
+		parent::afterDelete();
+
 	}	
 }

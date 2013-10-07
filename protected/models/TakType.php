@@ -49,6 +49,7 @@ class TakType extends CActiveRecord
 	
 	private static $_items = array(
 		'status' => array('0'=>'锁定','1'=>'启用')
+		,'isok' => array('1'=>'是','0'=>'否')
 		,'display' => array('1'=>'公共','0'=>'私有')
 		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
 		,'priority' => array('0'=>'底','1'=>'中','2'=>'高')
@@ -176,7 +177,7 @@ class TakType extends CActiveRecord
 		return array(
 				'fromid' => '平台会员ID',
 				'typeid' => '值',
-				'typename' => '名字',
+				'typename' => '分类名字',
 				'item' => '类型',
 				'listorder' => '排序',
 		);

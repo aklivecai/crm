@@ -59,15 +59,18 @@
 <div class="block-fluid accordion">
 <?php 
 $items = array(1,2,5);
+$mclientele = Clientele::model();
+      $pre_html = '<table cellpadding="0" cellspacing="0" width="100%" class="sOrders"> <thead> <tr> <th width="80">等级</th> <th>名字</th> <th width="68">日期</th> </tr> </thead> <tbody>';
+
 foreach ($items as $value) {
 ?>
   <h3><?php echo TakType::item('industry',$value);?></h3>
   <div>
  <?php
-      $pre_html = '<table cellpadding="0" cellspacing="0" width="100%" class="sOrders"> <thead> <tr> <th width="80">等级</th> <th>名字</th> <th width="68">日期</th> </tr> </thead> <tbody>';
+
       $post_html = '</tbody> <tfoot> <tr> <td colspan="3" align="right"> '.$this->widget('bootstrap.widgets.TbButton', array('label'=>Tk::g('More'), 'url'=>array('clientele/admin','Clientele[industry]'=>$value), 'size'=>'small', ),true).'</td> </tr> </tfoot> </table>';
         $this->widget('ext.AkCListView', array(
-        'dataProvider'=>Clientele::model()->sort_time()->recently(5,"industry=$value"),
+        'dataProvider'=>$mclientele->sort_time()->recently(5,"industry=$value"),
         'itemView' => '_clientele',
         'preItemsTag' => $pre_html,
         'postItemsTag' => $post_html,
@@ -85,112 +88,51 @@ foreach ($items as $value) {
 <div class="span4">
   <div class="head clearfix">
     <div class="isw-edit"></div>
-    <h1>通知公告</h1>
+    <h1>最近联系客户</h1>
     <ul class="buttons">
-      <li> <a href="#" class="isw-text_document"></a> </li>
-      <li> <a href="#" class="isw-settings"></a>
-        <ul class="dd-list">
-          <li><a href="#"><span class="isw-list"></span> 显示更多</a></li>
-          <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
-        </ul>
-      </li>
+<li><a href="<?php echo Yii::app()->createUrl('contactpPrson/create');?>" title="<?php echo Tk::g(array('Create','ContactpPrson'));?>"><i class="isw-plus"></i></a></li>        
+          <li><a href="<?php echo Yii::app()->createUrl('contactpPrson/create');?>" title="全部"><I class="isw-list"></I> </a></li>
     </ul>
   </div>
   <div class="block news scrollBox">
-    <div class="scroll" style="height: 270px;">
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
-      <div class="item"> <a href="#">放假通知</a>
-        <p>2013年最新通告！！！！！！</span>
-        
-        <div class="controls"> <a href="#" class="icon-pencil tip" title="Edit"></a> <a href="#" class="icon-trash tip" title="Remove"></a> </div>
-      </div>
+    <div class="scroll" style="height: 320px;">
+<?php
+  $this->widget('ext.AkCListView', array(
+        'dataProvider'=>contactpPrson::model()->sort_time()->recently(10),
+        'itemView' => '_contactpPrson',
+        'emptyText' => '<p>暂无数据</p>',
+        'htmlOptions' => array('class'=>''),
+      )); 
+?>    
     </div>
   </div>
 </div>
 <div class="span4">
   <div class="head clearfix">
     <div class="isw-cloud"></div>
-    <h1>最近联系</h1>
+    <h1>联系记录</h1>
     <ul class="buttons">
-      <li> <a href="#" class="isw-users"></a> </li>
+<li><a href="<?php echo Yii::app()->createUrl('contact/create');?>" title="<?php echo Tk::g(array('Create','Contact'));?>"><i class="isw-plus"></i></a></li>        
       <li> <a href="#" class="isw-settings"></a>
         <ul class="dd-list">
-          <li><a href="#"><span class="isw-list"></span> 全部</a></li>
-          <li><a href="#"><span class="isw-mail"></span> 发送邮件</a></li>
-          <li><a href="#"><span class="isw-refresh"></span> 刷新</a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('contact/create');?>"><span class="isw-list"></span> 全部</a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('contact/admin',array('Contact[stage]'=>0));?>"><span class="isw-text_document"></span>初期沟通</a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('contact/admin',array('Contact[stage]'=>3));?>"><span class="isw-text_document"></span> 初期沟通</a></li>
         </ul>
       </li>
-      <li class="toggle"><a href="#"></a></li>
     </ul>
   </div>
   <div class="block users scrollBox">
-    <div class="scroll" style="height: 270px;">
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
-      <div class="item clearfix">
-        <div class="image">XX</div>
-        <div class="info"> <a href="#" class="name">超总</a><span>电话联系</span>
-          <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-        </div>
-      </div>
+    <div class="scroll" style="height: 320px;">
+<?php
+  $this->widget('ext.AkCListView', array(
+        'dataProvider'=>Contact::model()->sort_time()->recently(10),
+        'itemView' => '_contact',
+        'emptyText' => '<p>暂无数据</p>',
+        'htmlOptions' => array('class'=>''),
+      )); 
+?>    
+
     </div>
   </div>
 </div>
@@ -199,7 +141,7 @@ foreach ($items as $value) {
 <div class="row-fluid">
   <div class="head clearfix">
     <div class="isw-calendar"></div>
-    <h1>日历</h1>
+    <h1><?php echo Tk::g('Events');?></h1>
   </div>
   <div class="block-fluid">
     <div id="calendar" class="fc"></div>

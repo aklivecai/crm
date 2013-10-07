@@ -73,34 +73,15 @@ foreach ($items as $value) {
             <li class="toggle"><a href="#"></a></li>
           </ul>
         </div>
-        <div class="block-fluid users scrollBox">
-    <div class="scroll" style="height: 240px;">
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a> <span>0755-3424234</span>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a> <span>0755-3424234</span>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a> <span>0755-3424234</span>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-          <div class="item clearfix">
-            <div class="image"><a href="#"></a></div>
-            <div class="info"> <a href="#" class="name">张三</a> <span>0755-3424234</span>
-              <div class="controls"> <a href="#" class="icon-ok"></a> <a href="#" class="icon-remove"></a> </div>
-            </div>
-          </div>
-          </div>
-
+        <div class="block-fluid users">
+<?php
+  $this->widget('ext.AkCListView', array(
+        'dataProvider'=>$value::model()->sort_time()->recently(4,'clienteleid='.$model->itemid),
+        'itemView' => "_$value",
+        'emptyText' => '<p>暂无数据</p>',
+        'htmlOptions' => array('class'=>''),
+      )); 
+?>              
         <div class="footer">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
             'label'=>Tk::g('More'),
@@ -109,7 +90,6 @@ foreach ($items as $value) {
         )); ?>
         </div>          
         </div>
-      </div>
 
     </div>
 <?php } ?>

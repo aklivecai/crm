@@ -43,6 +43,9 @@
 <script src='/_ak/js/plugins/spectrum/spectrum.js'></script>
 <link href="/_ak/js/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
 
+
+<script src='/_ak/js/modernizr.js'></script>
+
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/cookies.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins.js'></script>
@@ -113,7 +116,7 @@
   <div class="menu <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'hidden'; ?>">
     <div class="breadLine">
       <div class="arrow"></div>
-      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name; echo Tak::getManageid();?> </div>
+      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name;?> </div>
     </div>
     <div class="admin">
       <div class="image">
@@ -125,7 +128,7 @@
       ?>
       </div>
       <ul class="control">
-        <li><i class="icon-comment"></i> <a href="<?php echo Yii::app()->createUrl('site/messate');?>">消息</a> <a href="<?php echo $this->createUrl('/site/message')?>" class="caption red">12</a></li>
+        <!-- <li><i class="icon-comment"></i> <a href="#<?php echo Yii::app()->createUrl('site/messate');?>">消息</a> <a href="<?php echo $this->createUrl('/site/message')?>" class="caption red">12</a></li> -->
         <li><i class="icon-user"></i><a href="<?php echo $this->createUrl('/site/profile')?>">个人资料</a></li>
 
         <li style="position:relative;"><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/changepwd')?>" class="chage-pwd">修改密码</a>

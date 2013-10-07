@@ -11,6 +11,7 @@ class ModuleRecord extends CActiveRecord
 
 	protected $tableName = '';/*表名*/
 
+	protected $linkName = null; /*连接的显示的字段名字*/
 
 	public function init(){
 		$this->mName = get_class($this);
@@ -43,9 +44,10 @@ class ModuleRecord extends CActiveRecord
     	if ($this->getDefaultScopeDisabled()) {
     		return array();
     	}
+    	$arr = array();
 
-    	if ($isorder) {
-    		$arr = array('order'=>'add_time DESC',);
+    	if ($isOrsder) {
+    		$arr['order'] = ' add_time DESC ';
     	}
 
     	$condition = array($this->scondition);
@@ -104,7 +106,7 @@ class ModuleRecord extends CActiveRecord
 			unset($_GET['pageSize']); 
 			$pageSize = $setPageSize;
 		}else{
-			$pageSize = Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);			
+			$pageSize = Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);
 		}
 		return $pageSize;
     }
@@ -168,8 +170,11 @@ class ModuleRecord extends CActiveRecord
 		$result = false;
 		if ($this->status!=TakType::STATUS_DEFAULT) {
 			$this->status = TakType::STATUS_DEFAULT;
-			$this->save();
-			$result = true;
+			if($this->save()){
+				$result = true;
+			}else{
+				 $arr = $this->getErrors();
+			}
 		}
 		return result;
     }
@@ -184,6 +189,9 @@ class ModuleRecord extends CActiveRecord
 	        	if (!$this->primaryKey) {
 	        		$this->setItemid($arr['itemid']);
 	        	}	        	
+	        	if ($this->hasAttribute('manageid')) {
+	        		$this->manageid = $arr['manageid'];
+	        	}
 	        	$this->add_us = $arr['manageid'];
 	        	$this->add_time = $arr['time'];
 	        	$this->add_ip = $arr['ip'];
@@ -229,10 +237,13 @@ class ModuleRecord extends CActiveRecord
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {
 			$this->status = TakType::STATUS_DELETED;
-			$this->save();
-			$result = true;
+			if($this->save()){
+				$result = true;
+			}else{
+				 $arr = $this->getErrors();
+			}
 		}
-		return result;
+		return $result;
 	}
 	public function dels(){
 		$result = false;
@@ -246,7 +257,9 @@ class ModuleRecord extends CActiveRecord
 
 	protected function afterDelete(){
 		parent::afterDelete();
-		$this->logDel();
+		if ($this->isLog) {
+			$this->logDel();
+		}		
 	}
 	protected function logDel(){
 		AdminLog::log(Tk::g('Delete').$this->sName);
@@ -288,4 +301,25 @@ class ModuleRecord extends CActiveRecord
 		// Tak::KD($tags);
 		return $tags;
 	}
+
+	public function getLink($itemid=false,$action='view'){
+		if (!$itemid) {
+			$itemid = $this->primaryKey;
+		}		
+		$link = Yii::app()->createUrl(strtolower($this->mName).'/'.$action,array('id'=>$itemid));
+		return $link;
+	}		
+	public function getHtmlLink($name=false,$itemid=false,$htmlOptions=array(),$action='view')
+	{
+		if (!$name&&$this->linkName!==null) {
+			$name = $this->{$this->linkName};
+		}
+		$link = CHtml::link($name, $this->getLink($itemid,$action),$htmlOptions);
+		return $link;
+	}
+	public function getHtmlPreviewLink($name=false,$itemid=false,$htmlOptions=array()){
+		$link = $this->getHtmlLink($name,$itemid,$htmlOptions,'preview');
+		return $link;
+	}
+
 }	

@@ -2,6 +2,7 @@
 class Clientele extends ModuleRecord
 {
 	
+	protected $linkName = 'clientele_name'; /*连接的显示的字段名字*/
 	/**
 	 * @return string 数据表名字
 	 */
@@ -122,21 +123,4 @@ class Clientele extends ModuleRecord
 	{
 		return parent::model($className);
 	}	
-
-	public function getLink($itemid=false){
-		if (!$itemid) {
-			$itemid = $this->itemid;
-		}		
-		$link = Yii::app()->createUrl('clientele/view',array('id'=>$itemid));
-		return $link;
-	}	
-
-	public function getHtmlLink($name=false,$itemid=false)
-	{
-		if (!$name) {
-			$name = $this->clientele_name;
-		}
-		$link = CHtml::link($name, $this->getLink($itemid));
-		return $link;
-	}
 }

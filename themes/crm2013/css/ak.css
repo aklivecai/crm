@@ -87,12 +87,14 @@ ul.yiiPager .first, ul.yiiPager .last {
     text-indent: 2em;
 }
 
-.grid-view  .pagination {
+.list-view .pagination,
+.grid-view .pagination {
   margin:0;
-  padding: 5px 5px;
+  padding: 5px;
   text-align: right;
   float: right;
  }
+
  .grid-view .maxw-title{
     max-width: 80px;
  }
@@ -186,4 +188,41 @@ ul.yiiPager .first, ul.yiiPager .last {
 .span2 .nav-list > .active > a
 ,.span2 .nav-list .nav-header{
     margin-right: 0;
+}
+
+
+input[type=date]{
+  width:85px\0;  
+}
+
+.stor-date{
+  width:80px;
+}
+.stor-txt{
+  width:90%;
+}
+
+.nav-list > li > a, .nav-list .nav-header{
+  margin-left:0;
+  margin-right:0;
+}
+
+.wrapper  input.error{
+  border:1px solid red;
+}
+
+.nav-tabs{
+  margin:0;
+}
+.tab-content{
+  background-color: #fff;
+  border:1px solid #DDD;
+  border-top:0;
+  height: auto !important;
+  min-height: 250px;
+  padding:8px;
+}
+
+.not-mpr input{
+  margin:0;
 }

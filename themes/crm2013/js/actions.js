@@ -7,6 +7,7 @@ var log = function(msg){
     console.log(msg);
 }
 
+
 //用于动态生成网址
 //$route,$params=array(),$ampersand='&'
 function createUrl(route)
@@ -61,7 +62,7 @@ function dateFormat(date, format) {
 }        
 jQuery(function($){
 
-        // 颜色插件
+        /*## 颜色插件*/
         var localization = $.spectrum.localization["cn"] = {
             cancelText: "取消",
             chooseText: "选择",
@@ -76,9 +77,9 @@ jQuery(function($){
                 '#FF8000', '#488026'],
                 ['red', 'yellow', 'green', 'blue', 'violet']
             ]
-        });          
+        });
 
-
+        /*## 日历*/
         $.datepicker.regional['zh-CN'] = {
                 closeText: '关闭',
                 prevText: '<上月',
@@ -102,7 +103,6 @@ jQuery(function($){
 var tselect = function(){
     var clientele = $(".sele1ct-clientele,#list-grid input[name*='[clienteleid]']")
     , prson = $(".sele1ct-prsonid,#list-grid input[name='Contact[prsonid]']")
-    , page_limit = 20
     , page_limit = 20
     ,  movieFormatSelection = function(obj) {
         return obj.clientele_name;
@@ -169,11 +169,10 @@ var tselect = function(){
             // formatNoMatches: function () { return "Nessun risultato trovato!";},
             // formatSearching: function () { return "Ricerco.."; },
             escapeMarkup: function (m) { return m; } 
-        });    
+        });
         
         if (prson.length>0) {
             (function(){
-
              prson.select2({
                     placeholder: "搜索联系人",
                     allowClear: true,//显示取消按钮
@@ -221,30 +220,79 @@ var tselect = function(){
                     formatSelection: function(obj){ return obj.nicename},
                     dropdownCssClass: "bigdrop",
                 });    
-            clientele.on("change", function(e) { 
-                prson.select2('val','');
-            }) 
+                clientele.on("change", function(e) { 
+                    prson.select2('val','');
+                }) 
             })()
         };      
 } 
 
 $('#list-grid,body').on('takLoad',function(){
-    tselect();        
+    tselect();
 });
 tselect();
+
+    $('[data-preview]').on('click',function(){
+        window.open ($(this).attr('data-preview'), 'preview', 'height=350, width=450, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no') //这句要写成一行
+    })
 
 });
 
 $(document).ready(function(){
-    $('li .delete').on('click',function(){
+
+$('#btn-affirm').on('click',function(event){
+    if (!confirm("操作后不可以修改。\n是否"+$(this).text()+'?')) {
+         event.preventDefault();
+    }
+})
+    
+    $('body li a.delete').on('click',function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;
     });
 
-    $('.icon-remove').on('click',function(){
+    $('a.icon-remove').on('click',function(){
         if(!confirm('你确定要彻底删除这个信息吗?')) return false;
     });
 
-    var listDate = $('.type-date');
+    if (!Modernizr.input.required) {
+        $('form').on('submit',function(event){
+            var t = $(this)
+            , list = t.find('input[required]')
+            , errorElem = false
+            ;
+            if (list.length>0) {
+                list.each(function(i,elem){
+                    if($(elem).val()==''){
+                        $(elem).addClass('error');
+                        if (!errorElem) {
+                            errorElem = $(elem);
+                        };
+                    }else{
+                        $(elem).removeClass('error');
+                    }
+                });
+
+                if (errorElem) {
+                    event.preventDefault();
+                    errorElem.onfocus();
+                };
+            }
+            return true;
+        })
+    }
+
+    if (!Modernizr.inputtypes.date) {
+        $('input[type=date]').each(function(i,elem){
+            if ($(elem).val()==0) {
+                $(elem).val('');
+            };
+          $(elem).on('focus',function(){
+            WdatePicker({minDate:'%y-%M-{%d+0}'});
+          });
+        })
+    };
+
+  var listDate = $('.type-date');
   if (listDate.length>0) {
         listDate.each(function(){
             var t = $(this)
@@ -252,7 +300,6 @@ $(document).ready(function(){
               , maxDate = t.attr('name').indexOf('start')>0?'#F{$dp.$D(\'Events_end_time\')}':''
               , minDate = t.attr('name').indexOf('end')>0?'#F{$dp.$D(\'Events_start_time\')}':''
              ;
-             log(maxDate);
              v = t.val();
              if (v>0) {
                 t.val(dateFormat(date, 'yyyy-MM-dd hh:mm:ss'));   
@@ -270,7 +317,7 @@ $(document).ready(function(){
             })
             });
         });
-  };    
+  };  
 
 
    var  afterDelete = function(){}

@@ -195,7 +195,7 @@ $this->widget('application.components.MyMenu',array(
 	'columns'=>array(
 		// array('class'=>'CCheckBoxColumn','name'=>'manageid','id'=>'select'), 	
 		Tak::getAdminPageCol(array(
-			  'template'=>'<span>{vrights}</span> | {view} {update} {delete} '
+			  'template'=>'<span>{vrights}</span> | {view} {update}'
 			  ,'buttons'=>array(
 					'vrights' => array
 					(

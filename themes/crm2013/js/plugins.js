@@ -82,7 +82,19 @@ editable: true,
                                 },
                                 success: function(data) {
                                     if (data!='') {
-                                        calendar.resetElement();
+                                     var _url = createUrl('events/view',['id='+data]) 
+                                    calendar.fullCalendar('renderEvent',
+                                        {
+                                            title: title,
+                                            start: start,
+                                            end: end,
+                                            url: _url,
+                                            allDay: allDay
+                                        },
+                                        true // make the event "stick"
+                                    );
+
+                                        // calendar.resetElement();
                                     };
                                 }
                             });                            
@@ -96,8 +108,8 @@ eventClick: function(calEvent, jsEvent, view) {
         str+=('Event: ' + calEvent.title);
         str+=('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
         str+=('View: ' + view.name);
-        console.log(str);
-        console.log(calEvent);
+        // console.log(str);
+        // console.log(calEvent);
         // change the border color just for fun
         $(this).css('border-color', 'red');
         $('#calendar').fullCalendar('updateEvent', event);
@@ -112,7 +124,7 @@ eventClick: function(calEvent, jsEvent, view) {
             dayDelta + " days and " +
             minuteDelta + " minutes."
         );
-        log(this);
+        // log(this);
 
         if (allDay) {
             console.log("Event is now all-day");
@@ -120,8 +132,42 @@ eventClick: function(calEvent, jsEvent, view) {
             console.log("Event has a time-of-day");
         }
 
-        if (!confirm("Are you sure about this change?")) {
-            revertFunc();
+        if (!confirm("是否确认移动?")) {
+               revertFunc();
+               return ;
+                            var postData = [];
+                            postData.push('Events[subject]='+title);
+                            postData.push('Events[start_time]='+Math.round(start.getTime() / 1000));
+                            postData.push('Events[end_time]='+Math.round(end.getTime() / 1000));
+                            postData.push('getItemid=1');
+                        $.ajax({
+                                type: "POST",
+                                url:createUrl('events/update'),
+                                data:postData.join('&'),
+                                async: false,
+                                error: function(request) {
+                                    console.log(request);
+                                    // alert("系统异常!");
+                                },
+                                success: function(data) {
+                                    if (data!='') {
+                                     var _url = createUrl('events/view',['id='+data]) 
+                                    calendar.fullCalendar('renderEvent',
+                                        {
+                                            title: title,
+                                            start: start,
+                                            end: end,
+                                            url: _url,
+                                            allDay: allDay
+                                        },
+                                        true // make the event "stick"
+                                    );
+
+                                        calendar.resetElement();
+                                    };
+                                }
+                            });              
+         
         }
 
     }

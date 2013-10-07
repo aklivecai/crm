@@ -28,26 +28,29 @@ class Controller extends RController
 	public $isAjax = false;
 
 	protected $dir = false;
-	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view');
+	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view','index'=>'index','preview'=>'_view','print'=>'print');
 
 	public function init()  
 	{     
     	parent::init();   
     	$this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
-			 $this->layout = '//layouts/columnAjax';
+			 $this->_setLayout('//layouts/columnAjax');
 			Yii::app()->clientScript->enableJavaScript = false;
 		}else{
 			// Yii::app()->bootstrap->register();
 		}
-			if ($this->dir) {
-				$templates = $this->templates;
-				foreach ($templates as $key => $value) {
-					$templates[$key] = $this->dir.$value;
-				}				
-				$this->templates = $templates;
-			}		
-
+		if ($this->dir) {
+			$templates = $this->templates;
+			foreach ($templates as $key => $value) {
+				$templates[$key] = $this->dir.$value;
+			}				
+			$this->templates = $templates;
+		}
+	}	
+	protected function _setLayout($layout='column2')
+	{
+		$this->layout = $layout;
 	}	
 	public function afterRender($view, &$output){
 		if ($this->isAjax) {
@@ -121,7 +124,10 @@ class Controller extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='manage-form')
+
+		$_tname = strtolower($this->modelName.'-form');
+
+		if(isset($_POST['ajax']) && $_POST['ajax']===$_tname)
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -141,8 +147,33 @@ class Controller extends RController
 
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+		$this->render($this->templates['view'],array(
+			'model' => $this->loadModel($id),
+		));
+	}	
+	public function actionPreview($id)
+	{
+		$this->_setLayout('//layouts/columnPreview');
+		$this->render($this->templates['preview'],array(
+			'model' => $this->loadModel($id),
+		));
+	}	
+
+	public function actionIndex()
+	{
+		$criteria=new CDbCriteria(array(
+			'condition'=>'1=1',
+			'order'=>'modified_time DESC',
+		));
+		$dataProvider=new CActiveDataProvider($this->modelName, array(
+			'pagination' => array(
+				'pageSize' => Yii::app()->params['defaultPageSize'],
+			),
+			'criteria'=>$criteria,
+		));
+
+		$this->render($this->templates['index'],array(
+			'dataProvider'=>$dataProvider,
 		));
 	}	
 
@@ -222,9 +253,9 @@ class Controller extends RController
 	public function actionRestore($id)
 	{
 		$model = $this->loadModel($id,true);
+		$model->setRestore();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$model->setRestore();
 		$this->redirect(array('recycle'));
 	}	
 
@@ -255,5 +286,30 @@ class Controller extends RController
 		echo($str);
 		exit;
 	}
+	
+	public function actionPrint($id){
+		$this->layout = '//layouts/colummPrint';
+		$this->render($this->templates['print'],array(
+			'model'=> $this->loadModel($id),
+		));		
+	}
+
+	public function actionSelectById($id=false){
+		if (!is_numeric($id)) {
+			$message = Tk::g('Illegal operation');
+			throw new CHttpException(403, $message);
+			exit;
+		}
+		$m = $this->modelName;
+		$msg = $m::model()->find(array(
+		    'condition'=>$this->primaryName.'=:itemid',
+		    'params'=>array(':itemid'=>$id),
+		));
+		if ($msg!=null) {
+			$str = json_encode($msg->attributes);
+			$this->writeData('{data:['.$str.']}');
+		}
+	}
 
 }
+

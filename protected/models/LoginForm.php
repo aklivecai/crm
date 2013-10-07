@@ -20,7 +20,9 @@ class LoginForm extends CFormModel
 	public function __construct($fromid='')
 	{
 		parent::__construct();
-		$this->fromid = $fromid;
+		if ($fromid!='') {
+			$this->fromid = $fromid;
+		}		
 		$this->iCrypt = new TakCrypt();
 	}	
 
@@ -62,6 +64,7 @@ class LoginForm extends CFormModel
 			'username'=>'登录帐号',
 			'password'=>'登录密码',
 			'rememberMe'=>'保存密码',
+			'fromid'=>'商铺编号',
 		);
 	}
 

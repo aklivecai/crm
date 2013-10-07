@@ -3,7 +3,7 @@
 /* @var $model AdminLog */
 
 $this->breadcrumbs=array(
-	'Admin Logs'=>array('index'),
+	Tk::g('AdminLog')=>array('admin'),
 	$model->itemid,
 );
 

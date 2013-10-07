@@ -7,22 +7,7 @@ class ContactpPrsonController extends Controller
     	parent::init();
     	$this->modelName = 'ContactpPrson';
 	}
-	public function actionSelectById($id=false){
-		if (!is_numeric($id)) {
-			$message = Tk::g('Illegal operation');
-			throw new CHttpException(403, $message);
-			exit;
-		}
-		$msg = ContactpPrson::model()->find(array(
-		    'condition'=>'itemid=:itemid',
-		    'params'=>array(':itemid'=>$id),
-		));
-		if ($msg!=null) {
-			$str = json_encode($msg->attributes);
-			$this->writeData('{data:['.$str.']}');
-		}
-		
-	}
+
 
 	public function actionSelect(){
 		 $pageSize = Yii::app()->request->getQuery('page_limit',10);

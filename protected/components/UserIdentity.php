@@ -43,7 +43,7 @@ class UserIdentity extends CUserIdentity
 				$this->_id=$user->manageid;
 				$this->username = $user->user_name;
 				//记录平台会员编号
-				$this->setState('last_login_time', Tak::timetodate($user->last_login_time));
+				$this->setState('last_login_time', Tak::timetodate($user->last_login_time,6));
 				$this->setState('fromid', $user->fromid);
 				$this->errorCode=self::ERROR_NONE;
 

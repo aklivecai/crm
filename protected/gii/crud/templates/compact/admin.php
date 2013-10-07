@@ -11,7 +11,7 @@
 <?php
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
-	Tk::g('$label')=>array('admin'),
+	Tk::g(\$model->sName)=>array('admin'),
 	Tk::g('Admin'),
 );\n";
 ?>

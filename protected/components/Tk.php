@@ -21,6 +21,7 @@ class Tk
 				$str.= Yii::t(''.$category, $value, $params, $source, $language);
 			}
 		}else{
+			$message = trim($message);
 			$str = Yii::t(''.$category, $message, $params, $source, $language);
 		}
 		return $str;

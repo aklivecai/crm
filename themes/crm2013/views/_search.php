@@ -8,19 +8,29 @@
 <?php 
 $sdata = Tak::searchData();
 
-$scol = !isset($scol)?$scol:'add_time';
+
+$scol = !isset($scol)&&$scol!=''?$scol:'add_time';
 if ($condition) {
 	$scol = 'modified_time';
 }
-$items = array(
-	array('label'=>'全部', 'url'=>Yii::app()->createUrl($this->route))
-);
 
 $isactive = isset($_GET['col'])&&isset($_GET['dt'])?$_GET['dt']:false;
 
+$items = array(
+	array('label'=>'全部', 'url'=>Yii::app()->createUrl($this->route),'active'=>!$isactive)
+);
+
+
+
 foreach ($sdata as $key => $value) {
 	$items[$key] =  array('label'=>$value['name'], 'url'=>$url = Yii::app()->createUrl($this->route,array('col'=>$scol,'dt'=>$key)));
-	$isactive&&$isactive==$key&&isset($sdata[$isactive])&&$items[$key]['active']=true;
+	if($isactive&&$isactive==$key&&isset($sdata[$isactive])){
+		$items[$key]['active'] = true;
+		$isactive = 0;
+	}
+}
+if (is_numeric($isactive)&&$isactive!=0) {
+	$items[0]['active'] = true; 
 }
 
 if (isset($subItems)&&is_array($subItems)) {

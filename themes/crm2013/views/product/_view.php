@@ -1,0 +1,13 @@
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+	'data'=>$model,
+	'attributes'=>array(
+		'name',
+		'iType.typename',
+		'material',
+		'spec',
+		'unit',
+		'note',
+		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
+		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time,6),),
+	),
+)); ?>

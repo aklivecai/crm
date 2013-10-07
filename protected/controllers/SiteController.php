@@ -74,7 +74,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogin($itemid=false)
 	{
-		$arr = array(1,2,3,4,5);
+		$arr = array(2,3,4,5);
 
 		/*已经s登录，返回上一页，没有就首页*/
 		if (!Yii::app()->user->isGuest) {
@@ -84,14 +84,13 @@ class SiteController extends Controller
 			$arr[Tak::setCryptKey($value)] = $value;
 			unset($arr[$key]);
 		}
-		$itemid = $_POST['fromid']?$_POST['fromid']:$_GET['fromid'];
 		/*没有传递itemid 得报错。调试默认*/
 		if (!$itemid) {
 			$itemid = Tak::setCryptKey(2);
-			$this->redirect(array('login','fromid'=>$itemid));
+			$this->redirect(array('login','itemid'=>$itemid));
 		}       
 
-		$model = new LoginForm($itemid);
+		$model = new LoginForm();
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
 			echo CActiveForm::validate($model);
@@ -133,19 +132,22 @@ class SiteController extends Controller
 	public function actionChangepwd()
 	{
 		$this->_setLayout();
-		$m = 'Manage';
-		$model = $m::model()->findByPk(Tak::getManageid());
+		$model = new PasswdModifyForm();
+		$m = 'PasswdModifyForm';
+		$modifySuccess = false;
 		if(isset($_POST[$m]))
 		{
-			
-			$_POST[$m]['user_name'] = $model->user_name;
 			$model->attributes = $_POST[$m];
-
-			if($model->save())
-				$this->redirect(array('changepwd'));
+			if($model->save()){
+                $model->oldPasswd="";
+                $model->passwd = "";
+                $model->passwdConfirm="";
+                Tak::msg('','修改密码成功！');
+			}
 		}
 		$this->render('changepwd',array(
-			'model'=>$model,
+			'model' => $model,
+			'modifySuccess' =>$modifySuccess,
 		));
 	}
 	
