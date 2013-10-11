@@ -13,7 +13,7 @@ return array(
 	'basePath'=>$tshiPatch.DIRECTORY_SEPARATOR.'..',
 	// 语言包
 	'language'=>'zh_cn', 
-	'name'=>'具人同行 在线 CRM 测试',
+	'name'=>'具人同行在线营销管理系统',
 	 'timeZone' => 'Asia/Shanghai',
     'defaultController'=>'site',
 
@@ -28,7 +28,6 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-
 
 		// 调试的拓展
 		'application.extensions.debugtoolbar.*',
@@ -58,9 +57,7 @@ return array(
                 'bootstrap.gii',
             ),
 		),
-		'Admin' => array(
-			'class' => 'application.modules.Admin.AdminModule'
-		),
+		'juren',
 
 	    'rights' => array(  
 	        'debug' => false,  

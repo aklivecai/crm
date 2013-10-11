@@ -19,17 +19,12 @@
 
 <div class="head clearfix">
 	<i class="isw-documents"></i> <h1><?php echo Tk::g(array('Clientele',$action));?></h1>
-	<ul class="buttons">
-	    <li>
-	        <a href="#" class="isw-settings"></a>
-		<?php 
-			$this->widget('application.components.MyMenu',array(
-	          'htmlOptions'=>array('class'=>'dd-list'),
-	          'items'=> $items ,
-	    	));
-		?>
-	    </li>
-	</ul>       
+<?php 
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'buttons'),
+      'items'=> $items ,
+));
+?>         
 </div>
 <div class="block-fluid">
 	<div class="row-form clearfix" style="border-top-width: 0px;">

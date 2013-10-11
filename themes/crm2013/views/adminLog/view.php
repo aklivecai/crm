@@ -18,12 +18,11 @@ $this->menu=array(
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'itemid',
 		'fromid',
 		'user_name',
 		'qstring',
 		'info',
-		'ip',
-		'add_time',
+		array('name'=>'ip', 'value'=>Tak::Num2IP($model->ip),),
+		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
 	),
 )); ?>

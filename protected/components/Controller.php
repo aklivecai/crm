@@ -13,6 +13,7 @@ class Controller extends RController
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
+
 	public $menu = array();
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
@@ -26,6 +27,8 @@ class Controller extends RController
 	public $modelName = '';
 
 	public $isAjax = false;
+
+	public $returnUrl = null;
 
 	protected $dir = false;
 	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view','index'=>'index','preview'=>'_view','print'=>'print');
@@ -47,6 +50,8 @@ class Controller extends RController
 			}				
 			$this->templates = $templates;
 		}
+
+		$this->returnUrl = Yii::app()->request->getParam('returnUrl',null);
 	}	
 	protected function _setLayout($layout='column2')
 	{
@@ -181,20 +186,22 @@ class Controller extends RController
 	{
 		$this->loadModel($id)->del();
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($this->returnUrl) ? $this->returnUrl : array('admin'));
 	}	
 
 	public function actionCreate()
 	{
 		$m = $this->modelName;
 		$model = new $m;
+
 		if(isset($_POST[$m]))
 		{
 
 			$model->attributes=$_POST[$m];
 			if($model->save()){
-				$returnUrl = $_POST['returnUrl'];
-				if (!$returnUrl) {
+				if ($this->returnUrl) {
+					$this->redirect($this->returnUrl);
+				}else{
 					if ($this->isAjax) {
 						if ($_POST['getItemid']) {
 							echo $model->primaryKey;
@@ -202,17 +209,18 @@ class Controller extends RController
 						}
 					}else{
 						$this->redirect(array('view','id'=>$model->primaryKey));
-					}
-				}else{
-					$this->redirect($returnUrl);
+					}					
 				}				
 			}
 		}elseif(isset($_GET[$m])){
 			$model->attributes = $_GET[$m] ;
 		}
+
+
 		$this->render($this->templates['create'],array(
-			'model'=>$model,
+			'model' => $model,
 		));
+
 	}
 
 	public function actionUpdate($id)
@@ -227,8 +235,9 @@ class Controller extends RController
 		{
 			$model->attributes=$_POST[$m];
 
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->primaryKey));
+			if($model->save()){
+				$this->redirect($this->returnUrl?$this->returnUrl:array('view','id'=>$model->primaryKey));
+			}
 		}
 		$this->render($this->templates['update'],array(
 			'model'=>$model,
@@ -254,8 +263,6 @@ class Controller extends RController
 	{
 		$model = $this->loadModel($id,true);
 		$model->setRestore();
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 		$this->redirect(array('recycle'));
 	}	
 
@@ -309,6 +316,12 @@ class Controller extends RController
 			$str = json_encode($msg->attributes);
 			$this->writeData('{data:['.$str.']}');
 		}
+	}
+	protected function errorE($msg='非法操作'){
+		$this->error(202,$msg);
+	}
+	protected function error($code=404,$msg='所请求的页面不存在。'){
+		throw new CHttpException($code,$msg);
 	}
 
 }

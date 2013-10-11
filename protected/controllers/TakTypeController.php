@@ -63,6 +63,9 @@ class TakTypeController extends Controller
 			$model = new $m;
 			$model->item = $this->type['type'];
 		}
+		if (Yii::app()->request->getParam('returnUrl',false)) {
+			$this->typeUrl = $returnUrl = Yii::app()->request->getParam('returnUrl');
+		}
 		if(isset($_POST[$m]))
 		{
 
@@ -90,9 +93,5 @@ class TakTypeController extends Controller
 			'listM'=>$listM,
 			'model'=>$model,
 		));		
-	}
-
-	public function actionUpdate($id){
-
 	}
 }

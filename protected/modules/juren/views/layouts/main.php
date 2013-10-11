@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
+<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<!-- blueprint CSS framework -->
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+	<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+
+<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/WdatePicker.js'></script>
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
+
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/zeroclipboard/ZeroClipboard.js'></script>
+<script type="text/javascript">
+  var CrmPath = '<?php echo Yii::app()->homeUrl;?>';
+    if(CrmPath.indexOf('.php')>0){
+        CrmPath+='?r=';
+    };
+</script>
+</head>
+
+<body>
+
+<div class="container" id="page">
+
+	<div id="header">
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+	</div><!-- header -->
+
+	<div id="mainmenu">
+		<?php 
+		$menus = array(
+				array('label'=>'主页', 'url'=>array('default/index')),
+				array('label'=>Tk::g('Test Memebers'), 'url'=>array('testMemeber/admin')
+				),
+				array('label'=>Tk::g('Test Logs'), 'url'=>array('testLog/admin'))
+			);
+		if (Yii::app()->user->isGuest) {
+			$menus[] = array('label'=>'登录', 'url'=>array('default/login'),);
+		}else{
+			$menus[] = array('label'=>'修改密码', 'url'=>array('default/changepwd'),'linkOptions'=>array('class'=>'changepwd'));
+
+			$menus[] = array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('default/logout'),'linkOptions'=>array('class'=>'logout'));
+
+		}
+		$this->widget('zii.widgets.CMenu',array(
+			'items'=>$menus
+		)); ?>
+	</div><!-- mainmenu -->
+
+	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		'links'=>$this->breadcrumbs,
+	)); ?><!-- breadcrumbs -->
+
+	<?php echo $content; ?>
+	<div id="footer">
+	<?php
+	 echo  Yii::app()->params['copyright'];
+	?>
+		<br/>
+	</div><!-- footer -->
+
+</div><!-- page -->
+
+</body>
+</html>

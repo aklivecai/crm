@@ -78,6 +78,9 @@ class ModuleRecord extends CActiveRecord
 	{
 		$condition = $this->defaultScope(false);
 
+		if (current($condition)=='') {
+			$condition = array();
+		}
 		if (is_string($pcondition)) {
 			$condition[] = $pcondition;
 		}elseif(is_array($pcondition)){
@@ -188,15 +191,25 @@ class ModuleRecord extends CActiveRecord
 	        if ( $this->isNewRecord ){
 	        	if (!$this->primaryKey) {
 	        		$this->setItemid($arr['itemid']);
-	        	}	        	
+	        	}elseif($this->primaryKey==1){
+	        		$this->setItemid(null);
+	        	}
 	        	if ($this->hasAttribute('manageid')) {
 	        		$this->manageid = $arr['manageid'];
+	        	}      	
+	        	if ($this->hasAttribute('fromid')) {
+	        		$this->fromid = $arr['fromid'];
 	        	}
-	        	$this->add_us = $arr['manageid'];
-	        	$this->add_time = $arr['time'];
-	        	$this->add_ip = $arr['ip'];
-	        	$this->fromid = $arr['fromid']; 
-
+	        	if (!$this->add_us) {
+	        		$this->add_us = $arr['manageid'];
+	        	}
+	        	if (!$this->add_time) {
+	        		$this->add_time = $arr['time'];
+	        	}
+	        	if (!$this->add_ip) {
+	        		$this->add_ip = $arr['ip'];
+	        	}
+	        	
 	        }else{
 	        	//修改数据时候
 	        	$this->modified_us = $arr['manageid'];

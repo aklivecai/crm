@@ -18,7 +18,7 @@
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery.mousewheel.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
 
-<!-- <script src='/_ak/js/jq.common.js'></script> -->
+<!-- <script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/jq.common.js'></script> -->
 <!-- 日历 -->
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fullcalendar/fullcalendar.min.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2.min.js'></script>
@@ -36,15 +36,15 @@
 
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/scrollup/jquery.scrollUp.min.js'></script>
 
-<link href="/_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
-<script src='/_ak/js/plugins/datepicker/WdatePicker.js'></script>
-<script src='/_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
+<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/WdatePicker.js'></script>
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
 
-<script src='/_ak/js/plugins/spectrum/spectrum.js'></script>
-<link href="/_ak/js/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/spectrum/spectrum.js'></script>
+<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
 
 
-<script src='/_ak/js/modernizr.js'></script>
+<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/modernizr.js'></script>
 
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/cookies.js'></script>
 <script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
@@ -56,10 +56,7 @@
   Yii::app()->bootstrap->register();
 ?>
 <script type="text/javascript">
-  var CrmPath = '<?php echo Yii::app()->homeUrl;?>';
-    if(CrmPath.indexOf('.php')>0){
-        CrmPath+='?r=';
-    };
+  var CrmPath = '<?php echo Yii::app()->getBaseUrl();?>/';
 </script>
 </head>
 

@@ -14,7 +14,6 @@
  */
 class AdminLog extends CActiveRecord
 {
-	public  $fromid = true;
 	
 	/**
 	 * @return string the associated database table name
@@ -32,7 +31,7 @@ class AdminLog extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('itemid, fromid, user_name', 'required'),
+			array('itemid, manageid,fromid, user_name', 'required'),
 			array('user_name', 'length', 'max'=>60),
 			array('qstring, info', 'length', 'max'=>255),
 			array('add_time', 'length', 'max'=>10),
@@ -62,7 +61,8 @@ class AdminLog extends CActiveRecord
 		return array(
 			'itemid' => '编号',
 			'fromid' => '平台会员',
-			'user_name' => '管理员',
+			'manageid' => '操作人编号',
+			'user_name' => '操作人',
 			'qstring' => '地址',
 			'info' => '描述',
 			'ip' => 'Ip',
@@ -89,7 +89,8 @@ class AdminLog extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('itemid',$this->itemid);
-		$criteria->compare('fromid',$this->fromid,true);
+		$criteria->compare('fromid',$this->fromid);
+		$criteria->compare('manageid',$this->fromid);
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('qstring',$this->qstring,true);
 		$criteria->compare('info',$this->info,true);
@@ -112,10 +113,34 @@ class AdminLog extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function recently($limit=5,$pcondition=false,$order='add_time DESC')
+	{
+		$condition = $this->defaultScope(false);
+
+		if (is_string($pcondition)) {
+			$condition[] = $pcondition;
+		}elseif(is_array($pcondition)){
+			$condition = array_merge_recursive($condition, $pcondition);
+		}
+		$criteria = new CDbCriteria(array(
+	    	'condition' => join(" AND ",$condition),
+	    	'order' => $order
+		));
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		    'pagination'=>array(
+		        'pageSize'=>$limit,
+		    ),
+		));
+	}     	
+
 	//默认继承的搜索条件
-    public function defaultScope()
+    public function defaultScope($isOrder=true)
     {
-    	$arr = array('order'=>'add_time DESC',);
+    	$arr = array();
+    	if ($isOrder) {
+    		$arr['order'] = 'add_time DESC';
+    	}
     	$condition = array('1=1');
     	if (!Tak::getAdmin()) {
     		$condition[] = "fromid='".Tak::getFormid()."'";
@@ -135,6 +160,7 @@ class AdminLog extends CActiveRecord
 		$m->qstring = Yii::app()->request->getUrl(); 
 		$arr = Tak::getOM();
     	$m->fromid =  $arr['fromid'];
+    	$m->manageid =  $arr['manageid'];
     	$m->user_name = Yii::app()->user->name;
     	$m->itemid = $arr['itemid'];
     	$m->add_time = $arr['time'];

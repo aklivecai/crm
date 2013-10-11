@@ -13,6 +13,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 )); ?>
 <?php 
     echo $form->errorSummary($model); 
+
+     $this->widget('bootstrap.widgets.TbAlert', array(
+        'alerts'=>array( // configurations per alert type
+            'info'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+        ),
+    ));
+
 ?>
 <div>
 <?php echo $form->passwordFieldRow($model, 'oldPasswd'); ?>

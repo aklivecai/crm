@@ -3,6 +3,8 @@
 class SiteController extends Controller
 {
 	public $layout='columnPage';
+	public $msg;
+	public $model;
 	public function filters()
 	{
 		return array(
@@ -11,7 +13,7 @@ class SiteController extends Controller
 	}
 	public function allowedActions()
 	{
-	 	return 'login,error';
+	 	return 'init,index,login,error';
 	}
 	/**
 	 * Declares class-based actions.
@@ -42,6 +44,22 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		if (Yii::app()->user->isGuest) {
+			// Tak::KD($_GET);
+			// Tak::KD(current($_GET));
+			// Tak::KD(count($_GET));
+			// Tak::KD($key);
+			$k = key($_GET);
+			$itemid = false;		
+			if ($k) {
+				$itemid = Tak::getCryptNum($k);
+			}
+			if ($itemid) {
+				$this->redirect(array('init','k'=>$k));
+			}else{
+				$this->errorE();
+			}
+		}
 		$this->_setLayout();
 		$this->render('index');
 	}
@@ -51,9 +69,6 @@ class SiteController extends Controller
 		$this->render('help');
 	}
 
-	/**
-	 * This is the action to handle external exceptions.
-	 */
 	public function actionError()
 	{
 
@@ -69,51 +84,112 @@ class SiteController extends Controller
 	}
 
 
-	/**
-	 * Displays the login page
-	 */
-	public function actionLogin($itemid=false)
-	{
-		$arr = array(2,3,4,5);
-
+	private function inits($k){
 		/*已经s登录，返回上一页，没有就首页*/
 		if (!Yii::app()->user->isGuest) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
-		foreach ($arr as $key => $value) {
-			$arr[Tak::setCryptKey($value)] = $value;
-			unset($arr[$key]);
-		}
-		/*没有传递itemid 得报错。调试默认*/
-		if (!$itemid) {
-			$itemid = Tak::setCryptKey(2);
-			$this->redirect(array('login','itemid'=>$itemid));
-		}       
+			$itemid = Tak::getCryptNum($k);
+			$errorInfo = '非法操作！';
+			if ($itemid) {
+				Yii::import('juren.models.TestMemeber');
+				$this->msg = $msg = TestMemeber::model()->getMmeber($itemid); 
+				if (!$msg) {
+					$itemid = false;
+				}else{
+					if ($msg['status']==0) {
+						$itemid = false;
+						$errorInfo = '帐号以禁止登录! 请联系客服 400 0168 488';
+					}else{
+						$active_time = $msg['active_time'];
+						if ($active_time>0) {
+							$time = time();
+							$e1 = mktime(23,59,59,date("m",$active_time),date("d",$active_time)+15,date("Y",$active_time)); 
+							if ($time>$e1) {
+								$itemid = false;
+								$errorInfo = '帐号已过期! 请联系客服 400 0168 488';
+							}elseif($this->getAction()->id!='login') {
+								$this->redirect(array('login','k'=>$k));
+							}
+						}else{
+							if ($this->getAction()->id!='init') {
+								$this->redirect(array('init','k'=>$k));
+							}
+						}
+					}
+				}
+			}
+			if ($itemid) {
+			     $itemid = Tak::setCryptKey($itemid);
+			     return $itemid;
+			}else{
+				$this->errorE($errorInfo);
+			}
+	}
 
-		$model = new LoginForm();
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+	private function setting(){
+		 $list = Setting::model()->getThemes();
+		foreach ($list as $key => $value) {
+			Yii::app()->user->setState($value->item_key, $value->item_value);
+		 }
+	}
+
+	private function setForm($m){
+		$result = isset($_POST[$m]);
+		if($result)
 		{
-			echo CActiveForm::validate($model);
+			$arr = $_POST[$m];
+			$fromid = $arr['fromid'];
+			if ($fromid) {
+				$fromid = Tak::getCryptKey($fromid);
+			}
+			$arr['fromid'] = $fromid;
+			$this->model->attributes = $arr;
+			$result = $this->model->validate();
+		}
+		return $result;
+	}
+
+	public function actionInit($k=false){
+		$itemid = $this->inits($k);
+		$m = 'InitForm';
+		$this->model = new $m();
+		if ($this->setForm($m)) {
+			if($this->model->install()){
+				$model = new LoginForm();
+				$model->attributes = $this->model->attributes;
+			}else{
+				$this->errorE();
+			}
+			if($model->login()){
+				$this->setting();
+				Yii::app()->user->setFlash('info', '激活成功，建议您先修改密码!');
+				$this->redirect(array('site/changepwd'));
+			}			
+		}
+		$this->model->attributes = array('fromid'=>$itemid);
+		$this->render('init',array('model'=>$this->model,'msg'=>$this->msg));
+	}
+
+
+
+	public function actionLogin($k=false)
+	{
+		$itemid = $this->inits($k);
+		$m = 'LoginForm';
+		$this->model = $model = new $m();		
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form'){
+			echo CActiveForm::validate($this->model);
 			Yii::app()->end();
 		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login()){
-				// 读取用户配置信息
-				 $list = Setting::model()->getThemes();
-				 foreach ($list as $key => $value) {
-				 	Yii::app()->user->setState($value->item_key, $value->item_value);
-				 }
-				$this->redirect(Yii::app()->user->returnUrl);
-			}
+		if ($this->setForm($m)&&$model->login()) {
+			$this->setting();
+			$this->redirect(Yii::app()->user->returnUrl);		
 		}
-		// display the login form
-		$this->render('login',array('model'=>$model,'listType'=>$arr));
-	}
+
+		$model->attributes = array('fromid'=>$itemid);
+		$this->render('login',array('model'=>$model,'msg'=>$this->msg));
+	}	
 
 	/**
 	 * Logs out the current user and redirect to homepage.
@@ -125,8 +201,10 @@ class SiteController extends Controller
 		}		
 		// 更新最后活跃时间
 		Manage::model()->upActivkey();
+		$fromid = Tak::getFormid();
+		$fromid = Tak::setCryptNum($fromid);
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		$this->redirect(array('login','k'=>$fromid));
 	}
 
 	public function actionChangepwd()
@@ -172,6 +250,12 @@ class SiteController extends Controller
 		));
 	}
 
+	public function actionOrder(){
+		$this->_setLayout();
+		Yii::app()->user->setFlash('info', '<strong>"订单功能"</strong> 请联系相关业务人员或者 致电400 0168 488');
+		$this->render('page');
+	}
+
 	/**
 	 * 还原数据库
 	 */
@@ -179,7 +263,7 @@ class SiteController extends Controller
 	{
 		$db = Yii::app()->getDb();
 		$schema=file_get_contents(Yii::app()->basePath.'/data/reset.sql');
-		$schema=preg_split("/;\s+/", trim($schema, ';'));
+		$schema= preg_split("/;\s+/", trim($schema, ';'));
 		foreach( $schema as $sql )
 			$db->createCommand($sql)->execute();
 		Yii::app()->user->setFlash('success', 'Database has been restored!');

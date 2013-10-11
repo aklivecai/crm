@@ -8,6 +8,7 @@ class AddressGroupsController extends Controller
     	$this->primaryName = 'address_groups_id';
     	parent::init();
 	}
+	
 	public function actionSortable()
 	{
 		// We only allow sorting via POST request

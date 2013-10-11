@@ -19,23 +19,31 @@
 
 <div class="head clearfix">
 	<i class="isw-documents"></i><h1><?php echo Tk::g(array('Product',$action));?></h1>
-	<ul class="buttons">
-	    <li>
-	        <a href="#" class="isw-settings"></a>
-<?php			$this->widget('application.components.MyMenu',array(
-	          'htmlOptions'=>array('class'=>'dd-list'),
-	          'items'=> $items ,
-	    	));
-		?>
-	    </li>
-	</ul>       
+<?php 
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'buttons'),
+      'items'=> $items ,
+));
+?>      
 </div>
 <div class="block-fluid">
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'name',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 	<div class="row-form clearfix">
-		<?php echo $form->dropDownListRow($model,'typeid',TakType::items('product',true)); ?>
+	<?php 
+		$types = TakType::items('product',true);
+		if (count($types)>0) {
+			echo $form->dropDownListRow($model,'typeid',TakType::items('product',true));
+		}else{
+			$this->widget('bootstrap.widgets.TbButton', array(
+		    'type'=>'primary',
+		    'label'=>'还没有产品分类,点击录入',
+		    'block'=>true,
+		    'url' => Yii::app()->createUrl('takType/admin',array('type'=>'product','returnUrl'=>Yii::app()->request->url)),
+		 )); 
+		}
+	?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'material',array('size'=>60,'maxlength'=>100)); ?>

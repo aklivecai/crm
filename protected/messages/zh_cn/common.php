@@ -15,12 +15,14 @@
  */
 return array (
   ':name assigned.' => ':name 已指派',
+  'Error'=>'错误',
   'Add' => '添加',  
   'Create' => '录入',  
   'Data' => '数据',
   'Delete' => '删除',
   'Description' => '描述',
   'Item' => '项目',
+  'Log' => '日志',
   'Modules' => '模块',
   'Name' => '名称',
   'Remove' => '删除',
@@ -76,6 +78,8 @@ return array (
 
   'bill' => '单',
   'Print' => '打印',
+  'Import' => '导入',
+  'Volume' => '生成',
   'Close' => '关闭',
   'Affirm' => '确认',
 
@@ -86,7 +90,14 @@ return array (
   'Purchase typeid' => '入库方式',
   'Sell typeid' => '出库方式',
   
-
+  'Advanced Search' => '详细搜索',
   'Illegal operation' => '非法操作！', 
   'TakType' => '分类',  
+
+
+  'Test Memebers' => '测试帐号',
+  'TestMemeber' => '测试帐号',
+
+  'Test Logs' => '测试帐号日志',
+  'TestLogs' => '测试帐号日志',
  );

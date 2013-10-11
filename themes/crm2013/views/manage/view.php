@@ -6,15 +6,6 @@ $this->breadcrumbs=array(
 	Tk::g('Manages')=>array('admin'),
 	$model->manageid,
 );
-
-$this->menu=array(
-	array('label'=>'List Manage', 'url'=>array('index')),
-	array('label'=>'Create Manage', 'url'=>array('create')),
-	array('label'=>'Update Manage', ),
-	array('label'=>'Delete Manage', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->manageid),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Manage', 'url'=>array('admin')),
-);
-
 ?>
 <div class="block-fluid">
                <div class="row-fluid">

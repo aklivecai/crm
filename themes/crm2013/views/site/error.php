@@ -4,6 +4,9 @@
         <p class="description"><?php echo CHtml::encode($message); ?></p>        
         <p>
         <?php 
+        if ($code!='202') {
+          # code...
+        
         $url = Yii::app()->request->urlReferrer;
         if ($url) {
         	$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'linkurl', 'label'=>'返回上一页','type'=>'danger','htmlOptions'=>array('href'=>Yii::app()->request->urlReferrer)));
@@ -13,7 +16,11 @@
        $cl = Yii::app()->getClientScript();
         $cl->registerMetaTag("8;url=$url",$name,'refresh');
 	 	$cl->registerScript('1', "setTimeout(function(){ window.location = \"".$url."\";} ,8 * 1000);");
+   }
 
         ?>
         	</p>
+            
+            <hr />
+            <h4><?php echo Yii::app()->params['help'];?></h4>
     </div>

@@ -91,7 +91,7 @@ foreach ($items as $value) {
     <h1>最近联系客户</h1>
     <ul class="buttons">
 <li><a href="<?php echo Yii::app()->createUrl('contactpPrson/create');?>" title="<?php echo Tk::g(array('Create','ContactpPrson'));?>"><i class="isw-plus"></i></a></li>        
-          <li><a href="<?php echo Yii::app()->createUrl('contactpPrson/create');?>" title="全部"><I class="isw-list"></I> </a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('contactpPrson/admin');?>" title="全部"><I class="isw-list"></I> </a></li>
     </ul>
   </div>
   <div class="block news scrollBox">
@@ -117,7 +117,7 @@ foreach ($items as $value) {
         <ul class="dd-list">
           <li><a href="<?php echo Yii::app()->createUrl('contact/create');?>"><span class="isw-list"></span> 全部</a></li>
           <li><a href="<?php echo Yii::app()->createUrl('contact/admin',array('Contact[stage]'=>0));?>"><span class="isw-text_document"></span>初期沟通</a></li>
-          <li><a href="<?php echo Yii::app()->createUrl('contact/admin',array('Contact[stage]'=>3));?>"><span class="isw-text_document"></span> 初期沟通</a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('contact/admin',array('Contact[stage]'=>3));?>"><span class="isw-text_document"></span> 方案定制</a></li>
         </ul>
       </li>
     </ul>

@@ -10,25 +10,14 @@ class LoginForm extends CFormModel
 	public $username;
 	public $password;
 	public $rememberMe;
-
 	public $fromid;
 
 	private $_identity;
 
-	private $iCrypt;
-
-	public function __construct($fromid='')
+	public function __construct()
 	{
 		parent::__construct();
-		if ($fromid!='') {
-			$this->fromid = $fromid;
-		}		
-		$this->iCrypt = new TakCrypt();
 	}	
-
-	public function getFromid(){
-		return $this->iCrypt->decode($this->fromid);
-	}
 
 	/**
 	 * Declares the validation rules.
@@ -50,8 +39,8 @@ class LoginForm extends CFormModel
 
 	public function fromiDecode($attribute,$params)
 	{ 
-		if(!$this->getFromid()){
-			$this->addError('fromid','错误操作！！');
+		if(!$this->fromid){
+			$this->addError('fromid','非法操作！！');
 		}
 	}
 
@@ -74,7 +63,7 @@ class LoginForm extends CFormModel
 	 */
 	public function authenticate($attribute,$params)
 	{
-		$this->_identity=new UserIdentity($this->getFromid(),$this->username,$this->password);
+		$this->_identity=new UserIdentity($this->fromid,$this->username,$this->password);
 		if(!$this->_identity->authenticate()){
 			$str = '帐号或者密码错误！';
 			if($this->_identity->errorCode==8){
@@ -93,7 +82,7 @@ class LoginForm extends CFormModel
 	{
 		if($this->_identity===null)
 		{
-			$this->_identity=new UserIdentity($this->getFromid(),$this->username,$this->password);
+			$this->_identity=new UserIdentity($this->fromid,$this->username,$this->password);
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)

@@ -1,8 +1,13 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle=Yii::app()->name . ' - '.Tk::g('Login');
 $this->breadcrumbs=array(
-	'Login',
+	Tk::g('Login'),
 );
+
+Yii::app()->user->setFlash('info', '<strong>'.$msg['company'].'</strong> <br />欢迎使用 '.Yii::app()->name);
+
+Yii::app()->user->setFlash('warning', Yii::app()->params['help']);
+
 ?>      
 
 <div class="container">
@@ -19,13 +24,18 @@ $this->breadcrumbs=array(
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'verticalForm',
     'htmlOptions'=>array('class'=>'well'),
-)); ?>
+));
 
-<?php 
-	echo $form->dropDownListRow($model, 'fromid',$listType); 
-// echo $formid;
-?>
+ $this->widget('bootstrap.widgets.TbAlert', array(
+        'alerts'=>array( // configurations per alert type
+            'info'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+        ),
+    ));
+ ?>
 
+
+
+<?php echo $form->hiddenField($model,'fromid'); ?>
 <?php echo $form->textFieldRow($model, 'username', array('class'=>'span3','autofocus'=>'autofocus')); ?>
 <?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>
 <?php echo $form->checkboxRow($model, 'rememberMe'); ?>
@@ -33,5 +43,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 
 <?php $this->endWidget(); ?>
+<?php $this->widget('bootstrap.widgets.TbAlert', array(
+        'alerts'=>array( // configurations per alert type
+            'warning'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+        ),
+    ));
+   ?>
 </div>
 </div>

@@ -79,7 +79,7 @@ $this->breadcrumbs=array(
 	 'action'=>$model->getEidtLink(),  
 )); ?>
 <?php echo $form->errorSummary($model); ?>
-<input type="hidden" name="returnUrl" value="<?php echo $this->typeUrl ?>" />
+<?php echo CHtml::hiddenField('returnUrl', $this->typeUrl);?>
 <?php echo $form->hiddenField($model,'item'); ?>
 <?php echo $form->textFieldRow($model,'typename',array('size'=>60,'maxlength'=>255)); ?>
 <?php echo $form->textFieldRow($model,'listorder',array('size'=>60,'maxlength'=>255)); ?>

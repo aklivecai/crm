@@ -11,9 +11,6 @@
 <div class="row-fluid" id="assignments">
 <div class="head clearfix">
     <i class="isw-documents"></i> <h1><?php echo Tk::g(array('Update'));?></h1>
-<ul class="buttons">
-    <li>
-        <a href="#" class="isw-settings"></a>
 <?php
  $items = array();
 if ($model->isNewRecord) {
@@ -35,13 +32,11 @@ array_push($items
     )
 );
 
-    $this->widget('application.components.MyMenu',array(
-          'htmlOptions'=>array('class'=>'dd-list'),
-          'items'=> $items ,
-    ));
-?>
-    </li>
-</ul>       
+$this->widget('application.components.MyMenu',array(
+      'htmlOptions'=>array('class'=>'buttons'),
+      'items'=> $items ,
+));
+?>  
 </div>
 <div class="block-fluid clearfix">
 	<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(

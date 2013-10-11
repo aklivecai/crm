@@ -52,7 +52,7 @@ class TakType extends CActiveRecord
 		,'isok' => array('1'=>'是','0'=>'否')
 		,'display' => array('1'=>'公共','0'=>'私有')
 		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
-		,'priority' => array('0'=>'底','1'=>'中','2'=>'高')
+		,'priority' => array('0'=>'低','1'=>'中','2'=>'高')
 		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100)
 
 		,'label' => array('0'=>'','1'=>'label-success','2'=>'label-warning','3'=>'label-important','4'=>'label-info','5'=>'label-inverse')

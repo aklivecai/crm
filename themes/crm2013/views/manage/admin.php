@@ -14,28 +14,10 @@ $items = array(
       'label'=>Tk::g('Create'),
     )    
     ,array(
-      'icon' =>'isw-edit',
-      'url' => '#',
-      'label'=>Tk::g('Update'),
-      'linkOptions'=>array('class'=>'edit'),
-    )    
-    ,array(
-      'icon' =>'isw-delete',
-      'url' => '#',
-      'label'=>Tk::g('Delete'),
-      'linkOptions'=>array('class'=>'delete-select','submit'=>array('click'=>"$.fn.yiiGridView.update('menu-grid');")),
-    )
-    ,array(
       'icon' =>'isw-user',
       'url' => array('/rights/'),
       'label'=>'权限管理',
-    )
-    ,array(
-      'icon' =>'isw-refresh',
-      'url' => Yii::app()->request->url,
-      'label'=>Tk::g('Refresh'),
-      'linkOptions'=>array('class'=>'refresh'),
-    )    
+    ) 
 );
 ?>
 
@@ -44,12 +26,6 @@ $items = array(
 )); ?>
 	<!--[if !IE]><!-->
 	<style>
-	
-	/* 
-	Max width before this PARTICULAR table gets nasty
-	This query will take effect for any screen smaller than 760px
-	and also iPads specifically.
-	*/
 	@media 
 	only screen and (max-width: 500px),
 	(min-device-width: 568px) and (max-device-width: 1024px)  {
@@ -155,17 +131,14 @@ $items = array(
 	<div class="head clearfix">
         <div class="isw-grid"></div>
         <h1>员工信息</h1>   
-<ul class="buttons">
-    <li>
-        <a href="#" class="isw-settings"></a>
 <?php 
 $this->widget('application.components.MyMenu',array(
-      'htmlOptions'=>array('class'=>'dd-list'),
+      'htmlOptions'=>array('class'=>'buttons'),
       'items'=> $items ,
 ));
-?>      
-    </li>
-</ul>                                    
+
+?>                    
+
     </div>
 		<div class="block-fluid clearfix">
 <?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(

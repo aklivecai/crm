@@ -14,17 +14,12 @@ $items = Tak::getListMenu();
 	<div class="head clearfix">
         <div class="isw-grid"></div>
         <h1><?php echo Tk::g('ContactpPrson')?></h1>   
-		<ul class="buttons">
-		    <li>
-		        <a href="#" class="isw-settings"></a>
-<?php 
-				$this->widget('application.components.MyMenu',array(
-				      'htmlOptions'=>array('class'=>'dd-list'),
-				      'items'=> $items ,
-				));
-			?>      
-		    </li>
-		</ul>                                    
+		<?php 
+		$this->widget('application.components.MyMenu',array(
+		      'htmlOptions'=>array('class'=>'buttons'),
+		      'items'=> $items ,
+		));
+		?>                                       
 	</div>	
 
 	<div class="block-fluid clearfix">
@@ -63,12 +58,7 @@ $items = Tak::getListMenu();
 			'value'=>'$data->iClientele->clientele_name',
 			'htmlOptions'=>array('style'=>'width: 80px'),
 		)
-		,array(
-			'name'=>'phone',
-			'type'=>'raw',
-            'filter' => false,
-            'sortable' => false,
-		)
+
 		,array(
 			'name'=>'mobile',
 			'type'=>'raw',
@@ -100,6 +90,13 @@ $items = Tak::getListMenu();
 			'value'=>'Tak::timetodate($data->last_time,4)',
             'filter' => false
 		)	
+/*	
+		,array(
+			'name'=>'phone',
+			'type'=>'raw',
+            'filter' => false,
+            'sortable' => false,
+		)		
 		,array(
 			'name' => 'sex',
 			'htmlOptions'=>array('style'=>'width: 40px'),
@@ -108,6 +105,7 @@ $items = Tak::getListMenu();
 			'filter'=>false,
             'sortable' => false,
 		)
+*/		
 	),
 )); 
 ?>

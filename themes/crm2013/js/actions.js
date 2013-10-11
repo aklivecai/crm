@@ -23,7 +23,8 @@ function createUrl(route)
         return CrmPath;
     }
 
-    var url = CrmPath + (CrmPath.indexOf('?')>0?'':'?');
+    // var url = CrmPath + (CrmPath.indexOf('?')>0?'':'?');
+    var url = CrmPath;
     url += route;
     if (params.length>0) {
         url += ampersand+params.join(ampersand);
@@ -166,7 +167,10 @@ var tselect = function(){
             formatResult:movieFormatResult,
             formatSelection: movieFormatSelection,
             dropdownCssClass: "bigdrop",
-            // formatNoMatches: function () { return "Nessun risultato trovato!";},
+             // formatNoMatches: function () { 
+                // log($(this));
+                // return "Nessun risultato trovato!";
+            // },
             // formatSearching: function () { return "Ricerco.."; },
             escapeMarkup: function (m) { return m; } 
         });

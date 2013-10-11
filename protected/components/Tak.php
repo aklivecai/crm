@@ -32,14 +32,73 @@ class Tak {
         }
         return  $result;
     }
+
+    //随机数
+   public static function createCode($codelen=4) {
+        $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789'; //随机因子
+        $_len = strlen($charset)-1;
+        $code = '';
+        for ($i=0;$i<$codelen;$i++) {
+                $code .= $charset[mt_rand(0,$_len)];
+        }
+        return $code;
+    }    
     public static function formatNumber($num){
         $result = number_format($num,0,'',',');
         return $result;
     }
+
+    public static function setCryptNum($str){
+        $result = is_numeric($str);
+        if ($result) {
+            $result = base_convert($str, 10, 36);
+                $arr = str_split($result);
+                $length = count($arr);
+                $str1 = self::createCode(1);
+                $strb = $arr[$length-1];
+                $arr[$length] = $strb;
+                $arr[$length-1] = $str1;
+            $result = join($arr);
+            $result = strtoupper($result);
+        }
+        return $result;
+    }
+
+    public static function getCryptNum($str){
+        // $result = !is_numeric($str)?strtolower($str):false;
+        $result = strtolower($str);
+        if ($result) {
+            // self::KD($result);
+                $arr = str_split($result);
+                $length = count($arr)-1;
+                $arr[$length-1] = $arr[$length];
+                unset($arr[$length]);
+            $result = join($arr);
+// self::KD($result);
+            $result = base_convert($result, 36, 10);
+            if (!is_numeric($result)) {
+                $result = false;;
+            }
+            // self::KD($result,1);
+        }
+        return $result;
+    }
+
+    public static function getRandTime(){
+     //新时间截定义,基于世界未日2012-12-21的时间戳。 
+        $endtime=1356019200;//2012-12-21时间戳 
+        $curtime=time();//当前时间戳 
+        $newtime=$curtime-$endtime;//新时间戳 
+        $rand=rand(0,99);//两位随机 
+        $all=$rand.$newtime; 
+        return $all;
+    }
+
     /*加密数字*/
     public static function setCryptKey($str){
         $key = new TakCrypt();
         return $key->encode($str);
+
     }
     /*解密数字*/
     public static function getCryptKey($str){
@@ -533,23 +592,24 @@ class Tak {
               'label'=>'<span class="text">库存管理</span>',
               'url'=>array('/pss/index'),
               'items'=>array(
-                array('icon'=>'th','label'=>'<span class="text">入库管理</span>', 'url'=>array('/purchase/admin')),
-                array('icon'=>'th','label'=>'<span class="text">出库管理</span>',  'url'=>array('/sell/admin'),),
-                    array('icon'=>'th','label'=>'<span class="text">库存管理</span>',  'url'=>array('/stocks/admin'),),
-                    array('icon'=>'th','label'=>'<span class="text">产品管理</span>',  'url'=>array('/product/admin'),),
-                    array('icon'=>'plus','label'=>'<span class="text">产品'.Tk::g('Create').'</span>',  'url'=>array('/product/create'),),
+                    array('icon'=>'th','label'=>'<span class="text">产品分类</span>',  'url'=>array('takType/admin?type=product'),),
+                 array('icon'=>'th','label'=>'<span class="text">货物名称</span>',  'url'=>array('/product/admin'),),
+
+                array('icon'=>'th','label'=>'<span class="text">入库录入</span>', 'url'=>array('/purchase/admin')),
+                array('icon'=>'th','label'=>'<span class="text">出库录入</span>',  'url'=>array('/sell/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">库存明细</span>',  'url'=>array('/stocks/admin'),),
               ),
             ), 
            'order' => array(
               'visible'=>Yii::app()->user->checkAccess('Order.*'),
-              'icon' =>'isb-list',
+              'icon' =>'isb-lock',
               'label'=>'<span class="text">订单</span>',
-              'url'=>array('/order/index'),
+              'url'=>array('/site/order'),
               'items'=>array(
-                array('icon'=>'shopping-cart','label'=>'<span class="text">订单管理</span>', 'url'=>array('/order/index')),
-                array('icon'=>'th','label'=>'<span class="text">发货管理</span>',  'url'=>array('/order/create'),),
-                array('icon'=>'th','label'=>'<span class="text">订单留言</span>',  'url'=>array('/order/create'),),
-                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/order/recycle'),),
+                array('icon'=>'shopping-cart','label'=>'<span class="text">订单管理</span>', 'url'=>array('/site/order')),
+                array('icon'=>'th','label'=>'<span class="text">发货管理</span>',  'url'=>array('/site/order'),),
+                array('icon'=>'th','label'=>'<span class="text">订单留言</span>',  'url'=>array('/site/order'),),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/site/order'),),
               ),
             ), 
 
@@ -616,6 +676,18 @@ class Tak {
                        'icon' =>'isw-zoom',
                       'label'=>'<span class="text">帮助中心</span>', 
                       'url'=>array('/site/help'), 
+                    );
+         $items[] = array(
+                       'icon' =>'isw-chat',
+                      'label'=>'<span class="text">系统其他功能</span>', 
+                      'url'=>Yii::app()->getBaseUrl().'/upload/functionality.jpg', 
+                      'linkOptions'=>array('target'=>'_blank')
+                    );
+         $items[] = array(
+                       'icon' =>'isw-target',
+                      'label'=>'<span class="text">客户案例</span>', 
+                      'url'=>'http://www.9juren.net/', 
+                      'linkOptions'=>array('target'=>'_blank')
                     );
         $controlName = Yii::app()->getController()->id;  
 

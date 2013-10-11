@@ -14,17 +14,12 @@ $items = Tak::getListMenu();
 	<div class="head clearfix">
         <div class="isw-grid"></div>
         <h1><?php echo Tk::g('Contact')?></h1>   
-		<ul class="buttons">
-		    <li>
-		        <a href="#" class="isw-settings"></a>
-<?php 
-				$this->widget('application.components.MyMenu',array(
-				      'htmlOptions'=>array('class'=>'dd-list'),
-				      'items'=> $items ,
-				));
-			?>      
-		    </li>
-		</ul>                                    
+		<?php 
+		$this->widget('application.components.MyMenu',array(
+		      'htmlOptions'=>array('class'=>'buttons'),
+		      'items'=> $items ,
+		));
+		?>                                       
 	</div>	
 
 	<div class="block-fluid clearfix">

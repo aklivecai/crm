@@ -14,17 +14,12 @@ $items = Tak::getListMenu();
 	<div class="head clearfix">
         <div class="isw-grid"></div>
         <h1><?php echo Tk::g('Clienteles')?></h1>   
-		<ul class="buttons">
-		    <li>
-		        <a href="#" class="isw-settings"></a>
-			<?php 
-				$this->widget('application.components.MyMenu',array(
-				      'htmlOptions'=>array('class'=>'dd-list'),
-				      'items'=> $items ,
-				));
-			?>      
-		    </li>
-		</ul>                                    
+		<?php 
+		$this->widget('application.components.MyMenu',array(
+		      'htmlOptions'=>array('class'=>'buttons'),
+		      'items'=> $items ,
+		));
+		?>                                  
 	</div>
 		<div class="block-fluid clearfix">
 <?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
@@ -55,20 +50,20 @@ $items = Tak::getListMenu();
 			'name'=>'clientele_name',
 			'type'=>'html',
 			'value'=>'$data->getHtmlLink()',
-		)
-		
+		),
+		array(
+			'name'=>'address',
+			'type'=>'raw',
+            'filter' => false,
+            'sortable' => false,
+		),		
+/*		
 ,		array(
 			'name'=>'telephone',
             'filter' => false,
             'sortable' => false,
 		)	
-,		array(
-			'name'=>'address',
-			'type'=>'raw',
-            'filter' => false,
-            'sortable' => false,
-		)	
-,		/*
+
 ,		'employees'
 ,		'email'
 ,		'address'
@@ -78,12 +73,13 @@ $items = Tak::getListMenu();
 ,		'last_time'
 ,		'add_time'
 ,		'note'
-,		*/
+
 		array(
 			'name'=>'add_time',
 			'value'=>'Tak::timetodate($data->add_time,4)',
             'filter' => false
 		),		
+,		*/		
 		array(
 			'header'=>'最后联系',
 			'name'=>'last_time',

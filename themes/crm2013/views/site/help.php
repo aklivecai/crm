@@ -53,11 +53,6 @@ $this->breadcrumbs=array(
                                     <div class="text"><p>线上处理，回家，外出，找客户很轻松.</p></div>
                                 </div>
 
-                                <div class="item" id="faq-5">
-                                    <div class="title">怎么收费?</div>
-                                    <div class="text"><p>XXXXXXX</p></div>
-                                </div>
-
                                 <div class="item" id="faq-6">
                                     <div class="title">使用"CRM"的产品应用服务，如何保障我们公司的资料保密性?</div>
                                     <div class="text"><p>
@@ -68,11 +63,6 @@ $this->breadcrumbs=array(
                                 <div class="item" id="faq-7">
                                     <div class="title">我购买了CRM管理软件后，产品有免费升级吗?</div>
                                     <div class="text"><p>我们提供的优质服务承诺，客户自购买软件起一年内均可享受CRM管理软件免费升级服务，详细细则请咨询全程软件售后服务部4000-168-488</p></div>
-                                </div>
-
-                                <div class="item" id="faq-8">
-                                    <div class="title">出现错误?</div>
-                                    <div class="text"><p>XXXXX.</p></div>
                                 </div>
 
                                 <div class="item" id="faq-9">

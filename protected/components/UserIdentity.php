@@ -46,7 +46,6 @@ class UserIdentity extends CUserIdentity
 				$this->setState('last_login_time', Tak::timetodate($user->last_login_time,6));
 				$this->setState('fromid', $user->fromid);
 				$this->errorCode=self::ERROR_NONE;
-
 			}
 		}
 		return $this->errorCode==self::ERROR_NONE;

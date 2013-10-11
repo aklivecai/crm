@@ -226,3 +226,12 @@ input[type=date]{
 .not-mpr input{
   margin:0;
 }
+
+.content .workplace .head>.buttons>li{
+  padding-right: 8px;
+}
+.content .workplace .head>.buttons a{
+  display: inline-block;
+  line-height: 38px;
+  color: #FFF;
+}

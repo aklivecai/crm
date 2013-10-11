@@ -82,12 +82,13 @@ $this->breadcrumbs=array(
 	 'focus'=>array($model,'name'),
 	 'action'=>$this->createUrl('create'),  
 )); ?>
-<input type="hidden" name="returnUrl" value="<?php echo $this->createUrl('admin')?>" />
+
+<?php echo CHtml::hiddenField('returnUrl',isset($this->returnUrl)?$this->returnUrl:$this->createUrl('admin'));?>
 <?php echo $form->textFieldRow($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 <?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
 
 <div class="tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array('onclick'=>'alert(1);'))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array())); ?>
 </div>
 <?php $this->endWidget(); ?>
 				</div>
