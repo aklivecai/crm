@@ -25,9 +25,14 @@ function createUrl(route)
 
     // var url = CrmPath + (CrmPath.indexOf('?')>0?'':'?');
     var url = CrmPath;
+
     url += route;
+    url = url + (url.indexOf('?')>0?'':'?');
     if (params.length>0) {
         url += ampersand+params.join(ampersand);
+    };
+    if (url.indexOf('?&')>0) {
+        url = url.replace('?&','?');
     };
     return url;
 }
@@ -242,13 +247,30 @@ tselect();
 
 });
 
+var affirm = function(){
+    var btn = $('#btn-affirm')
+        ,txt = btn.text()
+        ,url = btn.attr('href')
+    ;
+    if (confirm("是否"+txt+"?\n"+txt+"后将不可以修改。")) {
+        if (url) {
+            window.location.href = url;
+        }else{
+            return true;    
+        }            
+     }
+     return false;
+}
+
 $(document).ready(function(){
 
-$('#btn-affirm').on('click',function(event){
-    if (!confirm("操作后不可以修改。\n是否"+$(this).text()+'?')) {
-         event.preventDefault();
-    }
-})
+var btnAffirm = $('#btn-affirm');
+if (btnAffirm.length>0) {      
+    btnAffirm.on('click',function(event){
+        event.preventDefault();
+        affirm();
+    }).trigger('click');
+};
     
     $('body li a.delete').on('click',function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;

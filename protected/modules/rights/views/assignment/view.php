@@ -20,7 +20,7 @@ if ($model->isNewRecord) {
         ,array(
           'icon' =>'isw-zoom',
           'url' => array('/manage/admin'),
-          'label'=>'返回员工管理',
+          'label'=>Tk::g(array('Return','Manage','Admin')),
         )
     );
 }

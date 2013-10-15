@@ -19,14 +19,13 @@ class JController extends CController
 	{     
     	parent::init();
     	$this->isAjax  = Yii::app()->request->isAjaxRequest;
-    	
-
 		if($this->isAjax){
 			$this->_setLayout('columnAjax');
 			Yii::app()->clientScript->enableJavaScript = false;
 		}else{
 			$this->module->registerScripts();			
 			$this->layout = $this->module->layout;
+			// Tak::KD($_GET);
 		}
 
 		$this->returnUrl = Yii::app()->request->getParam('returnUrl',null);
@@ -58,17 +57,10 @@ class JController extends CController
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // 
-				'actions'=>array('login','error'),
-				'users'=>array('*'),
-			),
-			array('allow', 
-				'actions'=>array('index,admin,logout'),
-				'users'=>array('@'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array('deny', 
+				'actions'=>array(),
+				'users'=>array('?'),
+			)
 		);
 	}		
 

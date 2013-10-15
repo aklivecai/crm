@@ -25,6 +25,7 @@ class RightsFilter extends CFilter
 		$controller = $filterChain->controller;
 		$action = $filterChain->action;
 
+
 		// Check if the action should be allowed
 		if( $this->_allowedActions!=='*' && in_array($action->id, $this->_allowedActions)===false )
 		{
@@ -33,6 +34,7 @@ class RightsFilter extends CFilter
 
 			// Append the module id to the authorization item name
 			// in case the controller called belongs to a module
+			// Tak::KD($controller->getModule());
 			if( ($module = $controller->getModule())!==null )
 				$authItem .= ucfirst($module->id).'.';
 

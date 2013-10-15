@@ -15,16 +15,6 @@ class TestMemeberController extends JController
 		);
 	}
 
-	public function accessRules()
-	{
-		return array(
-			array('allow', 
-				'actions'=>array('admin,create,'),
-				'users'=>array('@'),
-			)
-		);
-	}	
-
 	public function actionVolume(){
 		$model = new VolumeForm();
 		if(isset($_POST['VolumeForm']))
@@ -57,7 +47,7 @@ class TestMemeberController extends JController
 		));
 	}
 	public function toSTime($time){
-                $this->redirect(array('admin','TestMemeber[add_time]'=>$time));
+           $this->redirect(array('admin','TestMemeber[add_time]'=>$time));
 	}
 
 

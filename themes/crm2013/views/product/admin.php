@@ -70,15 +70,17 @@ $items = Tak::getListMenu();
 			'type'=>'raw',
 			'filter'=>false, 
 		)
-		,array(
-			'name'=>'unit',
-			'type'=>'raw',
-			'filter'=>false, 
-		)
+		// ,array(
+		// 	'name'=>'unit',
+		// 	'type'=>'raw',
+		// 	'filter'=>false, 
+		// )
 		,array(
 			'name'=>'note',
 			'type'=>'raw',
 			'filter'=>false, 
+			'value' =>'mb_substr(htmlspecialchars_decode($data->note),0,30,"utf-8")',
+			'htmlOptions'=>array('style'=>'width:220px;'),
 		)	
 	),
 )); 

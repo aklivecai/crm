@@ -3,7 +3,8 @@
 /* @var $model Product */
 /* @var $form bootstrap.widgets.TbActiveForm */
 ?>
-<?php  $action = $model->isNewRecord?'Create':'Update';
+<?php  
+	$action = $model->isNewRecord?'Create':'Update';
  $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
 ?>
 <div class="row-fluid">
@@ -55,7 +56,7 @@ $this->widget('application.components.MyMenu',array(
 		<?php echo $form->textFieldRow($model,'unit',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textAreaRow($model,'note',array()); ?>
 	</div>
 
 </div>

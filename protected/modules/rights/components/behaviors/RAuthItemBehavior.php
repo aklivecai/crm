@@ -52,6 +52,8 @@ class RAuthItemBehavior extends CBehavior
 			'name'=>urlencode($this->owner->name),
 		));
 	}
+
+
 	
 	/**
 	* Returns the markup for the name link to displayed in the grid.
@@ -179,7 +181,7 @@ class RAuthItemBehavior extends CBehavior
 	public function getRevokeAssignmentLink()
 	{
 		return CHtml::linkButton(Rights::t('core', 'Revoke'), array(
-			'submit'=>array('assignment/revoke', 'id'=>$this->userId, 'name'=>urlencode($this->owner->name)),
+			'submit'=>array('assignment/revoke', 'id'=>$this->userId, 'name'=>$this->owner->name),
 			'class'=>'revoke-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
@@ -264,4 +266,15 @@ class RAuthItemBehavior extends CBehavior
 
 		return '<span class="inherited-item" title="'.implode('<br />', $items).'">'.Rights::t('core', 'Inherited').' *</span>';
 	}
+
+/*aklivecai */
+	public function getNameLinkTak()
+	{
+		$msg = $this->getNameText();
+		if ($this->owner->type==2) {			
+			$msg = CHtml::link($msg,'#'.$this->owner->name);
+		}
+		return $msg;
+
+	}	
 }

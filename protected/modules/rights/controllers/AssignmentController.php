@@ -47,6 +47,7 @@ class AssignmentController extends RController
 					'view',
 					'user',
 					'revoke',
+					'viewRoles',
 				),
 				'users'=>$this->_authorizer->getSuperusers(),
 			),
@@ -212,4 +213,47 @@ class AssignmentController extends RController
 	{
 		return isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
 	}
+
+
+	/*aklivecai */
+	public function actionViewRoles(){
+		
+		$connection=Yii::app()->db;   // 假设你已经建立了一个 "db" 连接
+		// 如果没有，你可能需要显式建立一个连接：
+		$sql = 'SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+							FROM {{Rbac_Authitem}} t1
+							LEFT JOIN {{Rbac_Rights}} t2 ON name=itemname WHERE t1.type=2 	
+							ORDER BY t1.type DESC, weight ASC';
+		$command=$connection->createCommand($sql);
+		$dataReader=$command->query();
+		$rows = $dataReader->readAll();
+
+		
+
+		$tags = array();
+		$authenticated = null;
+		foreach ($rows as $key => $value) {
+			$_name = $value['name'];
+			$model = $this->_authorizer->authManager->getAuthItem($_name);
+			$model = $this->_authorizer->attachAuthItemBehavior($model);	
+			// Tak::KD($model,1);	
+			$_t = array(
+				'label'=> $value['description'],
+				'data' => new RAuthItemChildDataProvider($model),
+			);
+			if ('Authenticated'==$_name) {
+				$authenticated = $_t;
+			}else{
+				$tags[$_name] = $_t;
+			}
+		}
+		if ($authenticated!=null) {			
+			$tags['Authenticated'] = $authenticated;
+		}
+		
+		$this->render('//chip/viewRoles', array(
+			'tags'=>$tags,
+		));
+
+	}		
 }

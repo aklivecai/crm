@@ -44,7 +44,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest) {
+		if (Tak::isGuest()) {
 			// Tak::KD($_GET);
 			// Tak::KD(current($_GET));
 			// Tak::KD(count($_GET));
@@ -86,7 +86,7 @@ class SiteController extends Controller
 
 	private function inits($k){
 		/*已经s登录，返回上一页，没有就首页*/
-		if (!Yii::app()->user->isGuest) {
+		if (!Tak::isGuest()) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
 			$itemid = Tak::getCryptNum($k);
@@ -196,13 +196,18 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
-		if (Yii::app()->user->isGuest) {
+		if (Tak::isGuest()) {
 			$this->redirect(Yii::app()->user->loginUrl);
 		}		
 		// 更新最后活跃时间
 		Manage::model()->upActivkey();
 		$fromid = Tak::getFormid();
+		if ($fromid=='1') {
+			$this->redirect(array('/juren/default/logout'));
+		}
+
 		$fromid = Tak::setCryptNum($fromid);
+
 		Yii::app()->user->logout();
 		$this->redirect(array('login','k'=>$fromid));
 	}

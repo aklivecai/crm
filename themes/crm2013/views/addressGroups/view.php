@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 	$items = Tak::getViewMenu($model->address_groups_id);
 
- 	$items[] = array('label'=>Tk::g(array('View','Address Book')), 'icon'=>'eye-open','url'=>$this->createUrl('addressBook/admin/?AddressBook[groups_id]=').$model->address_groups_id,
+ 	$items[] = array('label'=>Tk::g(array('View','Address Book')), 'icon'=>'eye-open','url'=>$this->createUrl('addressBook/admin/',array('AddressBook[groups_id]='=>$model->address_groups_id)),
 	);
 ?>
 
@@ -20,9 +20,9 @@ $this->breadcrumbs=array(
 	'attributes'=>array(
 		'name',
 		array('name'=>'display','type'=>'raw', 'value'=>TakType::getStatus('display',$model->display),),
+		'note',
 		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
 		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time,6),),
-		'note',
 	),
 )); ?>
 </div>

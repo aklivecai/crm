@@ -9,15 +9,6 @@ class TestLogController extends JController
 		$this->layout = 'column1';
 	}
 
-	public function accessRules()
-	{
-		return array(
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin','view'),
-				'users'=>array('@'),
-			),
-		);
-	}
 
 	public function actionCreate()
 	{

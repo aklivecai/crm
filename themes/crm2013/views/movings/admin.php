@@ -6,15 +6,25 @@ $this->breadcrumbs=array(
 	Tk::g($model->sName) => array('admin'),
 	Tk::g('Admin'),
 );
-$items = Tak::getListMenu();
 
-$subItems = array('label'=>Tk::g('Create'), 'url'=>$this->createUrl('create'),'icon'=>'plus');
+$subItems = array('label'=>Tk::g('Entering'), 'url'=>$this->createUrl('create'),'icon'=>'plus');
 $_subItems = array();
 
+
 foreach ($this->cates as $key => $value) {
-	$_subItems[] = array('label'=>$value, 'url'=>$this->createUrl('create',array('Movings[typeid]'=>$key)),'icon'=>'chevron-right');
+	$_subItems[] = array('label'=>$value, 'url'=>$this->createUrl('create',array('Movings[typeid]'=>$key)),'icon'=>'isw-text_document');
 }
-$subItems['items'] = $_subItems;
+
+      $listMenu = array(  
+            'Create'=>array(
+              'icon' =>'isw-plus',
+              'url' => array('create'),
+              'label'=>Tk::g('Entering'),
+              'items' => $_subItems,
+              'submenuOptions' => array('class'=>'dd-list'),
+            )
+            );
+
 ?>
 <div class="row-fluid">
 	<div class="span12">
@@ -25,12 +35,12 @@ $subItems['items'] = $_subItems;
 		<?php 
 		$this->widget('application.components.MyMenu',array(
 		      'htmlOptions'=>array('class'=>'buttons'),
-		      'items'=> $items ,
+		      'items'=> $listMenu ,
 		));
 		?>    
 	</div>	
 	<div class="block-fluid clearfix">
-<?php $this->renderPartial('//_search',array('model'=>$model,'subItems' => array($subItems))); ?>
+<?php $this->renderPartial('//_search',array('model'=>$model)); ?>
 <?php 
 $cates = $this->cates;
 $widget = $this->widget('bootstrap.widgets.TbGridView', array(

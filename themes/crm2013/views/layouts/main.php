@@ -170,6 +170,6 @@ $items = Tak::getMainMenu();
     </div>
   </div>
 </div>
-
+<?php Tak::copyright() ?>
 </body>
 </html>

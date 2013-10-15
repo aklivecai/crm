@@ -3,7 +3,7 @@
 /* @var $model Manage */
 
 $this->breadcrumbs=array(
-	Tk::g('Manages')=>array('admin')
+	Tk::g('Manages') => array('admin')
 	,Tk::g('Admin')
 );
 
@@ -16,7 +16,7 @@ $items = array(
     ,array(
       'icon' =>'isw-user',
       'url' => array('/rights/'),
-      'label'=>'权限管理',
+      'label'=>Tk::g(array('Permissions','Admin')),
     ) 
 );
 ?>
@@ -130,7 +130,7 @@ $items = array(
 	<div class="span12">
 	<div class="head clearfix">
         <div class="isw-grid"></div>
-        <h1>员工信息</h1>   
+        <h1><?php  echo Tk::g('Manages');?></h1>   
 <?php 
 $this->widget('application.components.MyMenu',array(
       'htmlOptions'=>array('class'=>'buttons'),

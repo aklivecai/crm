@@ -197,7 +197,8 @@ class Movings extends ModuleRecord
 	//保存数据前
 	protected function beforeSave(){
 	    $result = parent::beforeSave();
-	    if($result){
+	     
+	    if($result&&$this->status!=TakType::STATUS_DELETED){
 	    	$proucts = isset($_POST['Product']['number'])?$_POST['Product']['number']:false;
 	    	if (!$proucts
 	    		||!is_array($proucts)

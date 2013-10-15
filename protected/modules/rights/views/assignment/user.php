@@ -8,7 +8,7 @@
 <h1><?php echo Rights::t('core', 'Assignments for :username', array(
 		':username'=>$model->getName()
 	)); ?>
-<small><?php echo Rights::t('core', 'Here you can view and manage the permissions assigned to each role.'); ?></small></h1>
+</h1>
 </div>
 
 <div class="row-fluid" id="userAssignments">

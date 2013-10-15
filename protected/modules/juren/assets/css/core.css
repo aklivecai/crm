@@ -46,7 +46,7 @@
 .flash.success { color:#007700; background-color:#e0f8dd; }
 .flash.error { color:#7a0000; background-color:#fdd9d9; }
 
-#mainmenu,
-.grid-view table.items th{
+body #mainmenu,
+body .grid-view table.items th{
 	background-color: #4D9AC6;
 }

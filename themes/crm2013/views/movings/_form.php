@@ -3,7 +3,7 @@
 /* @var $model Movings */
 /* @var $form bootstrap.widgets.TbActiveForm */
 ?>
-<?php  $action = $model->isNewRecord?'Create':'Update';
+<?php  $action = $model->isNewRecord?'Entering':'Update';
 
 $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
 

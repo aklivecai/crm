@@ -1,10 +1,15 @@
 <?php  
 class Tak {  
     public static function KD($msg,$isexit=false){
-        if (is_array($msg)||is_object($msg)){
+        if (is_object($msg)){
             echo  "<pre>";
             print_r($msg);
             echo  "<pre>";
+        }elseif(is_array($msg)){
+                foreach ($msg as $key => $value) {
+                    self::KD($value);
+                }
+                
         }else{ 
             $str = $msg;
             $str = mb_convert_encoding($str,'gbk','UTF-8');
@@ -15,6 +20,14 @@ class Tak {
     public static function checkSuperuser(){
         return Yii::app()->user->checkAccess(Rights::module()->superuserName);
     }
+    public static function checkAccess($operation,$params=array(),$allowCaching=true){
+        return Yii::app()->user->checkAccess($operation,$params);
+
+    }
+    public static function isGuest()
+    {
+        return Yii::app()->user->isGuest;
+    }    
     public static function getAdmin(){
         return Yii::app()->user->fromid==1;
     }
@@ -321,14 +334,14 @@ class Tak {
 
     public static function getListMenu(){
        $listMenu = array(  
-            array(
+            'Create'=>array(
               'icon' =>'isw-plus',
               'url' => array('create'),
               'label'=>Tk::g('Create'),
             )
             );
        if(self::checkSuperuser()){
-            $listMenu[] = array(
+            $listMenu['Recycle'] = array(
               'icon' =>'isw-delete',
               'url' => array('recycle'),
               'label'=>Tk::g('Recycle'),
@@ -347,7 +360,7 @@ class Tak {
               'linkOptions'=>array('class'=>'delete-select','submit'=>array('click'=>"$.fn.yiiGridView.update('menu-grid');")),
             )*/
 
-         $listMenu[] =array(
+         $listMenu['Refresh'] =array(
               'icon' =>'isw-refresh',
               'url' => Yii::app()->request->url,
               'label'=>Tk::g('Refresh'),
@@ -501,6 +514,11 @@ class Tak {
         return false;
     }
 
+    public static function get(){
+        $auth=Yii::app()->authManager;
+
+    }
+
     //左栏菜单 
     public static function getMainMenu(){
         $controlName = Yii::app()->getController()->id;
@@ -525,53 +543,58 @@ class Tak {
             ),
             'manage' => array(
               'icon' =>'isw-users',
-              'label'=>'<span class="text">员工</span>',
+              'label'=>'<span class="text">'.Tk::g(array('Manage','Setting')).'</span>',
               'url'=>array('/manage/admin'),
-               'visible'=>Yii::app()->user->checkAccess('Manage.*'),
+               'visible'=>self::checkAccess('Manage.*'),
               'items'=>array(
-                array('icon'=>'th','label'=>'<span class="text">员工管理</span>',  'url'=>array('/manage/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">员工录入</span>',  'url'=>array('/manage/create'),),
+                    array(
+                       'icon' =>'user',
+                      'label'=>'<span class="text">'.Tk::g(array('Manage','Permissions')).'</span>', 
+                      'url'=>array('/rights/assignment/view'), 
+                      'visible'=>self::checkSuperuser(),
+                    ), 
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','Manage')).'</span>',  'url'=>array('/manage/create'),),               
+                array('icon'=>'th','label'=>'<span class="text">'.Tk::g(array('Manage','Admin')).'</span>',  'url'=>array('/manage/admin'),),
                 // array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/manage/recycle'),),
               ),
             ), 
             'clientele' => array(
-              'icon' =>'isw-users',
-              'label'=>'<span class="text">客户</span>',
+              'icon' =>'isw-bookmark',
+              'label'=>'<span class="text">我的客户</span>',
               'url'=>array('/clientele/admin'),
-              'visible'=>Yii::app()->user->checkAccess('Market')||Yii::app()->user->checkAccess('Clientele.*'),
+              'visible'=>self::checkAccess('Market')||self::checkAccess('Clientele.*'),
               'items'=>array(
-                array('icon'=>'th','label'=>'<span class="text">客户管理</span>',  'url'=>array('/clientele/admin'),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Clientele','Create')).'</span>',  'url'=>array('/clientele/create'),),
+                array('icon'=>'th','label'=>'<span class="text">'.Tk::g(array('Clientele','Admin')).'</span>',  'url'=>array('/clientele/admin'),
                 ),
-                array('icon'=>'plus','label'=>'<span class="text">客户录入</span>',  'url'=>array('/clientele/create'),),
                 array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
-                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/admin'),),
+                array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/adminGroup'),),
                 array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/clientele/recycle'),),
               ),
             ), 
-            'AddressBook' => array(
+            'addressbook' => array(
               'icon' =>'isw-archive',
               'label'=>'<span class="text">通讯录</span>',
-              'visible'=>Yii::app()->user->checkAccess('AddressBook.*'),
+              'visible'=>self::checkAccess('AddressBook.Admin'),
               'items'=>array(
-                array('icon'=>'th-list','label'=>'<span class="text">通讯录管理</span>', 'url'=>array('/addressBook/admin')),
-                array('icon'=>'plus','label'=>'<span class="text">通讯录录入</span>',  'url'=>array('/addressBook/create'),),
-                array('icon'=>'th-list','label'=>'<span class="text">部门管理</span>', 'url'=>array('/AddressGroups/admin')),
-                array('icon'=>'plus','label'=>'<span class="text">部门录入</span>',  'url'=>array('/AddressGroups/create'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Create').'部门</span>',  'url'=>array('/AddressGroups/admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','AddressBook')).'</span>',  'url'=>array('/addressBook/create'),),
+                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Admin','AddressBook')).'</span>', 'url'=>array('/addressBook/admin')),
               ),
             ),
             'events' => array(
-              'visible'=>Yii::app()->user->checkAccess('Events.*'),
+              'visible'=>self::checkAccess('Events.*'),
               'icon' =>'isw-calendar',
-              'label'=>'<span class="text">'.Tk::g('Events').'</span>',
+              'label'=>'<span class="text">'.Tk::g('Events').'事项</span>',
               'url'=>array('/events/index'),
               'items'=>array(
                 array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Events','Admin')).'</span>', 'url'=>array('/events/admin')),
-                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Events','Create')).'</span>',  'url'=>array('/events/create'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Events').'事项</span>',  'url'=>array('/events/create'),),
                 // array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/events/recycle'),),
               ),
             ), 
            'file' => array(
-              'visible'=>Yii::app()->user->checkAccess('File.*'),
+              'visible'=>self::checkAccess('File.*'),
               'icon' =>'isb-cloud',
               'label'=>'<span class="text">具云盘</span>',
               'url'=>array('/file/index'),
@@ -586,8 +609,8 @@ class Tak {
               ),
             ), 
             
-           'Pss' => array(
-              'visible'=>Yii::app()->user->checkAccess('Pss.*'),
+           'pss' => array(
+              'visible'=>self::checkAccess('Pss.*')||self::checkAccess('Product.*'),
               'icon' =>'isw-list',
               'label'=>'<span class="text">库存管理</span>',
               'url'=>array('/pss/index'),
@@ -597,11 +620,11 @@ class Tak {
 
                 array('icon'=>'th','label'=>'<span class="text">入库录入</span>', 'url'=>array('/purchase/admin')),
                 array('icon'=>'th','label'=>'<span class="text">出库录入</span>',  'url'=>array('/sell/admin'),),
-                    array('icon'=>'th','label'=>'<span class="text">库存明细</span>',  'url'=>array('/stocks/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">'.Tk::g('Stocks').'</span>',  'url'=>array('/stocks/admin'),),
               ),
             ), 
            'order' => array(
-              'visible'=>Yii::app()->user->checkAccess('Order.*'),
+              'visible'=>self::checkAccess('Order.*'),
               'icon' =>'isb-lock',
               'label'=>'<span class="text">订单</span>',
               'url'=>array('/site/order'),
@@ -614,7 +637,7 @@ class Tak {
             ), 
 
             'invite' => array(
-              'visible'=>Yii::app()->user->checkAccess('Invite.*'),
+              'visible'=>self::checkAccess('Invite.*'),
               'icon' =>'isb-tag',
               'label'=>'<span class="text">招标</span>',
               'url'=>array('/invite/index'),
@@ -626,7 +649,7 @@ class Tak {
               ),
             ),   
            'job' => array(
-              'visible'=>Yii::app()->user->checkAccess('Job.*'),
+              'visible'=>self::checkAccess('Job.*'),
               'icon' =>'isb-graph',
               'label'=>'<span class="text">招聘</span>',
               'url'=>array('/job/index'),
@@ -639,7 +662,7 @@ class Tak {
               ),
             ), 
           'training' => array(
-              'visible'=>Yii::app()->user->checkAccess('Training.*'),
+              'visible'=>self::checkAccess('Training.*'),
               'icon' =>'isb-documents',
               'label'=>'<span class="text">培训</span>',
               'url'=>array('/training/index'),
@@ -656,6 +679,7 @@ class Tak {
         unset($items['job']);
         unset($items['invite']);
         unset($items['training']);
+        unset($items['events']);
         if (self::checkSuperuser()) {
          $items[] = array(
                       'icon' =>'isw-settings',
@@ -666,12 +690,7 @@ class Tak {
                         // array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
                       ),
                     );
-         $items[] = array(
-                       'icon' =>'isw-user',
-                      'label'=>'<span class="text">权限管理</span>', 
-                      'url'=>array('/rights/assignment/view'), 
-                    );
-        } 
+     }
          $items[] = array(
                        'icon' =>'isw-zoom',
                       'label'=>'<span class="text">帮助中心</span>', 
@@ -689,17 +708,27 @@ class Tak {
                       'url'=>'http://www.9juren.net/', 
                       'linkOptions'=>array('target'=>'_blank')
                     );
-        $controlName = Yii::app()->getController()->id;  
 
+        $controlName = Yii::app()->getController()->id;  
+        $controlName = strtolower($controlName);
+
+        // Tak::KD(Yii::app()->getController(),1);
+        // Tak::KD(Yii::app(),1);
+        // Tak::KD($controlName);
         $tname = '';
         foreach ($arr as $key=>$value)
         {
+            $key = strtolower($key);
+            $value = strtolower($value);
             if ($controlName==$key||strpos($value,",$controlName,")!==false)
             {
                 $tname = $key;
                 break;
                 
             }
+        }
+        if ($tname==''&&Yii::app()->getController()->breadcrumbs[0]=='授权') {
+            $tname = 'manage';
         }
         if ($items[$tname])
         {
@@ -785,5 +814,15 @@ class Tak {
     
     public static function msg($msg,$title=''){
         Yii::app()->clientScript->registerScript('bodyend', "notify_s('$title','$msg')");        
+    }
+
+    public static function copyright(){
+        $arr = array('<div class="hide">');
+        $arr[] = Yii::app()->params['copyright'];
+        $arr[].= '<script type="text/javascript">
+            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd98411661088365a052727ec01efb9d8\' type=\'text/javascript\'%3E%3C/script%3E"));
+        </script></div>';
+        echo join($arr);
     }
 }  

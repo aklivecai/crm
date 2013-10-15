@@ -2,7 +2,7 @@
 // return array();
 return array(
     'urlFormat'=>'path',
-    'showScriptName' => true,
+    'showScriptName' => false,
     'caseSensitive'=>false,
     'rules'=>array(
         '<controller:\w+>/<id:\d+>'=>'<controller>/view',

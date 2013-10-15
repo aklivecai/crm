@@ -6,9 +6,11 @@ $this->breadcrumbs=array(
 	$model->sName => '#',
 	Tk::g('Admin'),
 );
+
+
+$action = $model->isNewRecord?'Create':'Update';
 ?>
 <div class="row-fluid">
-	<div class="span12">
 
 	<div class="head clearfix">
         <div class="isw-grid"></div>
@@ -24,11 +26,42 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="row-fluid">
-<div class="span8">
-<div class="block-fluid without-head">
-<div class="toolbar nopadding-toolbar clear clearfix">
-	<h4><?php echo Tk::g('Action'); ?></h4>  
+		<div class="span4">
+			<div class="block-fluid without-head">
+				<div class="toolbar nopadding-toolbar clear clearfix">
+					<h4><?php echo Tk::g($action); ?></h4>  
+				</div>
+
+
+<div class="stream">
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'id'=>'address-groups-form',
+	 'type'=>'verticalForm ',
+	 'enableAjaxValidation'=>false,
+	 'htmlOptions'=>array('class'=>'well'),
+	 'focus'=>array($model,'name'),
+	 'action'=>$model->getEidtLink(),  
+)); ?>
+<?php echo $form->errorSummary($model); ?>
+<?php echo CHtml::hiddenField('returnUrl', $this->typeUrl);?>
+<?php echo $form->hiddenField($model,'item'); ?>
+<?php echo $form->textFieldRow($model,'typename',array('size'=>60,'maxlength'=>255)); ?>
+<?php echo $form->textFieldRow($model,'listorder',array('size'=>60,'maxlength'=>255)); ?>
+
+<div class="tar">
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g($action),'htmlOptions'=>array())); ?>
 </div>
+
+<?php $this->endWidget(); ?>
+				</div>
+			</div>
+		</div>
+
+<div class="span8">
+	<div class="block-fluid without-head">
+	<div class="toolbar nopadding-toolbar clear clearfix">
+		<h4><?php echo Tk::g('Action'); ?></h4>  
+	</div>
 
 <?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
@@ -61,36 +94,10 @@ $this->breadcrumbs=array(
 )); 
 ?>
 </div>
-		</div>
-		<div class="span4">
-			<div class="block-fluid without-head">
-				<div class="toolbar nopadding-toolbar clear clearfix">
-					<h4><?php echo Tk::g('Create'); ?></h4>  
-				</div>
-
-
-<div class="stream">
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'address-groups-form',
-	 'type'=>'verticalForm ',
-	 'enableAjaxValidation'=>false,
-	 'htmlOptions'=>array('class'=>'well'),
-	 'focus'=>array($model,'name'),
-	 'action'=>$model->getEidtLink(),  
-)); ?>
-<?php echo $form->errorSummary($model); ?>
-<?php echo CHtml::hiddenField('returnUrl', $this->typeUrl);?>
-<?php echo $form->hiddenField($model,'item'); ?>
-<?php echo $form->textFieldRow($model,'typename',array('size'=>60,'maxlength'=>255)); ?>
-<?php echo $form->textFieldRow($model,'listorder',array('size'=>60,'maxlength'=>255)); ?>
-
-<div class="tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array())); ?>
 </div>
-<?php $this->endWidget(); ?>
-				</div>
-			</div>
-		</div>
+
 	</div>
+
 </div>
+
 <div class="dr"><span></span></div>

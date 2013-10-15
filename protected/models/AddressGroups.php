@@ -178,10 +178,12 @@ class AddressGroups extends ModuleRecord
 	//默认继承的搜索条件
     public function defaultScope()
     {
+    	
     	$arr = parent::defaultScope();
     	$condition = array($arr['condition']);
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
+    	$arr['order'] = ' listorder DESC ';
     	return $arr;
     }
 

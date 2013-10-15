@@ -11,6 +11,37 @@ $this->breadcrumbs=array(
       <h1><?php echo Tk::g('Address Groups'); ?> <small>显示状态，表示是否在前台显示的组</small></h1>
 </div>
 <div class="row-fluid">
+		<div class="span4">
+			<div class="block-fluid without-head">
+				<div class="toolbar nopadding-toolbar clear clearfix">
+					<h4><?php echo Tk::g('Create'); ?></h4>  
+				</div>
+				<div class="stream">
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'id'=>'address-groups-form',
+	 'type'=>'verticalForm ',
+	 'enableAjaxValidation'=>false,
+	 'htmlOptions'=>array('class'=>'well'),
+	 'focus'=>array($model,'name'),
+	 'action'=>$this->createUrl('create'),  
+)); 
+
+ echo CHtml::hiddenField('returnUrl',isset($this->returnUrl)?$this->returnUrl:$this->createUrl('admin'));
+
+ echo $form->textFieldRow($model,'name',array('size'=>60,'maxlength'=>255)); 
+ echo $form->textFieldRow($model,'listorder',array('size'=>60,'maxlength'=>255)); 
+
+ echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255));
+ echo $form->radioButtonListRow($model,'display',Taktype::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>'));
+  ?>
+
+<div class="tar">
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array())); ?>
+</div>
+<?php $this->endWidget(); ?>
+				</div>
+			</div>
+		</div>
 <div class="span8">
 <div class="block-fluid without-head">
 <div class="toolbar nopadding-toolbar clear clearfix">
@@ -68,31 +99,6 @@ $this->breadcrumbs=array(
 ?>
 </div>
 		</div>
-		<div class="span4">
-			<div class="block-fluid without-head">
-				<div class="toolbar nopadding-toolbar clear clearfix">
-					<h4><?php echo Tk::g('Create'); ?></h4>  
-				</div>
-				<div class="stream">
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'address-groups-form',
-	 'type'=>'verticalForm ',
-	 'enableAjaxValidation'=>false,
-	 'htmlOptions'=>array('class'=>'well'),
-	 'focus'=>array($model,'name'),
-	 'action'=>$this->createUrl('create'),  
-)); ?>
 
-<?php echo CHtml::hiddenField('returnUrl',isset($this->returnUrl)?$this->returnUrl:$this->createUrl('admin'));?>
-<?php echo $form->textFieldRow($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>
-
-<div class="tar">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Create'),'htmlOptions'=>array())); ?>
-</div>
-<?php $this->endWidget(); ?>
-				</div>
-			</div>
-		</div>
 	</div>
 <div class="dr"><span></span></div>

@@ -18,7 +18,8 @@ $this->breadcrumbs=array(
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'list-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider' => $model->search(),
+	'ajaxUpdate' => true,
 	'enableHistory'=>true,
 	'columns'=>array(	
 		array(

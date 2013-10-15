@@ -24,5 +24,6 @@
 				<?php echo $content; ?>
 			</div><!-- content -->
 	</div>
+    <?php Tak::copyright() ?>
 </body>
 </html>

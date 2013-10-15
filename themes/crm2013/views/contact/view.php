@@ -7,6 +7,8 @@ $this->breadcrumbs=array(
 	$model->itemid,
 );
 	$items = Tak::getViewMenu($model->itemid);
+
+	$items['Create']['url'] = array('create','Contact[clienteleid]'=>$model->clienteleid,'Contact[prsonid]'=>$model->prsonid);
 ?>
 
 <div class="block-fluid">

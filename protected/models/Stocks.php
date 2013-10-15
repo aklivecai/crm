@@ -119,7 +119,7 @@ class Stocks extends ModuleRecord
     {
     	$arr = parent::defaultScope();
     	$condition = array($arr['condition']);
-    	// $condition[] = 'display>0';
+    	 $condition[] = ' product_id IN (SELECT itemid AS aid FROM {{Product}} AS p WHERE p.status=1)';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }

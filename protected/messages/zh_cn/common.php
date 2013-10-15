@@ -17,7 +17,8 @@ return array (
   ':name assigned.' => ':name 已指派',
   'Error'=>'错误',
   'Add' => '添加',  
-  'Create' => '录入',  
+  'Create' => '新建',  
+  'Entering' => '录入',  
   'Data' => '数据',
   'Delete' => '删除',
   'Description' => '描述',
@@ -36,7 +37,7 @@ return array (
   'Admin' => '管理',
   'View' => '浏览',
   'Action' => '操作',
-  'Create New' => '录入新的',
+  'Create New' => '添加新的',
   'Restore' => '还原',
   'Recycle' => '回收站',
   'Deletes' => '彻底删除',
@@ -44,12 +45,15 @@ return array (
   'Return' => '返回',
   'Reset' => '重置',
   'Refresh' => '刷新',
+
+  'Setting' => '设置',
   
   'More' => '更多', 
   'Detail' => '明细', 
 
   'AdminLog' => '网站日志',
-  'Manages' => '帐号',
+  'Manage' => '用户',
+  'Manages' => '用户',
   'Clientele' => '客户',
   'Clienteles' => '客户',
   'ContactpPrson' => '联系人',
@@ -67,14 +71,14 @@ return array (
   'Address Groups' => '部门',
   'AddressGroups' => '部门', 
 
-  'Events' => '备忘录', 
+  'Events' => '提醒', 
 
   'Product' => '产品',
   'Products' => '产品',
 
   'Purchase' => '入库',
   'Sell' => '出库',
-  'Stocks' =>'库存',
+  'Stocks' =>'结存明细',
 
   'bill' => '单',
   'Print' => '打印',
@@ -100,4 +104,10 @@ return array (
 
   'Test Logs' => '测试帐号日志',
   'TestLogs' => '测试帐号日志',
+
+  'Permissions' => '权限',
+
+  'View Roles' => '角色权限介绍',
  );
+
+

@@ -43,7 +43,7 @@
 				),
 				array('label'=>Tk::g('Test Logs'), 'url'=>array('testLog/admin'))
 			);
-		if (Yii::app()->user->isGuest) {
+		if (Tak::isGuest()) {
 			$menus[] = array('label'=>'登录', 'url'=>array('default/login'),);
 		}else{
 			$menus[] = array('label'=>'修改密码', 'url'=>array('default/changepwd'),'linkOptions'=>array('class'=>'changepwd'));

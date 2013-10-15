@@ -12,6 +12,9 @@
   padding:0 15px;
   background:none;
 }
+.breadLine .breadcrumb li{
+  margin-right:2px\9;
+}
 .row-form input[type="text"],
 .row-form input[type="password"], 
 .row-form textarea{height: 35px;}
@@ -235,3 +238,5 @@ input[type=date]{
   line-height: 38px;
   color: #FFF;
 }
+
+

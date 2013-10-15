@@ -1,5 +1,5 @@
+<?php
 
-<?php 
 $items = array(
 			array(
 				'label'=>Rights::t('core', 'Assignments'),
@@ -36,5 +36,14 @@ array_push($items,array(
 		'itemOptions'=>array('class'=>'item-permissions'),
 	)
 );
+
+$items[] =
+		array(
+				'label'=>Tk::g('View Roles'),
+				'url'=>array('assignment/viewRoles'),
+				'itemOptions'=>array('class'=>'item-assignments'),
+			); 
+
+
 $this->widget('bootstrap.widgets.TbButtonGroup', array('buttons'=>$items));
 ?>

@@ -7,4 +7,8 @@ class AddressBookController extends Controller
     	parent::init();
     	$this->modelName = 'AddressBook';
 	}
+
+	public function actionTaks(){
+
+	}
 }

@@ -8,6 +8,8 @@ $this->breadcrumbs=array(
 );
 	$items = Tak::getViewMenu($model->itemid);
 
+    $items['Create']['label'] = Tk::g('Entering');
+
 	$tags = array( 
         'numbers',
         'time' => array('name'=>'time', 'value'=>Tak::timetodate($model->time)),

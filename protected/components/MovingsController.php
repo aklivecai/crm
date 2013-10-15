@@ -71,39 +71,10 @@ class MovingsController extends Controller
 		parent::afterRender($view, $output);
 	}	
 
-	public function actionCreate()
-	{
-		$m = $this->modelName;
-		$model = new $m;
-		$model->initak($this->type);
-
-		$this->performAjaxValidation($model);
-
-		if(isset($_POST[$m]))
-		{
-			$model->attributes=$_POST[$m];
-			if($model->save()){
-				$returnUrl = $_POST['returnUrl'];
-				if (!$returnUrl) {
-					if ($this->isAjax) {
-						if ($_POST['getItemid']) {
-							echo $model->primaryKey;
-							exit;
-						}
-					}else{
-						$this->redirect(array('view','id'=>$model->primaryKey));
-					}
-				}else{
-					$this->redirect($returnUrl);
-				}				
-			}else{
-
-			}
-		}elseif(isset($_GET[$m])){
-			$model->attributes = $_GET[$m] ;
-		}
-		$this->render($this->templates['create'],array(
-			'model'=>$model,
+	public function actionView($id,$affirm=false){
+		$this->render($this->templates['view'],array(
+			'model' => $this->loadModel($id),
+			'affirm' =>$affirm,
 		));
 	}
 
@@ -124,6 +95,6 @@ class MovingsController extends Controller
 	public function actionAffirm($id){
 		$this->loadModel($id)->affirm();
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('view','id'=>$id));
 	}
 }

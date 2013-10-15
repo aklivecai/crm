@@ -185,6 +185,7 @@ class Controller extends RController
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->del();
+
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($this->returnUrl) ? $this->returnUrl : array('admin'));
 	}	
@@ -213,8 +214,10 @@ class Controller extends RController
 				}				
 			}
 		}elseif(isset($_GET[$m])){
+
 			$model->attributes = $_GET[$m] ;
 		}
+		// Tak::KD($_GET[$m]);
 
 
 		$this->render($this->templates['create'],array(

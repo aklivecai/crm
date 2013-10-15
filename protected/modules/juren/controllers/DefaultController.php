@@ -6,15 +6,7 @@ class DefaultController extends JController
 		parent::init();
 		$this->layout = 'column1';		
 	}
-	public function accessRules()
-	{
-		return array(
-			array('allow', 
-				'actions'=>array('index,changepwd,logout'),
-				'users'=>array('@'),
-			)
-		);
-	}
+
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -22,7 +14,7 @@ class DefaultController extends JController
 	public function actionLogin($itemid=false)
 	{
 		/*已经登录，返回上一页，没有就首页*/
-		if (!Yii::app()->user->isGuest) {
+		if (!Tak::isGuest()) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
 		$this->layout = 'column1';

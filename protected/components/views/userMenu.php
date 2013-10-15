@@ -9,7 +9,7 @@ $this->widget('zii.widgets.CMenu', array(
 		array(
 			'label'=>'退出系统', 
 			'url'=>array('/site/logout'), 
-			'visible'=>!Yii::app()->user->isGuest
+			'visible'=>!Tak::isGuest()
 		),
 	),
 ));

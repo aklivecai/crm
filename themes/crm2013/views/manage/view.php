@@ -35,20 +35,9 @@ $this->breadcrumbs=array(
 	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
 	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
 	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
-	array('label'=>'权限', 'icon'=>'user','url'=>array('rights/assignment/user','id'=>$model->manageid)),
+	array('label'=>Tk::g('Permissions'), 'icon'=>'user','url'=>array('rights/assignment/user','id'=>$model->manageid)),
 	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model->manageid)),
 	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model->manageid),'linkOptions'=>array('class'=>'delete')),
-	array('label'=>'列表', 'url'=>'#', 'icon'=>'eye-open','items'=>array(
-	    array('label'=>'上一个', 'url'=>'#'),
-	    array('label'=>'下一个', 'url'=>'#'),
-	    '---',
-	    array('label'=>'其他'),
-	    array('label'=>'1', 'url'=>'#'),
-	    array('label'=>'2', 'url'=>'#'),
-	    array('label'=>'3', 'url'=>'#'),
-	    array('label'=>'4', 'url'=>'#'),
-		)
-	)
 );
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',

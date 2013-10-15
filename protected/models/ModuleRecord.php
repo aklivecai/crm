@@ -46,7 +46,7 @@ class ModuleRecord extends CActiveRecord
     	}
     	$arr = array();
 
-    	if ($isOrsder) {
+    	if ($isOrder) {
     		$arr['order'] = ' add_time DESC ';
     	}
 
@@ -76,11 +76,13 @@ class ModuleRecord extends CActiveRecord
     
 	public function recently($limit=5,$pcondition=false,$order='add_time DESC')
 	{
-		$condition = $this->defaultScope(false);
-
-		if (current($condition)=='') {
+		 $condition = $this->defaultScope(false);
+		if (is_array($condition)&&$condition['condition']) {
+			$condition = array($condition['condition']);
+		}else{
 			$condition = array();
 		}
+
 		if (is_string($pcondition)) {
 			$condition[] = $pcondition;
 		}elseif(is_array($pcondition)){
@@ -116,7 +118,7 @@ class ModuleRecord extends CActiveRecord
 	public function search()
 	{
 		$criteria = new CDbCriteria;
-		$criteria->order = $stort;
+		// $criteria->order = $stort;
 		$pageSize = $this->getPageSize();
 		if (isset($_GET['dt'])&&isset($_GET['col'])
 			&&$this->hasAttribute($_GET['col'])
@@ -249,6 +251,7 @@ class ModuleRecord extends CActiveRecord
 	public function del(){
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {
+
 			$this->status = TakType::STATUS_DELETED;
 			if($this->save()){
 				$result = true;
@@ -278,11 +281,15 @@ class ModuleRecord extends CActiveRecord
 		AdminLog::log(Tk::g('Delete').$this->sName);
 	}
 	
-	public function getIData($col='add_time',$dtime=false,$sqlWhere=false){
-
+	public function getIData($col='add_time',$dtime=false,$swhere=false){
+		$sqlWhere = $this->defaultScope(0);
+		if (is_array($sqlWhere)&&$sqlWhere['condition']) {
+			$sqlWhere = $sqlWhere['condition'];
+		}else{
+			$sqlWhere = '';
+		}
 		if (!$sqlWhere) {
-			$sqlWhere = $this->defaultScope(false);
-			$sqlWhere = join(' AND ',$sqlWhere);
+			$sqlWhere .= join(' AND ',$sqlWhere);
 		}
 		if (!$dtime) {
 			$dtime = Tak::getDateTop();
@@ -304,14 +311,14 @@ class ModuleRecord extends CActiveRecord
 			,':sqlWhere' => $sqlWhere
 			,':col' => $col
 		));	
-		// Tak::KD($sql,1);
+		 // Tak::KD($sql,1);
 		$command = Yii::app()->db->createCommand($sql);
 		$dataReader=$command->query();
 		$tags = array();
 		foreach($dataReader as $row) {
 			$tags[$row['ikey']] = $row['num'];
 		}
-		// Tak::KD($tags);
+		// Tak::KD($tags,1);
 		return $tags;
 	}
 

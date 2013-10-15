@@ -39,7 +39,7 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix">
 		<?php echo $form->dropDownListRow($model,'event_status',TakType::items('event-status')); ?>
 	</div>	
-	<div class="row-form clearfix" >
+	<div class="row-form clearfix hide" >
 		<?php echo $form->textFieldRow($model,'email',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 	<div class="row-form clearfix" >

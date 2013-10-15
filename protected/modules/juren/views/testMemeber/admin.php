@@ -23,7 +23,6 @@ if ($msg) {
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'list-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
 	'ajaxUpdate' => false,
 	'enableHistory'=>true,
 	'columns'=>array(
@@ -63,7 +62,6 @@ if ($msg) {
 		array(
 			'name'=>'email',
 			'header' => '连接地址',
-			'filter'=> false,
 			'type'=>'raw',
 			'value'=>'$data->getHtmlLink()',
 		),		
@@ -71,7 +69,6 @@ if ($msg) {
 			'name'=>'active_time',
 			'value'=>'Tak::timetodate($data->active_time,5)',
             'headerHtmlOptions' => array('style'=>'width:120px;'),
-            'filter'=> false
 		),		
 	),
 )); ?>

@@ -107,6 +107,7 @@ class AddressBook extends ModuleRecord
 
 	public function search()
 	{
+
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
 
@@ -132,6 +133,7 @@ class AddressBook extends ModuleRecord
 		$criteria->compare('modified_ip',$this->modified_ip,true);
 		$criteria->compare('note',$this->note,true);
 		$criteria->compare('status',$this->status);
+
 		return $cActive;
 	}
 
@@ -148,6 +150,7 @@ class AddressBook extends ModuleRecord
     	$condition = array($arr['condition']);
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
+    	// echo 1;
     	return $arr;
     }
 

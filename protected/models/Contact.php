@@ -128,6 +128,14 @@ class Contact extends ModuleRecord
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }
+    public function group(){
+	    $this->getDbCriteria()->mergeWith(array(
+	    	'condition' =>  '1=1',
+	        'order'=>'contact_time DESC',
+	        'group' => 'clienteleid'
+	    ));
+	    return $this;    	
+    }
 	protected function beforeValidate(){
 		return parent::beforeValidate();
 	}

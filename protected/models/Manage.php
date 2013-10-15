@@ -205,7 +205,7 @@ class Manage extends ModuleRecord
 
 	//
 	protected function afterSave(){
-		// $result = $parent::afterSave();
+		parent::afterSave();
 		// return $result;
 	}
 
