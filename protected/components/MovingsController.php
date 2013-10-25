@@ -36,6 +36,7 @@ class MovingsController extends Controller
 		}
 		return $this->_model;
 	}
+	
 	protected function afterAction($action){
 		if($action->id=='update'){
 			if ($this->_model!==null
@@ -61,6 +62,7 @@ class MovingsController extends Controller
 			}
 			if(isset($_POST[$m])){
 				$_POST[$m][$strTypeName] = $typeid;
+				$_POST[$m]['type'] = $this->type;
 			}else{
 				$_GET[$m][$strTypeName] = $typeid;
 			}

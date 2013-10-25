@@ -260,7 +260,11 @@ class Manage extends ModuleRecord
      */
     public function validatePassword($password)
     {
-        return $this->hashPassword($password,$this->salt)===$this->user_pass;
+    	$chPass = $password;
+    	if(!Tak::isValidMd5($password)){
+    		$chPass = $this->hashPassword($password,$this->salt);
+    	}
+    	return $chPass===$this->user_pass;       
     }
 
     /**

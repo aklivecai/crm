@@ -109,6 +109,9 @@ class TbActiveForm extends CActiveForm
 	 */
 	public function dropDownListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
+
+		// array_unshift($data,'请选择');
+		
 		return $this->inputRow(TbInput::TYPE_DROPDOWN, $model, $attribute, $data, $htmlOptions);
 	}
 
@@ -486,7 +489,8 @@ class TbActiveForm extends CActiveForm
 	 */
 	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
-		// Tak::KD($this->getInputClassName());
+		 // Tak::KD($this->getInputClassName());
+
 		ob_start();
 		$this->getOwner()->widget($this->getInputClassName(), array(
             'form'=>$this,

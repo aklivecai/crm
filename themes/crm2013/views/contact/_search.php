@@ -4,59 +4,38 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="wide">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
+<div class="dr"><span></span></div>
+
+<?php /** @var BootActiveForm $form */
+
+
+$form = $this->beginWidget('CActiveForm', array(
+    'id'=>'search-form',
+    'action'=>Yii::app()->createUrl($this->route),
+    'method'=>'get',    
 )); ?>
-	<div class="row">
-		<?php echo $form->label($model,'clienteleid'); ?>
-		<?php echo $form->textField($model,'clienteleid',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'prsonid'); ?>
-		<?php echo $form->textField($model,'prsonid',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+<?php echo $form->dropDownList($model, 'type', TakType::sitems('contact-type')); ?>
+<?php echo $form->dropDownList($model, 'stage', TakType::sitems('contact-stage')); ?>
+		<?php echo $form->textField($model,'clienteleid',array('class'=>'sele1ct-clientele','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
+<div class="more-search-info hide">	
+<?php echo $form->textField($model,'prsonid',array('class'=>'sele1ct-prsonid','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
+<?php echo $form->textField($model,'contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>15,'maxlength'=>15)); ?>
-	</div>
+<?php echo $form->textField($model,'next_contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'stage'); ?>
-		<?php echo $form->textField($model,'stage'); ?>
-	</div>
+<?php echo $form->textField($model, 'next_subject'); ?>
+<?php echo $form->textField($model, 'note'); ?>
+</div>
+<div class="footer">
+<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Search'))); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'contact_time'); ?>
-		<?php echo $form->textField($model,'contact_time',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'next_contact_time'); ?>
-		<?php echo $form->textField($model,'next_contact_time',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'next_subject'); ?>
-		<?php echo $form->textField($model,'next_subject',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'accessory'); ?>
-		<?php echo $form->textField($model,'accessory',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'note'); ?>
-		<?php echo $form->textField($model,'note',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
-	</div>
-
+ <?php $this->widget('bootstrap.widgets.TbButton', array(
+    'buttonType'=>'button',
+    'htmlOptions'=>array('class'=>'more-search'),
+    'label'=>Tk::g('More'),
+)); ?>
+</div>
 <?php $this->endWidget(); ?>
-</div><!-- search-form -->
+
+<div class="clear"></div>

@@ -1,7 +1,7 @@
 <?php  
 class Tak {  
     public static function KD($msg,$isexit=false){
-        if (is_object($msg)){
+        if (is_object($msg)||is_array($msg)){
             echo  "<pre>";
             print_r($msg);
             echo  "<pre>";
@@ -9,7 +9,6 @@ class Tak {
                 foreach ($msg as $key => $value) {
                     self::KD($value);
                 }
-                
         }else{ 
             $str = $msg;
             $str = mb_convert_encoding($str,'gbk','UTF-8');
@@ -515,8 +514,7 @@ class Tak {
     }
 
     public static function get(){
-        $auth=Yii::app()->authManager;
-
+        $auth = Yii::app()->authManager;
     }
 
     //左栏菜单 
@@ -824,5 +822,34 @@ class Tak {
             document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd98411661088365a052727ec01efb9d8\' type=\'text/javascript\'%3E%3C/script%3E"));
         </script></div>';
         echo join($arr);
+    }
+
+    public static function gredViewOptions(){
+      $arr =array(
+            'type'=>'striped bordered condensed',
+            'id' => 'list-grid',
+            'dataProvider'=>null,
+            'template'=>"{items}",
+            'enableHistory'=>true,
+            'loadingCssClass' => 'grid-view-loading',
+            'summaryCssClass' => 'dataTables_info',
+            'pagerCssClass' => 'pagination dataTables_paginate',
+            'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
+            'ajaxUpdate'=>true,    //禁用AJAX
+            'enableSorting'=>true,
+            'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
+            'filter'=>$model,
+            'pager'=>array(
+                'header'=>'',
+                'maxButtonCount' => '5',
+                'hiddenPageCssClass' => 'disabled'
+                ,'selectedPageCssClass' => 'active disabled'
+                ,'htmlOptions'=>array('class'=>'')
+            ),
+            'columns'=>array(
+                self::getAdminPageCol(),
+            )
+        );
+        return $arr;
     }
 }  

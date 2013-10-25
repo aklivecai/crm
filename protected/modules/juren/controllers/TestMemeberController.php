@@ -29,6 +29,7 @@ class TestMemeberController extends JController
 			'model' => $model,
 		));
 	}
+
 	public function actionImport(){
 		$m = 'ImportForm';
 		$model = new $m();
@@ -46,6 +47,7 @@ class TestMemeberController extends JController
 			'model' => $model,
 		));
 	}
+
 	public function toSTime($time){
            $this->redirect(array('admin','TestMemeber[add_time]'=>$time));
 	}

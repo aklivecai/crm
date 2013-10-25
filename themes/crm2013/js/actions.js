@@ -7,7 +7,6 @@ var log = function(msg){
     console.log(msg);
 }
 
-
 //用于动态生成网址
 //$route,$params=array(),$ampersand='&'
 function createUrl(route)
@@ -120,8 +119,8 @@ var tselect = function(){
         return markup;
     }
     ;
-    clientele.css('width','100%');
-    prson.css('width','100%');
+    // clientele.css('width','100%');
+    // prson.css('width','101%');
  
      clientele.select2({
             placeholder: "搜索客户",
@@ -237,7 +236,7 @@ var tselect = function(){
 } 
 
 $('#list-grid,body').on('takLoad',function(){
-    tselect();
+    // tselect();
 });
 tselect();
 
@@ -264,6 +263,10 @@ var affirm = function(){
 
 $(document).ready(function(){
 
+$('.more-search').on('click',function(){
+    $(this).toggleClass('active');
+    $('#search-form .more-search-info').toggleClass('hide');
+});
 var btnAffirm = $('#btn-affirm');
 if (btnAffirm.length>0) {      
     btnAffirm.on('click',function(event){
@@ -271,6 +274,13 @@ if (btnAffirm.length>0) {
         affirm();
     }).trigger('click');
 };
+
+$('#search-form').submit(function(){
+    $('#list-grid').yiiGridView('update', {
+        data: $(this).serialize()
+    });
+    return false;
+});
     
     $('body li a.delete').on('click',function(){
         if(!confirm('你确定要删除这个信息吗?')) return false;

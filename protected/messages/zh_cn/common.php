@@ -108,6 +108,10 @@ return array (
   'Permissions' => '权限',
 
   'View Roles' => '角色权限介绍',
+
+  'Select' => '选择-',
+  'contact-type' => '联系方式',
+  'contact-stage' => '销售阶段',
  );
 
 

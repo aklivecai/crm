@@ -52,7 +52,7 @@ class JController extends CController
 	}
 	public function allowedActions()
 	{
-	 	return 'login,error';
+	 	return 'error';
 	}
 	public function accessRules()
 	{

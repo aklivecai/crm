@@ -97,8 +97,15 @@ class Contact extends ModuleRecord
 		$criteria->compare('manageid',$this->manageid,true);
 		$criteria->compare('clienteleid',$this->clienteleid,true);
 		$criteria->compare('prsonid',$this->prsonid,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('stage',$this->stage);
+
+		if ($this->type>=0) {
+			$criteria->compare('type',$this->type,true);
+		}
+
+		if ($this->stage>=0) {
+			$criteria->compare('stage',$this->stage,true);
+		}
+
 		$criteria->compare('contact_time',$this->contact_time,true);
 		$criteria->compare('next_contact_time',$this->next_contact_time,true);
 		$criteria->compare('next_subject',$this->next_subject,true);
@@ -129,10 +136,12 @@ class Contact extends ModuleRecord
     	return $arr;
     }
     public function group(){
+	
+	// SELECT * FROM (SELECT * FROM posts ORDER BY dateline DESC) AS NEW GROUP BY tid ORDER BY dateline DESC LIMIT 10
+
 	    $this->getDbCriteria()->mergeWith(array(
-	    	'condition' =>  '1=1',
+	    	'condition' =>  'itemid in(SELECT a.itemid FROM (SELECT b.itemid,b.clienteleid FROM `Tak_Contact` AS b ORDER BY b.contact_time DESC) AS a GROUP BY a.clienteleid)',
 	        'order'=>'contact_time DESC',
-	        'group' => 'clienteleid'
 	    ));
 	    return $this;    	
     }

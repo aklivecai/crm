@@ -97,6 +97,25 @@ class TakType extends CActiveRecord
 			self::loadItems($type,$fromid);
 		return self::$_items[$type];
 	}
+
+	public static function sitems($type,$title=false,$fromid=0)
+	{
+
+		if(!isset(self::$_items[$type])){
+			$arr = self::loadItems($type,$fromid);
+		}else{
+			$arr = self::$_items[$type] ;
+		}
+		if (!isset($arr[$type]['-1'])) {
+			$temp = array();
+			$temp['-1'] = $title?$title:Tk::g(array('Select',$type));
+			foreach ($arr as $key => $value) {
+				$temp[$key] = $value;
+			}
+			$arr = $temp;	
+		}
+		return $arr;
+	}
 	
 	public static function item($type,$typeid,$fromid=0)
 	{

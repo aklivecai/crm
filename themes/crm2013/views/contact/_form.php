@@ -24,6 +24,9 @@ $this->widget('application.components.MyMenu',array(
       'htmlOptions'=>array('class'=>'buttons'),
       'items'=> $items ,
 ));
+
+$types = TakType::items('contact-type');
+array_unshift($types,'sd');
 ?>      
 </div>
 <div class="block-fluid">
@@ -33,9 +36,9 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix">
 		<?php echo $form->textFieldRow($model,'prsonid',array('class'=>'sele1ct-prsonid','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
 	</div>		
-
+	<div class="clear"></div>
 		<div class="row-form clearfix">
-		<?php echo $form->dropDownListRow($model,'type',TakType::items('contact-type')); ?>
+		<?php echo $form->dropDownListRow($model,'type',$types); ?>
 	</div>
 		<div class="row-form clearfix">
 		<?php echo $form->dropDownListRow($model,'stage',TakType::items('contact-stage')); ?>

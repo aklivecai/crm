@@ -239,4 +239,19 @@ input[type=date]{
   color: #FFF;
 }
 
-
+#search-form{
+  width:35%;
+  margin-left:5%;
+}
+#search-form select{
+  width:155px;
+}
+#search-form .control-group {
+  margin:0;
+}
+#search-form .control-label{
+  width:120px;
+}
+#search-form .controls{
+  margin-left: 125px;
+}

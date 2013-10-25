@@ -48,6 +48,7 @@ class ModuleRecord extends CActiveRecord
 
     	if ($isOrder) {
     		$arr['order'] = ' add_time DESC ';
+
     	}
 
     	$condition = array($this->scondition);
@@ -115,6 +116,7 @@ class ModuleRecord extends CActiveRecord
 		}
 		return $pageSize;
     }
+
 	public function search()
 	{
 		$criteria = new CDbCriteria;
@@ -127,7 +129,8 @@ class ModuleRecord extends CActiveRecord
 			if ($date) {	
 				$criteria->addBetweenCondition($_GET['col'], $date['start'], $date['end']);
 			}
-		}		
+		}
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination' => array( 
@@ -148,7 +151,6 @@ class ModuleRecord extends CActiveRecord
 	}
 
 	public function checkTime($attribute,$params){
-
 		$time = $this->$attribute;
 		if ($time=='') {
 			$this->$attribute = 0;

@@ -109,6 +109,11 @@ return array(
 			// 程序有错的时候跳到指定的action
 			'errorAction'=>'site/error',
 		),
+		'mailer' => array(
+	      'class' => 'application.extensions.mailer.EMailer',
+	      'pathViews' => 'application.views.email',
+	      'pathLayouts' => 'application.views.email.layouts'
+   		),
 
 		'log' => array(
             'class'=>'CLogRouter',

@@ -28,20 +28,26 @@ if ($msg) {
 	'columns'=>array(
 		array(
 			'class'=>'CButtonColumn',
-			'template' => '{view} {update}  {delete} <br />{viewlog} ', 
+			'template' => '{view} {update}  {delete} <br />{viewlog} 、 {jmail}', 
             'header' => CHtml::dropDownList('pageSize'
                     ,Yii::app()->user->getState('pageSize')
                     ,TakType::items('pageSize')
                     ,array(
                         'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
-                        'style'=>'width: '.$width.' !important',
+                        'style'=>'width: 100px !important',
                     ) 
               ),
              'buttons'=>array(
 					'viewlog' => array
 					(
-						'label'=>'浏览日志',
+						'label'=>'日志',
 						 'url'=>'Yii::app()->createUrl("juren/testLog/admin", array("TestLog[fromid]"=>$data->itemid))',
+						 'linkOptions'=>array('style'=>'width: 50px'),
+					),
+					'jmail' => array
+					(
+						'label'=>'邮件',
+						 'url'=>'Yii::app()->createUrl("juren/default/email", array("itemid"=>$data->itemid))',
 						 'linkOptions'=>array('style'=>'width: 50px'),
 					),
 			  ), 

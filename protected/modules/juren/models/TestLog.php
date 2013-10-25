@@ -64,6 +64,7 @@ class TestLog extends AdminLog
     public function defaultScope()
     {
     	$arr = array();
+    	$arr['order'] = 'add_time DESC';
     	$condition = array();
     	// 查找自己会员的东西
     	$uname = Yii::app()->user->name; 

@@ -112,6 +112,7 @@ class TestMemeber extends ModuleRecord
     public function defaultScope()
     {
     	$arr = array();
+    	$arr['order'] = 'add_time DESC';
     	$condition = array('status=1');
     	$uname = Yii::app()->user->name; 
     	if ($uname!='admin') {
@@ -122,13 +123,16 @@ class TestMemeber extends ModuleRecord
     	return $arr;
     }
 
-    public function getHtmlLink()
+    public function getHtmlLink($isbtn=true)
     {
     	$key = Tak::setCryptNum($this->itemid);
     	$htmlOptions = array('class'=>'copy','id'=>$this->itemid);
 		$url = Yii::app()->request->hostInfo.'/?'.$key;
 		$link = CHtml::link($url,$url,array('target'=>'_blank','title'=>'点击打开'));
-		$link .= CHtml::button('复制',$htmlOptions);
+		if ($isbtn) {
+			$link .= CHtml::button('复制',$htmlOptions);
+		}
+		
 		// $link .= 'asd'.CHtml::button('复制',$htmlOptions);
 		return $link;
     }
