@@ -29,6 +29,7 @@ class RightsFilter extends CFilter
 		// Check if the action should be allowed
 		if( $this->_allowedActions!=='*' && in_array($action->id, $this->_allowedActions)===false )
 		{
+
 			// Initialize the authorization item as an empty string
 			$authItem = '';
 
@@ -38,12 +39,18 @@ class RightsFilter extends CFilter
 			if( ($module = $controller->getModule())!==null )
 				$authItem .= ucfirst($module->id).'.';
 
+
 			// Append the controller id to the authorization item name
 			$authItem .= ucfirst($controller->id);
-
+			if (Tak::getManageid()!='1'&&false) {
+				$user->checkAccess($authItem.'.*');
+				Tak::KD($authItem.'.*');
+				Tak::KD(get_defined_vars(),1);
+			}
 			// Check if user has access to the controller
 			if( $user->checkAccess($authItem.'.*')!==true )
 			{
+
 				// Append the action id to the authorization item name
 				$authItem .= '.'.ucfirst($action->id);
 

@@ -3,7 +3,7 @@
 /* @var $model Contact */
 
 $this->breadcrumbs=array(
-	Tk::g('Contacts')=>array('admin'),
+	Tk::g('Contacts')=>array('adminGroup'),
 	$model->itemid=>array('view','id'=>$model->itemid),
 	Tk::g('Update'),
 );

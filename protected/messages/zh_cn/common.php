@@ -47,6 +47,7 @@ return array (
   'Refresh' => '刷新',
 
   'Setting' => '设置',
+  'Config' => '配置',
   
   'More' => '更多', 
   'Detail' => '明细', 
@@ -108,6 +109,9 @@ return array (
   'Permissions' => '权限',
 
   'View Roles' => '角色权限介绍',
+
+  'Order' => '订单',
+  'Orders' => '订单',
 
   'Select' => '选择-',
   'contact-type' => '联系方式',

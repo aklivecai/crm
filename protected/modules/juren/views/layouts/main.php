@@ -37,15 +37,15 @@
 
 	<div id="mainmenu">
 		<?php 
-		$menus = array(
-				array('label'=>'主页', 'url'=>array('default/index')),
-				array('label'=>Tk::g('Test Memebers'), 'url'=>array('testMemeber/admin')
-				),
-				array('label'=>Tk::g('Test Logs'), 'url'=>array('testLog/admin'))
-			);
+		$menus = array();
 		if (Tak::isGuest()) {
 			$menus[] = array('label'=>'登录', 'url'=>array('default/login'),);
 		}else{
+			$menus[] = array('label'=>'主页', 'url'=>array('default/index'));
+			$menus[] =  array('label'=>Tk::g('Test Memebers'),'url'=>array('testMemeber/admin'));
+			$menus[] =	array('label'=>Tk::g('Test Logs'), 'url'=>array('testLog/admin'));
+
+			$menus[] = array('label'=>'管理中心', 'url'=>array('/site/index'));
 			$menus[] = array('label'=>'修改密码', 'url'=>array('default/changepwd'),'linkOptions'=>array('class'=>'changepwd'));
 
 			$menus[] = array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('default/logout'),'linkOptions'=>array('class'=>'logout'));

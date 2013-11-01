@@ -89,6 +89,7 @@ class Contact extends ModuleRecord
 
 	public function search()
 	{
+
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
 

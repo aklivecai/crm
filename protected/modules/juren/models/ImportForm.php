@@ -9,7 +9,7 @@ class ImportForm extends CFormModel
             array('file', 'file',
                 'allowEmpty' => true,
                 'types'=> 'xlsx,xls,et',
-                'maxSize' => 1024 * 1024 * 10, // 10MB                
+                'maxSize' => 1024 * 1024 * 10, // 10MB 
                 'tooLarge' => '文件最大10M',
                 ),
         );

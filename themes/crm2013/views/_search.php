@@ -6,6 +6,7 @@
 <div class="row-fluid">
 
 <?php 
+
 $sdata = Tak::searchData();
 
 

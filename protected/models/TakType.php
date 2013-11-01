@@ -27,7 +27,7 @@ class TakType extends CActiveRecord
 
 	public function primaryKey()
 	{
-		return 'typeid';
+		// return 'typeid';
 	} 
 
 	public function init(){
@@ -55,6 +55,7 @@ class TakType extends CActiveRecord
 		,'priority' => array('0'=>'低','1'=>'中','2'=>'高')
 		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100)
 
+		,'filetype' => array('0'=>'default','2'=>'rar','3'=>'doc','4'=>'xls','5'=>'txt')
 		,'label' => array('0'=>'','1'=>'label-success','2'=>'label-warning','3'=>'label-important','4'=>'label-info','5'=>'label-inverse')
 	);
 
@@ -150,7 +151,7 @@ class TakType extends CActiveRecord
 	//默认继承的搜索条件
     public function defaultScope(){
     	$arr = parent::defaultScope();
-    	$arr = array('order'=>'listorder DESC,typeid DESC',);
+    	$arr = array('order'=>'listorder DESC,typeid ASC',);
     	if ($this->scondition) {
     		$condition = array($this->scondition);
     		$condition[] = 'fromid='.Tak::getFormid();
@@ -173,7 +174,7 @@ class TakType extends CActiveRecord
 			array('item', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('fromid, typeid, typename, item, listorder', 'safe', 'on'=>'search'),
+			array('fromid, typeid, typename, item', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -209,7 +210,6 @@ class TakType extends CActiveRecord
 		$criteria->compare('typeid',$this->typeid,true);
 		$criteria->compare('typename',$this->typename,true);
 		$criteria->compare('item',$this->item,true);
-
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -265,6 +265,13 @@ class TakType extends CActiveRecord
 		 	array(':typeid'=>$typeid,':item'=>$item,':fromid'=>Tak::getFormid())
 		 );
 		return $msg;
+	}
+
+	public static function geList($item){
+		$result = self::model()->findAllByAttributes(
+			array('item'=>$item,'fromid'=>Tak::getFormid())
+		 );
+		return $result;
 	}
 
 	public function getEidtLink(){

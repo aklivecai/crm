@@ -1,6 +1,5 @@
 <?php
-/* @var $this MovingsController */
-/* @var $model Movings */
+
 	$this->pageTitle = Tk::g(array($model->getTypeName(),'bill')).'-'.$this->cates[$model->typeid];
 ?>
 <div class="content">

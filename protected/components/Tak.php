@@ -1,5 +1,6 @@
 <?php  
 class Tak {  
+/*reg*/
     public static function KD($msg,$isexit=false){
         if (is_object($msg)||is_array($msg)){
             echo  "<pre>";
@@ -16,6 +17,7 @@ class Tak {
         }
         if ($isexit) exit;
     }
+
     public static function checkSuperuser(){
         return Yii::app()->user->checkAccess(Rights::module()->superuserName);
     }
@@ -26,7 +28,8 @@ class Tak {
     public static function isGuest()
     {
         return Yii::app()->user->isGuest;
-    }    
+    }   
+#end     
     public static function getAdmin(){
         return Yii::app()->user->fromid==1;
     }
@@ -60,13 +63,19 @@ class Tak {
         return $result;
     }
 
-    public static function setCryptNum($str){
+    // 会员传入就不做修改
+    public static function setCryptNum($str,$rand=false){
         $result = is_numeric($str);
         if ($result) {
             $result = base_convert($str, 10, 36);
                 $arr = str_split($result);
                 $length = count($arr);
-                $str1 = self::createCode(1);
+                if ($rand) {
+                   $str1 = $rand;
+                }else{
+                    $str1 = self::createCode(1);
+                }
+                
                 $strb = $arr[$length-1];
                 $arr[$length] = $strb;
                 $arr[$length-1] = $str1;
@@ -76,16 +85,20 @@ class Tak {
         return $result;
     }
 
-    public static function getCryptNum($str){
+    public static function getCryptNum($str,$rand=1){
         // $result = !is_numeric($str)?strtolower($str):false;
         $result = strtolower($str);
         if ($result) {
             // self::KD($result);
                 $arr = str_split($result);
                 $length = count($arr)-1;
-                $arr[$length-1] = $arr[$length];
-                unset($arr[$length]);
-            $result = join($arr);
+                $_length =$length-strlen($rand);
+                $arr[$_length] = $arr[$length];
+                for ($i=$_length+1; $i <= $length ; $i++) { 
+                    unset($arr[$i]);
+                }
+                
+                $result = join($arr);
 // self::KD($result);
             $result = base_convert($result, 36, 10);
             if (!is_numeric($result)) {
@@ -124,12 +137,21 @@ class Tak {
         if(isset($types[$type])) $type = $types[$type];
         return date($type, $time);
     }
+    public static function format_price($val="0.00",$currency="￥",$ifval=false){
+        $result =  Yii::app()->numberFormatter->formatCurrency($val,$currency);
+        return $result;
+    }
+    /*获取iP数字*/
+    public static function getIps(){
+            $ip = self::getip();
+            $ip = self::IP2Num($ip);
+            return $ip;
+    }
     /*获取操作数*/
     public static function getOM(){
         $ip = Yii::app()->user->getState('ip')!=''?Yii::app()->user->getState('ip'):false;
         if (!$ip) {
-            $ip = self::getip();
-            $ip = self::IP2Num($ip);
+            $ip = self::getIps();
             Yii::app()->user->setState('ip', $ip);   
         }
         // self::KD($ip);
@@ -471,19 +493,85 @@ class Tak {
          
             return $realip;   
     }
+
+    public static function getFileTypeId($file){
+        $result = 0 ;
+        $type = $file;
+        if (strpos($file, '.')>0) {
+            $type =explode("." , $file); 
+            $count = count($type)-1; 
+            $type = $type[$count];
+        }
+        $type = strtolower($type);
+        switch ($type) {   
+            case 'jpg':
+            case 'jpeg':
+            case 'gif':
+            case 'png':
+            case 'bmp':
+            case 'cdr':
+            case 'psd':
+            case 'ai':
+                $result = 1;
+
+                break;
+            case 'rar':
+            case 'zip':
+            case '7z':
+            case 'iso':
+            case 'jar':
+                $result = 2;
+                break;
+            case 'doc':
+            case 'docx':
+                $result = 3;
+                break;
+            case 'xls':
+            case 'xlsx':
+                $result = 4;
+                break;         
+            case 'txt':
+                $result = 5;
+                break;         
+            default:
+                $result = 0 ;
+                break;
+        }
+
+        return $result;
+    }
+    public static function getUserDir($uid=false){
+        $dir = Yii::app()->getBaseUrl().Yii::app()->params['uploadUser'];
+        if (!$uid) {
+            $uid = self::getFormid();
+        }
+        $dir .= self::setCryptNum($uid,'JU').'/';
+        return $dir;
+    }
     
-    public static function getFileSrc($str){
+    public static function getFileSrc($str,$isWrite='',$dir=''){
         $path_info = pathinfo($str );  
         $extension = $path_info['extension'];
         $file1 = md5($str);
         $file2 = self::getPathBySplitStr($file1);
 
-        self::KD($str);
-        exit;
-        $dir = Yii::app()->params['upload'].str_replace($file1,'',$file2);
+        if ($dir='') {
+            $dir = Yii::app()->params['uploadUser'];
+        }
+        $dir = str_replace($file1,'',$file2);
         self::MkDirs($dir);
-        $file2 .= '.'.$extension;
-        file_put_contents($file2, file_get_contents($str));
+        $file2 = $dir. $file1;
+        if ($extension) {
+            $file2.= '.'.$extension;
+        }
+
+        self::KD($str);
+        self::KD($file1);
+        self::KD($file2,1);
+        if ($isWrite||true) {
+           file_put_contents($file2, file_get_contents($str,FILE_USE_INCLUDE_PATH));
+        }
+        
         return $file2;
     }
 
@@ -511,6 +599,14 @@ class Tak {
         self::MkDirs(dirname($dir), $mode, $recursive);
         mkdir($dir,$mode);
         return false;
+    }
+
+    public static function getFileIco($typeid){
+        // 2压缩包,3是文档
+        $arr = TakType::items('filetype');
+        $result = isset($arr[$typeid])?$arr[$typeid]:current($arr);
+        $result = Yii::app()->getBaseUrl().'/upload/ui/ico/'.$result.'.png';
+        return $result;
     }
 
     public static function get(){
@@ -573,11 +669,12 @@ class Tak {
             'addressbook' => array(
               'icon' =>'isw-archive',
               'label'=>'<span class="text">通讯录</span>',
-              'visible'=>self::checkAccess('AddressBook.Admin'),
+              'visible'=>self::checkAccess('Addressbook.Index'),
               'items'=>array(
-                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Create').'部门</span>',  'url'=>array('/AddressGroups/admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','AddressBook')).'</span>',  'url'=>array('/addressBook/create'),),
-                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Admin','AddressBook')).'</span>', 'url'=>array('/addressBook/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Create').'部门</span>',  'url'=>array('/AddressGroups/admin'),'visible'=>self::checkAccess('Addressgroups.Admin'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','AddressBook')).'</span>',  'url'=>array('/addressBook/create'),'visible'=>self::checkAccess('Addressbook.Create'),),
+                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Admin','AddressBook')).'</span>', 'url'=>array('/addressBook/admin'),'visible'=>self::checkAccess('Addressbook.*'),),
+                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('View','AddressBook')).'</span>', 'url'=>array('/addressBook/index'),'visible'=>self::checkAccess('AddressBook.Index'),),
               ),
             ),
             'events' => array(
@@ -623,14 +720,13 @@ class Tak {
             ), 
            'order' => array(
               'visible'=>self::checkAccess('Order.*'),
-              'icon' =>'isb-lock',
-              'label'=>'<span class="text">订单</span>',
-              'url'=>array('/site/order'),
+              'icon' =>'isw-list',
+              'label'=>'<span class="text">'.Tk::g('Order').'</span>',
+              'url'=>array('/order/index'),
               'items'=>array(
-                array('icon'=>'shopping-cart','label'=>'<span class="text">订单管理</span>', 'url'=>array('/site/order')),
-                array('icon'=>'th','label'=>'<span class="text">发货管理</span>',  'url'=>array('/site/order'),),
-                array('icon'=>'th','label'=>'<span class="text">订单留言</span>',  'url'=>array('/site/order'),),
-                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/site/order'),),
+                array('icon'=>'shopping-cart','label'=>'<span class="text">'.Tk::g(array('Order','Admin')).'</span>', 'url'=>array('/order/admin')),
+                array('icon'=>'th-large','label'=>'<span class="text">订单留言</span>',  'url'=>array('/site/order'),),
+                array('icon'=>'certificate','label'=>'<span class="text">'.Tk::g(array('Order','Config')).'</span>',  'url'=>array('/order/config'),),
               ),
             ), 
 
@@ -678,17 +774,7 @@ class Tak {
         unset($items['invite']);
         unset($items['training']);
         unset($items['events']);
-        if (self::checkSuperuser()) {
-         $items[] = array(
-                      'icon' =>'isw-settings',
-                      'label'=>'<span class="text">管理中心</span>',
-                      'items'=>array(
-                        // array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/settin/index')),
-                        array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/admin'),),
-                        // array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
-                      ),
-                    );
-     }
+
          $items[] = array(
                        'icon' =>'isw-zoom',
                       'label'=>'<span class="text">帮助中心</span>', 
@@ -709,6 +795,24 @@ class Tak {
 
         $controlName = Yii::app()->getController()->id;  
         $controlName = strtolower($controlName);
+
+        if (self::checkSuperuser()) {
+         $items[] = array(
+                      'icon' =>'isw-settings',
+                      'label'=>'<span class="text">管理中心</span>',
+                      'items'=>array(
+                        // array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/settin/index')),
+                        array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/admin'),),
+                        // array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
+                      ),
+                    );
+         $items[] = array(
+                      'icon' =>'isw-calc',
+                      'label'=>'<span class="text">具人同行商务中心</span>',
+                      'url'=>'http://www.9juren.com/member/',
+                      'linkOptions' =>array('target'=>'_blank')
+                    );
+     }        
 
         // Tak::KD(Yii::app()->getController(),1);
         // Tak::KD(Yii::app(),1);
@@ -781,10 +885,6 @@ class Tak {
           // 'imageUrl'=>$this->{$id.'ButtonImageUrl'},
         $items = array_merge_recursive($items, $newItems);
      }
-
-              
-
-
      return $items;         
     }
 
@@ -824,7 +924,7 @@ class Tak {
         echo join($arr);
     }
 
-    public static function gredViewOptions(){
+    public static function gredViewOptions($btnColumn=true){
       $arr =array(
             'type'=>'striped bordered condensed',
             'id' => 'list-grid',
@@ -846,10 +946,11 @@ class Tak {
                 ,'selectedPageCssClass' => 'active disabled'
                 ,'htmlOptions'=>array('class'=>'')
             ),
-            'columns'=>array(
-                self::getAdminPageCol(),
-            )
+            'columns'=>array()
         );
+        if ($btnColumn) {
+           $arr['columns'] = self::getAdminPageCol();
+        }
         return $arr;
     }
 }  

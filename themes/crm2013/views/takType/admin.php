@@ -67,12 +67,12 @@ $action = $model->isNewRecord?'Create':'Update';
     'type'=>'striped bordered condensed',
     'id' => 'list-grid',
 	'dataProvider'=>$listM->search(),
-	'template'=>"{items}",
+	'template'=>'{pager}<div class="dr"><span></span></div>{items}{pager}',
 	'enableHistory'=>true,
     'loadingCssClass' => 'grid-view-loading',
     'summaryCssClass' => 'dataTables_info',
     'pagerCssClass' => 'pagination dataTables_paginate',
-    'ajaxUpdate'=>false,    //禁用AJAX
+    'ajaxUpdate'=>true,    //禁用AJAX
     'enableSorting'=>false,
 	'columns'=>array(
 		array(

@@ -3,7 +3,7 @@
 /* @var $model Contact */
 
 $this->breadcrumbs=array(
-	Tk::g('Contacts') => array('admin'),
+	Tk::g('Contacts') => array('adminGroup'),
 	$model->itemid,
 );
 	$items = Tak::getViewMenu($model->itemid);

@@ -75,6 +75,10 @@ class Controller extends RController
 		);
 	}
 
+	public function allowedActions()
+	{
+	 	return 'views,error';
+	}
 	/**
 	 * Filter method for checking whether the currently logged in user
 	 * is the author of the post being accessed.
@@ -155,6 +159,13 @@ class Controller extends RController
 		$this->render($this->templates['view'],array(
 			'model' => $this->loadModel($id),
 		));
+	}
+
+	public function actionViews($id)
+	{
+		$this->render('views',array(
+			'model' => $this->loadModel($id),
+		));
 	}	
 	public function actionPreview($id)
 	{
@@ -166,19 +177,15 @@ class Controller extends RController
 
 	public function actionIndex()
 	{
-		$criteria=new CDbCriteria(array(
-			'condition'=>'1=1',
-			'order'=>'modified_time DESC',
-		));
-		$dataProvider=new CActiveDataProvider($this->modelName, array(
-			'pagination' => array(
-				'pageSize' => Yii::app()->params['defaultPageSize'],
-			),
-			'criteria'=>$criteria,
-		));
+		$m = $this->modelName;
+		$model = new $m('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET[$m])){
+			$model->attributes = $_GET[$m] ;
+		}
 
 		$this->render($this->templates['index'],array(
-			'dataProvider'=>$dataProvider,
+			'model'=>$model,
 		));
 	}	
 

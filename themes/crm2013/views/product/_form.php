@@ -53,6 +53,9 @@ $this->widget('application.components.MyMenu',array(
 		<?php echo $form->textFieldRow($model,'spec',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 	<div class="row-form clearfix" >
+		<?php echo $form->textFieldRow($model,'color',array('size'=>10,'maxlength'=>10)); ?>
+	</div>
+	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'unit',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 	<div class="row-form clearfix" >

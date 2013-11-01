@@ -1,3 +1,5 @@
+.kclear{visibility: hidden;display: block;font-size: 0;content: " ";height:0;clear: both;}
+
 .red{
   color: #F00;
 }
@@ -254,4 +256,198 @@ input[type=date]{
 }
 #search-form .controls{
   margin-left: 125px;
+}
+
+/* 订单管理 */
+.li-product li{
+  float: left;
+  display: inline;
+  padding:2px;
+  position: relative;
+  width:130px;
+  height: 90px;
+  margin: 0 8px 5px 0;
+  z-index: 1;
+  line-height: 16px;
+  word-break:break-all;
+  border:1px solid #DDD;
+  background-color: #fff;
+}
+.wap-pic{
+  padding:5px;
+  width:120px;
+  height: 50px;
+  overflow: hidden;
+  position: absolute;
+  top:30px;
+  left:0;
+  background-color: #FFF;
+  border:1px solid #FFF;
+  border-width:1px 2px 2px 1px;
+}
+.li-product li:hover{
+  z-index: 9;
+  
+}
+.li-product li:hover .wap-pic{
+  width:295px;
+  height: auto;
+  overflow: inherit;
+  border-color: #DDD;
+}
+.li-product li:hover .wap-pic dl{
+  visibility: visible;
+}
+.wap-products img{
+  width:50px;
+  height: 50px;
+  display: inline-block;
+  margin: 0 0 3px 3px;
+  border:1px solid #DDD;
+  padding:1px;
+}
+.wap-pic dl{
+  visibility: hidden;
+}
+.wap-products dl {
+  margin:0;
+  padding:0;
+}
+.wap-products dl dt,
+.wap-products dl dd{
+  float: left;
+  display: inline;
+  line-height: 22px;
+  border-bottom:1px  dotted #CCC;
+  margin:0;
+  padding:0;
+}
+.wap-products dl dt{
+  width:15%;
+  text-align: right;
+}
+.wap-products dl dd{
+  width:30%;
+  margin-right: 2%
+}
+
+.otitle{
+  display: block;
+}
+.price-strong{
+  color: red;
+}
+
+.tak-table{
+  border-collapse:collapse;
+  _border-collapse: separate;
+  table-layout:fixed;
+  border-spacing: 0;
+  margin-bottom:5px;
+  width:100%;
+  border:1px solid #DDD;
+  background-color:#FFF;
+}
+.tak-table caption{
+  text-align:left;
+  height:35px;
+  line-height:35px;
+  background:#F7F7F7;
+  text-indent:12px;
+  font-size:14px;
+  font-weight:bold;
+  border:1px solid #DDD;
+  border-bottom-width: 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0  0;
+}
+.tak-table thead th {
+  background-color:#F7F7F7;
+  border-bottom: 0px none;
+  height: 23px;
+  line-height: 23px;
+  padding: 1px 5px;
+  white-space: nowrap;
+  color:#666;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F7F7F7), to(#FFF));
+    background-image: -webkit-linear-gradient(top, #F7F7F7, #FFF);
+    background-image:    -moz-linear-gradient(top, #F7F7F7, #FFF);
+    background-image:     -ms-linear-gradient(top, #F7F7F7, #FFF);
+    background-image:      -o-linear-gradient(top, #F7F7F7, #FFF);
+    background-image:         linear-gradient(top, #F7F7F7, #FFF);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.tak-table tbody td,
+.tak-table tbody th{
+  height:30px;padding:2px 5px;
+  border:1px solid #DDD;
+  min-width: 85px;
+}
+
+.tak-table tbody th{text-align:right;background-color:#F7F7F7;width:10%;margin-right:3%;}
+
+
+.tak-table tfoot th,
+.tak-table tfoot td
+{
+  padding:8px;
+}
+.tak-table tfoot tr td{
+  text-align: right;
+}
+.tak-table tbody td a{
+  color: #317EE7;
+}
+
+
+.tak-table tbody tr:hover{
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.bor-error{
+  border:1px solid red;
+}
+
+.action-fold caption{
+  background-image:url(../img/styles/default/menu_arrow_up.png);
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  cursor: pointer;
+}
+
+ table.active caption{
+  background-image: url(../img/styles/default/menu_arrow_down.png);
+}
+table.active  tbody,
+table.active  tfoot,
+table.active  thead{
+  display: none;
+}
+
+
+.wap-flow-content{
+  display: none;
+}
+form.active .wap-flow-content{
+  display: block;
+}
+
+#flow-form .tak-table caption{
+  text-indent: 0;
+}
+
+
+.itak-dr .dr{
+  margin:0;
 }

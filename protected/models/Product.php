@@ -45,7 +45,7 @@ class Product extends ModuleRecord
 			array('stocks, status', 'numerical', 'integerOnly'=>true),
 			array('itemid, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, typeid, unit, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
-			array('name, material, spec', 'length', 'max'=>100),
+			array('name, material, spec,color', 'length', 'max'=>100),
 			array('note', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -85,6 +85,7 @@ class Product extends ModuleRecord
 				'typeid' => '分类',
 				'material' => '材料',
 				'spec' => '规格',
+				'color' => '颜色',
 				'unit' => '单位',
 				'stocks' => '库存', /*(可负)*/
 				'add_time' => '添加时间',
@@ -110,6 +111,7 @@ class Product extends ModuleRecord
 		$criteria->compare('material',$this->material,true);
 		$criteria->compare('spec',$this->spec,true);
 		$criteria->compare('unit',$this->unit,true);
+		$criteria->compare('color',$this->color,true);
 		$criteria->compare('stocks',$this->stocks);
 		$criteria->compare('add_time',$this->add_time,true);
 		$criteria->compare('add_us',$this->add_us,true);

@@ -17,7 +17,7 @@ function toClipboards(copy_id,txt) {
 
 jQuery(function($) {
   window.iclips = [];
-      ZeroClipboard.setMoviePath("/_ak/js/zeroclipboard/ZeroClipboard.swf");//手动指定Flash地址 
+      ZeroClipboard.setMoviePath("http://i.9juren.com/_ak/js/zeroclipboard/ZeroClipboard.swf");//手动指定Flash地址 
 var clearCopys = function(){
   for (var i = window.iclips.length - 1; i >= 0; i--) {
     window.iclips[i].destroy();

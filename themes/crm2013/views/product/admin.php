@@ -70,6 +70,11 @@ $items = Tak::getListMenu();
 			'type'=>'raw',
 			'filter'=>false, 
 		)
+		,array(
+			'name'=>'color',
+			'type'=>'raw',
+			'filter'=>false, 
+		)
 		// ,array(
 		// 	'name'=>'unit',
 		// 	'type'=>'raw',
