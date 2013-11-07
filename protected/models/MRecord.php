@@ -107,6 +107,12 @@ class MRecord extends CActiveRecord
 		}
 	}
 
+	public static function getOne($itemid=false){
+		if (!$itemid) {
+			$itemid = Tak::getManageid();
+		}
+		return self::model()->findByPk($itemid);
+	}	
 
 	//保存数据前
 	protected function beforeSave($isok=false){
@@ -177,7 +183,7 @@ class MRecord extends CActiveRecord
 		));	
 		 // Tak::KD($sql,1);
 		$command = Yii::app()->db->createCommand($sql);
-		$dataReader=$command->query();
+		$dataReader = $command->query();
 		$tags = array();
 		foreach($dataReader as $row) {
 			$tags[$row['ikey']] = $row['num'];

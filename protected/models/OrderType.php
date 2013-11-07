@@ -78,9 +78,14 @@ class OrderType
 	
 	public static function item($type,$typeid,$fromid=0)
 	{
+		$result = '';
 		if(!isset(self::$_items[$type]))
 			self::loadItems($type,$fromid);
-		return isset(self::$_items[$type][$typeid]) ? self::$_items[$type][$typeid] : false;
+		$result = isset(self::$_items[$type][$typeid]) ? self::$_items[$type][$typeid] : false;
+		if ($result&&$typeid==200) {
+			$result = str_replace("订单",'',"已经$result");
+		}
+		return $result;
 	}
 	
 	private static function loadItems($type,$fromid=0)

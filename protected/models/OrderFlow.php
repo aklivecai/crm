@@ -110,7 +110,10 @@ class OrderFlow extends MRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
+    	$condition = array();	
+    	if (isset($arr['condition'])) {
+    		$condition[]=$arr['condition'];
+    	}
     	$arr['condition'] = join(" AND ",$condition);
     	// $condition[] = 'display>0';
     	$arr['order'] = ' add_time ASC ';
@@ -120,10 +123,11 @@ class OrderFlow extends MRecord
 	//保存数据前
 	protected function beforeSave(){
 	    $result = parent::beforeSave(true);
+	    
 	    if($result){
+	    	$arr = Tak::getOM();
 	        //添加数据时候
 	        if ( $this->isNewRecord ){
-	        	$arr = Tak::getOM();
 	        	if (!$this->itemid) {
 	        		$this->itemid = $arr['itemid'];
 	        	}

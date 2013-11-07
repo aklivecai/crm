@@ -76,7 +76,6 @@ class DefaultController extends JController
 		}
 		$this->layout = 'column1';
 		$model = new LoginForm;
-		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
 			echo CActiveForm::validate($model);

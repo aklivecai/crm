@@ -93,7 +93,7 @@ $listOptions['columns'] = array(
 			,'type'=>'raw'
 			,'sortable'=>false
 		  	,'header' => CHtml::dropDownList('dt'
-				, $_GET['dt']
+				, isset($_GET['dt'])?$_GET['dt']:''
 				, Order::getSearchTime()
 				, array(
 					'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{'col':'add_time','dt': $(this).val()}})", 

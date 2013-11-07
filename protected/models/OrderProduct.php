@@ -123,7 +123,10 @@ class OrderProduct extends MRecord
     {
 
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);	
+    	$condition = array();	
+    	if (isset($arr['condition'])) {
+    		$condition[]=$arr['condition'];
+    	}
     	$arr['order'] = ' itemid ASC ';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
@@ -155,11 +158,18 @@ class OrderProduct extends MRecord
 		return $this->files;
 	}
 
-	public function getFilesImg(){
+	public function getFilesImg($all=true){
 		$result = '';
 		$files = $this->loadFiles();
-		foreach ($files as $k1 => $v1) {
+		if (is_numeric($all)) {
+			$all = $all>=count($files)?count($files):$all;
+			for ($i=0; $i < $all; $i++) { 
+				$result .= $files[0]->getLink();
+			}
+		}else{
+			foreach ($files as $k1 => $v1) {
 				$result .= $v1->getLink();
+			}
 		}
 		return $result;
 	}

@@ -71,7 +71,7 @@ class JController extends CController
 		{
 			$m = $this->modelName;
 			$m = $m::model();
-			$this->_model = $m->findByPk($id, $condition);
+			$this->_model = $m->findByPk($id);
 			if($this->_model===null)
 				throw new CHttpException(404,'所请求的页面不存在。');
 		}

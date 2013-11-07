@@ -11,7 +11,7 @@
  * @property string $material
  * @property string $spec
  * @property string $unit
- * @property integer $stocks
+ * @property integer $stockssds
  * @property string $add_time
  * @property string $add_us
  * @property string $add_ip
@@ -136,7 +136,10 @@ class Product extends ModuleRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
+    	$condition = array();
+    	if(isset($arr['condition'])){
+    		$condition[] = $arr['condition'];
+    	}
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;

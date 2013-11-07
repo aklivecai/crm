@@ -69,7 +69,6 @@ class OrderController extends Controller
 		$flowTypes = TakType::geList($this->_taktype);
 
 		$this->render('config',array(
-			'model' => $model,
 			'flowTypes' => $flowTypes,
 		));
 	}
@@ -79,12 +78,17 @@ class OrderController extends Controller
 		$m = $this->modelName;
 		if(isset($_POST[$m]))
 		{
-			$model->attributes=$_POST[$m];
+			$model->attributes = $_POST[$m];
 			if($model->save()){
 				
 			}
 		}
-		$this->render('updates',array(
+		$temp = 'updates';
+		if ($model->status==999||$model->status==200) {
+			$temp = 'views';
+		}
+		
+		$this->render($temp,array(
 			'model'=>$model,
 		));
 	}

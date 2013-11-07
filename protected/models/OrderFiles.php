@@ -99,7 +99,10 @@ class OrderFiles extends MRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
+    	$condition = array();	
+    	if (isset($arr['condition'])) {
+    		$condition[]=$arr['condition'];
+    	}
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;

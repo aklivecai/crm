@@ -68,8 +68,8 @@ class TestLog extends AdminLog
     	$condition = array();
     	// 查找自己会员的东西
     	$uname = Yii::app()->user->name; 
+    	$manageid = Tak::getManageid();
     	if ($uname!='admin') {
-    		$manageid = Tak::getManageid();
     		$condition[] = 'fromid IN (SELECT itemid FROM {{test_memeber}} WHERE manageid='.$manageid.')';	
     	}
     	

@@ -28,7 +28,7 @@ class Manage extends ModuleRecord
 	 */
 	public function tableName()
 	{
-		return '{{Manage}}';
+		return '{{manage}}';
 	}
 
 	/**

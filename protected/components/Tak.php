@@ -1,6 +1,5 @@
 <?php  
 class Tak {  
-/*reg*/
     public static function KD($msg,$isexit=false){
         if (is_object($msg)||is_array($msg)){
             echo  "<pre>";
@@ -176,8 +175,12 @@ class Tak {
         if (!$time) {
             $time = time();
         }
-        $date = date("Y-m-d",$time);
-        $dayEnd = strtotime($date." 23:59:59");
+        $dayEnd = false;
+        if (is_numeric($time)) {
+            $date = date("Y-m-d",$time);
+            $dayEnd = strtotime($date." 23:59:59");
+    }      
+        
         return $dayEnd;
     }
 
@@ -589,7 +592,7 @@ class Tak {
     /*
     生成目录
     */
-    public static function MkDirs($dir, $mode = 0777, $recursive = true) {
+    public static function MkDirs($dir, $mode = 0700, $recursive = true) {
         if (is_null($dir) || $dir == "") {
             return false;
         }
@@ -829,10 +832,11 @@ class Tak {
                 
             }
         }
-        if ($tname==''&&Yii::app()->getController()->breadcrumbs[0]=='授权') {
+        if ($tname==''&&count(Yii::app()->getController()->breadcrumbs)>0
+            &&Yii::app()->getController()->breadcrumbs[0]=='授权') {
             $tname = 'manage';
         }
-        if ($items[$tname])
+        if (isset($items[$tname]))
         {
             $items[$tname]['active'] = true; 
         }
@@ -902,7 +906,7 @@ class Tak {
     public static function getMovingsType($type){
 
        $types = array(1=>'Purchase',2=>'Sell');
-       if ($types[$type]) {
+       if (isset($types[$type])) {
           $type = $types[$type];
        }else{
         $type = current($types);
@@ -938,7 +942,6 @@ class Tak {
             'ajaxUpdate'=>true,    //禁用AJAX
             'enableSorting'=>true,
             'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
-            'filter'=>$model,
             'pager'=>array(
                 'header'=>'',
                 'maxButtonCount' => '5',
@@ -952,5 +955,34 @@ class Tak {
            $arr['columns'] = self::getAdminPageCol();
         }
         return $arr;
+    }
+
+    public static function submitButton($label='submit',$htmlOptions=array()){
+        $htmlOptions['type']='submit';
+        $class = 'btn';
+        if (isset($htmlOptions['class'])) {
+            $class.=' '.$htmlOptions['class'];
+        }
+        $htmlOptions['class'] =$class;
+        
+        return CHtml::tag('button',$htmlOptions,$label);
+    }
+
+    public static function writeInfo($key='source',$defaultValue=null){
+        $result = '';
+        $html = self::getFlash($key,$defaultValue,true);
+        if($html){
+            $result = CHtml::tag('div',array('class'=>'alert alert-block alert-success'),$html);            
+        }
+        return $result;
+    }
+
+    public static function getFlash($key='source',$defaultValue=null,$delete=true){
+        $result = Yii::app()->user->getFlash($key,$defaultValue,$delete);
+        return $result;
+    }
+    public static function setFlash($value,$key='source',$defaultValue=null){
+        $result = Yii::app()->user->setFlash($key,$value,$defaultValue);
+        return $result;
     }
 }  

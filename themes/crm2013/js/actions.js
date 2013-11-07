@@ -35,6 +35,7 @@ function createUrl(route)
     };
     return url;
 }
+
 function dateFormat(date, format) {
     if(format === undefined){
         format = date;

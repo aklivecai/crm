@@ -39,7 +39,7 @@ class Order extends MRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromid, manageid', 'required'),
+			array('fromid', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('itemid, manageid', 'length', 'max'=>25),
 			array('fromid, add_ip, add_time, total, pay_time, delivery_time, u_time', 'length', 'max'=>10),
@@ -102,18 +102,19 @@ class Order extends MRecord
 			$criteria->addCondition("itemid IN (SELECT order_id FROM {{Order_Product}} WHERE name LIKE '%{$this->itemid}%'  GROUP BY order_id )",'OR');
 		}		
 
-		$criteria->compare('fromid',$this->fromid,true);
-		$criteria->compare('manageid',$this->manageid,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('total',$this->total,true);
+		$criteria->compare('fromid',$this->fromid);
+		$criteria->compare('manageid',$this->manageid);
+		$criteria->compare('add_time',$this->add_time);
+		$criteria->compare('total',$this->total);
 		
-		$criteria->compare('pay_time',$this->pay_time,true);
-		$criteria->compare('delivery_time',$this->delivery_time,true);
-		$criteria->compare('u_time',$this->u_time,true);
-		$criteria->compare('invoice_number',$this->invoice_number,true);
+		$criteria->compare('pay_time',$this->pay_time);
+		$criteria->compare('delivery_time',$this->delivery_time);
+		$criteria->compare('u_time',$this->u_time);
+		$criteria->compare('invoice_number',$this->invoice_number);
 		$criteria->compare('note',$this->note,true);
 
 		if ($this->status&&$this->getState($this->status)) {
+			// Tak::KD($this->status,1);
 			$criteria->compare('status',$this->status);	
 		}		
 		return $cActive;
@@ -126,12 +127,14 @@ class Order extends MRecord
 	}
 
 	//默认继承的搜索条件
-    public function defaultScope()
+    public function defaultScope($iscompany=true)
     {
     	$arr = parent::defaultScope();
     	$arr['order'] = ' add_time DESC ';
     	$condition = array('status>0');
-		$condition[] = 'fromid='.Tak::getFormid();
+    	if ($iscompany) {
+    		$condition[] = 'fromid='.Tak::getFormid();
+    	}		
     	if(isset($arr['condition'])){
     		$condition[] = $arr['condition'];
     	}
@@ -185,6 +188,7 @@ class Order extends MRecord
 		return $this->_products;
 	}
 	public function wProducts(){
+
 		$products = $this->getProducts();
 		$html = '<ul class="wap-products li-product">';
 		foreach ($products as $key => $value) {
@@ -196,15 +200,15 @@ class Order extends MRecord
 				$html .= '<div class="wap-pic">';
 
 				$html .= $value->getFilesImg();
-				$html .= "<dl><dt>型号:</dt><dd>ss{$value[model]}</dd>";
-				$html .= "<dt>规格:</dt><dd>{$value[standard]}</dd>";
-				$html .= "<dt>颜色:</dt><dd>{$value[color]}</dd>";
-				$html .= "<dt>单位:</dt><dd>{$value[unit]}</dd>";
-				$html .= "<dt>单价:</dt><dd>{$value[price]}</dd>";
-				$html .= "<dt>总价:</dt><dd>{$value[sum]}</dd>";
+				$html .= "<dl><dt>型号:</dt><dd>{$value['model']}</dd>";
+				$html .= "<dt>规格:</dt><dd>{$value['standard']}</dd>";
+				$html .= "<dt>颜色:</dt><dd>{$value['color']}</dd>";
+				$html .= "<dt>单位:</dt><dd>{$value['unit']}</dd>";
+				$html .= "<dt>单价:</dt><dd>{$value['price']}</dd>";
+				$html .= "<dt>总价:</dt><dd>{$value['sum']}</dd>";
 				$html .= '</dl></div>';
 			}else{
-				$html .= "<div class='otitle'>{$value[name]}</div>";
+				$html .= "<div class='otitle'>{$value['name']}</div>";
 			}
 			$html .= '</li>';
 		}
@@ -243,7 +247,6 @@ class Order extends MRecord
 		{
 			$itemid = $this->itemid;
 			$arr = array(
-				':time'=>$time,
 				':itemid'=>$itemid,
 				':order'=>$this->tableName(),
 				':product'=>'{{order_product}}',
@@ -303,12 +306,16 @@ WHERE itemid = ':itemid'";
 		if($status=='103'){
 			$this->delivery_time = $time;
 		}
+			
 		if ($this->save()) {
 			$msg = new  OrderFlow;
 			$msg->order_id = $this->itemid;
 			$msg->name = '';
 			$msg->status = $status;
 			$msg->note = $note;
+			if ($status==200) {
+				$msg->action_user = '客户';
+			}
 			$msg->save();
 		}
 	}

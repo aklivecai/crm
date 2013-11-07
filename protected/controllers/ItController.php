@@ -6,18 +6,34 @@ class ItController extends RController
 	{     
     	parent::init();
 	}
-	public function actionUpload(){
-		 $folder = Tak::getUserDir().date('Y-m').'/';
-		 Tak::MkDirs($folder);
-		 $image = CUploadedFile::getInstanceByName('file');
-		 $name = $folder.date('Ymd-His.').$image->getExtensionName();
-		 $name2 = $image->tempName;
-		 $oname = $image->name;
-	
-		 $image->saveAs($root.$name);
-		 die('{"jsonrpc" : "2.0", "result" : "'.$name.'", "id" : "id"}');
+    public function actionUpload($id=false,$itemid=false){
+         $folder = Tak::getUserDir($id).date('Y-m').'/';
+         Tak::MkDirs($folder);
+         $image = CUploadedFile::getInstanceByName('file');
+         $name = $folder.date('Ymd-His.').$image->getExtensionName();
+         $name2 = $image->tempName;
+         $oname = $image->name;    
+         $image->saveAs($root.$name);
+         if ($itemid>0) {
+             $file = new OrderFiles;
+            $arr =  array(
+            	'action_id'=>$itemid,
+            	'file_path'=>$name,
+            	'file_name'=>$oname,
+            );
+			$file->attributes = $arr;
+			if (!$file->save()) {
+				Tak::KD($file->getErrors,1);
+				// throw new CHttpException(404,'所请求的页面不存在。');
+			}
+			$id = $file->itemid;
+         }else{
 
-	}
+         }
+         die('{"jsonrpc" : "2.0", "result" : "'.$name.'", "id" : "'.$id.'"}');
+
+    }    
+
 public function actionUploadFilesPlupload()
 {
 

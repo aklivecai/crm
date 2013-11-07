@@ -86,10 +86,10 @@ return array(
         'authManager'=>array(
             'class'=>'RDbAuthManager',
             'connectionID'=>'db',
-            'itemTable'=>'Tak_Rbac_Authitem',
-            'itemChildTable'=>'Tak_Rbac_AuthItemChild',
-            'assignmentTable'=>'Tak_Rbac_Authassignment',
-            'rightsTable'=>'Tak_Rbac_Rights',
+            'itemTable'=>'tak_rbac_authitem',
+            'itemChildTable'=>'tak_rbac_authitemchild',
+            'assignmentTable'=>'tak_rbac_authassignment',
+            'rightsTable'=>'tak_rbac_rights',
             'defaultRoles' => array('Authenticated', 'Guest'),
         ),
 	    'mobileDetect' => array(

@@ -27,6 +27,10 @@
  */
 class OrderInfo extends MRecord
 {
+		public $earnest = '';
+		public $few_day = '';
+		public $delivery_before = '';
+		public $remaining_day = '';
 	
 	/**
 	 * @return string 数据表名字
@@ -43,8 +47,9 @@ class OrderInfo extends MRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
+
 		return array(
-			array('itemid', 'required'),
+			array('detype, pay_type,earnest,few_day,delivery_before,remaining_day,packing,taxes,convey', 'required'),
 			array('detype, pay_type, earnest, few_day, delivery_before, remaining_day, packing, taxes, convey', 'numerical', 'integerOnly'=>true),
 			array('itemid', 'length', 'max'=>25),
 			array('date_time, add_ip', 'length', 'max'=>10),
@@ -81,7 +86,7 @@ class OrderInfo extends MRecord
 				'date_time' => '期望交货日期',
 				'detype' => '交货方式',
 				'pay_type' => '支付方式',
-				'earnest' => '定金%',
+				'earnest' => '定金',
 				'few_day' => '几天内支付',
 				'delivery_before' => '交货前支付',
 				'remaining_day' => '余额多少天支付',
@@ -138,7 +143,10 @@ class OrderInfo extends MRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
+    	$condition = array();	
+    	if (isset($arr['condition'])) {
+    		$condition[]=$arr['condition'];
+    	}
     	// $condition[] = 'display>0';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;

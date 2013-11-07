@@ -1,5 +1,5 @@
 <?php
-Yii::import('ext.jsonDataprovider.ModelToArrayConverter');
+// Yii::import('ext.jsonDataprovider.ModelToArrayConverter');
 
 class JSonActiveDataProvider extends CActiveDataProvider
 {

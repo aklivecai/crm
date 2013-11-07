@@ -20,7 +20,7 @@ class AdminLog extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Admin_Log}}';
+		return '{{admin_log}}';
 	}
 
 	/**

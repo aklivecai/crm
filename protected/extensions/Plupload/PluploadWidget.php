@@ -56,6 +56,8 @@ class PluploadWidget extends CWidget {
     const SILVERLIGHT_FILE_NAME = 'plupload.silverlight.xap';
     const DEFAULT_RUNTIMES      = 'html5,flash,silverlight,browserplus,html4';
     const PUPLOAD_CSS_PATH      = 'css/plupload.queue.css';
+
+    public $publicPath = null;
     
     private static $filters               = array(
             'max_file_size' => '10mb',
@@ -70,7 +72,7 @@ class PluploadWidget extends CWidget {
     public function init() {        
         
         $localPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . self::ASSETS_DIR_NAME;
-        $publicPath = Yii::app()->getAssetManager()->publish($localPath);
+        $this->publicPath = $publicPath = Yii::app()->getAssetManager()->publish($localPath);
 
         $pluploadPath = $publicPath . DIRECTORY_SEPARATOR . self::PLUPLOAD_FILE_NAME;
         Yii::app()->clientScript->registerScriptFile($pluploadPath);
@@ -119,22 +121,30 @@ class PluploadWidget extends CWidget {
                 Yii::app()->clientScript->registerScriptFile(self::BROWSER_PLUS_URL);
             }
         }        
-
-        $jsConfig = json_encode($this->config);
-        $jqueryScript = "var uploader = new plupload.Uploader({$jsConfig});";
+        if (!isset($this->config['pluploadPath'])) {
+            # code...
         
+        $jsConfig = json_encode($this->config);
+        $jqueryScript = "var uploader = new plupload.Uploader({$jsConfig});";        
         
         $uniqueId = 'Yii.' . __CLASS__ . '#' . $this->id;
         Yii::app()->clientScript->registerScript($uniqueId, stripcslashes($jqueryScript), CClientScript::POS_READY);
+        }
     }
 
     public function run()
     {
+        if (isset($this->config['pluploadPath'])) {
+            echo $this->publicPath;
+        }else{
+            echo "<div id=\"$this->id\">";
+            echo "<p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>";
+            echo "</div>";
+
+        }
         if(!isset($this->config['runtimes'])) {
-            }
-        echo "<div id=\"$this->id\">";
-        echo "<p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>";
-	echo "</div>";
+            
+        }
     }
 }
 ?>

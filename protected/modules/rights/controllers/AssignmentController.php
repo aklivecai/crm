@@ -130,7 +130,7 @@ class AssignmentController extends RController
 					//aklivecai update
 							$query = Yii::app()->db->createCommand("
 							    UPDATE
-							        Tak_Rbac_Authassignment
+							        tak_rbac_authassignment
 							    SET
 							        fromid = :fromid
 							    WHERE

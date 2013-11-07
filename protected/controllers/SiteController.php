@@ -92,7 +92,6 @@ class SiteController extends Controller
 			$itemid = Tak::getCryptNum($k);
 			$errorInfo = '非法操作！';
 			if ($itemid) {
-				Yii::import('juren.models.TestMemeber');
 				$this->msg = $msg = TestMemeber::model()->getMmeber($itemid); 
 				if (!$msg) {
 					$itemid = false;

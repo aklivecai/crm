@@ -159,6 +159,8 @@ $items = Tak::getMainMenu();
  
   </div>
   <div class="content <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'wide'; ?>">
+
+      <!-- breadcrumbs -->
     <div class="breadLine">
       <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 					'links'=>$this->breadcrumbs,

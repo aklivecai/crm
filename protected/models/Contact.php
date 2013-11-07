@@ -141,7 +141,7 @@ class Contact extends ModuleRecord
 	// SELECT * FROM (SELECT * FROM posts ORDER BY dateline DESC) AS NEW GROUP BY tid ORDER BY dateline DESC LIMIT 10
 
 	    $this->getDbCriteria()->mergeWith(array(
-	    	'condition' =>  'itemid in(SELECT a.itemid FROM (SELECT b.itemid,b.clienteleid FROM `Tak_Contact` AS b ORDER BY b.contact_time DESC) AS a GROUP BY a.clienteleid)',
+	    	'condition' =>  'itemid in(SELECT a.itemid FROM (SELECT b.itemid,b.clienteleid FROM `tak_contact` AS b ORDER BY b.contact_time DESC) AS a GROUP BY a.clienteleid)',
 	        'order'=>'contact_time DESC',
 	    ));
 	    return $this;    	

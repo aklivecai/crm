@@ -1,4 +1,4 @@
-<?php $this->pageTitle=Yii::app()->name . ' - ' .$error['code']; ?>
+<?php $this->pageTitle=Yii::app()->name . ' - ' .isset($error['code'])?$error['code']:''; ?>
    <div class="errorPage">        
         <p class="name"><?php echo $code; ?></p>
         <p class="description"><?php echo CHtml::encode($message); ?></p>        
@@ -14,7 +14,7 @@
        $url = $url?$url:Yii::app()->homeUrl;
        $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'linkurl', 'label'=>'回到主页','type'=>'warning','htmlOptions'=>array('href'=>Yii::app()->homeUrl)));
        $cl = Yii::app()->getClientScript();
-        $cl->registerMetaTag("8;url=$url",$name,'refresh');
+    $cl->registerMetaTag("8;url=$url",null,'refresh');
 	 	$cl->registerScript('1', "setTimeout(function(){ window.location = \"".$url."\";} ,8 * 1000);");
    }
 

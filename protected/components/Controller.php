@@ -120,7 +120,7 @@ class Controller extends RController
 			if ($recycle) {
 				$m->setRecycle();
 			}
-			$this->_model = $m->findByPk($id, $condition);
+			$this->_model = $m->findByPk($id);
 			if($this->_model===null)
 				throw new CHttpException(404,'所请求的页面不存在。');
 		}
@@ -205,7 +205,7 @@ class Controller extends RController
 		if(isset($_POST[$m]))
 		{
 
-			$model->attributes=$_POST[$m];
+			$model->attributes = $_POST[$m];
 			if($model->save()){
 				if ($this->returnUrl) {
 					$this->redirect($this->returnUrl);

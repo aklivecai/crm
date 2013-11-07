@@ -282,7 +282,6 @@ class Movings extends ModuleRecord
 				':movings'=>'{{movings}}',
 				':stocks'=>'{{stocks}}',
 				':product_moving'=>'{{product_moving}}',
-
 			);
 			$sql="UPDATE :movings SET time_stocked=:time WHERE itemid=:itemid";
 			$sql = strtr($sql,$arr);
