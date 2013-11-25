@@ -3,10 +3,10 @@ $this->pageTitle=Yii::app()->name . ' - 帮助中心';
 $this->breadcrumbs=array(
   '帮助中心 ',
 );
-?>      
-<script type='text/javascript' src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/highlight/jquery.highlight-4.js'></script>
 
-    <script type='text/javascript' src='<?php echo yii::app()->theme->baseUrl;?>/js/faq.js'></script>
+$jss = array('plugins/highlight/jquery.highlight-4.js','faq.js');
+$this->regScriptFile($jss);
+?>
                 <div class="page-header">
                     <h1>帮助中心 <small>和常见问题</small></h1>
                 </div>                

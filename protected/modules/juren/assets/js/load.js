@@ -15,10 +15,12 @@ function toClipboards(copy_id,txt) {
   };
  }
 
+
 jQuery(function($) {
   window.iclips = [];
-      ZeroClipboard.setMoviePath("http://i.9juren.com/_ak/js/zeroclipboard/ZeroClipboard.swf");//手动指定Flash地址 
+ZeroClipboard.setMoviePath("http://i.9juren.com/_ak/js/zeroclipboard/ZeroClipboard.swf");//手动指定Flash地址 
 var clearCopys = function(){
+
   for (var i = window.iclips.length - 1; i >= 0; i--) {
     window.iclips[i].destroy();
   };
@@ -26,20 +28,21 @@ var clearCopys = function(){
 } 
 ,copyInit = function(){
   if (window.iclips.length>0) {
-    clearCopys();
+    $('div[style^=position]').remove();
+     window.iclips = [];
   };
   var copys = $('.copy');
   if(copys.length>0) {
-  copys.each(function(i,elem){
-    var txt = $(elem).parents('td').find('a').attr('href');
-    toClipboards($(elem).attr('id'),txt);
-  })
-}; 
+    copys.each(function(i,elem){
+      var txt = $(elem).parents('td').find('a').attr('href');
+      toClipboards($(elem).attr('id'),txt);
+    })
+  }; 
 }
+window.kloadGridview = function(){
   copyInit();
-  $('#list-grid,body').on('takLoad',function(){
-     copyInit();
-  });
+}
+copyInit();
 
 $('td a[target="_blank"]').on('click',function(event){
   event.preventDefault();
@@ -68,9 +71,7 @@ $('.search-form form').submit(function(){
     if ($('#mydialog').length>0) {
       $('#mydialog').dialog("open");
     }else{
-      $.ajax({
-        url: "test.html",
-      }).done(function() {
+      $.ajax({url: "test.html"}).done(function() {
         $(this).addClass("done");
       });      
     }

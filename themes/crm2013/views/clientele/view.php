@@ -6,7 +6,14 @@ $this->breadcrumbs=array(
 	Tk::g('Clienteles') => array('admin'),
 	$model->itemid,
 );
-	$items = Tak::getViewMenu($model->itemid);
+
+$items = Tak::getViewMenu($model->itemid);
+
+$nps = $model->getNP(true);
+if (count($nps)>0) {
+  array_splice($items,count($items)-2,0,Tak::getNP($nps));  
+}
+
 ?>
 
 <div class="row-fluid">
@@ -81,7 +88,8 @@ foreach ($items as $value) {
         'emptyText' => '<p>暂无数据</p>',
         'htmlOptions' => array('class'=>''),
       )); 
-?>              
+?>            
+
         <div class="footer">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
             'label'=>Tk::g('More'),
@@ -96,5 +104,7 @@ foreach ($items as $value) {
 
     </div>
   </div>
+  </div>
+  <div class="kclear"></div>
   <div class="dr"><span></span></div>
 </div>

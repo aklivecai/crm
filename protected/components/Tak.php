@@ -1,5 +1,6 @@
 <?php  
 class Tak {  
+#start
     public static function KD($msg,$isexit=false){
         if (is_object($msg)||is_array($msg)){
             echo  "<pre>";
@@ -18,7 +19,11 @@ class Tak {
     }
 
     public static function checkSuperuser(){
-        return Yii::app()->user->checkAccess(Rights::module()->superuserName);
+        $str = 'Admin';
+        if (Yii::app()->modules['rights']) {
+            $str = Rights::module()->superuserName;
+        }
+        return Yii::app()->user->checkAccess($str);
     }
     public static function checkAccess($operation,$params=array(),$allowCaching=true){
         return Yii::app()->user->checkAccess($operation,$params);
@@ -46,6 +51,10 @@ class Tak {
         }
         return  $result;
     }
+    public static function formatNumber($num){
+        $result = number_format($num,0,'',',');
+        return $result;
+    }
 
     //随机数
    public static function createCode($codelen=4) {
@@ -57,11 +66,6 @@ class Tak {
         }
         return $code;
     }    
-    public static function formatNumber($num){
-        $result = number_format($num,0,'',',');
-        return $result;
-    }
-
     // 会员传入就不做修改
     public static function setCryptNum($str,$rand=false){
         $result = is_numeric($str);
@@ -98,7 +102,7 @@ class Tak {
                 }
                 
                 $result = join($arr);
-// self::KD($result);
+            // self::KD($result);
             $result = base_convert($result, 36, 10);
             if (!is_numeric($result)) {
                 $result = false;;
@@ -179,9 +183,14 @@ class Tak {
         if (is_numeric($time)) {
             $date = date("Y-m-d",$time);
             $dayEnd = strtotime($date." 23:59:59");
-    }      
-        
+        }           
         return $dayEnd;
+    }
+    public static function isDayOver($active_time,$day){
+        $time = self::now();
+        $e1 = mktime(23,59,59,date("m",$active_time),date("d",$active_time)+$day,date("Y",$active_time));
+        return $time>$e1;
+
     }
 
     public static function getDateTop($key=false){
@@ -249,12 +258,16 @@ class Tak {
          return date("Y") - date("Y", strtotime($date));
          return preg_match('/[^\d]/', $str)&&strtotime($str)
     */
-    public static function isTimestamp($timestamp) {
-        $timestamp = (int)$timestamp;
+    public static function isTimestamp($timestamp) {        
         // self::KD(strtotime(date('Y-m-d H:i:s',$timestamp)));
-        if(strtotime(date('Y-m-d H:i:s',$timestamp)) === $timestamp) {
-            return $timestamp;
-        } else return false;
+        $result = false;
+        if (is_numeric($timestamp)) {
+            $timestamp = (int)$timestamp;
+            if(strtotime(date('Y-m-d H:i:s',$timestamp)) === $timestamp) {
+                $result = $timestamp;
+            }
+        }
+        return $result;
     }         
 
     /*IP转成无符号数值*/
@@ -299,7 +312,7 @@ class Tak {
 
     public static function getEditMenu($itemid,$isNewRecord=true){
            $items = array(  
-                array(
+                'Save' => array(
                   'icon' =>'isw-edit',
                   'url' => 'javascript:;',
                   'label'=>Tk::g('Save'),
@@ -310,24 +323,22 @@ class Tak {
                 $action = 'Create';
             }else{
                 $action = 'Update';
-                array_push($items
-                    ,array(
+                $items['View'] = array(
                       'icon' =>'isw-zoom',
                       'url' => array('view','id'=>$itemid),
                       'label'=>Tk::g('View'),
-                    )
-                    ,array(
+                    );
+                $items['Create'] = array(
                       'icon' =>'isw-plus',
                       'url' => array('create'),
                       'label'=>Tk::g('Create New'),
-                    )
-                    ,array(
+                    );
+                $items['Delete'] = array(
                       'icon' =>'isw-delete',
                       'url' => array('delete','id'=>$itemid),
                       'label'=>Tk::g('Delete'),
                       'linkOptions'=>array('class'=>'delete'),
-                    )
-                );
+                    );
             }
             array_push($items
                 ,array(
@@ -351,6 +362,7 @@ class Tak {
             'Admin' => array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
             'Create' => array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
             'Update' => array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$itemid)),
+            '---',
             'Delete' => array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$itemid),'linkOptions'=>array('class'=>'delete')),
         );
         return $items;    
@@ -629,7 +641,7 @@ class Tak {
             ,'order'=>',order,'
             ,'training'=>',training,'
             ,'training'=>',training,'
-            ,'clientele'=>',clientele,contactpPrson,contact,'
+            ,'clientele'=>',clientele,contactpPrson,contact,clienteles,'
             ,'Pss'=>',purchase,stocks,product,sell,'
             );
         $items = array(
@@ -666,6 +678,7 @@ class Tak {
                 ),
                 array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
                 array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/adminGroup'),),
+                array('icon'=>'th','label'=>'<span class="text">所有客户</span>',  'url'=>array('/clienteles/'),'visible'=>self::checkAccess('Clienteles.*')),
                 array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/clientele/recycle'),),
               ),
             ), 
@@ -674,10 +687,10 @@ class Tak {
               'label'=>'<span class="text">通讯录</span>',
               'visible'=>self::checkAccess('Addressbook.Index'),
               'items'=>array(
-                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Create').'部门</span>',  'url'=>array('/AddressGroups/admin'),'visible'=>self::checkAccess('Addressgroups.Admin'),),
-                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','AddressBook')).'</span>',  'url'=>array('/addressBook/create'),'visible'=>self::checkAccess('Addressbook.Create'),),
-                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Admin','AddressBook')).'</span>', 'url'=>array('/addressBook/admin'),'visible'=>self::checkAccess('Addressbook.*'),),
-                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('View','AddressBook')).'</span>', 'url'=>array('/addressBook/index'),'visible'=>self::checkAccess('AddressBook.Index'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g('Create').'部门</span>',  'url'=>array('/AddressGroups/admin'),'visible'=>self::checkAccess('Addressgroups.*'),),
+                array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','AddressBook')).'</span>',  'url'=>array('/AddressBook/create'),'visible'=>self::checkAccess('Addressbook.*'),),
+                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('Admin','AddressBook')).'</span>', 'url'=>array('/AddressBook/admin'),'visible'=>self::checkAccess('Addressbook.*'),),
+                array('icon'=>'th-list','label'=>'<span class="text">'.Tk::g(array('View','AddressBook')).'</span>', 'url'=>array('/AddressBook/index'),'visible'=>self::checkAccess('AddressBook.Index'),),
               ),
             ),
             'events' => array(
@@ -713,8 +726,8 @@ class Tak {
               'label'=>'<span class="text">库存管理</span>',
               'url'=>array('/pss/index'),
               'items'=>array(
-                    array('icon'=>'th','label'=>'<span class="text">产品分类</span>',  'url'=>array('takType/admin?type=product'),),
-                 array('icon'=>'th','label'=>'<span class="text">货物名称</span>',  'url'=>array('/product/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">'.Tk::g('Product Type').'</span>',  'url'=>array('takType/admin?type=product'),),
+                 array('icon'=>'th','label'=>'<span class="text">'.Tk::g('Product').'</span>',  'url'=>array('/product/admin'),),
 
                 array('icon'=>'th','label'=>'<span class="text">入库录入</span>', 'url'=>array('/purchase/admin')),
                 array('icon'=>'th','label'=>'<span class="text">出库录入</span>',  'url'=>array('/sell/admin'),),
@@ -728,8 +741,9 @@ class Tak {
               'url'=>array('/order/index'),
               'items'=>array(
                 array('icon'=>'shopping-cart','label'=>'<span class="text">'.Tk::g(array('Order','Admin')).'</span>', 'url'=>array('/order/admin')),
-                array('icon'=>'th-large','label'=>'<span class="text">订单留言</span>',  'url'=>array('/site/order'),),
-                array('icon'=>'certificate','label'=>'<span class="text">'.Tk::g(array('Order','Config')).'</span>',  'url'=>array('/order/config'),),
+                array('icon'=>'th-large','label'=>'<span class="text">订单变更</span>',  'url'=>array('/site/order'),'visible'=>YII_DEBUG),
+                array('icon'=>'certificate','label'=>'<span class="text">'.订单流程.'</span>',  'url'=>array('/order/config'),),
+                array('icon'=>'certificate','label'=>'<span class="text">'.协议.'</span>',  'url'=>array('/order/config'),'visible'=>YII_DEBUG),
               ),
             ), 
 
@@ -776,7 +790,7 @@ class Tak {
         unset($items['job']);
         unset($items['invite']);
         unset($items['training']);
-        unset($items['events']);
+        // unset($items['events']);
 
          $items[] = array(
                        'icon' =>'isw-zoom',
@@ -806,7 +820,8 @@ class Tak {
                       'items'=>array(
                         // array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/settin/index')),
                         array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/admin'),),
-                        // array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/back'),),
+                         array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/Database'),'visible'=>YII_DEBUG),
+                         array('icon'=>'','label'=>'<span class="text">Member</span>',  'url'=>array('/site/tak'),'visible'=>YII_DEBUG),
                       ),
                     );
          $items[] = array(
@@ -933,7 +948,6 @@ class Tak {
             'type'=>'striped bordered condensed',
             'id' => 'list-grid',
             'dataProvider'=>null,
-            'template'=>"{items}",
             'enableHistory'=>true,
             'loadingCssClass' => 'grid-view-loading',
             'summaryCssClass' => 'dataTables_info',
@@ -983,6 +997,84 @@ class Tak {
     }
     public static function setFlash($value,$key='source',$defaultValue=null){
         $result = Yii::app()->user->setFlash($key,$value,$defaultValue);
+        return $result;
+    }
+    public static function regScriptFile($arrUrl,$pf='base',$path=null,$position=null,array $htmlOptions=array()){
+        if (!is_array($arrUrl)) {
+            $arrUrl = array($arrUrl);
+        }
+        switch ($pf) {
+            case 'base':
+                $pf = yii::app()->theme->baseUrl.'/';                
+                break;
+            case 'static':
+                $pf = Yii::app()->params['staticUrl'];
+                break;            
+            default:
+                # code...
+                break;
+        }
+        if ($path!==null) {
+            $pf.= $path.'/';
+        }
+        foreach ($arrUrl as $url) {
+            if ($pf!='') {
+                $url = $pf.$url;
+            }
+            Yii::app()->clientScript->registerScriptFile($url,$position,$htmlOptions);
+        }
+    }
+    public static function  regScript($id,$script,$position=null,array $htmlOptions=array()){
+        Yii::app()->clientScript->registerScript($id,$script,$position,$htmlOptions);
+        return $this;
+    }
+
+    public function regCssFile($arrUrl,$pf='base',$path=null,$media='')
+    {
+        if (!is_array($arrUrl)) {
+            $arrUrl = array($arrUrl);
+        }        
+        switch ($pf) {
+            case 'base':
+                $pf = yii::app()->theme->baseUrl.'/';
+                break;
+            case 'static':
+                $pf = Yii::app()->params['staticUrl'];
+                break;            
+            default:
+                # code...
+                break;
+        }       
+        if ($path!==null) {
+            $pf.= $path.'/';
+        }
+        foreach ($arrUrl as $url) {
+            if ($pf!='') {
+                $url = $pf.$url;
+            }
+            Yii::app()->clientScript->registerCssFile($url,$media);
+        } 
+    }   
+    public static function getDataView($value){
+        if (self::isTimestamp($value)) {
+            $value = self::timetodate($value,6) ;
+        }
+        return $value;
+    }
+
+    public static function getNP($nps,$view='view'){
+        $result = array();        
+        if (!is_array($nps)) {
+            return false;
+        }
+         foreach ($nps as $key => $value) {
+            $result[$key] = array(
+                'label'=>Tk::g($key),
+                'url'=>array($view,'id'=>$value),
+                'icon' =>'chevron-right',
+                'linkOptions'=>array('class'=>'ajax-content')
+            );
+         }
         return $result;
     }
 }  

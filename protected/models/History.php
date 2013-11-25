@@ -89,8 +89,10 @@ class History extends MRecord
 				$criteria->compare('add_time',$this->add_time);
 			}else{
 				$date1 = strtotime($this->add_time);
-				$date2 = UTak::getDayEnd($this->add_time);
-				$criteria->addBetweenCondition('add_time', $date1, $date2);
+				$date2 = UTak::getDayEnd($date1);
+				if ($date2) {
+					$criteria->addBetweenCondition('add_time', $date1, $date2);
+				}
 			}
 		}
 		if ($this->last_time) {
@@ -98,8 +100,10 @@ class History extends MRecord
 				$criteria->compare('last_time',$this->last_time);
 			}else{
 				$date1 = strtotime($this->last_time);
-				$date2 = UTak::getDayEnd($this->last_time);
-				$criteria->addBetweenCondition('last_time', $date1, $date2);
+				$date2 = UTak::getDayEnd($date1);
+				if ($date1) {
+					$criteria->addBetweenCondition('last_time', $date1, $date2);
+				}
 			}
 		}
 		
@@ -135,7 +139,9 @@ class History extends MRecord
 	    if($result){
 	        //添加数据时候
 	        if ($this->isNewRecord){
-	        	$this->manageid = Tak::getManageid();
+	        	if (!$this->manageid) {
+	        		$this->manageid = Tak::getManageid();
+	        	}        	
 	        }else{
 	        	//修改数据时候
 	        }
@@ -152,4 +158,60 @@ class History extends MRecord
 	protected function afterDelete(){
 		parent::afterDelete();
 	}	
+
+	public static function addCount($sid){
+        $member = TestMemeber::model()->findByPk($sid);
+       
+        if ($member!=null) {
+
+            $m = self::model()->findByAttributes(array('sid'=>$sid));
+            $time = time();
+            if ($m!=null){
+                $date = $time - $m->last_time ;
+                $date = bcdiv($date,60);
+                if ($date>30) {
+                    $m->last_time = $time;
+                    $m->count += 1;
+                    $m->save();
+                }
+            }else{
+            if(UTak::isGuest()){
+                $session = Yii::app()->session;
+                $session->add('uid',Tak::fastUuid());
+                $manageid = $session->get('uid');
+            }else{
+                $manageid = false; 
+            }
+                $m = new History; 
+                $m->sid = $member->itemid;
+                $m->sname = $member->company;
+                $m->manageid =$manageid;
+                $m->add_time = $time;
+                $m->last_time = $time;
+                $m->count = 1;
+                $m->save();
+            }
+        }		
+	}
+    public static function upMCount(){
+        $session = Yii::app()->session;
+        $manageid = Yii::app()->session->get('uid');
+        $list = History::model()->findAllByAttributes(array('manageid'=>$manageid));
+        $time = time();
+        if (count($list)>0) {
+            foreach ($list as $key => $value) {
+              $m = History::model()->findByPk($value->itemid);    
+              if ($m) {
+                $m->count += $value->count;
+                $m->last_time = $time;
+                $m->save();
+                $value->delete();
+              }else{
+                $value->manageid = Tak::getManageid();
+                $value->save();
+              }
+            }
+        }
+    }
+
 }

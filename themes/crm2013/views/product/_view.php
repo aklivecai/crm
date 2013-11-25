@@ -2,7 +2,7 @@
 	'data'=>$model,
 	'attributes'=>array(
 		'name',
-		'iType.typename',
+		array('name'=>'typeid', 'value'=>$model->iType->typename,),
 		'material',
 		'spec',
 		'color',

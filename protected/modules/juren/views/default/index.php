@@ -5,7 +5,7 @@
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'list-grid',
-	'dataProvider'=>TestMemeber::model()->recently(12,'active_time>0','active_time DESC'),
+	'dataProvider'=>Test9Memeber::model()->recently(12,'active_time>0','active_time DESC'),
 	'template' => '<h2>最近激活 '.Tk::g('Test Memebers').'</h2>{items}',
 	'enableSorting' => false,
 	'columns'=>array(

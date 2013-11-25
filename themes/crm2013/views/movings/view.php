@@ -78,7 +78,7 @@ $this->breadcrumbs=array(
  <?php $this->widget('bootstrap.widgets.TbListView', array(
 			'dataProvider' => $model->getProductMovings(),
 			'itemView'=>'//movings/_product_view',
-			'template'=>'<table class="table"> <thead> <tr> <th>产品名字</th> <th>产品规格</th> <th>材料</th> <th>单位</th> <th>数量</th> <th>颜色</th> </tr> </thead> <tbody>{items}</tbody> </table>',
+			'template'=>'<table class="table"> <thead> <tr> <th>物料名字</th> <th>产品规格</th> <th>材料</th> <th>单位</th> <th>数量</th> <th>颜色</th> </tr> </thead> <tbody>{items}</tbody> </table>',
 			'htmlOptions'=>array('class'=>''),
             'emptyText'=>'<tr><td colspan="6">没有数据!</td></tr>'
 		)); ?> 

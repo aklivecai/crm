@@ -2,9 +2,18 @@
  dateFormat('yyyy-MM-dd hh:mm:ss');
 dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
  */
-
-var log = function(msg){
-    console.log(msg);
+if (typeof window['log']=='undefined'){
+    var log = function(msg){        
+        if (typeof window['console']=='undefined') return false;
+        var len = arguments.length;
+        if (len>1) {
+            for(var i=0;i<len;i++){
+                log(arguments[i]+'\n');
+            }
+        }else{
+            console.log(msg);    
+        } 
+    }    
 }
 
 //用于动态生成网址
@@ -67,7 +76,6 @@ function dateFormat(date, format) {
     return format;
 }        
 jQuery(function($){
-
         /*## 颜色插件*/
         var localization = $.spectrum.localization["cn"] = {
             cancelText: "取消",
@@ -105,169 +113,130 @@ jQuery(function($){
                 showMonthAfterYear: true,
                 yearSuffix: '年'};
         $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
-
-var tselect = function(){
-    var clientele = $(".sele1ct-clientele,#list-grid input[name*='[clienteleid]']")
-    , prson = $(".sele1ct-prsonid,#list-grid input[name='Contact[prsonid]']")
-    , page_limit = 20
-    ,  movieFormatSelection = function(obj) {
-        return obj.clientele_name;
-    } 
-    , movieFormatResult = function(data) {
-        var markup = "<table class='movie-result'><tr>";
-        markup += "<td class='movie-info'><div class='movie-title'>" + data.clientele_name + "</div>";
-        markup += "</td></tr></table>"
-        return markup;
-    }
-    ;
-    // clientele.css('width','100%');
-    // prson.css('width','101%');
- 
-     clientele.select2({
-            placeholder: "搜索客户",
-            allowClear: true,//显示取消按钮
-            minimumInputLength: 0,
-            loadMorePadding: 300,
-            quietMillis:100,
-            openOnEnter:true,
-            selectOnBlur:true,
-            ajax: { 
-                url: createUrl("clientele/select"),
-                dataType: 'jsonp',
-                data: function (term, page) {
-                    return {
-                        q: term, 
-                        page_limit: page_limit,
-                        Clientele_page: page,
-                    };
-                },
-                results: function (data, page) { 
-                    var more = (page * page_limit) < data.totalItemCount; 
-                    return {results: data['data'],more:more};
-                }
-            },
-            id:function(object){
-                return object.itemid;
-            },
-            initSelection: function(element, callback) {
-                var id=$(element).val();
-                if (id!=="") {
-                    $.ajax(
-                        createUrl("clientele/selectById",['id='+id])
-                        , {
-                        data: {
-                        },
-                        dataType: "jsonp"
-                    }).done(function(data) {
-                        if (data!=''&&typeof data=='object') {
-                            callback(data.data[0]);
-                        };
-                         
-                   });
-                }
-            },
-            createSearchChoice: function (term) {
-                // console.log(term);
-            },
-            formatResult:movieFormatResult,
-            formatSelection: movieFormatSelection,
-            dropdownCssClass: "bigdrop",
-             // formatNoMatches: function () { 
-                // log($(this));
-                // return "Nessun risultato trovato!";
-            // },
-            // formatSearching: function () { return "Ricerco.."; },
-            escapeMarkup: function (m) { return m; } 
-        });
-        
-        if (prson.length>0) {
-            (function(){
-             prson.select2({
-                    placeholder: "搜索联系人",
-                    allowClear: true,//显示取消按钮
-                    minimumInputLength: 0,
-                    loadMorePadding: 300,
-                    quietMillis:100,
-                    openOnEnter:true,
-                    selectOnBlur:true,
-                    ajax: { 
-                        url: createUrl("contactpPrson/select"),
-                        dataType: 'jsonp',
-                        data: function (term, page) {
-                            return {
-                                q: term, 
-                                page_limit: page_limit,
-                                clienteleid : clientele.val(),
-                                Clientele_page: page,
-                            };
-                        },
-                        results: function (data, page) { 
-                            var more = (page * page_limit) < data.totalItemCount; 
-                            return {results: data['data'],more:more};
-                        }
-                    },
-                    id:function(object){
-                        return object.itemid;
-                    },
-                    initSelection: function(element, callback) {
-                        var id=$(element).val();
-                        if (id!=="") {
-                            $.ajax(
-                                createUrl("contactpPrson/selectById",['id='+id]), {
-                                data: {
-                                },
-                                dataType: "jsonp"
-                            }).done(function(data) {
-                                if (data!=''&&typeof data=='object') {
-                                    callback(data.data[0]);
-                                };
-                                 
-                           });
-                        }
-                    },
-                    formatResult:function(data){return data.nicename;},
-                    formatSelection: function(obj){ return obj.nicename},
-                    dropdownCssClass: "bigdrop",
-                });    
-                clientele.on("change", function(e) { 
-                    prson.select2('val','');
-                }) 
-            })()
-        };      
-} 
-
-$('#list-grid,body').on('takLoad',function(){
-    // tselect();
-});
-tselect();
-
-    $('[data-preview]').on('click',function(){
-        window.open ($(this).attr('data-preview'), 'preview', 'height=350, width=450, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no') //这句要写成一行
-    })
-
 });
 
 var affirm = function(){
     var btn = $('#btn-affirm')
-        ,txt = btn.text()
-        ,url = btn.attr('href')
+        , txt = btn.text()
+        , url = btn.attr('href')
     ;
     if (confirm("是否"+txt+"?\n"+txt+"后将不可以修改。")) {
         if (url) {
             window.location.href = url;
         }else{
             return true;    
-        }            
+        }
      }
      return false;
 }
 
 $(document).ready(function(){
+var wapConct = $('#content');
+$(document).on('click','.more-list li a,.ajax-content',function(event){
+    event.preventDefault();
+    wapConct.addClass('load-content');
+    var url = $(this).attr('href');
+    $.ajax(url).done(function(data) {
+        setTimeout(function(){
+            wapConct.html(data).removeClass('load-content');
+        },300);
+    });
+});
+if ($('.more-list').length>0) {
+    $(document).on('click','.more-list>a',function(){
+        var t = $(this)
+        , wap = t.parent()
+        , loadwap = t.next('.dropdown-menu')
+        , url = wap.attr('data-geturl')
+        ;
+        if (!loadwap.hasClass('load-over')) {
+            $.ajax(url).done(function(data) {
+                if (data!='') {
+                    setTimeout(function(){
+                        loadwap.replaceWith(data).addClass('load-over');
+                    },300);                    
+                }else{
+                    wap.replaceWith('没有了...');
+                }
+            });
+        };   
+    })
+};
 
+window.afterListView = function(id,data){
+    var t = $('#'+id);
+    if ($.fn.yiiListView.settings[id]['kload']) {
+        t.find('.pagination li.active>a').trigger('click.yiiListView');    
+        $.fn.yiiListView.settings[id]['kload'] = false;
+    };    
+}
+
+var searchForm = $('#search-form');
 $('.more-search').on('click',function(){
     $(this).toggleClass('active');
-    $('#search-form .more-search-info').toggleClass('hide');
+    searchForm.find('.more-search-info').toggleClass('hide');
 });
+
+searchForm.find('.btn-reset').on('click',function(){
+    // $('#'+searchForm.attr('to-view')+' > div.keys').attr('title');
+    searchForm.find('input[type=reset]').trigger('click');
+    searchForm.trigger('submit');
+})
+
+searchForm.on('submit',function(event){
+    event.preventDefault();
+    var action = searchForm.attr('to-view')?searchForm.attr('to-view'):'list-grid'
+        , data = {'data': searchForm.serialize()};
+    ;
+    if(action.indexOf('grid')>=0){
+        $.fn.yiiGridView.update(action,data);
+        // 
+    }else{
+        $.fn.yiiListView.settings[action]['kload'] = true;
+        $.fn.yiiListView.update(action,data);
+        // log($.fn.yiiListView.getUrl(action));
+        // log($('#'+action+'#list-views .pagination li.active>a'));        
+        // $(document).trigger('click.yiiListView',action);
+    }
+    return false;
+});
+
+// 
+var  modid = 'myModal'
+, strMod =  '<div id="'+modid+'" class="modal hide fade"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> <h4 class="mhead"></h4> </div> <div class="modal-body"> <p class="load-content">...</p> </div> </div> ';
+$(document).on('click','#list-views tbody tr',function(){
+    var t = $(this);
+    t.toggleClass('active');
+}).on('click','.data-preview',function(event){
+    event.preventDefault();
+    var t = $(this),
+        mod = $('#'+modid)
+    ;
+    if (mod.length==0) {
+        mod = $(strMod).appendTo(document.body);
+        mod.modal({});
+    }
+    if (t.attr('over')) {
+        mod.modal('show');
+    }else{
+        mod.find('.mhead').text(t.text());
+        t.attr('over',true);
+        t.trigger('click');
+        $.ajax(t.attr('href')).done(function(data) {
+            mod.find('.modal-body').html(data);
+        })
+    }
+
+}).on('click','li a.delete',function(){
+        if(!confirm('你确定要删除这个信息吗?')) return false;
+    }).on('click','a.icon-remove',function(){
+        if(!confirm('你确定要彻底删除这个信息吗?')) return false;
+    });
+// 
+$('[data-preview]').on('click',function(){
+    window.open ($(this).attr('data-preview'), 'preview', 'height=350, width=450, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no') //这句要写成一行
+});
+
 var btnAffirm = $('#btn-affirm');
 if (btnAffirm.length>0) {      
     btnAffirm.on('click',function(event){
@@ -275,21 +244,7 @@ if (btnAffirm.length>0) {
         affirm();
     }).trigger('click');
 };
-
-$('#search-form').submit(function(){
-    $('#list-grid').yiiGridView('update', {
-        data: $(this).serialize()
-    });
-    return false;
-});
     
-    $('body li a.delete').on('click',function(){
-        if(!confirm('你确定要删除这个信息吗?')) return false;
-    });
-
-    $('a.icon-remove').on('click',function(){
-        if(!confirm('你确定要彻底删除这个信息吗?')) return false;
-    });
 
     if (!Modernizr.input.required) {
         $('form').on('submit',function(event){
@@ -331,27 +286,52 @@ $('#search-form').submit(function(){
 
   var listDate = $('.type-date');
   if (listDate.length>0) {
+        var _DateFormat = {
+            'time':{
+                    startDate:'%y-%M-01 00:00:00',
+                    dateFmt:'yyyy-MM-dd HH:mm:ss',
+                },
+            'date':{
+                    startDate:'%y-%M-01',
+                    dateFmt:'yyyy-MM-dd',
+                },
+        }
         listDate.each(function(){
             var t = $(this)
               , date = new Date(t.val()*1000)
-              , maxDate = t.attr('name').indexOf('start')>0?'#F{$dp.$D(\'Events_end_time\')}':''
-              , minDate = t.attr('name').indexOf('end')>0?'#F{$dp.$D(\'Events_start_time\')}':''
+              , maxDate = t.attr('name').indexOf('sstart')>0?'#F{$dp.$D(\'Events_end_time\')}':''
+              , minDate = t.attr('name').indexOf('send')>0?'#F{$dp.$D(\'Events_start_time\')}':''
+              , v = t.val()
+              , dF = _DateFormat.date
              ;
-             v = t.val();
-             if (v>0) {
-                t.val(dateFormat(date, 'yyyy-MM-dd hh:mm:ss'));   
-             }else{
+             if (t.attr('data-type')
+                &&typeof(_DateFormat[t.attr('data-type')]!='undefined')) {
+                dF = _DateFormat[t.attr('data-type')];
+             };
+            dF.alwaysUseStartDate = true;
+            dF.maxDate = maxDate;
+            dF.minDate = minDate;
+                // return false;
+             if (v!=0&&v!='') {
+                if (v>0) {
+                    var _tr = dF.dateFmt.toLowerCase();
+                    _tr = _tr.replace('mm','MM');
+                    t.val(dateFormat(date, _tr));
+                }                
+             }else if(t.attr('data-date')=='now') {
+                var today = new Date()
+                , day = today.getDate()
+                , month = today.getMonth() + 1
+                , year = today.getFullYear()
+                , _d = year + "-" + (month<=9?'0':'') + month + "-" + (day<=9?'0':'')+day
+                ;
+                t.val(_d);
+            }else{
                 t.val('');
-             }             
-             
+            }
             t.on('focus',function(){
-               WdatePicker({
-                    startDate:'%y-%M-01 00:00:00',
-                    dateFmt:'yyyy-MM-dd HH:mm:ss',
-                    alwaysUseStartDate:true
-                    ,maxDate:maxDate
-                    ,minDate:minDate
-            })
+                dF.el = t.attr('id');                
+                WdatePicker(dF)
             });
         });
   };  
@@ -485,8 +465,8 @@ $('#search-form').submit(function(){
         
     });
     
-    
-    $(".navigation .openable > a").on('click',function(event){
+    $(document).on('click','.navigation .openable > a',function(event){
+        event.preventDefault();
         var par = $(this).parent('.openable');
         var sub = par.find("ul");
 
@@ -496,7 +476,7 @@ $('#search-form').submit(function(){
         }else{
             par.addClass('active');            
         }
-        event.preventDefault();
+        
         return false;
     });
     
@@ -573,7 +553,6 @@ $(window).resize(function(){
     
 });
 
-
 $('.wrapper').resize(function(){    
     if($("body > .content").css('margin-left') == '220px'){
         if($("body > .menu").is(':hidden'))
@@ -588,6 +567,3 @@ function headInfo(){
     var button = block.find("button");    
     input.width(block.width()-button.width()-44);
 }
-
-
-

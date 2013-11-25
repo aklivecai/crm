@@ -5,6 +5,10 @@
 ?>
 <?php  $action = $model->isNewRecord?'Entering':'Update';
 
+if ($model->isNewRecord) {
+  $model->initak($this->type);
+}
+
 $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
 
 $strProducts =  false;
@@ -25,11 +29,6 @@ if ($products) {
   foreach ($products as $key => $value) {
     $strProducts.=strtr($str,array(':itemid'=>$key,':value'=>$value['numbers'],':note'=>$value['note'],':name'=>$value['name'],)); 
 }
-/*    <tr><td class="info"><span>xxx</span></td>
-    <td><input type="number" class="stor-txt" name="Product[number][44438103774791038]" value="20" required="required" /></td>
-   <td><input type="text" class="stor-txt" name="Product[note][44438103774791038]" /></td>
-    <td><a href="#"><span class="icon-remove"></span></a></td>
-  </tr>*/
 }
 ?>
 
@@ -63,7 +62,10 @@ $this->widget('application.components.MyMenu',array(
         <div class="toolbar nopadding-toolbar clear clearfix">
           <h4>单据信息</h4>
         </div>
-        <div class="row-form clearfix" style="border-top-width: 0px;"> <span class="span3"><?php echo $form->labelEx($model,'time'); ?></span> <span class="span9"><?php echo $form->dateField($model,'time',array('required'=>'required','size'=>10,'maxlength'=>10,'value'=>($model->time>0?Tak::timetodate($model->time):''))); ?></span> </div>
+        <div class="row-form clearfix" style="border-top-width: 0px;"> <span class="span3">
+        <?php echo $form->labelEx($model,'time'); ?></span> <span class="span9">
+        <?php echo $form->dateField($model,'time',array('required'=>'required','size'=>10,'maxlength'=>10,'value'=>($model->time>0?Tak::timetodate($model->time):''))); ?>
+        </span> </div>
         <div class="row-form clearfix"> <span class="span3"><?php echo $form->labelEx($model,'numbers'); ?></span> <span class="span9"><?php echo $form->textField($model,'numbers',array('size'=>60,'maxlength'=>100)); ?></span> </div>
         <div class="row-form clearfix"> <span class="span3"><?php echo $form->labelEx($model,'enterprise'); ?></span> <span class="span9"><?php echo $form->textField($model,'enterprise',array('required'=>'required','size'=>60,'maxlength'=>100)); ?></span> </div>
         <div class="row-form clearfix"> <span class="span3"><?php echo $form->labelEx($model,'us_launch'); ?></span> <span class="span9"><?php echo $form->textField($model,'us_launch',array('size'=>60,'maxlength'=>100)); ?></span> </div>
@@ -91,7 +93,7 @@ $this->widget('application.components.MyMenu',array(
             <tr>
               <td colspan="3">
                     <div>
-                            <input type="text" class="sele1ct-product" />
+                            <input type="text" class="select-prsonid" placeholder="搜索产品" />
                     </div>
               </td>
             </tr>
@@ -106,8 +108,8 @@ $this->widget('application.components.MyMenu',array(
   <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>
 </div>
 
-<?php $this->endWidget(); ?>
 <?php 
-Yii::app()->clientScript->registerScriptFile(yii::app()->theme->baseUrl.'/js/k-load-movings.js', CClientScript::POS_END);
+  $this->endWidget(); 
+  $this->regScriptFile('k-load-movings.js', CClientScript::POS_END);
 ?>
 </div>

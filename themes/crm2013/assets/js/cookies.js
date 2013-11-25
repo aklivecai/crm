@@ -24,14 +24,10 @@ $(document).ready(function(){
        // EOF ADMIN BLOCK
        
        // Collapsible widgets 折叠窗口还原
-       $("div[class^=block]").each(function(){
-           
+       $("div[class^=block]").each(function(){           
            if($(this).attr('data-cookie')){
-               
-               var c_val = $.cookies.get( $(this).attr('data-cookie'));
-               
-                if(null !=  c_val){
-                    
+               var c_val = $.cookies.get( $(this).attr('data-cookie'));               
+                if(null !=  c_val){                    
                     if(c_val == 'visible'){
                         $(this).parent('div[class^=span]').find('.head > .buttons li.toogle').removeClass('active');
                         $(this).show();

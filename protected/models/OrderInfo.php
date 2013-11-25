@@ -203,6 +203,8 @@ class OrderInfo extends MRecord
 		 		':purchasconsign' => $this->purchasconsign,
 		 		':contactphone' => $this->contactphone,
 		 	);
+		 }else{
+		 	$result = '  &nbsp;&nbsp;'.OrderType::item('detype',$this->detype);
 		 }
 		 if ($arr) {
 		 	$result = strtr($result,$arr);

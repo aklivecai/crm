@@ -2,7 +2,7 @@
 class Clientele extends ModuleRecord
 {
 	
-	protected $linkName = 'clientele_name'; /*连接的显示的字段名字*/
+	public $linkName = 'clientele_name'; /*连接的显示的字段名字*/
 	/**
 	 * @return string 数据表名字
 	 */
@@ -28,7 +28,10 @@ class Clientele extends ModuleRecord
 			array('telephone, fax, web', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('itemid, fromid, manageid, clientele_name, rating, annual_revenue, industry, profession, origin, employees, email, address, telephone, fax, web, display, status, last_time, add_time, add_us, add_ip, modified_time, modified_us, modified_ip, note', 'safe', 'on'=>'search'),
+			array('itemid, fromid, manageid, clientele_name, rating, annual_revenue, qw, profession, origin, employees, email, address, telephone, fax, web, display, status, last_time, add_time, add_us, add_ip, modified_time, modified_us, modified_ip, note', 'safe', 'on'=>'search'),
+
+			
+			array('clientele_name','checkRepetition'),
 		);
 	}
 
@@ -40,6 +43,11 @@ class Clientele extends ModuleRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'iManage' => array(self::BELONGS_TO
+				, 'Manage'
+				, 'manageid'
+				),
+
 		);
 	}
 
@@ -51,8 +59,8 @@ class Clientele extends ModuleRecord
 		return array(
 				'itemid' => '编号',
 				'fromid' => '平台会员ID',
-				'manageid' => '会员ID',
-				'clientele_name' => '客户名字',
+				'manageid' => '录入者',
+				'clientele_name' => '客户名称',
 				'rating' => '客户等级',
 				'annual_revenue' => '年营业额',
 				'industry' => '客户类型', /*(新客户,意向客户,潜在客户,正式客户,VIP客户)*/
@@ -80,10 +88,13 @@ class Clientele extends ModuleRecord
 	//默认继承的搜索条件
     public function defaultScope($isOrder=true)
     {
-    	$arr = parent::defaultScope($isOrder);
-    	$condition = array($arr['condition']);
-    	// $condition[] = 'display>0';
+    	$arr = parent::defaultScope();
+    	$condition = array();
+    	if (isset($arr['condition'])) {
+    		$condition[] = $arr['condition'];
+    	}
     	$arr['condition'] = join(" AND ",$condition);
+   
     	return $arr;
     }
 
@@ -106,15 +117,14 @@ class Clientele extends ModuleRecord
 		$criteria->compare('telephone',$this->telephone,true);
 		$criteria->compare('fax',$this->fax,true);
 		$criteria->compare('web',$this->web,true);
+		
 		$criteria->compare('display',$this->display);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('last_time',$this->last_time,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('add_us',$this->add_us,true);
-		$criteria->compare('add_ip',$this->add_ip,true);
-		$criteria->compare('modified_time',$this->modified_time);
-		$criteria->compare('modified_us',$this->modified_us,true);
-		$criteria->compare('modified_ip',$this->modified_ip,true);
+
+		$this->setCriteriaTime($criteria,
+			array('last_time','add_time','modified_time')
+		);
+
 		$criteria->compare('note',$this->note,true);
 
 		return $cActive;

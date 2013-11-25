@@ -33,12 +33,14 @@ class Controller extends RController
 	protected $dir = false;
 	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view','index'=>'index','preview'=>'_view','print'=>'print');
 
+	
+
 	public function init()  
 	{     
     	parent::init();   
     	$this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
-			 $this->_setLayout('//layouts/columnAjax');
+			$this->_setLayout('//layouts/columnAjax');
 			Yii::app()->clientScript->enableJavaScript = false;
 		}else{
 			// Yii::app()->bootstrap->register();
@@ -169,7 +171,9 @@ class Controller extends RController
 	}	
 	public function actionPreview($id)
 	{
-		$this->_setLayout('//layouts/columnPreview');
+		if(!$this->isAjax){
+			$this->_setLayout('//layouts/columnPreview');
+		}		
 		$this->render($this->templates['preview'],array(
 			'model' => $this->loadModel($id),
 		));
@@ -192,7 +196,6 @@ class Controller extends RController
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->del();
-
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($this->returnUrl) ? $this->returnUrl : array('admin'));
 	}	
@@ -201,7 +204,6 @@ class Controller extends RController
 	{
 		$m = $this->modelName;
 		$model = new $m;
-
 		if(isset($_POST[$m]))
 		{
 
@@ -221,12 +223,8 @@ class Controller extends RController
 				}				
 			}
 		}elseif(isset($_GET[$m])){
-
 			$model->attributes = $_GET[$m] ;
 		}
-		// Tak::KD($_GET[$m]);
-
-
 		$this->render($this->templates['create'],array(
 			'model' => $model,
 		));
@@ -318,15 +316,59 @@ class Controller extends RController
 			exit;
 		}
 		$m = $this->modelName;
-		$msg = $m::model()->find(array(
-		    'condition'=>$this->primaryName.'=:itemid',
-		    'params'=>array(':itemid'=>$id),
-		));
+
+		$msg = $this->loadModel($id);
 		if ($msg!=null) {
 			$str = json_encode($msg->attributes);
 			$this->writeData('{data:['.$str.']}');
 		}
+		exit;
 	}
+
+	protected function getSelectOption($q){
+		$m = $this->modelName;
+		$model = new $m;
+		$result = array('name'=>$m,
+			'data'=>array(
+				'attributes' => array($model->primaryKey(), $model->linkName),
+				'sort'=>array(
+					'defaultOrder'=>'add_time DESC,'.$model->linkName.' ASC', 
+				),
+			)
+		);
+		$criteria = new CDbCriteria;
+		if ($q) {			
+			$criteria->addSearchCondition($model->linkName,$q);
+		}
+		$result['data']['criteria'] = $criteria;
+		return $result;
+	}
+	public function actionSelect($id=0,$page_limit=10,$q='*'){
+		 (int)$id>0&&$this->actionSelectById($id);
+		 $pageSize = (int)$page_limit>0?$page_limit:10;		 
+		 $q = Yii::app()->request->getQuery('q',false);
+		 $data = $this->getSelectOption($q);
+		 $data['data']['pagination']['pageSize'] = $pageSize;
+		 $dataProvider = new JSonActiveDataProvider($data['name'],$data['data']); 
+		 $rs = $dataProvider->getArrayCountData();
+		 $str = '{"total":'.$rs['totalItemCount'].',"link_template":"http://api.rottentomatoes.com/api/public/v1.0/movies.json?q={search-term}&page_limit={results-per-page}&page={page-number}"';
+		 $this->writeData($dataProvider->getJsonData());
+	}
+	public function actionGetTop($id,$top=5,$view='view'){
+		$top = (int)$top>0?(int)$top:10;
+		$msg = $this->loadModel($id);
+		$tags = $msg->getNP(false,$top);
+		
+			$this->_setLayout('//layouts/columnAjax');
+			Yii::app()->clientScript->enableJavaScript = false;
+
+		$this->render('/chip/list-top',array(
+			'model'=>$msg,
+			'tags' => $tags,
+			'view' => $view
+		));		
+	}
+
 	protected function errorE($msg='非法操作'){
 		$this->error(202,$msg);
 	}

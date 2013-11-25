@@ -2,6 +2,8 @@
 class Contact extends ModuleRecord
 {
 	
+	public $linkName = 'contact_time';
+	
 	/**
 	 * @return string 数据表名字
 	 */
@@ -10,13 +12,8 @@ class Contact extends ModuleRecord
 		return '{{contact}}';
 	}
 
-	/**
-	 * @return array validation rules for model attributes.字段校验的结果
-	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('contact_time,clienteleid, prsonid', 'required'),
 			array('stage, status', 'numerical', 'integerOnly'=>true),
@@ -61,7 +58,7 @@ class Contact extends ModuleRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		$arr = array(
 				'itemid' => '编号',
 				'fromid' => '平台会员ID',
 				'manageid' => '会员ID',
@@ -85,6 +82,13 @@ class Contact extends ModuleRecord
 				'iContactpPrson.nicename' => '联系人',
 				'iClientele.clientele_name' => '客户',
 		);
+		$_arr = parent::attributeLabels();
+		if (is_array($_arr)&&count($_arr)>0) {
+			foreach ($_arr as $key => $value) {
+				$arr[$key] = $value;
+			}
+		}
+		return $arr;
 	}
 
 	public function search()
@@ -93,30 +97,24 @@ class Contact extends ModuleRecord
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
 
-		$criteria->compare('itemid',$this->itemid,true);
-		$criteria->compare('fromid',$this->fromid,true);
-		$criteria->compare('manageid',$this->manageid,true);
-		$criteria->compare('clienteleid',$this->clienteleid,true);
-		$criteria->compare('prsonid',$this->prsonid,true);
+		$criteria->compare('itemid',$this->itemid);
+		$criteria->compare('fromid',$this->fromid);
+		$criteria->compare('manageid',$this->manageid);
+		$criteria->compare('clienteleid',$this->clienteleid);
+		$criteria->compare('prsonid',$this->prsonid);
 
 		if ($this->type>=0) {
 			$criteria->compare('type',$this->type,true);
 		}
-
 		if ($this->stage>=0) {
 			$criteria->compare('stage',$this->stage,true);
 		}
-
-		$criteria->compare('contact_time',$this->contact_time,true);
-		$criteria->compare('next_contact_time',$this->next_contact_time,true);
+		
+		$this->setCriteriaTime($criteria,
+			array('contact_time','next_contact_time')
+		);
 		$criteria->compare('next_subject',$this->next_subject,true);
 		$criteria->compare('accessory',$this->accessory,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('add_us',$this->add_us,true);
-		$criteria->compare('add_ip',$this->add_ip,true);
-		$criteria->compare('modified_time',$this->modified_time,true);
-		$criteria->compare('modified_us',$this->modified_us,true);
-		$criteria->compare('modified_ip',$this->modified_ip,true);
 		$criteria->compare('note',$this->note,true);
 		$criteria->compare('status',$this->status);
 		return $cActive;
@@ -131,17 +129,27 @@ class Contact extends ModuleRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
-    	// $condition[] = 'display>0';
+    	$condition = array();
+    	if (isset($arr['condition'])) {
+    		$condition[] = $arr['condition'];
+    	}
+    	$arr['order'] = 'contact_time DESC';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }
-    public function group(){
-	
+   public function scopes()
+    {
+    	$result = parent::scopes();
+    	$result ['listnp']= array(
+            	'condition'=>'clienteleid='.$this->clienteleid,
+            );
+    	return $result;
+    }
+    public function group(){	
 	// SELECT * FROM (SELECT * FROM posts ORDER BY dateline DESC) AS NEW GROUP BY tid ORDER BY dateline DESC LIMIT 10
 
 	    $this->getDbCriteria()->mergeWith(array(
-	    	'condition' =>  'itemid in(SELECT a.itemid FROM (SELECT b.itemid,b.clienteleid FROM `tak_contact` AS b ORDER BY b.contact_time DESC) AS a GROUP BY a.clienteleid)',
+	    	'condition' =>  'itemid in(SELECT a.itemid FROM (SELECT b.itemid,b.clienteleid FROM {{contact}} AS b ORDER BY b.contact_time DESC) AS a GROUP BY a.clienteleid)',
 	        'order'=>'contact_time DESC',
 	    ));
 	    return $this;    	
@@ -163,14 +171,6 @@ class Contact extends ModuleRecord
 	    return $result;
 	}
 
-	public function getLink($itemid=false){
-		if (!$itemid) {
-			$itemid = $this->itemid;
-		}		
-		$link = Yii::app()->createUrl('contact/view',array('id'=>$itemid));
-		return $link;
-	}
-
 	public function getHtmlLink($name=false,$itemid=false)
 	{
 		if (!$name) {
@@ -183,7 +183,6 @@ class Contact extends ModuleRecord
 	//保存数据后
 	protected function afterSave(){
 		parent::afterSave();	
-
 		//插入到行程中	
         $event = new Events;
         $event->deleteByPk($this->itemid);
@@ -216,6 +215,20 @@ class Contact extends ModuleRecord
 	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
-		
 	}	
+
+	protected function _getnp($isid=true,$top=1){
+		return parent::getNP($isid,$top);
+	}
+
+	public function getNP($isid=true,$top=1){
+		$c = $this->scopes();
+		$arr = array($c['listnp']['condition']);
+		if ($this->scondition) {
+			$arr[] = $this->scondition;
+		}
+		$this->scondition = join(' AND ',$arr);
+		$result = parent::getNP($isid,$top);
+		return $result;
+	}
 }

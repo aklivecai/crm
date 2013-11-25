@@ -241,20 +241,30 @@ input[type=date]{
   color: #FFF;
 }
 
-#search-form{
-  width:35%;
-  margin-left:5%;
+.form-search{
+  margin:1%;
+  padding: 8px;
 }
-#search-form select{
-  width:155px;
+.form-search select{
+  width:auto !important;
+  min-width: 50px;
+  width:50px;
 }
-#search-form .control-group {
+.form-search select,
+.form-search button,
+.form-search input{
+  margin-right: 3px;
+}
+.form-search .type-date{
+  width:85px;
+}
+.form-search .control-group {
   margin:0;
 }
-#search-form .control-label{
+.form-search .control-label{
   width:120px;
 }
-#search-form .controls{
+.form-search .controls{
   margin-left: 125px;
 }
 
@@ -443,11 +453,108 @@ form.active .wap-flow-content{
   display: block;
 }
 
-#flow-form .tak-table caption{
+#flow-form .tak-tabelno caption{
   text-indent: 0;
 }
 
 
 .itak-dr .dr{
   margin:0;
+}
+
+.empty p{
+  text-indent: 2em;
+}
+
+#content .not-data{
+  height: 45px;
+  line-height: 25px;
+  background-color: #FFF;
+}
+
+/*TbListView*/
+
+#list-views .pagination{
+  margin:0;
+  float: right;
+}
+#list-views .summary{
+  text-indent: 2em;
+}
+
+.select-page{
+  width: auto !important;
+  min-width: 65px;
+  width:65px;
+  float: left;
+  line-height: 25px;
+  height: 25px;
+}
+
+#list-views .more-info{
+  height: 16px;
+  width:100%;
+  overflow: hidden;
+  border:1px solid #FFF;
+  padding: 3px;
+  
+}
+#list-views tbody tr{
+  cursor: pointer;
+}
+#list-views tr.active td,
+#list-views tbody tr:hover td{
+  background-color: #FCFCFC;
+}
+#list-views tr.active .more-info,
+#list-views tbody tr:hover .more-info{
+  height: auto;
+  overflow:visible;
+  border-color: red;
+  text-indent: 2em;
+  background-color: #FFF;
+}
+
+.more-list .more-load-info{
+  height: 45px;
+  background:#FFF url(img/loading.gif) no-repeat center center;
+}
+#content>.block-fluid{
+  /*transition: all 8s;*/
+}
+
+.load-content{
+  min-height: 200px;
+  background:url(img/loading.gif) no-repeat center center; 
+}
+.load-content>.block-fluid,
+.load-content>.row-fluid{
+  opacity: 0.5;
+} 
+
+#ibody .menu .navigation > li,
+#ibody .menu .navigation > li.openable{
+  background-color: #CCC;
+}
+
+#ibody .silver .navigation > li.openable{
+  background-color: #576774;
+}
+#ibody .dark .navigation > li.openable{
+  background-color: #1C1C1C;
+}
+#ibody .marble .navigation > li.openable{
+  background-color: #74837C;
+}
+#ibody .red .navigation > li.openable{
+  background-color: #5B1E0C;
+}
+#ibody .green .navigation > li.openable{
+  background-color: #476608;
+}
+#ibody .lime .navigation > li.openable{
+  background-color: #95B611;
+}
+#ibody .purple .navigation > li.openable{
+  background-color: #913F7F;
 }

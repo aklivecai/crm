@@ -2,7 +2,7 @@
 
 class MovingsController extends Controller
 {
-	protected $type = 1;
+	public $type = 1;
 	protected $typename = null;
 	protected $cates = null;
 	
@@ -38,11 +38,20 @@ class MovingsController extends Controller
 	}
 	
 	protected function afterAction($action){
-		if($action->id=='update'){
-			if ($this->_model!==null
-				&&$this->_model->time_stocked>0) {
-				$this->redirect(array('view','id'=>$this->_model->itemid));
-			}
+		// if($action->id=='update'){
+		// 	if ($this->_model!==null
+		// 		&&$this->_model->time_stocked>0) {
+		// 		$this->redirect(array('view','id'=>$this->_model->itemid));
+		// 	}
+		// }
+	}
+
+	public function actionUpdate($id){
+		$model = $this->loadModel($id);
+		if ($this->_model->time_stocked>0) {
+			$this->redirect(array('view','id'=>$this->_model->itemid));
+		}else{
+			parent::actionUpdate($id);
 		}
 	}
 

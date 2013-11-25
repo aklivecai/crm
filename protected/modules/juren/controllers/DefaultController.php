@@ -4,19 +4,35 @@ class DefaultController extends JController
 
 	public function init(){
 		parent::init();
-		$this->layout = 'column1';		
+		$this->layout = 'column1';
+		if (!Tak::isGuest()) {
+			$this->checkAccess();
+		}
 	}
 
 	public function actionIndex()
 	{
-		$this->render('index');
+		$this->render('index');		
 	}
 
+	/*检测权限*/
+	private function checkAccess(){
+		$uid = Tak::getManageid();
+		$sql  = "SELECT itemname FROM {{rbac_authassignment}}  WHERE fromid = 1 AND userid=$uid ";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->execute();
+		$reader = $command->query();
+		$auth = Yii::app()->authManager;
+		if (Tak::checkSuperuser()) {
+			
+		}
+	}
+
+	/*发送邮件*/
 	public function actionEmail($email='',$itemid='')
 	{
 
         $model = new MailForm();  
-
         $msg = array();
         if ($itemid>0) {
         	$msg = TestMemeber::model()->findByPk($itemid);
@@ -33,8 +49,7 @@ class DefaultController extends JController
 				Yii::app()->mailer->CharSet = "UTF-8";  
 				Yii::app()->mailer->IsHTML(true);
 				Yii::app()->mailer->IsSMTP();
-				Yii::app()->mailer->SMTPAuth = true;
-				
+				Yii::app()->mailer->SMTPAuth = true;				
 				Yii::app()->mailer->Port = '25';
 				Yii::app()->mailer->Username = '9juren002';
 				Yii::app()->mailer->Password = 'juren002';
@@ -68,12 +83,14 @@ class DefaultController extends JController
 		));
 	}
 
+	/*登录系统*/
 	public function actionLogin($itemid=false)
 	{
 		/*已经登录，返回上一页，没有就首页*/
 		if (!Tak::isGuest()) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
+		
 		$this->layout = 'column1';
 		$model = new LoginForm;
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -94,6 +111,7 @@ class DefaultController extends JController
 			$_POST['LoginForm']['fromid'] = $fromid;
 			$model->attributes = $_POST['LoginForm'];
 			if($model->validate() && $model->login()){
+
 				 $this->redirect(array('index'));
 			}
 		}
@@ -107,11 +125,15 @@ class DefaultController extends JController
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
+
+	/*退出登录*/
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
 		$this->redirect(array('default/login'));
 	}
+
+	//修改密码
 	public function actionChangepwd()
 	{
 		$model = new PasswdModifyForm();

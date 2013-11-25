@@ -124,6 +124,8 @@ abstract class TbBaseMenu extends CMenu
 			{
 				$pieces = explode(' ', $item['icon']);
 				$item['icon'] = 'icon-'.implode(' icon-', $pieces);
+			}else{
+				
 			}
 
 			$item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];

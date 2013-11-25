@@ -45,6 +45,7 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'start_time',array('class'=>'type-date','size'=>10,'maxlength'=>10)); ?>
 	</div>
+	<!--
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'end_time',array('class'=>'type-date','size'=>10,'maxlength'=>10)); ?>
 	</div>
@@ -54,12 +55,14 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'text_color',array('class'=>'color','size'=>15,'maxlength'=>15)); ?>
 	</div>
+
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'location',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'url',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
+	-->
 	<div class="row-form clearfix">
 		<?php echo $form->radioButtonListRow($model,'display',Taktype::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>

@@ -52,6 +52,10 @@ return array (
   'More' => '更多', 
   'Detail' => '明细', 
 
+  'Next' => '下一个', 
+  'Pre' => '上一个', 
+
+
   'AdminLog' => '网站日志',
   'Manage' => '用户',
   'Manages' => '用户',
@@ -74,8 +78,8 @@ return array (
 
   'Events' => '提醒', 
 
-  'Product' => '产品',
-  'Products' => '产品',
+  'Product' => '产品型号',
+  'Products' => '产品型号',
 
   'Purchase' => '入库',
   'Sell' => '出库',
@@ -88,9 +92,14 @@ return array (
   'Close' => '关闭',
   'Affirm' => '确认',
 
-  'Purchase enterprise' => '来源',
-  'Sell enterprise' => '客户',
+  'Purchase enterprise' => '供应商',
+  'Sell enterprise' => '收货方',
   'enterprise' => '单位名称',
+
+  'Purchase numbers' => '采购单号',
+  'Sell numbers' => '单号',
+
+  
 
   'Purchase typeid' => '入库方式',
   'Sell typeid' => '出库方式',
@@ -108,7 +117,7 @@ return array (
 
   'Permissions' => '权限',
 
-  'View Roles' => '角色权限介绍',
+  'View Roles' => '部门权限介绍',
 
   'Order' => '订单',
   'Orders' => '订单',
@@ -116,6 +125,8 @@ return array (
   'Select' => '选择-',
   'contact-type' => '联系方式',
   'contact-stage' => '销售阶段',
+
+  'Product Type'=>'货物分类',
  );
 
 

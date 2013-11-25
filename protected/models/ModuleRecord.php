@@ -2,6 +2,16 @@
 class ModuleRecord extends MRecord
 {
 	public $scondition = ' status>0 ';/*默认搜索条件*/
+	private $_bycu = true; //搜索自己
+
+	public function attributeLabels()
+	{
+		return array(
+				'_startTime' => '开始时间',
+				'_endTime' => '结束时间',
+			);
+	}
+
 	//默认继承的搜索条件
     public function defaultScope($isOrder=true)
     {
@@ -13,14 +23,34 @@ class ModuleRecord extends MRecord
     	if ($isOrder) {
     		$arr['order'] = ' add_time DESC ';
     	}
+    	$condition = array();
+    	if ($this->scondition) {
+    		$condition[] = $this->scondition;
+    	}
 
-    	$condition = array($this->scondition);
-    	$condition[] = 'fromid='.Tak::getFormid();
-    	if (!Tak::checkSuperuser()&&$this->hasAttribute('manageid')) {
-    		$condition[] = 'manageid='.Tak::getManageid();
+    	if($this->hasAttribute('fromid')){
+    		$condition[] = 'fromid='.Tak::getFormid();
+    	}    	
+    	if ($this->getCu()) {
+    		$condition[] = ' manageid='.Tak::getManageid();
     	}
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
+    }
+    public function setGetCU($isTure=false){
+    	$this->_bycu = $isTure;
+    	return $this;
+    }
+    protected function getCu(){
+    	$result = false;
+    	if($this->hasAttribute('manageid')
+    		&&$this->_bycu
+    		&&!Tak::checkSuperuser()
+    		){
+    		$result = true;
+
+    	}
+    	return $result;
     }
 
    public function scopes()
@@ -29,12 +59,12 @@ class ModuleRecord extends MRecord
             'published'=>array(
                 'condition'=>'status=1',
             ),
-            'recently1'=>array(
-                'order'=>'add_time DESC',
+            'recently1' => array(
+                'order' => 'add_time DESC',
             ),
-            'sort_time'=>array(
-                'order'=>'add_time DESC',
-            ),
+            'sort_time' => array(
+                'order' => 'add_time DESC',
+            )
         );
     }   
     
@@ -123,8 +153,7 @@ class ModuleRecord extends MRecord
 	        	}
 	        	if (!$this->add_ip) {
 	        		$this->add_ip = $arr['ip'];
-	        	}
-	        	
+	        	}	        	
 	        }else{
 	        	//修改数据时候
 	        	$this->modified_us = $arr['manageid'];
@@ -184,6 +213,6 @@ class ModuleRecord extends MRecord
 			$this->save();
 			$result = true;
 		}
-		return result;
+		return $result;
 	}
 }	

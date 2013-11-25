@@ -1,21 +1,18 @@
 @import "icons.css";
 @import "fullcalendar.css";
 @import "ui.css";
-@import "select2.css";
 @import "uniform.default.css";
 @import "validation.css";
 @import "mCustomScrollbar.css";
 
 @import "fancybox/jquery.fancybox.css";
 
-@import "multi-select.css";
 @import "pnotify.css";
 @import "ibutton.css";
 
 @import "tagsinput.css";
 @import "stylesheet.css";
 @import "styling.css";
-@import "ak.css";
 
 
 html { height: 100%; }

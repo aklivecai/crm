@@ -7,60 +7,70 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <![endif]-->
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-<link rel="icon" type="image/ico" href="favicon.ico"/>
-<link href="<?php echo yii::app()->theme->baseUrl;?>/css/stylesheets.css" rel="stylesheet" type="text/css" />
+<link rel="icon" type="image/ico" href="/favicon.ico"/>
 <!--[if lt IE 8]>
-        <link href="<?php echo yii::app()->theme->baseUrl;?>/css/ie7.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->getAssetsUrl();?>css/ie7.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-<link rel='stylesheet' type='text/css' href='<?php echo yii::app()->theme->baseUrl;?>/css/fullcalendar.print.css' media='print' />
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery-ui-1.10.1.custom.min.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery-migrate-1.2.1.min.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/jquery/jquery.mousewheel.min.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
-
-<!-- <script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/jq.common.js'></script> -->
-<!-- 日历 -->
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fullcalendar/fullcalendar.min.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2.min.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/select2/select2_locale_zh-CN.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/uniform/uniform.js'></script>
-<!-- 滚动条 -->
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
-
-<!-- 弹窗 ，图片 -->
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/fancybox/jquery.fancybox.pack.js'></script>
-<!-- 消息提示 -->
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/pnotify/jquery.pnotify.min.js'></script>
-<!-- 美化按钮 -->
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/ibutton/jquery.ibutton.min.js'></script>
-
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins/scrollup/jquery.scrollUp.min.js'></script>
-
-<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/WdatePicker.js'></script>
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
-
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/spectrum/spectrum.js'></script>
-<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
-
-
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/modernizr.js'></script>
-
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/cookies.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/actions.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/plugins.js'></script>
-<script src='<?php echo yii::app()->theme->baseUrl;?>/js/settings.js'></script>
-
+<link rel='stylesheet' type='text/css' href='<?php echo $this->getAssetsUrl();?>css/fullcalendar.print.css' media='print' />
 
 <?php
-  Yii::app()->bootstrap->register();
+Yii::app()->bootstrap->register();
+$jss = array(
+'plugins/jquery/jquery-ui-1.10.1.custom.min.js',
+'plugins/jquery/jquery-migrate-1.2.1.min.js',
+'plugins/jquery/jquery.mousewheel.min.js',
+'plugins/cookie/jquery.cookies.2.2.0.min.js',
+// <!-- 日历 -->
+'plugins/fullcalendar/fullcalendar.min.js',
+'plugins/uniform/uniform.js',
+// <!-- 滚动条 -->
+'plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js',
+// <!-- 弹窗 ，图片 -->
+'plugins/fancybox/jquery.fancybox.pack.js',
+// <!-- 消息提示 -->
+'plugins/pnotify/jquery.pnotify.min.js',
+// <!-- 美化按钮 -->
+'plugins/ibutton/jquery.ibutton.min.js',
+'plugins/scrollup/jquery.scrollUp.min.js',
+'cookies.js',
+'actions.js?2013-11-15',
+'plugins.js',
+'settings.js',
+'k-load-select.js',
+);
+  $this->regCssFile('stylesheets.css')->regCssFile('ak.css?2013')->regScriptFile($jss);
+
+  $scrpitS = array('_ak/js/modernizr.js');
+  $cssS = array();
+
+  $path = '_ak/js/plugins/datepicker/';
+  $cssS[] = $path.'skin/WdatePicker.css';
+  $scrpitS[] = $path.'WdatePicker.js';
+  $scrpitS[] = $path.'lang/zh-cn.js';
+
+  $path = '_ak/js/plugins/select2/';
+  $cssS[] = $path.'select2.css';
+  $scrpitS[] = $path.'select2.min.js';
+  $scrpitS[] = $path.'select2_locale_zh.js';
+
+  $path = '_ak/js/plugins/spectrum/';
+  $cssS[] = $path.'spectrum.css';
+  $scrpitS[] = $path.'spectrum.js';
+
+  if (YII_DEBUG) {
+    $scrpitS[] = '_ak/js/jq.common.js';  
+  }
+  
+
+  Tak::regScriptFile($scrpitS,'static');
+  Tak::regCssFile($cssS,'static'); 
 ?>
 <script type="text/javascript">
   var CrmPath = '<?php echo Yii::app()->getBaseUrl();?>/';
 </script>
 </head>
 
-<body class="<?php echo Yii::app()->user->getState('themeSettings_bg'); ?>" >   
+<body id="ibody" class="<?php echo Yii::app()->user->getState('themeSettings_bg'); ?>" >   
 <div class="wrapper<?php echo ' '.Yii::app()->user->getState('themeSettings_style'); if(Yii::app()->user->getState('themeSettings_fixed')) echo ' fixed'; ?>">
   <div class="header">
   <?php
@@ -84,7 +94,16 @@
           <div class="body settings">
             <div class="row-fluid">
               <div class="span3"><strong>颜色:</strong></div>
-              <div class="span9"> <a class="styleExample active" title="Default style" data-style="">&nbsp;</a> <a class="styleExample silver " title="Silver style" data-style="silver">&nbsp;</a> <a class="styleExample dark " title="Dark style" data-style="dark">&nbsp;</a> <a class="styleExample marble " title="Marble style" data-style="marble">&nbsp;</a> <a class="styleExample red " title="Red style" data-style="red">&nbsp;</a> <a class="styleExample green " title="Green style" data-style="green">&nbsp;</a> <a class="styleExample lime " title="Lime style" data-style="lime">&nbsp;</a> <a class="styleExample purple " title="Purple style" data-style="purple">&nbsp;</a> </div>
+              <div class="span9">
+                <a class="styleExample active" title="Default style" data-style="">&nbsp;</a> 
+                <a class="styleExample silver " title="Silver style" data-style="silver">&nbsp;</a> 
+                <a class="styleExample dark " title="Dark style" data-style="dark">&nbsp;</a> 
+                <a class="styleExample marble " title="Marble style" data-style="marble">&nbsp;</a> 
+                <a class="styleExample red " title="Red style" data-style="red">&nbsp;</a> 
+                <a class="styleExample green " title="Green style" data-style="green">&nbsp;</a> 
+                <a class="styleExample lime " title="Lime style" data-style="lime">&nbsp;</a> 
+                <a class="styleExample purple " title="Purple style" data-style="purple">&nbsp;</a> 
+              </div>
             </div>
             <div class="row-fluid">
               <div class="span3"><strong>背景:</strong></div>
@@ -163,8 +182,8 @@ $items = Tak::getMainMenu();
       <!-- breadcrumbs -->
     <div class="breadLine">
       <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-					'links'=>$this->breadcrumbs,
-				)); ?>
+          'links'=>$this->breadcrumbs,
+        )); ?>
       <!-- breadcrumbs -->
     </div>
     <div class="workplace">

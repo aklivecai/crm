@@ -9,7 +9,8 @@ $this->breadcrumbs=array(
 ?>
 <div class="">
 <?php 
-$msgProduct = "<h3>库存：{$model->stocks}</h3>";
+$_stocks = $model->getAttributeLabel('stocks');
+$msgProduct = "<h3> ".$_stocks."：{$model->stocks}</h3>";
 
 $msgProduct .= $this->renderPartial('//product/_view',array('model'=>$product),true); 
 

@@ -24,32 +24,14 @@ $items = Tak::getListMenu();
 	</div>	
 
 	<div class="block-fluid clearfix">
-<?php 
-	// $this->renderPartial('_search',array('model'=>$model,)); 
-?>
 
-<?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
-    'type'=>'striped bordered condensed',
-    'id' => 'list-grid',
-	'dataProvider'=>$model->group()->search(),
-	'template'=>"{items}",
-	'enableHistory'=>true,
-    'loadingCssClass' => 'grid-view-loading',
-    'summaryCssClass' => 'dataTables_info',
-    'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
-    'ajaxUpdate'=>true,    //禁用AJAX
-    'enableSorting'=>true,
-    'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
-	'pager'=>array(
-		'header'=>'',
-		'maxButtonCount' => '5',
-		'hiddenPageCssClass' => 'disabled'
-		,'selectedPageCssClass' => 'active disabled'
-		,'htmlOptions'=>array('class'=>'')
-	),
-	'columns'=>array(
-	Tak::getAdminPageCol(),
+
+<?php 
+$this->renderPartial('_search',array('model'=>$model,'route'=>'contact/admin'));
+
+$options = Tak::gredViewOptions();
+$options['dataProvider'] = $model->group()->search();
+$columns = array(
 		array(
 			'name'=>'clienteleid',
 			'type'=>'raw',
@@ -74,8 +56,10 @@ $items = Tak::getListMenu();
 			'value'=>'TakType::getStatus("contact-stage",$data->stage)',
 			'type'=>'raw',
 		)	
-	),
-)); 
+	);
+$columns = array_merge_recursive(array($options['columns']),$columns);
+$options['columns'] = $columns;
+$widget = $this->widget('bootstrap.widgets.TbGridView', $options); 
 ?>
 		</div>
 	</div>

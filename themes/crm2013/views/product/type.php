@@ -10,8 +10,8 @@ $_action = $this->getAction()->id=='recycle'?'recycle':'admin';
 
 
 $items = array(
-	'product' => array('label'=>'产品管理', 'url'=>Yii::app()->createUrl('product/admin')),
-	'takType' => array('label'=>'分类', 'url'=>Yii::app()->createUrl('takType/admin',array('type'=>'product'))
+	'product' => array('label'=>Tk::g('Product'), 'url'=>Yii::app()->createUrl('product/admin')),
+	'takType' => array('label'=>Tk::g('Product Type'), 'url'=>Yii::app()->createUrl('takType/admin',array('type'=>'product'))
 	),
 );
 if ($items[$this->getId()]) {

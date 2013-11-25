@@ -13,21 +13,16 @@ class SiteController extends Controller
 	}
 	public function allowedActions()
 	{
-	 	return 'init,index,login,error';
+	 	return 'init,index,login,error,ie6';
 	}
-	/**
-	 * Declares class-based actions.
-	 */
+
 	public function actions()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
 			'captcha'=>array(
 				'class'=>'CCaptchaAction',
 				'backColor'=>0xFFFFFF,
 			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
@@ -39,9 +34,6 @@ class SiteController extends Controller
 		$this->layout=$layout;
 	}
 
-	/**
-	 * This is the action to handle external exceptions.
-	 */
 	public function actionIndex()
 	{
 		if (Tak::isGuest()) {
@@ -63,6 +55,13 @@ class SiteController extends Controller
 		$this->_setLayout();
 		$this->render('index');
 	}
+
+	public function actionIe6()
+	{
+		$this->_setLayout('//layouts/columnAjax');
+		$this->render('ie6');
+	}
+
 	public function actionHelp()
 	{
 		$this->_setLayout();
@@ -85,12 +84,17 @@ class SiteController extends Controller
 
 
 	private function inits($k){
-		/*已经s登录，返回上一页，没有就首页*/
+		if (strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0;') !== false ) {
+			$this->redirect('ie6');
+			exit;
+		}
+
+		/*已经登录，返回上一页，没有就首页*/
 		if (!Tak::isGuest()) {
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
 			$itemid = Tak::getCryptNum($k);
-			$errorInfo = '非法操作！';
+			$errorInfo = '会员信息不存在！';
 			if ($itemid) {
 				$this->msg = $msg = TestMemeber::model()->getMmeber($itemid); 
 				if (!$msg) {
@@ -102,9 +106,7 @@ class SiteController extends Controller
 					}else{
 						$active_time = $msg['active_time'];
 						if ($active_time>0) {
-							$time = time();
-							$e1 = mktime(23,59,59,date("m",$active_time),date("d",$active_time)+15,date("Y",$active_time)); 
-							if ($time>$e1) {
+							if (Tak::isDayOver($active_time,15)) {
 								$itemid = false;
 								$errorInfo = '帐号已过期! 请联系客服 400 0168 488';
 							}elseif($this->getAction()->id!='login') {
@@ -149,6 +151,19 @@ class SiteController extends Controller
 		return $result;
 	}
 
+	public function actionPreviewTestMember($id)
+	{
+		$msg = Profile::getOne($id);
+		if ($msg===null) 
+			throw new CHttpException(404,'所请求的页面不存在。');
+		if(!$this->isAjax)
+			$this->_setLayout('//layouts/columnPreview');
+
+		$this->render('/profile/_view',array(
+			'model' => $msg,
+		));
+	}		
+
 	public function actionInit($k=false){
 		$itemid = $this->inits($k);
 		$m = 'InitForm';
@@ -170,8 +185,6 @@ class SiteController extends Controller
 		$this->render('init',array('model'=>$this->model,'msg'=>$this->msg));
 	}
 
-
-
 	public function actionLogin($k=false)
 	{
 		$itemid = $this->inits($k);
@@ -183,16 +196,13 @@ class SiteController extends Controller
 		}
 		if ($this->setForm($m)&&$model->login()) {
 			$this->setting();
-			$this->redirect(Yii::app()->user->returnUrl);		
+			$this->redirect(Yii::app()->user->returnUrl);
 		}
 
 		$model->attributes = array('fromid'=>$itemid);
 		$this->render('login',array('model'=>$model,'msg'=>$this->msg));
 	}	
 
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
 	public function actionLogout()
 	{
 		if (Tak::isGuest()) {
@@ -260,6 +270,71 @@ class SiteController extends Controller
 		$this->render('page');
 	}
 
+	public function actionDatabase(){
+
+		$dtables = $tables = $C = array();
+		$i = $j = $dtotalsize = $totalsize = 0;
+		$DT_PRE = 'tak_';
+		$db_name = 'test';
+
+		Tak::KD(Yii::app()->db->schema->getTableNames());		
+
+		foreach(Yii::app()->db->schema->getTables() as $name=>$table)
+		{
+			
+		}
+
+		exit;
+
+		$sql = "SHOW TABLES FROM `$db_name`";
+
+		$connection = Yii::app()->db;
+
+		$tags = $connection->createCommand($sql)->query()->readAll();
+		Tak::KD($tags,1);	
+
+
+		foreach ($tags as $key => $rr) {
+
+				if(!$rr[0]) continue;
+				$sql = "SHOW TABLE STATUS FROM `".$db_name."` LIKE '".$rr[0]."'";
+				$r = $connection->createCommand($sql)->query()->readAll();
+				
+				if(preg_match('/^'.$DT_PRE.'/', $rr[0])) {
+					$dtables[$i]['name'] = $r['Name'];
+					$dtables[$i]['rows'] = $r['Rows'];
+					$dtables[$i]['size'] = round($r['Data_length']/1024/1024, 2);
+					$dtables[$i]['index'] = round($r['Index_length']/1024/1024, 2);
+					$dtables[$i]['tsize'] = $dtables[$i]['size']+$dtables[$i]['index'];
+					$dtables[$i]['auto'] = $r['Auto_increment'];
+					$dtables[$i]['updatetime'] = $r['Update_time'];
+					$dtables[$i]['note'] = $r['Comment'];
+					$dtables[$i]['chip'] = $r['Data_free'];
+					$dtotalsize += $r['Data_length']+$r['Index_length'];
+					$C[str_replace($DT_PRE, '', $r['Name'])] = $r['Comment'];
+					$i++;
+				} else {
+					$tables[$j]['name'] = $r['Name'];
+					$tables[$j]['rows'] = $r['Rows'];
+					$tables[$j]['size'] = round($r['Data_length']/1024/1024, 2);
+					$tables[$j]['index'] = round($r['Index_length']/1024/1024, 2);
+					$tables[$j]['tsize'] = $tables[$j]['size']+$tables[$j]['index'];
+					$tables[$j]['auto'] = $r['Auto_increment'];
+					$tables[$j]['updatetime'] = $r['Update_time'];
+					$tables[$j]['note'] = $r['Comment'];
+					$tables[$j]['chip'] = $r['Data_free'];
+					$totalsize += $r['Data_length']+$r['Index_length'];
+					$j++;
+				}				
+		}		
+		$dtotalsize = round($dtotalsize/1024/1024, 2);
+		$totalsize = round($totalsize/1024/1024, 2);	
+
+
+		$this->_setLayout();
+		$this->render('database');	
+	}
+
 	/**
 	 * 还原数据库
 	 */
@@ -273,4 +348,66 @@ class SiteController extends Controller
 		Yii::app()->user->setFlash('success', 'Database has been restored!');
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionTak(){
+		$connection2 = Yii::app()->db2;
+		$sql = " SELECT userid,company,username FROM `destoon_company` WHERE substring(linkurl,22) IN (SELECT substring(url,22) FROM `destoon_ad` WHERE `pid` = 81  ) ";
+		Tak::KD($sql);
+		$tags = $connection2->createCommand($sql)->query()->readAll();
+
+		$tabl = 'tak_test_memeber';
+		
+		if (count($tags)>0) {
+			$temp = array(1);
+			foreach ($tags as $key => $value) {
+				$temp[$value['userid']] = $value;
+			}		
+			$ids = array_keys($temp);			
+			$sql = "itemid IN (".join(',',$ids).") ";
+			$list = TestMemeber::model()->findAll($sql);
+			foreach ($list as $key => $value) {
+				unset($temp[$value->itemid]);
+			}
+			array_shift($temp);
+
+			if (count($temp)>0) {
+				$sqls = '';
+				$time = Tak::now();
+				$init  = new InitForm ;
+				$connection = Yii::app()->db;
+				foreach ($temp as $key=>$value) {
+					// Tak::KD($value['userid']);
+					$s1 = "INSERT INTO `:tabl` (`active_time`, `add_time`, `add_us`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `status`, `company`, `note`, `manageid`,`itemid`) VALUES (0,:time,:manageid,0,0,0,0,1,':company',':note',:manageid,:itemid); ";
+					
+					$sqls=strtr($s1,array(
+							':itemid'=>$value['userid']
+							,':manageid'=>1
+							,':company'=>$value['company']
+							,':note'=>$value['username']
+							,':time'=>$time
+							, ':tabl' => $tabl
+						)
+					);
+					$connection->createCommand($sqls)->query();
+					$init->install($value['username'],$time);
+				 	// $m = new TestMemeber;				
+					// Tak::KD($m->getAttributes());
+					// Tak::KD($m->getErrors());
+					// exit;
+					// Tak::KD($sqls,1);
+				}				
+
+
+				$list = TestMemeber::model()->findAll($sql);
+				foreach ($list as $key => $value) {
+					$value->active_time = mktime(23,59,59,12,31,date("Y",$time)); 
+					$value->save();
+				}
+
+			}
+			// Tak::KD(count($temp));
+		}
+		$this->render('page');	
+	}
+
 }

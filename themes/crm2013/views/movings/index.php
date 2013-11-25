@@ -27,6 +27,8 @@ $product_id = '44251638363518195';
 
 $tags = ProductMoving::model()->getProductMovings($typeid,$product_id);
 
+$value::model()->sort_time()->recently('clienteleid='.$model->itemid);
+
 $this->renderPartial('//movings/_product_moving_list',array('typeid'=>$typeid,'product_id'=>$product_id)); 
 
 $template ="<table class=\"table\"> <thead> <tr> 

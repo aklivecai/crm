@@ -4,8 +4,9 @@
 
 $this->breadcrumbs=array(
 	Tk::g('Manages')=>array('admin'),
-	$model->manageid,
+	$model->primaryKey,
 );
+
 ?>
 <div class="block-fluid">
                <div class="row-fluid">
@@ -30,15 +31,26 @@ $this->breadcrumbs=array(
 </div>
 <div class="span2">
 <?php 
- $items = array(
-	array('label'=>Tk::g('Action'), 'icon'=>'fire', 'url'=>'', 'active'=>true),
-	array('label'=>Tk::g('View'), 'icon'=>'eye-open'),
-	array('label'=>Tk::g('Admin'), 'icon'=>'th','url'=>array('admin')),
-	array('label'=>Tk::g('Create'), 'icon'=>'pencil','url'=>array('create')),
-	array('label'=>Tk::g('Permissions'), 'icon'=>'user','url'=>array('rights/assignment/user','id'=>$model->manageid)),
-	array('label'=>Tk::g('Update'), 'icon'=>'edit','url'=>array('update', 'id'=>$model->manageid)),
-	array('label'=>Tk::g('Delete'), 'icon'=>'trash','url'=>array('delete', 'id'=>$model->manageid),'linkOptions'=>array('class'=>'delete')),
+
+$items = Tak::getViewMenu($model->primaryKey);
+
+$_itemis = array(
+	'---',
+	'Permissions' => array('label'=>Tk::g('Permissions'), 'icon'=>'user','url'=>array('rights/assignment/user','id'=>$model->manageid)),
+	'log' => array('label'=>Tk::g('AdminLog'), 'icon'=>'indent-left','url'=>array('AdminLog/admin','AdminLog[user_name]'=>$model->user_name)),
+
+		array('label'=>Tk::g(array('More','Manages')), 'url'=>'#', 'icon'=>'list','itemOptions'=>array('data-geturl'=>$model->getLink(false,'gettop'),'class'=>'more-list'),'submenuOptions'=>array('class'=>'more-load-info'),'items'=>array(
+	    	array('label'=>'...', 'url'=>'#'),
+		))
 );
+
+$nps = $model->getNP(true);
+if (count($nps)>0) {
+   array_splice($_itemis,count($_itemis),0,Tak::getNP($nps));
+}
+
+array_splice($items,count($items)-2,0,$_itemis);  
+
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=> $items,

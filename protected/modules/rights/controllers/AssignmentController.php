@@ -63,14 +63,15 @@ class AssignmentController extends RController
 	public function actionView()
 	{
 		$criteria = array();
-		if (!Tak::getAdmin()) {
-		   	$criteria['condition'] = ' fromid = '.Yii::app()->user->fromid;
-		   	// 找到管理员ID，然后屏蔽掉
+
+		   $criteria['condition'] = ' fromid = '.Yii::app()->user->fromid;
+
+		   $criteria['condition'].= " AND user_name<>'admin'";
+
+// 找到管理员ID，然后屏蔽掉
 /*		   	if(Yii::app()->user){
 		   		$criteria['condition'] .= ' AND userid!='.Yii::app()->user->id;
 		   	}*/
-		 }
-
         //$criteria = new CDbCriteria;
         //$criteria->compare('username', $this->id, true);
 		// Create a data provider for listing the users
@@ -110,9 +111,10 @@ class AssignmentController extends RController
 		$assignedItems = $this->_authorizer->getAuthItems(null, $model->getId());
 		$assignments = array_keys($assignedItems);
 
-
 		// Make sure we have items to be selected
 		$assignSelectOptions = Rights::getAuthItemSelectOptions(null, $assignments);
+
+		
 		if( $assignSelectOptions!==array() )
 		{
 			$formModel = new AssignmentForm();

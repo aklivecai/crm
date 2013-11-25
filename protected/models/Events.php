@@ -21,7 +21,7 @@ class Events extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('start_time,end_time,subject', 'required'),
+			array('start_time,subject', 'required'),
 			array('display, status', 'numerical', 'integerOnly'=>true),
 			array('itemid, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
@@ -58,7 +58,7 @@ class Events extends ModuleRecord
 				'manageid' => '会员ID',
 				'subject' => '标题',
 				'email' => '邮件',
-				'start_time' => '开始时间',
+				'start_time' => '提醒时间',
 				'end_time' => '结束时间',
 				'color' => '背景颜色',
 				'text_color' => '文字颜色',

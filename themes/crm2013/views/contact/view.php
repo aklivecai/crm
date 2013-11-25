@@ -9,6 +9,24 @@ $this->breadcrumbs=array(
 	$items = Tak::getViewMenu($model->itemid);
 
 	$items['Create']['url'] = array('create','Contact[clienteleid]'=>$model->clienteleid,'Contact[prsonid]'=>$model->prsonid);
+	
+$_itemis = array(
+	'---',
+	'viewCompay' => array('label'=>Tk::g(array('View','Clientele')),'url'=>array('Clientele/view','id'=>$model->clienteleid)),
+	'viewContactpPrson' => array('label'=>Tk::g(array('View','Contactp Prson')),'url'=>array('ContactpPrson/view','id'=>$model->prsonid)),
+);
+
+$nps = $model->getNP(true);
+if (count($nps)>0) {
+	$_itemis[] = 
+		array('label'=>Tk::g(array('More','Contacts')), 'url'=>'#', 'icon'=>'list','itemOptions'=>array('data-geturl'=>$model->getLink(false,'gettop'),'class'=>'more-list'),'submenuOptions'=>array('class'=>'more-load-info'),'items'=>array(
+	    	array('label'=>'...', 'url'=>'#'),
+		)
+	);
+   array_splice($_itemis,count($_itemis),0,Tak::getNP($nps));
+}
+ array_splice($items,count($items)-2,0,$_itemis);
+
 ?>
 
 <div class="block-fluid">
@@ -24,6 +42,7 @@ $this->breadcrumbs=array(
 		array('name'=>'contact_time', 'value'=>Tak::timetodate($model->contact_time,6),),
 		array('name'=>'next_contact_time', 'value'=>Tak::timetodate($model->next_contact_time,6),),
 		'next_subject',
+		array('name'=>'accessory','type'=>'raw', 'value'=>CHtml::link($model->accessory,$model->accessory)),
 		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
 		array('name'=>'modified_time', 'value'=>Tak::timetodate($model->modified_time,6),),
 		'note',

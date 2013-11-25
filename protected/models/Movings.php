@@ -97,8 +97,7 @@ class Movings extends ModuleRecord
             // The following rule is used by search(). 
             // @todo Please remove those attributes that should not be searched. 
             array('itemid, fromid, type, numbers, time, typeid, enterprise, us_launch, time_stocked, add_time, add_us, add_ip, modified_time, modified_us, modified_ip, note, status', 'safe', 'on'=>'search'),
-     
-
+  
 			array('time','checkTime'),
 		);
 	}
@@ -128,18 +127,28 @@ class Movings extends ModuleRecord
 	 */
 	public function attributeLabels()
 	{
-		$enterprise = Tk::g($this->_typename .' enterprise');
-		$typeid = Tk::g($this->_typename .' typeid');
-		$time = Tk::g($this->_typename).'日期';
+		$stype = Yii::app()->getController()->id;
+		if ($stype=='purchase') {
+			$stype = 'Purchase';
+		}elseif($stype=='sell'){
+			$stype = 'Sell';
+		}else{
+			$stype = $this->_typename;
+		}
+		$enterprise = Tk::g($stype.' enterprise');
+		$typeid = Tk::g($stype.' typeid');
+		$time = Tk::g($stype).'日期';
+		$numbers = Tk::g($stype.' numbers');
 		// Tak::KD($time);
+		// Tak::KD(Yii::app()->getController()->id,1);
 		return array(
               'itemid' => '编号',
 	            'fromid' => '平台会员ID',
 	            'type' => '类型', /*(1:入库|2:出库)*/
-	            'numbers' => '实体单号',
+	            'numbers' => $numbers,
 	            'time' => $time,
 	            'typeid' => $typeid,
-	            'enterprise' => $enterprise,/*'单位名称'*/
+	            'enterprise' => '来源对象',/*$enterprise单位名称'*/
 	            'us_launch' => '经手人',
 	            'time_stocked' => '确认操作日期',
 	            'add_time' => '添加时间',

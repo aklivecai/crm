@@ -105,6 +105,15 @@ return array(
 	    ),  
 	    'urlManager' => include( $tshiPatch.'/url.conf.php' ),
 		'db' => include( $tshiPatch.'/db.conf.php' ),
+		'db2' =>array(
+			'class'=>'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;dbname=_b2b_ak',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'tablePrefix'=>' destoon_'
+		),		
 		'errorHandler'=>array(
 			// 程序有错的时候跳到指定的action
 			'errorAction'=>'site/error',

@@ -141,31 +141,12 @@ $this->widget('application.components.MyMenu',array(
 
     </div>
 		<div class="block-fluid clearfix">
-<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
-    'type'=>'striped bordered condensed',
-    'id' => 'list-grid',
-	'dataProvider' => $model->search(),
-	'template'=>"{items}",
-	//Ajax地址转
-	'enableHistory'=>true,
-    'loadingCssClass' => 'grid-view-loading',
-    'summaryCssClass' => 'dataTables_info',
-    'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
-            'ajaxUpdate'=>true,    //禁用AJAX
-            'enableSorting'=>true,
-            'summaryText' => '<span>总数：{count}</span>  <span>区间：{start}-{end}</span> <span>当前:{page}</span> <span>总页数：{pages}</span>',
+<?php  
 
-	'filter'=>$model,
-	'pager'=>array(
-		'header'=>'',
-		'maxButtonCount' => '5',
-		'hiddenPageCssClass' => 'disabled'
-		,'selectedPageCssClass' => 'active disabled'
-		,'htmlOptions'=>array('class'=>'')
-	),
-	// 'selectableRows'=>2, 	
-	'columns'=>array(
+$listOptions = Tak::gredViewOptions(false);
+$listOptions['dataProvider'] = $model->search();
+$listOptions['filter'] = $model;
+$listOptions['columns'] = array(
 		// array('class'=>'CCheckBoxColumn','name'=>'manageid','id'=>'select'), 	
 		Tak::getAdminPageCol(array(
 			  'template'=>'<span>{vrights}</span> | {view} {update}'
@@ -204,13 +185,13 @@ $this->widget('application.components.MyMenu',array(
 		),	
 		array(
 			'name' => 'user_status',
-			'htmlOptions'=>array('style'=>'width: 50px'),
+			'headerHtmlOptions'=>array('style'=>'width: 55px'),
 			'value'=>'TakType::getStatus("status",$data->user_status)',
 			'type'=>'raw',
 			'filter'=>TakType::items('status'),			 
 		),
-	),
-)); 
+	);
+	$widget = $this->widget('bootstrap.widgets.TbGridView', $listOptions);
 ?>
 		</div>
 	</div>

@@ -141,13 +141,15 @@ class AdminLog extends CActiveRecord
     	if ($isOrder) {
     		$arr['order'] = 'add_time DESC';
     	}
-    	$condition = array('1=1');
-    	if (!Tak::getAdmin()) {
-    		$condition[] = "fromid='".Tak::getFormid()."'";
-	    	if (!Tak::checkSuperuser()) {
-	    		$condition[] = 'manageid='.Tak::getManageid();
-	    	}
-    	}
+    	$condition = array();
+
+    	if($this->hasAttribute('fromid')){
+    		$condition[] = 'fromid='.Tak::getFormid();
+    	}    	
+		if (!Tak::checkSuperuser()) {
+			$condition[] = 'manageid='.Tak::getManageid();
+		}
+
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }

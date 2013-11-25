@@ -61,4 +61,47 @@ class RController extends CController
 		else
 			throw new CHttpException(403, $message);
 	}
+
+	public function regScriptFile($arrUrl,$position=null,array $htmlOptions=array(),$dir='js'){
+        if (!is_array($arrUrl)) {
+            $arrUrl = array($arrUrl);
+        }
+        $assetsUrl = $this->getAssetsUrl().$dir.'/';
+        foreach ($arrUrl as $url) {
+                $url = $assetsUrl.$url;
+            Yii::app()->clientScript->registerScriptFile($url,$position,$htmlOptions);
+        }       	
+
+
+	}
+    public function regCssFile($arrUrl,$media='',$dir='css')
+    { 
+        if (!is_array($arrUrl)) {
+            $arrUrl = array($arrUrl);
+        }    	
+    	$assetsUrl = $this->getAssetsUrl().$dir.'/';
+    	foreach ($arrUrl as $url) {
+        	$url = $assetsUrl.$url;
+        	Yii::app()->clientScript->registerCssFile($url,$media);
+    	}
+        return $this;
+    }   	
+
+    protected $_assetsUrl = null;
+
+	public function getAssetsUrl()
+	{
+		// return YiiBase::getPathOfAlias('webroot');
+		if( $this->_assetsUrl===null)
+		{
+			$assetsPath = YiiBase::getPathOfAlias('webroot').'/themes/crm2013/assets/';
+			if(YII_DEBUG){
+				$this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath, false, -1, true);
+			}
+			else{
+				$this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath);
+			}
+		}
+		return $this->_assetsUrl.'/';
+	}		
 }

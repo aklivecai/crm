@@ -60,7 +60,7 @@ class Order extends MRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'iManage' => array(self::BELONGS_TO
-				, 'Manage'
+				, 'Profile'
 				, 'manageid'
 				,'condition'=>''
 				,'order'=>''
@@ -74,9 +74,9 @@ class Order extends MRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		$result = array(
 				'itemid' => '订单编号',
-				'fromid' => '平台会员ID',
+				'fromid' => '商铺',
 				'manageid' => '下单用户',
 				'add_time' => '下单时间',
 				'total' => '总金额',
@@ -88,6 +88,9 @@ class Order extends MRecord
 				'note' => '备注',
 				'add_ip' => '下单IP',
 		);
+
+		$_ts = parent::attributeLabels();
+		return $result;
 	}
 
 	public function search()
@@ -99,7 +102,7 @@ class Order extends MRecord
 			if(is_numeric($this->itemid)) {
 				$criteria->compare('itemid',$this->itemid,true);
 			}
-			$criteria->addCondition("itemid IN (SELECT order_id FROM {{Order_Product}} WHERE name LIKE '%{$this->itemid}%'  GROUP BY order_id )",'OR');
+			$criteria->addCondition("itemid IN (SELECT order_id FROM {{order_product}} WHERE name LIKE '%{$this->itemid}%'  GROUP BY order_id )",'OR');
 		}		
 
 		$criteria->compare('fromid',$this->fromid);
@@ -200,12 +203,12 @@ class Order extends MRecord
 				$html .= '<div class="wap-pic">';
 
 				$html .= $value->getFilesImg();
-				$html .= "<dl><dt>型号:</dt><dd>{$value['model']}</dd>";
-				$html .= "<dt>规格:</dt><dd>{$value['standard']}</dd>";
-				$html .= "<dt>颜色:</dt><dd>{$value['color']}</dd>";
-				$html .= "<dt>单位:</dt><dd>{$value['unit']}</dd>";
-				$html .= "<dt>单价:</dt><dd>{$value['price']}</dd>";
-				$html .= "<dt>总价:</dt><dd>{$value['sum']}</dd>";
+				$html .= "<dl><dt>型号:</dt><dd>&nbsp;{$value['model']}</dd>";
+				$html .= "<dt>规格:</dt><dd>&nbsp;{$value['standard']}</dd>";
+				$html .= "<dt>颜色:</dt><dd>&nbsp;{$value['color']}</dd>";
+				$html .= "<dt>单位:</dt><dd>&nbsp;{$value['unit']}</dd>";
+				$html .= "<dt>单价:</dt><dd>&nbsp;{$value['price']}</dd>";
+				$html .= "<dt>总价:</dt><dd>&nbsp;{$value['sum']}</dd>";
 				$html .= '</dl></div>';
 			}else{
 				$html .= "<div class='otitle'>{$value['name']}</div>";

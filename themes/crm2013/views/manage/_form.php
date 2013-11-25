@@ -48,19 +48,19 @@ if ($model->isNewRecord) {
           'linkOptions'=>array('class'=>'delete'),
         )
     );
+
+$nps = $model->getNP(true);
+if (count($nps)>0) {
+  foreach ($nps as $key => $value) {
+   $items[] = array(
+    'label'=>Tk::g($key), 
+    'icon'=>'isw-bookmark',
+    'url'=>array('update','id'=>$value)
+   ); 
+  }
+}    
 }
-array_push($items
-    ,array(
-      'icon' =>'isw-refresh',
-      'url' => Yii::app()->request->url,
-      'label'=>Tk::g('Refresh'),
-    )
-    ,array(
-      'icon' =>'isw-left',
-      'url' => ''.Yii::app()->request->urlReferrer,
-      'label'=>Tk::g('Return'),
-    )
-);
+
 
 $this->widget('application.components.MyMenu',array(
       'htmlOptions'=>array('class'=>'buttons'),

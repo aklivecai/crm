@@ -10,7 +10,7 @@ class MRecord extends CActiveRecord
 
 	protected $tableName = '';/*表名*/
 
-	protected $linkName = null; /*连接的显示的字段名字*/
+	public $linkName = null; /*连接的显示的字段名字*/
 
 	public function init(){
 		$this->mName = get_class($this);
@@ -29,12 +29,13 @@ class MRecord extends CActiveRecord
 			$primary = $this->primaryKey();
 			$this->{$primary} = $value;
 		}
+		return $this;
 	}
 
     public function disableDefaultScope()
     {
           $this->_defaultScopeDisabled = true;
-          return $this->Owner;
+          return $this;
     }
 
     public function getDefaultScopeDisabled() {
@@ -48,8 +49,8 @@ class MRecord extends CActiveRecord
 				&&$setPageSize!=Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize'])
 				) {
 				Yii::app()->user->setState('pageSize',$setPageSize);
-			}			
-			unset($_GET['pageSize']); 
+			}		
+			unset($_GET['setPageSize']);	
 			$pageSize = $setPageSize;
 		}else{
 			$pageSize = Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);
@@ -60,7 +61,6 @@ class MRecord extends CActiveRecord
 	public function search()
 	{
 		$criteria = new CDbCriteria;
-		// $criteria->order = $stort;
 		$pageSize = $this->getPageSize();
 		$colV = Yii::app()->request->getQuery('dt', false);
 		if ($colV&&$colV!=''&&isset($_GET['col'])
@@ -79,12 +79,26 @@ class MRecord extends CActiveRecord
 		));
 	}
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Manage the static model class
-	 */
+	public function setCriteriaTime(&$criteria,$cols){
+		$arr = is_array($cols)?$cols:array($cols);
+
+		foreach ($arr as $col) {
+			
+			$value = $this[$col];
+			if ($value) {
+				if ($value>0&&Tak::isTimestamp($value)) {
+					$criteria->compare($col,$value);	
+				}elseif($value==0){
+
+				}else{
+					$start = strtotime($value);
+					$end  = TaK::getDayEnd($start);
+					$criteria->addBetweenCondition($col, $start, $end);
+				}
+			}
+		}
+	}
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -92,7 +106,7 @@ class MRecord extends CActiveRecord
 
 	public function checkTime($attribute,$params){
 		$time = $this->$attribute;
-		if ($time=='') {
+		if (!$time) {
 			$this->$attribute = 0;
 			return true;
 		}
@@ -106,6 +120,42 @@ class MRecord extends CActiveRecord
 			$this->addError($attribute,'联系时间错误！');
 		}
 	}
+
+	/**
+	 * 检验重复
+	 */
+	public function checkRepetition($attribute,$params)
+	{
+
+		$sql = array("LOWER(:col)=':val'");
+		$arr = array(
+			':val' => strtolower($this->$attribute),
+			':col' => $attribute,
+		);
+		if ($this->primaryKey>0) {
+			$sql[] = ':ikey<>:itemid';
+			$arr[':ikey'] = $this->primaryKey();
+			$arr[':itemid'] = $this->primaryKey;
+		}
+		if ($this->hasAttribute('manageid')) {
+			$sql[] ='manageid = :manageid';
+			$arr[':manageid'] = $this->manageid ?$this->manageid :Tak::getManageid();
+		}
+
+		$sql = join(' AND ',$sql);
+
+		// Tak::KD(strtr($sql,$arr),1);
+		// Tak::KD($arr,1);
+		// 查找满足指定条件的结果中的第一行
+		$m = $this->find(strtr($sql,$arr));
+		// Tak::KD($m,1);
+
+		if($m!=null){
+			$err = $this->getAttributeLabel($attribute).' 已经存在 :';
+			$err .= $m->getHtmlLink();
+			$this->addError($attribute,$err);
+		}
+	}		
 
 	public static function getOne($itemid=false){
 		if (!$itemid) {
@@ -146,29 +196,32 @@ class MRecord extends CActiveRecord
 			$this->logDel();
 		}		
 	}
+
+	protected function getDefaultScopeSql(){
+		$sqlWhere = $this->defaultScope(0);
+		if (is_array($sqlWhere)&&$sqlWhere['condition']) {
+			$sqlWhere = is_array($sqlWhere['condition'])?join(' AND ',$sqlWhere['condition']):$sqlWhere['condition'];
+		}else{
+			$sqlWhere = '';
+		}
+		return $sqlWhere;
+	}
+
 	protected function logDel(){
 		AdminLog::log(Tk::g('Delete').$this->sName);
 	}
 	
 	public function getIData($col='add_time',$dtime=false,$swhere=false){
-		$sqlWhere = $this->defaultScope(0);
-		if (is_array($sqlWhere)&&$sqlWhere['condition']) {
-			$sqlWhere = $sqlWhere['condition'];
-		}else{
-			$sqlWhere = '';
-		}
-		if (!$sqlWhere) {
-			$sqlWhere .= join(' AND ',$sqlWhere);
-		}
+		$sqlWhere = $this->getDefaultScopeSql();
 		if (!$dtime) {
 			$dtime = Tak::getDateTop();
 		}
-		$arrSql  = array(' SELECT COUNT(:itemid) AS num, \'allData\' AS ikey FROM :tableName WHERE :sqlWhere ');	
+		$arrSql  = array('SELECT COUNT(:itemid) AS num, \'allData\' AS ikey FROM :tableName WHERE :sqlWhere ');
 		foreach ($dtime as $key => $value) {
 			$sql = ' SELECT COUNT(:itemid) AS num, \''.$key.'Data\' AS ikey FROM  :tableName WHERE :sqlWhere AND :col BETWEEN '.$value['start'].' AND '.$value['end'];
 			$arrSql [] = $sql;
 		}
-		$sql = join(' UNION ',$arrSql);
+		$sql = join(' UNION ALL ',$arrSql);
 		$sql = strtr($sql,array(
 			':tableName'=>$this->tableName()
 			,':yea' => $dtime['y']['start']
@@ -192,6 +245,16 @@ class MRecord extends CActiveRecord
 		return $tags;
 	}
 
+	public function getLinkName($key=false){
+		$result = '';
+		$key = $key?$key:$this->linkName;
+		if ($key!==null
+			&&$this->hasAttribute($key)) {
+			$result = $this->{$key};	
+		}
+		return $result;
+	}
+
 	public function getLink($itemid=false,$action='view'){
 		if (!$itemid) {
 			$itemid = $this->primaryKey;
@@ -201,8 +264,8 @@ class MRecord extends CActiveRecord
 	}		
 	public function getHtmlLink($name=false,$itemid=false,$htmlOptions=array(),$action='view')
 	{
-		if (!$name&&$this->linkName!==null) {
-			$name = $this->{$this->linkName};
+		if (!$name) {
+			$name = $this->getLinkName();
 		}
 		$link = CHtml::link($name, $this->getLink($itemid,$action),$htmlOptions);
 		return $link;
@@ -211,5 +274,125 @@ class MRecord extends CActiveRecord
 		$link = $this->getHtmlLink($name,$itemid,$htmlOptions,'preview');
 		return $link;
 	}
+
+	protected function getOjb($opt='next',$isid=false){
+		$m = $this->mName;
+		$result = null;
+		$arr = array(
+			'pre'=>array('opt'=>'>','order'=>'ASC'),
+			'next'=>array('opt'=>'<','order'=>'DESC'),
+		);
+		if ($this->primaryKey>0
+			&&isset($arr[$opt])
+		) {
+			$t = $arr[$opt];
+		}else{
+			return null;
+		}
+		$col = $isid?':itemid':'*';
+		$sqlWhere = array($this->getDefaultScopeSql());
+		$sqlWhere[] = ':itemid :opt :current_id';
+		$sqlWhere = array_filter($sqlWhere);
+		$sqlWhere = join(" AND ",$sqlWhere);
+
+		$sql  = "SELECT $col FROM :tableName WHERE $sqlWhere ORDER BY :itemid :order";
+
+		$sql = strtr($sql,array(
+			':tableName'=>$this->tableName()
+			,':sqlWhere' => $sqlWhere
+			,':itemid' => $this->primaryKey()
+
+			,':current_id' => $this->primaryKey
+			,':opt' => $t['opt']
+			,':order' => $t['order']
+		));	
+		$dataReader = Yii::app()->db->createCommand($sql)->query();
+		$tags = array();
+		$tags = $dataReader->readAll();
+		if (count($tags)>0) {
+			$result = $tags ;
+		}
+	    return $result;
+	}
+
+	protected function getNPList($isid=false,$top=10){
+		$result = false;
+		$arrSql = array();
+		$_arr = array(
+			'Pre'=>array('opt'=>'<','order'=>'DESC'),
+			'Next'=>array('opt'=>'>','order'=>'ASC'),
+		);
+		if ($top>1) {
+			$_arr['Next']['order'] = 'ASC';
+		}
+		$tags = array();
+		$col = $isid?':itemid':'*';
+		// $sqlWhere = array_filter($sqlWhere);
+		$sql1 = ':itemid :opt :current_id';
+		$sqlWhere = array($this->getDefaultScopeSql());
+		foreach ($_arr as $key => $value) {
+		  $sqlWhere['w'] = str_replace(':opt',$value['opt'],$sql1);
+		  $_sqlWhere = join(" AND ",$sqlWhere);
+		  $arrSql[] = " SELECT * FROM (SELECT $col,'$key' AS `ikey` FROM :tableName WHERE $_sqlWhere ORDER BY :itemid {$value['order']} LIMIT $top) AS `$key`";	
+		  $tags[$key] = array();
+		}
+		$sql = join(' UNION ALL ',$arrSql);
+		$sql = strtr($sql,array(
+			':tableName'=>$this->tableName()
+			,':itemid' => $this->primaryKey()
+			,':current_id' => $this->primaryKey
+		));
+		$dataReader = Yii::app()->db->createCommand($sql)->query();
+		
+		foreach($dataReader as $row) {
+			$tags[$row['ikey']][$row[$this->primaryKey()]] = $row;
+		}	
+		$tags = array_filter($tags);
+		if (count($tags)>0) {
+			$result = $tags;
+		}
+		return $result;
+	}
+
+	public function getNext($isid)
+	{
+		$result = $this->getOjb('next',$isid);
+		if ($result&&$isid) {
+			$result = current($result[0]);
+		}
+		return $result;
+	}
+
+	public function getPrevious($isid)
+	{
+		$result = $this->getOjb('pre');
+		if ($result&&$isid) {
+			$result = current($result[0]);
+		}
+		return $result;		
+	}
+
+	public function getNP($isid=true,$top=1){
+		$top = (int)$top>0?$top:1;
+		$result = array();
+		$tags = $this->getNPList($isid,$top);
+		if ($tags&&count($tags)>0) {
+			if ($top==1&&$isid) {
+				foreach ($tags as $key => $value) {
+					$tags[$key] = current(current($value));
+				}
+			}else{
+				foreach ($tags as $key => $value) {
+					$temp = $value;
+					// arsort($temp);
+					ksort($temp);
+					$tags[$key] = $temp;
+				}
+				// Tak::KD($tags,1);
+			}
+			$result = $tags;
+		}
+		return $result;		
+	}	
 
 }	

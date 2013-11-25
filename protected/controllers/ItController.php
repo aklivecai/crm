@@ -6,14 +6,21 @@ class ItController extends RController
 	{     
     	parent::init();
 	}
+	
     public function actionUpload($id=false,$itemid=false){
          $folder = Tak::getUserDir($id).date('Y-m').'/';
-         Tak::MkDirs($folder);
+         $root = YiiBase::getPathOfAlias('webroot');
+
+         Tak::MkDirs($root.$folder);
+
          $image = CUploadedFile::getInstanceByName('file');
          $name = $folder.date('Ymd-His.').$image->getExtensionName();
          $name2 = $image->tempName;
          $oname = $image->name;    
          $image->saveAs($root.$name);
+
+         $name = Yii::app()->params['site'].$name;
+         
          if ($itemid>0) {
              $file = new OrderFiles;
             $arr =  array(
@@ -30,6 +37,7 @@ class ItController extends RController
          }else{
 
          }
+
          die('{"jsonrpc" : "2.0", "result" : "'.$name.'", "id" : "'.$id.'"}');
 
     }    

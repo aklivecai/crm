@@ -14,11 +14,22 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
-<link href="<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/WdatePicker.js'></script>
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/plugins/datepicker/lang/zh-cn.js'></script>
+<?php
 
-<script src='<?php echo Yii::app()->params['staticUrl'];?>_ak/js/zeroclipboard/ZeroClipboard.js'></script>
+  $scrpitS = array();
+  $cssS = array();
+
+  $path = '_ak/js/plugins/datepicker/';
+  $cssS[] = $path.'skin/WdatePicker.css';
+  $scrpitS[] = $path.'WdatePicker.js';
+  $scrpitS[] = $path.'lang/zh-cn.js';
+  $scrpitS[] = '_ak/js/zeroclipboard/ZeroClipboard.js';
+
+  Tak::regScriptFile($scrpitS,'static');
+  Tak::regCssFile($cssS,'static'); 
+
+?>
+
 <script type="text/javascript">
   var CrmPath = '<?php echo Yii::app()->homeUrl;?>';
     if(CrmPath.indexOf('.php')>0){

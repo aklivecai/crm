@@ -53,7 +53,7 @@ class TakType extends CActiveRecord
 		,'display' => array('1'=>'公开','0'=>'私有')
 		,'sex' => array('0'=>'保密','1'=>'男','2'=>'女')
 		,'priority' => array('0'=>'低','1'=>'中','2'=>'高')
-		,'pageSize' => array('0'=>'默认','10'=>10,'20'=>20,'50'=>50,'100'=>100)
+		,'pageSize' => array('0'=>'显示','5'=>5,'10'=>10,'20'=>20,'50'=>50,'100'=>100)
 
 		,'filetype' => array('0'=>'default','2'=>'rar','3'=>'doc','4'=>'xls','5'=>'txt')
 		,'label' => array('0'=>'','1'=>'label-success','2'=>'label-warning','3'=>'label-important','4'=>'label-info','5'=>'label-inverse')
@@ -89,13 +89,12 @@ class TakType extends CActiveRecord
 		$models = AddressGroups::model()->getList();
 		foreach($models as $key => $value)
 			self::$_items[$type][$key]=$value;
-
 	}
 	
-	public static function items($type,$fromid=0)
+	public static function items($type,$fromid=0,$strSub='')
 	{
 		if(!isset(self::$_items[$type]))
-			self::loadItems($type,$fromid);
+			self::loadItems($type,$fromid,$strSub);
 		return self::$_items[$type];
 	}
 
@@ -125,7 +124,7 @@ class TakType extends CActiveRecord
 		return isset(self::$_items[$type][$typeid]) ? self::$_items[$type][$typeid] : false;
 	}
 	
-	private static function loadItems($type,$fromid=0)
+	private static function loadItems($type,$fromid=0,$strSub='')
 	{
 		if ($type=='AddressGroups') {
 			self::loadGroups($type);
@@ -135,14 +134,19 @@ class TakType extends CActiveRecord
 		if (!is_numeric($fromid)) {
 			$fromid = Tak::getFormid();
 		}
-		$models=self::model()->findAll(array(
+		
+		$models = self::model()->findAll(array(
 			'condition'=>'item=:item AND fromid=:fromid',
 			'params'=>array(':item'=>$type,':fromid'=>$fromid),
 			'order'=>'listorder DESC,typeid ASC',
 		));
 		$tags = array();
-		foreach($models as $model)
+		if ($strSub!='') {
+			$tags[''] = $strSub;
+		}
+		foreach($models as $model){
 			$tags[$model->typeid] = $model->typename;
+		}
 		self::$_items[$type] = $tags;
 
 		return $tags;
@@ -194,13 +198,17 @@ class TakType extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		$result = array(
 				'fromid' => '平台会员ID',
 				'typeid' => '值',
 				'typename' => '分类名字',
 				'item' => '类型',
 				'listorder' => '排序',
-		);
+		); 
+		if ($_GET['type']=='product') {
+			$result['typename'] = Tk::g('Product Type');
+		}
+		return $result;
 	}
 
 	public function search()

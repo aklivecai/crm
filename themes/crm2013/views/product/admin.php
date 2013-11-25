@@ -75,11 +75,6 @@ $items = Tak::getListMenu();
 			'type'=>'raw',
 			'filter'=>false, 
 		)
-		// ,array(
-		// 	'name'=>'unit',
-		// 	'type'=>'raw',
-		// 	'filter'=>false, 
-		// )
 		,array(
 			'name'=>'note',
 			'type'=>'raw',

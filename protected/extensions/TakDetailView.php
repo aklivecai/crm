@@ -60,7 +60,7 @@ class TakDetailView extends CWidget
 
 	public $tagName='ul';
 
-	public $itemTemplate="<li class=\"{class}\"><div class=\"title\">{label}:</div> <div class=\"text\">{value}</div></li>\n";
+	public $itemTemplate="<li class=\"{class}\"><div class=\"title\">{label}:</div> <div class=\"text\">&nbsp;{value}</div></li>\n";
 
 	public $itemCssClass=array('odd','even');
 	/**

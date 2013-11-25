@@ -129,7 +129,10 @@ class TestMemeber extends ModuleRecord
     {
     	$key = Tak::setCryptNum($this->itemid);
     	$htmlOptions = array('class'=>'copy','id'=>$this->itemid);
-		$url = Yii::app()->request->hostInfo.'/?'.$key;
+		
+		//$url = Yii::app()->request->hostInfo.'/?'.$key;
+		$url = Yii::app()->request->hostInfo.Yii::app()->getBaseUrl().'/?'.$key;
+
 		$link = CHtml::link($url,$url,array('target'=>'_blank','title'=>'点击打开'));
 		if ($isbtn) {
 			$link .= CHtml::button('复制',$htmlOptions);

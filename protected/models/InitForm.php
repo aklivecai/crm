@@ -61,7 +61,7 @@ class InitForm extends CFormModel
 			
 	}
 
-	public function install(){
+	public function install($admin='admin',$password='c0b266594634df51f07796e7ca31107e'){
 		$connection = Yii::app()->db;
 		$transaction = $connection->beginTransaction();
 		$sqls = array();
@@ -77,17 +77,17 @@ class InitForm extends CFormModel
 				':itemid'=>$itemid,
 				':uname'=>$this->username,
 				':fromid'=>$this->fromid,
-				':tab_Manage'=>'{{Manage}}',
-				':tab_rabc'=>'{{Rbac_AuthAssignment}}',
-				':tab_AddressG'=>'{{Address_Groups}}',
-				':tab_AddressB'=>'{{Address_Book}}',
-				':tab_type'=>'{{Type}}',
-				':tab_admin_log'=>'{{Admin_Log}}',
-				':tab_test_memeber'=>'{{Test_Memeber}}',
+				':tab_Manage'=>'{{manage}}',
+				':tab_rabc'=>'{{rbac_authassignment}}',
+				':tab_AddressG'=>'{{address_groups}}',
+				':tab_AddressB'=>'{{address_book}}',
+				':tab_type'=>'{{type}}',
+				':tab_admin_log'=>'{{admin_log}}',
+				':tab_test_memeber'=>'{{test_memeber}}',
 			);
 			
 			//插入管理帐号
-			$sqls[] = "INSERT INTO :tab_Manage VALUES(:fromid,:userid,'admin','c0b266594634df51f07796e7ca31107e','gXmz','管理员','',:time,0,0,0,0,1,'','',0);";
+			$sqls[] = "INSERT INTO :tab_Manage VALUES(:fromid,:userid,'$admin','$password','gXmz','管理员','',:time,0,0,0,0,1,'','',0);";
 
 		    //插入权限
 		    $sqls[] = "INSERT INTO :tab_rabc (`itemname`,`fromid`,`userid`,`bizrule`,`data`) VALUES ('Admin',:fromid, :userid, '', 'N;');";

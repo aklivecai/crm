@@ -22,8 +22,8 @@
 	<i class="clearfix"></i>
  <?php $this->widget('bootstrap.widgets.TbListView', array(
 			'dataProvider' => $model->getProductMovings(),
-			'itemView'=>'//movings/_product_view',
-			'template'=>'<table class="itable"> <thead> <tr> <th>产品名字</th> <th>产品规格</th> <th>材料</th> <th>单位</th> <th>数量</th> <th>备注</th> </tr> </thead> <tbody>{items}</tbody> </table>',
+			'itemView'=>'//movings/_product_print',
+			'template'=>'<table class="itable"> <thead> <tr> <th>物料名称</th> <th>规格</th> <th>颜色</th> <th>单位</th> <th>数量</th> <th>备注</th> </tr> </thead> <tbody>{items}</tbody> </table>',
             'emptyText'=>'<tr><td colspan="6">没有数据!</td></tr>'
 		)); ?> 
 	<div class="txt-right">

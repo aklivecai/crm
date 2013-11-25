@@ -1,0 +1,12 @@
+UPDATE destoon_member SET `support`=juren2028
+
+WHERE  `support` LIKE  'aklivecai'
+
+
+TRUNCATE TABLE destoon_finance_credit
+
+UPDATE destoon_member SET credit=0
+
+您还是普通会员，无此项功能，了解诚信(收费)会员，<a href="">请点击</a>
+
+立即升级  以后再说

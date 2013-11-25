@@ -29,6 +29,7 @@
  */
 class AddressBook extends ModuleRecord
 {
+	public $linkName = 'name';
 	
 	/**
 	 * @return string 数据表名字
@@ -51,7 +52,7 @@ class AddressBook extends ModuleRecord
 			array('itemid, groups_id, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, longitude, latitude, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>64),
-			array('email, phone, address, location, note', 'length', 'max'=>255),
+			array('telephone,email, phone, address, location, note', 'length', 'max'=>255),
 			array('department, position', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -86,6 +87,7 @@ class AddressBook extends ModuleRecord
 				'name' => '名字',
 				'email' => 'Email',
 				'phone' => '电话',
+				'telephone' => '座机',
 				'address' => '联系地址',
 				'department' => '部门',
 				'position' => '职位',
@@ -153,16 +155,6 @@ class AddressBook extends ModuleRecord
     	// echo 1;
     	return $arr;
     }
-
-	public function getLink()
-	{
-		$markup = CHtml::link($this->name, array(
-			'addressBook/view',
-			'id'=>urlencode($this->itemid),
-		));
-		// $markup .= $this->sortableId();
-		return $markup;
-	}
 		//保存数据前
 	protected function beforeSave(){
 	    $result = parent::beforeSave(true);

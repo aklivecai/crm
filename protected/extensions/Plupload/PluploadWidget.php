@@ -54,7 +54,7 @@ class PluploadWidget extends CWidget {
     const BROWSER_PLUS_URL      = 'http://bp.yahooapis.com/2.4.21/browserplus-min.js';
     const FLASH_FILE_NAME       = 'plupload.flash.swf';
     const SILVERLIGHT_FILE_NAME = 'plupload.silverlight.xap';
-    const DEFAULT_RUNTIMES      = 'html5,flash,silverlight,browserplus,html4';
+    const DEFAULT_RUNTIMES      = 'flash,silverlight,browserplus,html4,html5';
     const PUPLOAD_CSS_PATH      = 'css/plupload.queue.css';
 
     public $publicPath = null;

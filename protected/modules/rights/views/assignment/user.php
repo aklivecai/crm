@@ -19,17 +19,17 @@
         <a href="#" class="isw-settings"></a>
 <?php
  $items = array();
+
 if ($model->isNewRecord) {
     
 }else{
-    array_push($items
-        ,array(
+  $items[] = array(
           'icon' =>'isw-zoom',
-          'url' => array('/manage/view','id'=>$model->id),
+          'url' => array('/manage/view','id'=>$model->primaryKey),
           'label'=>Tk::g('View'),
-        )
-    );
+        );
 }
+
 array_push($items
     ,array(
       'icon' =>'isw-refresh',
@@ -42,6 +42,7 @@ array_push($items
       'label'=>Tk::g('Return'),
     )
 );
+
 
     $this->widget('application.components.MyMenu',array(
           'htmlOptions'=>array('class'=>'dd-list'),

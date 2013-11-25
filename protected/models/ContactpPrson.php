@@ -2,7 +2,7 @@
 class ContactpPrson extends ModuleRecord
 {
 	
-	protected $linkName = 'nicename';
+	public $linkName = 'nicename';
 	/**
 	 * @return string 数据表名字
 	 */
@@ -101,13 +101,11 @@ class ContactpPrson extends ModuleRecord
 		$criteria->compare('fax',$this->fax,true);
 		$criteria->compare('qq',$this->qq,true);
 		$criteria->compare('address',$this->address,true);
-		$criteria->compare('last_time',$this->last_time,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('add_us',$this->add_us,true);
-		$criteria->compare('add_ip',$this->add_ip,true);
-		$criteria->compare('modified_time',$this->modified_time,true);
-		$criteria->compare('modified_us',$this->modified_us,true);
-		$criteria->compare('modified_ip',$this->modified_ip,true);
+
+		$this->setCriteriaTime($criteria,
+			array('last_time','add_time','modified_time')
+		);		
+
 		$criteria->compare('note',$this->note,true);
 		$criteria->compare('status',$this->status);
 		return $cActive;

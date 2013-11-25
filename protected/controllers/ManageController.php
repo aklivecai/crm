@@ -1,12 +1,9 @@
+
 <?php
 
 class ManageController extends Controller
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	
+
 	public function init()  
 	{     
     	parent::init();
@@ -17,10 +14,6 @@ class ManageController extends Controller
 		// $cs->enableJavaScript = false;
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
 	public function actionView($id)
 	{
 		$this->render('view',array(
@@ -28,9 +21,6 @@ class ManageController extends Controller
 		));
 	}
 
-	/**
-	 * Lists all models.
-	 */
 	public function actionIndex()
 	{
 		$criteria = array();
@@ -47,5 +37,14 @@ class ManageController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+
+	protected function getSelectOption($q){
+		$result = parent::getSelectOption($q);
+		$result['data']['attributes'][] = 'user_nicename';
+		if ($q) {
+			$result['data']['criteria']->addSearchCondition('user_nicename',$q,false,'OR');
+		}
+		return $result;
+	}	
 
 }

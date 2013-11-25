@@ -27,7 +27,11 @@ $items = Tak::getListMenu();
 	<div class="block-fluid clearfix">
 
 <?php 
+
 $this->renderPartial('/_search',array('model'=>$model,));
+
+$this->renderPartial('_search',array('model'=>$model,));
+
 
 $options = Tak::gredViewOptions();
 $options['dataProvider'] = $model->search();
@@ -62,7 +66,7 @@ $columns = array(
 			'value'=>'TakType::getStatus("contact-stage",$data->stage)',
 			'type'=>'raw',
 		)
-		);
+	);
 $columns = array_merge_recursive(array($options['columns']),$columns);
 $options['columns'] = $columns;
 $widget = $this->widget('bootstrap.widgets.TbGridView', $options); 

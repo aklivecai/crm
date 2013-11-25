@@ -8,6 +8,7 @@
   , array('title' => Tk::g('Clientele'),'tags' => Clientele::model()->getIData(),'htmlOptions'=> array('class'=>'red')
 )); ?>  
   </div>
+
   <div class="span4">
 <?php $this->widget('MyTopData'
   , array('title' => Tk::g('ContactpPrson'),'tags' => ContactpPrson::model()->getIData(),'htmlOptions'=> array('class'=>'green')

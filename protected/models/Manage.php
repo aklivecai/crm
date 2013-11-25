@@ -23,6 +23,11 @@
  */
 class Manage extends ModuleRecord
 {
+	public $linkName = 'user_name'; /*连接的显示的字段名字*/
+	public function primaryKey()
+	{
+		return 'manageid';
+	} 	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -53,67 +58,41 @@ class Manage extends ModuleRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('user_name, user_pass, salt, user_nicename, user_email, add_time, last_login_time, login_count, user_status, note,active_time', 'safe', 'on'=>'search'),
 
-			array('user_name','authenticate'),
+			array('user_name','checkRepetition'),
 		);
 	}
 
 	//默认继承的搜索条件
     public function defaultScope()
     {
-    	$arr = array('order'=>'add_time DESC',);
+		$arr = array('order'=>'add_time DESC');
+	
+		$condition = array();
+    	if($this->hasAttribute('fromid')){
+    		$fromid = Tak::getFormid();
+			if($fromid>0){
+				$condition[] = 'fromid='.Tak::getFormid();	
+			}    		
+    	}
+    		
+    	$arr['condition'] = join(" AND ",$condition);
+		
     	return $arr;
     }
-
-	/**
-	 * 检验用户名是否重复
-	 */
-	public function authenticate($attribute,$params)
-	{
-		$sql = ' LOWER(user_name)=:user_name AND fromid=:fromid ';
-		$arr = array(':user_name' => strtolower($this->user_name));
-		$arr[':fromid'] = $this->fromid?$this->fromid:Tak::getFormid();
-
-		if ($this->manageid) {
-			$sql .=' AND manageid<>:manageid ';
-			$arr[':manageid'] = $this->manageid ;
-		}
-		// Tak::KD($arr,1);
-		// 查找满足指定条件的结果中的第一行
-		$m = $this->find($sql,$arr);
-		if($m!=null)
-			$this->addError('user_name','登录帐号 有重复');
-	}	
 
 	/**
 	 * @return array relational rules.
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}
-
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
 	public function search()
 	{
 		$criteria = new CDbCriteria;
-		if (!Tak::getAdmin()) {
-			$criteria->addCondition("fromid=".Tak::getFormid());
-		}		
+		
+		$criteria->addCondition("fromid=".Tak::getFormid());
 
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('user_nicename',$this->user_nicename,true);

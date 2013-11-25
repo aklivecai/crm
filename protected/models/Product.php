@@ -23,7 +23,7 @@
 class Product extends ModuleRecord
 {
 	
-	protected $linkName = 'name'; /*连接的显示的字段名字*/
+	public $linkName = 'name'; /*连接的显示的字段名字*/
 	protected $_stocks = null;
 	/**
 	 * @return string 数据表名字
@@ -79,10 +79,10 @@ class Product extends ModuleRecord
 	public function attributeLabels()
 	{
 		return array(
-				'itemid' => '产品编号',
+				'itemid' => '物料编号',
 				'fromid' => '平台会员ID',
-				'name' => '产品名字',
-				'typeid' => '分类',
+				'name' => '产品型号',
+				'typeid' => '货物分类',
 				'material' => '材料',
 				'spec' => '规格',
 				'color' => '颜色',

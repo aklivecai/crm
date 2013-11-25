@@ -77,7 +77,7 @@ class Stocks extends ModuleRecord
 				'itemid' => '编号',
 				'fromid' => '平台会员ID',
 				'product_id' => '产品',
-				'stocks' => '库存', /*(可负)*/
+				'stocks' => '结存数量', /*(可负)*/
 				'add_time' => '添加时间',
 				'add_us' => '添加人',
 				'add_ip' => '添加IP',
@@ -119,7 +119,7 @@ class Stocks extends ModuleRecord
     {
     	$arr = parent::defaultScope();
     	$condition = array($arr['condition']);
-    	 $condition[] = ' product_id IN (SELECT itemid AS aid FROM {{Product}} AS p WHERE p.status=1)';
+    	 $condition[] = ' product_id IN (SELECT itemid AS aid FROM {{product}} AS p WHERE p.status=1)';
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }
