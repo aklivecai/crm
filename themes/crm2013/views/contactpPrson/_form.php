@@ -3,8 +3,13 @@
 /* @var $model ContactpPrson */
 /* @var $form bootstrap.widgets.TbActiveForm */
 ?>
-<?php  $action = $model->isNewRecord?'Create':'Update';
- $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
+<?php
+	$action = $model->isNewRecord?'Create':'Update';
+ 	$items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
+
+ if (!$model->isNewRecord) { 	
+ 	$items['Create']['url'] = array('create','ContactpPrson[clienteleid]'=>$model->clienteleid);
+ }
 ?>
 <div class="row-fluid">
 <div class="span12">
@@ -28,7 +33,7 @@ $this->widget('application.components.MyMenu',array(
 </div>
 <div class="block-fluid">
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'clienteleid',array('class'=>'sele1ct-clientele','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
+		<?php echo $form->textFieldRow($model,'clienteleid',array('class'=>'select-clientele','size'=>10,'maxlength'=>10,'style'=>'width:100%')); ?>
 
 	</div>
 
@@ -36,7 +41,7 @@ $this->widget('application.components.MyMenu',array(
 		<?php echo $form->textFieldRow($model,'nicename',array('size'=>60,'maxlength'=>64)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->radioButtonListRow($model,'sex',Taktype::items('sex'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
+		<?php echo $form->radioButtonListRow($model,'sex',TakType::items('sex'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'department',array('size'=>60,'maxlength'=>100)); ?>

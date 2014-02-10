@@ -1,5 +1,6 @@
-<?php
 
+<?php
+// <!-- #!/usr/bin/php -->
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../Yii/framework/yii.php';
 

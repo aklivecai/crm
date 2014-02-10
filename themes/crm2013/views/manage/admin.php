@@ -21,9 +21,7 @@ $items = array(
 );
 ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-    'enableAjaxValidation'=>true,
-)); ?>
+
 	<!--[if !IE]><!-->
 	<style>
 	@media 
@@ -136,16 +134,14 @@ $this->widget('application.components.MyMenu',array(
       'htmlOptions'=>array('class'=>'buttons'),
       'items'=> $items ,
 ));
-
 ?>                    
-
     </div>
 		<div class="block-fluid clearfix">
+<?php $this->renderPartial('_search',array('model'=>$model)); ?>
 <?php  
 
 $listOptions = Tak::gredViewOptions(false);
 $listOptions['dataProvider'] = $model->search();
-$listOptions['filter'] = $model;
 $listOptions['columns'] = array(
 		// array('class'=>'CCheckBoxColumn','name'=>'manageid','id'=>'select'), 	
 		Tak::getAdminPageCol(array(
@@ -162,7 +158,6 @@ $listOptions['columns'] = array(
 			  ,'list-grid'
 			  ,'80px'
 		),	
-
 		array(
 			'name'=>'user_name',
 			'type'=>'raw',
@@ -174,21 +169,20 @@ $listOptions['columns'] = array(
 		),		
 		array(
 			'name' => 'login_count',
-			'type'=>'raw',			
-            'filter' => false
+			'type'=>'raw',		
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),	
 		),
 		array(
 			'name'=>'last_login_time',
 			'type'=>'raw',
 			'value'=>'Tak::timetodate($data->last_login_time,4)',
-            'filter' => false
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
 		),	
 		array(
 			'name' => 'user_status',
 			'headerHtmlOptions'=>array('style'=>'width: 55px'),
 			'value'=>'TakType::getStatus("status",$data->user_status)',
 			'type'=>'raw',
-			'filter'=>TakType::items('status'),			 
 		),
 	);
 	$widget = $this->widget('bootstrap.widgets.TbGridView', $listOptions);
@@ -196,4 +190,3 @@ $listOptions['columns'] = array(
 		</div>
 	</div>
 </div>
-<?php $this->endWidget(); ?>

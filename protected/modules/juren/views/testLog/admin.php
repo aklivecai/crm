@@ -30,7 +30,6 @@ $this->breadcrumbs=array(
                     ,TakType::items('pageSize')
                     ,array(
                         'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
-                        'style'=>'width: '.$width.' !important',
                     )   
               )   			
 		),

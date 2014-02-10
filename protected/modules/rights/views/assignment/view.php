@@ -12,24 +12,17 @@
 <div class="head clearfix">
     <i class="isw-documents"></i> <h1><?php echo Tk::g(array('Update'));?></h1>
 <?php
- $items = array();
-if ($model->isNewRecord) {
-    
-}else{
-    array_push($items
-        ,array(
-          'icon' =>'isw-zoom',
-          'url' => array('/manage/admin'),
-          'label'=>Tk::g(array('Return','Manage','Admin')),
-        )
-    );
-}
-array_push($items
+ $items = array(
+  array(
+      'icon' =>'isw-zoom',
+      'url' => array('/manage/admin'),
+      'label'=>Tk::g(array('Return','Manage','Admin')),
+    )
     ,array(
       'icon' =>'isw-refresh',
       'url' => Yii::app()->request->url,
       'label'=>Tk::g('Refresh'),
-    )
+    )        
 );
 
 $this->widget('application.components.MyMenu',array(
@@ -39,6 +32,29 @@ $this->widget('application.components.MyMenu',array(
 ?>  
 </div>
 <div class="block-fluid clearfix">
+
+<?php /** @var BootActiveForm $form */
+
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id'=>'searchform',
+    'type'=>'search',
+    'htmlOptions'=>array('class'=>'well'),
+    // 'action' => Yii::app()->createUrl($this->route),
+    
+)); ?>
+
+<?php 
+    echo $form->dropDownList($module, 'itemname', $assignSelectOptions); 
+?>
+<?php 
+    echo $form->textFieldRow($module, 'username'); 
+?>
+
+<?php 
+  $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Search'))); 
+?>
+<?php $this->endWidget(); ?>   
+
 	<?php  $widget = $this->widget('bootstrap.widgets.TbGridView', array(
 	    'dataProvider'=>$dataProvider,
 	    'template'=>"{items}\n{pager}",
@@ -50,7 +66,7 @@ $this->widget('application.components.MyMenu',array(
     			'header'=>Rights::t('core', 'Name'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'name-column'),
-    			'value'=>'$data->getAssignmentNameLink()',
+    			'value'=>'$data->getAssignmentNameLink()." - ".$data->user_nicename',
     		),
     		array(
     			'name'=>'assignments',

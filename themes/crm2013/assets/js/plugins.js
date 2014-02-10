@@ -1,5 +1,41 @@
+jQuery(function($){
+        /*## 颜色插件*/
+        var localization = $.spectrum.localization["cn"] = {
+            cancelText: "取消",
+            chooseText: "选择",
+            preferredFormat:'name' //格式
+        };
+        $.extend($.fn.spectrum.defaults, localization);
+        $(".color").spectrum({
+            showPaletteOnly: true,
+            showPalette:true,
+            palette: [
+                ['black', 'white', 'blanchedalmond',
+                '#FF8000', '#488026'],
+                ['red', 'yellow', 'green', 'blue', 'violet']
+            ]
+        });
 
-$(document).ready(function(){
+        /*## 日历*/
+        $.datepicker.regional['zh-CN'] = {
+                closeText: '关闭',
+                prevText: '<上月',
+                nextText: '下月>',
+                currentText: '今天',
+                monthNames: ['一月','二月','三月','四月','五月','六月',
+                '七月','八月','九月','十月','十一月','十二月'],
+                monthNamesShort: ['一','二','三','四','五','六',
+                '七','八','九','十','十一','十二'],
+                dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+                dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+                dayNamesMin: ['日','一','二','三','四','五','六'],
+                weekHeader: '周',
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: true,
+                yearSuffix: '年'};
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 
     /* LEFT SIDE DATEPICKER */
     $("#menuDatepicker").datepicker();
@@ -64,8 +100,8 @@ editable: true,
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {
-                    var title = prompt('行程的名字:');
-                    if (title) {
+                    var title = prompt('行程的名字:','');
+                    if (title != '' && title != null){
                             var postData = [];
                             postData.push('Events[subject]='+title);
                             postData.push('Events[start_time]='+Math.round(start.getTime() / 1000));
@@ -77,7 +113,7 @@ editable: true,
                                 data:postData.join('&'),
                                 async: false,
                                 error: function(request) {
-                                    console.log(request);
+                                    log(request);
                                     // alert("系统异常!");
                                 },
                                 success: function(data) {
@@ -101,9 +137,9 @@ editable: true,
                     }
                     calendar.fullCalendar('unselect');
                     window.calendar = calendar;
-            },
+            }
 // 当点击某一个事件时触发此操作            
-eventClick: function(calEvent, jsEvent, view) {
+,xxxxeventClick: function(calEvent, jsEvent, view) {
         var str = '';
         str+=('Event: ' + calEvent.title);
         str+=('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -127,9 +163,9 @@ eventClick: function(calEvent, jsEvent, view) {
         // log(this);
 
         if (allDay) {
-            console.log("Event is now all-day");
+            // console.log("Event is now all-day");
         }else{
-            console.log("Event has a time-of-day");
+            // console.log("Event has a time-of-day");
         }
 
         if (!confirm("是否确认移动?")) {
@@ -175,163 +211,18 @@ eventClick: function(calEvent, jsEvent, view) {
 
         
     // CHECKBOXES AND RADIO
-         $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();
-        
- 
-        
+         $(".row-form,.row-fluid,.dialog,.loginBox,.block,.block-fluid").find("input:checkbox, input:radio, input:file").not(".skip, input.ibtn").uniform();        
         
     // CUSTOM SCROLLING
-    
         $(".scroll").mCustomScrollbar();
-    
-    // ACCORDION 
-    
-        $(".accordion").accordion();
-    
-    // PROGRESSBAR
-        
-    // DIALOG
-    
-    $("#b_popup_1").dialog({autoOpen: false});
-        
-        $("#popup_1").click(function(){$("#b_popup_1").dialog('open')});
-        
-    $("#b_popup_2").dialog({autoOpen: false, show: "blind", hide: "explode"});
 
-        $("#popup_2").click(function(){$("#b_popup_2").dialog('open')});
-
-    $("#b_popup_3").dialog({autoOpen: false, modal: true});
-        
-        $("#popup_3").click(function(){$("#b_popup_3").dialog('open')});
-        
-    $("#b_popup_4").dialog({autoOpen: false, 
-                            modal: true,
-                            width: 400,
-                            buttons: {                            
-                                "Ok": function() {
-                                    $( this ).dialog( "close" );
-                                },
-                                Cancel: function() {
-                                    $( this ).dialog( "close" );
-                                }
-    }});
-    
-        $("#popup_4").click(function(){$("#b_popup_4").dialog('open')});
-    
-    // SLIDER
-    
-        $("#slider_1").slider({
-            value: 60,
-            orientation: "horizontal",
-            range: "min",
-            animate: true,
-            slide: function( event, ui ) {
-                $( "#slider_1_amount" ).html( "$" + ui.value );
-            }
-        });
-        
-        $("#slider_2").slider({
-            values: [ 17, 67 ],
-            orientation: "horizontal",
-            range: true,
-            animate: true,
-            slide: function( event, ui ) {
-                $( "#slider_2_amount" ).html( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-            }            
-        });    
-            
-        $("#slider_3").slider({
-            orientation: "vertical",
-            range: "min",
-            min: 0,
-            max: 100,
-            value: 10,
-            slide: function( event, ui ) {
-                $( "#slider_3_amount" ).html( '$'+ui.value );
-            }            
-        }); 
-
-        $("#slider_4").slider({
-            orientation: "vertical",
-            range: true,
-            values: [ 17, 67 ]
-        }); 
-
-        $("#slider_5").slider({
-            orientation: "vertical",            
-            range: "max",
-            min: 1,
-            max: 10,
-            value: 2
-        }); 
- 
     // new selector case insensivity        
         $.expr[':'].containsi = function(a, i, m) {
             return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
         };        
-   //        
-        
-    // TABS
-    
-        $( ".tabs" ).tabs();
-         
-         // Bootstrap tooltip
-         $(".tip").tooltip({placement: 'top', trigger: 'hover'});
-         $(".tipb").tooltip({placement: 'bottom', trigger: 'hover'});
-         $(".tipl").tooltip({placement: 'left', trigger: 'hover'});
-         $(".tipr").tooltip({placement: 'right', trigger: 'hover'});
 
-
-        // SORTABLE       
-            $("#sort_1").sortable({placeholder: "placeholder"});
-            $("#sort_1").disableSelection();    
-
-            $( ".selector" ).sortable({ connectWith: "#shopping-cart" });
-            
-        // SELECTABLE
-            $("#selectable_1").selectable();
-            
-            
-        // WYSIWIG HTML EDITOR
-            if($("#wysiwyg").length > 0){
-                editor = $("#wysiwyg").cleditor({width:"100%", height:"100%"})[0].focus();                
-            }                                          
-            if($("#mail_wysiwyg").length > 0)
-                m_editor = $("#mail_wysiwyg").cleditor({width:"100%", height:"100%",controls:"bold italic underline strikethrough | font size style | color highlight removeformat | bullets numbering | outdent alignleft center alignright justify"})[0].focus();
-            
-            $('#sendmail').on('shown', function () {
-                m_editor.refresh();
-                $(this).find('.uploader').show();
-            });            
-            
-        // WYSIWIG HTML EDITOR    
-                
-         /* Multiselect */
-         if($("#multiselect").length > 0){
-            $("#multiselect").multiSelect();
-         }
-         if($("#fmultiselect").length > 0){
-            $("#fmultiselect").multiSelect({
-                selectableHeader: "<div class='multipleselect-header'>Selectable item</div>",
-                selectedHeader: "<div class='multipleselect-header'>Selected items</div>"
-            });
-            $('#multiselect-selectAll').click(function(){
-                $('#fmultiselect').multiSelect('select_all');
-                return false;
-            });
-            $('#multiselect-deselectAll').click(function(){
-                $('#fmultiselect').multiSelect('deselect_all');
-                return false;
-            });
-            $('#multiselect-selectIndia').click(function(){
-                $('#fmultiselect').multiSelect('select', 'in');
-                return false;
-            });         
-         }
-         if($(".tags").length > 0)
-            $(".tags").tagsInput({'width':'100%',
-                                'height':'auto'});         
-      
+    // TABS    
+        $( ".tabs" ).tabs();        
         
         
     $('.ibtn').iButton({
@@ -372,27 +263,38 @@ eventClick: function(calEvent, jsEvent, view) {
     
     // Scroll up plugin
      $.scrollUp({scrollText: '^'});
-    // eof scroll up plugin    
+    // eof scroll up plugin   
+
+    // 首页下 side 切换
+    $(".accordion").accordion(); 
 });
 
 
-$('.wrapper').resize(function(){
-
-    if($("#wysiwyg").length > 0) editor.refresh();
-    if($("#mail_wysiwyg").length > 0) m_editor.refresh();
-
-    
-});
-
-function notify(title, text){
+var notify = function(title, text){
     $.pnotify({title: title, text: text, opacity: .8, addclass: 'palert'});
 }
-function notify_s(title,text){
-    $.pnotify({title: title, text: text, opacity: .8, type: 'success'});            
+,notify_s = function(title,text){
+    $.pnotify({title: title, text: text, opacity: .8, type: 'success'});
 }
-function notify_i(title,text){
+, notify_i = function(title,text){
     $.pnotify({title: title, text: text, opacity: .8, type: 'info'});            
 }
-function notify_e(title,text){
-    $.pnotify({title: title, text: text, opacity: .8, type: 'error'});            
+, notify_e = function(title,text){
+    $.pnotify({title: title, text: text, opacity: .9, type: 'error'});            
 }
+, stack_bottomright = {"dir1": "up", "dir2": "left", "firstpos1": 25, "firstpos2": 25}
+, show_stack = function (title,text,type) {
+    var opts = {
+        title: title,
+        text: text,
+        addclass: "stack-bottomright",
+        stack: stack_bottomright,
+        opacity: .8,
+        sticker: false,
+         hide: true,
+        type:type
+        // icon: 'picon picon-network-wireless'
+    };
+    $.pnotify(opts);
+}
+;

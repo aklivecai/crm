@@ -20,9 +20,9 @@ class Controller extends RController
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
 	 */
-	public $breadcrumbs=array();
+	public $breadcrumbs = array();
 
-	public $_model;
+	public $_model = null;
 	public $primaryName = 'itemid';
 	public $modelName = '';
 
@@ -33,12 +33,12 @@ class Controller extends RController
 	protected $dir = false;
 	protected $templates = array('create'=>'create','update'=>'update','admin'=>'admin','view'=>'view','index'=>'index','preview'=>'_view','print'=>'print');
 
-	
+	protected $_manifest = null;
 
 	public function init()  
-	{     
-    	parent::init();   
-    	$this->isAjax  = Yii::app()->request->isAjaxRequest;
+	{  
+ 		parent::init();
+    $this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
 			$this->_setLayout('//layouts/columnAjax');
 			Yii::app()->clientScript->enableJavaScript = false;
@@ -100,7 +100,7 @@ class Controller extends RController
 	 * is the author of the post being accessed.
 	 */
 	public function filterDeleteOwn($filterChain){
-		$params=array('item'=>$model); // set params array for Rights' BizRule
+		// $params=array('item'=>$model); // set params array for Rights' BizRule
 
 		$obj = $this->loadModel($_GET['id']);
 		if(Yii::app()->user->checkAccess('DeleteOwn', array('manageid'=>$obj->primaryKey)))
@@ -114,7 +114,6 @@ class Controller extends RController
 	 */
 	public function loadModel($id,$recycle=false)
 	{
-
 		if($this->_model===null)
 		{
 			$m = $this->modelName;
@@ -124,7 +123,7 @@ class Controller extends RController
 			}
 			$this->_model = $m->findByPk($id);
 			if($this->_model===null)
-				throw new CHttpException(404,'所请求的页面不存在。');
+				$this->error();
 		}
 		return $this->_model;
 	}
@@ -138,7 +137,7 @@ class Controller extends RController
 
 		$_tname = strtolower($this->modelName.'-form');
 
-		if(isset($_POST['ajax']) && $_POST['ajax']===$_tname)
+		if(isset($_POST['ajax']) && ($_POST['ajax']===$_tname)||$_POST['ajax']=='mod-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -158,6 +157,9 @@ class Controller extends RController
 
 	public function actionView($id)
 	{
+		if (condition) {
+			# code...
+		}
 		$this->render($this->templates['view'],array(
 			'model' => $this->loadModel($id),
 		));
@@ -206,14 +208,14 @@ class Controller extends RController
 		$model = new $m;
 		if(isset($_POST[$m]))
 		{
-
+			$this->performAjaxValidation($model);
 			$model->attributes = $_POST[$m];
 			if($model->save()){
 				if ($this->returnUrl) {
 					$this->redirect($this->returnUrl);
 				}else{
 					if ($this->isAjax) {
-						if ($_POST['getItemid']) {
+						if (isset($_POST['getItemid'])) {
 							echo $model->primaryKey;
 							exit;
 						}
@@ -242,7 +244,6 @@ class Controller extends RController
 		if(isset($_POST[$m]))
 		{
 			$model->attributes=$_POST[$m];
-
 			if($model->save()){
 				$this->redirect($this->returnUrl?$this->returnUrl:array('view','id'=>$model->primaryKey));
 			}
@@ -325,7 +326,7 @@ class Controller extends RController
 		exit;
 	}
 
-	protected function getSelectOption($q){
+	protected function getSelectOption($q,$not=false){
 		$m = $this->modelName;
 		$model = new $m;
 		$result = array('name'=>$m,
@@ -338,7 +339,13 @@ class Controller extends RController
 		);
 		$criteria = new CDbCriteria;
 		if ($q) {			
-			$criteria->addSearchCondition($model->linkName,$q);
+			$criteria->addSearchCondition($model->linkName,$q,true);
+		}
+		if ($not) {
+			$_not = str_split($not);
+			if (is_array($_not)&&count($_not)>0) {
+				$criteria->addNotInCondition($model->primaryKey(),$_not);	
+			}
 		}
 		$result['data']['criteria'] = $criteria;
 		return $result;
@@ -351,10 +358,11 @@ class Controller extends RController
 		 $data['data']['pagination']['pageSize'] = $pageSize;
 		 $dataProvider = new JSonActiveDataProvider($data['name'],$data['data']); 
 		 $rs = $dataProvider->getArrayCountData();
-		 $str = '{"total":'.$rs['totalItemCount'].',"link_template":"http://api.rottentomatoes.com/api/public/v1.0/movies.json?q={search-term}&page_limit={results-per-page}&page={page-number}"';
+		 $str = '{"total":'.$rs['totalItemCount'].',"link_template":"movies.json?q={search-term}&page_limit={results-per-page}&page={page-number}"';
 		 $this->writeData($dataProvider->getJsonData());
 	}
 	public function actionGetTop($id,$top=5,$view='view'){
+		
 		$top = (int)$top>0?(int)$top:10;
 		$msg = $this->loadModel($id);
 		$tags = $msg->getNP(false,$top);

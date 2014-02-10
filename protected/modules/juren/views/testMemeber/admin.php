@@ -23,8 +23,9 @@ if ($msg) {
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'list-grid',
 	'dataProvider'=>$model->search(),
-	'ajaxUpdate' => false,
+	'ajaxUpdate' => true,
 	'enableHistory'=>true,
+	'afterAjaxUpdate'=>'kloadGridview',
 	'columns'=>array(
 		array(
 			'class'=>'CButtonColumn',

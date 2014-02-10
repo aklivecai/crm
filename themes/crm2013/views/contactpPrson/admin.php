@@ -24,90 +24,41 @@ $items = Tak::getListMenu();
 
 	<div class="block-fluid clearfix">
 <?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
-<?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
-    'type'=>'striped bordered condensed',
-    'id' => 'list-grid',
-	'dataProvider'=>$model->search(),
-	'template'=>"{items}",
-	'enableHistory'=>true,
-    'loadingCssClass' => 'grid-view-loading',
-    'summaryCssClass' => 'dataTables_info',
-    'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
-    'ajaxUpdate'=>true,    //禁用AJAX
-    'enableSorting'=>true,
-    'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
-	'filter'=>null,
-	'pager'=>array(
-		'header'=>'',
-		'maxButtonCount' => '5',
-		'hiddenPageCssClass' => 'disabled'
-		,'selectedPageCssClass' => 'active disabled'
-		,'htmlOptions'=>array('class'=>'')
-	),
-	'columns'=>array(
-		Tak::getAdminPageCol(),
+<?php $this->renderPartial('_search',array('model'=>$model)); ?>
+<?php 
+$options = Tak::gredViewOptions();
+$options['dataProvider'] = $model->search();
+$columns = array(	
 		array(
 			'name'=>'nicename',
 			'type'=>'raw',
-			'htmlOptions'=>array('style'=>'width: 80px'),
+			'headerHtmlOptions'=>array('style'=>'width: 80px'),
 		)
 		,array(
 			'name'=>'clienteleid',
 			'type'=>'raw',
-			'value'=>'$data->iClientele->clientele_name',
-			'htmlOptions'=>array('style'=>'width: 80px'),
-		)
-
-		,array(
-			'name'=>'mobile',
-			'type'=>'raw',
-            'filter' => true,
-            'sortable' => false,
-		)
-		,array(
-			'name'=>'email',
-			'type'=>'email',
-            'filter' => false,
-            'sortable' => false,
-		)
-		,array(
-			'name'=>'qq',
-			'type'=>'raw',
-            'sortable' => false,
-            'filter' => false,
+			'value'=>'$data->iClientele?$data->iClientele->clientele_name:""',
 		)
 		,array(
 			'name'=>'address',
 			'type'=>'raw',
-            'filter' => false,
             'sortable' => false,
 		)
 		,array(
-			'header'=>'最后联系',
+			'name'=>'mobile',
+			'type'=>'raw',
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
+		)
+		,array(
 			'name'=>'last_time',
 			'type'=>'raw',
 			'value'=>'Tak::timetodate($data->last_time,4)',
-            'filter' => false
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
 		)	
-/*	
-		,array(
-			'name'=>'phone',
-			'type'=>'raw',
-            'filter' => false,
-            'sortable' => false,
-		)		
-		,array(
-			'name' => 'sex',
-			'htmlOptions'=>array('style'=>'width: 40px'),
-			'value'=>'TakType::getStatus("sex",$data->sex)',
-			'type'=>'raw',
-			'filter'=>false,
-            'sortable' => false,
-		)
-*/		
-	),
-)); 
+	);
+	$columns = array_merge_recursive(array($options['columns']),$columns);
+	$options['columns'] = $columns;
+	$widget = $this->widget('bootstrap.widgets.TbGridView', $options); 
 ?>
 		</div>
 	</div>

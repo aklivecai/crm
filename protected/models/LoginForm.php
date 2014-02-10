@@ -31,6 +31,7 @@ class LoginForm extends CFormModel
 			array('username, password,fromid', 'required'),
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
+   			array('fromid', 'numerical', 'integerOnly'=>true),
 			// password needs to be authenticated
 			array('fromid','fromiDecode'),
 			array('password', 'authenticate'),
@@ -53,7 +54,7 @@ class LoginForm extends CFormModel
 			'username'=>'登录帐号',
 			'password'=>'登录密码',
 			'rememberMe'=>'保存密码',
-			'fromid'=>'商铺编号',
+			'fromid'=>'企业编号',
 		);
 	}
 
@@ -63,13 +64,28 @@ class LoginForm extends CFormModel
 	 */
 	public function authenticate($attribute,$params)
 	{
-		$this->_identity=new UserIdentity($this->fromid,$this->username,$this->password);
+		$this->_identity = new UserIdentity($this->fromid,$this->username,$this->password);
 		if(!$this->_identity->authenticate()){
-			$str = '帐号或者密码错误！';
-			if($this->_identity->errorCode==8){
-				$str = '帐号禁止登录!';
+			$key = 'username';
+			switch ($this->_identity->errorCode) {
+				case 2:
+						$str = '密码错误！';
+						$key = 'password';
+					break;
+				case 1:
+						$str = '不存在用户！';
+					break;
+				case 8:
+						$str = '帐号禁止登录!';
+					break;
+				default:					
+					break;
+			}			
+			if ($this->username!='') {
+				$arr = array('fromid'=> $this->fromid,'user_name'=>$this->username);
+				AdminLog::log($str,$arr);
 			}
-			$this->addError('password',$str);
+			$this->addError($key,$str);			
 		}
 			
 	}

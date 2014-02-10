@@ -70,8 +70,6 @@ class ProductMoving extends CActiveRecord
     	if ($product_id) {
     		$condition[] = " product_id = '$product_id' ";
     	}
-
-
 		$dataProvider = new CActiveDataProvider('ProductMoving', array(
 			'criteria'=>array(
 				'condition'=>join(" AND ",$condition),
@@ -90,10 +88,11 @@ class ProductMoving extends CActiveRecord
 	{
 		return array(
 				'itemid' => '编号', /*(可前端生成)*/
-	            'type' => '类型', /*(1:入库|2:出库)*/
-	            'time_stocked' => '确认操作日期',
+	            		'type' => '类型', /*(1:入库|2:出库)*/
+	            		'time_stocked' => '确认操作日期',
 				'movings_id' => '出入库号',
 				'product_id' => '产品',
+				'price' => '价格',
 				'numbers' => '数量',
 				'note' => '备注',
 		);
@@ -108,6 +107,7 @@ class ProductMoving extends CActiveRecord
 		$criteria->compare('movings_id',$this->movings_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('numbers',$this->numbers,true);
+		$criteria->compare('price',$this->price,true);
 		$criteria->compare('note',$this->note,true);
 		return $cActive;
 	}
@@ -122,9 +122,15 @@ class ProductMoving extends CActiveRecord
     public function defaultScope()
     {
     	$arr = array('order'=>'itemid DESC',);
-    	$condition = array($arr['condition']);
+    	$condition = array();
+    	if (isset($arr['condition'])) {
+    		$condition[] = $arr['condition'];
+    	}
     	// $condition[] = 'display>0';
-    	$arr['condition'] = join(" AND ",$condition);
+
+    	$sql = join(" AND ",$condition);
+    	str_replace(" type = '1' AND type","type",$sql);
+    	$arr['condition'] = $sql;
     	return $arr;
     }
 

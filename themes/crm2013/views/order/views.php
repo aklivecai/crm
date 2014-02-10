@@ -12,6 +12,12 @@ $this->breadcrumbs=array(
   $orderInfo = $model->getOrderInfo();
   $listStatus = $model->getListStatus();
 ?>
+
+
+<div class="tak-order-status">
+	<?php echo CHtml::image($this->getAssetsUrl().'img/tak/'.$model->status.'.png') ?>
+</div>
+
 <div class="well">
 <strong><?php echo $model->getAttributeLabel('itemid');?></strong>：
 	<?php echo $model->itemid; ?>

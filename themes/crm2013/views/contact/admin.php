@@ -8,11 +8,8 @@ $this->breadcrumbs=array(
 );
 $items = Tak::getListMenu();
 ?>
-
-
 <div class="row-fluid">
 	<div class="span12">
-
 	<div class="head clearfix">
         <div class="isw-grid"></div>
         <h1><?php echo Tk::g('Contact')?></h1>   
@@ -21,22 +18,18 @@ $items = Tak::getListMenu();
 		      'htmlOptions'=>array('class'=>'buttons'),
 		      'items'=> $items ,
 		));
-		?>                                       
-	</div>	
-
-	<div class="block-fluid clearfix">
-
+		?>
+	</div><div class="block-fluid clearfix">
 <?php 
 
 $this->renderPartial('/_search',array('model'=>$model,));
-
 $this->renderPartial('_search',array('model'=>$model,));
-
 
 $options = Tak::gredViewOptions();
 $options['dataProvider'] = $model->search();
+
 $columns = array(
-	    array(
+		array(
 			'name'=>'clienteleid',
 			'type'=>'raw',
 			'value'=>'$data->iClientele->clientele_name'
@@ -48,24 +41,18 @@ $columns = array(
 		)
 		,array(
 			'name'=>'contact_time',
-			'value'=>'Tak::timetodate($data->contact_time)',
+			'value'=>'Tak::timetodate($data->contact_time,6)',
 		)
 		,array(
 			'name'=>'next_contact_time',
-			'value'=>'Tak::timetodate($data->next_contact_time)',
-		),
-		array(
-			'name' => 'type',
-			'htmlOptions'=>array('style'=>'width: 80px'),
-			'value'=>'TakType::getStatus("contact-type",$data->type)',
-			'type'=>'raw',
-		)	
+			'value'=>'Tak::timetodate($data->next_contact_time,6)',
+		)
 		,array(
 			'name' => 'stage',
 			'htmlOptions'=>array('style'=>'width: 80px'),
 			'value'=>'TakType::getStatus("contact-stage",$data->stage)',
 			'type'=>'raw',
-		)
+		)	
 	);
 $columns = array_merge_recursive(array($options['columns']),$columns);
 $options['columns'] = $columns;

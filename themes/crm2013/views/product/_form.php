@@ -15,9 +15,7 @@
 	 'type'=>'horizontal',
 	'enableAjaxValidation'=>false,
 )); ?>
-
 <?php echo $form->errorSummary($model); ?>
-
 <div class="head clearfix">
 	<i class="isw-documents"></i><h1><?php echo Tk::g(array('Product',$action));?></h1>
 <?php 
@@ -34,17 +32,11 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix">
 	<?php 
 		$types = TakType::items('product',true);
-		if (count($types)>0) {
-			echo $form->dropDownListRow($model,'typeid',TakType::items('product',true));
-		}else{
-			$this->widget('bootstrap.widgets.TbButton', array(
-		    'type'=>'primary',
-		    'label'=>'还没有产品分类,点击录入',
-		    'block'=>true,
-		    'url' => Yii::app()->createUrl('takType/admin',array('type'=>'product','returnUrl'=>Yii::app()->request->url)),
-		 )); 
-		}
+		echo $form->dropDownListRow($model,'typeid',TakType::items('product',true));
 	?>
+	</div>
+	<div class="row-form clearfix" >
+		<?php echo $form->textFieldRow($model,'price',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'material',array('size'=>60,'maxlength'=>100)); ?>
@@ -63,14 +55,10 @@ $this->widget('application.components.MyMenu',array(
 	</div>
 
 </div>
-
 <div class="footer tar">
     <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'submit', 'label'=>Tk::g($action))); ?>
-
-    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>
-    
+    <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>    
 </div>
-
 <?php $this->endWidget(); ?>
 </div>
 </div>

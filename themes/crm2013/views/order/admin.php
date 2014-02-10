@@ -27,7 +27,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
  
 
 <?php 
-  echo $form->dropDownList($model,'status',TakType::items('order-status',0,'状态')); 
+  echo $form->dropDownList($model,'status',Order::getSearchStatus()); 
 ?>
 
 <?php 
@@ -124,16 +124,9 @@ $listOptions['columns'] = array(
 			'name'=>'status'
 			,'type'=>'raw'
 			,'sortable'=>false
-		  	,'header' => CHtml::dropDownList('status'
-				, $model->status
-				, Order::getSearchStatus()
-				, array(
-					'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{'Order[status]': $(this).val()}})", 
-					'style'=>'width: 100px',
-				)
-		  )
 		  	,'headerHtmlOptions'=>array('style'=>'width: 100px')
 			,'value'=>'$data->getState()'
+			,'htmlOptions'=>array('class'=>'badge red pagination-centere')
 		)
 	);
 

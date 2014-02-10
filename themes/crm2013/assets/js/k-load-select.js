@@ -1,9 +1,4 @@
-jQuery(function($){
-var initSelects = function(){
-    var clientele = $(".select-clientele").attr({'data-select':'Clientele','placeholder':'搜索客户'})
-    , prson = $(".select-prsonid").attr({'data-select':'ContactpPrson','placeholder':'搜索联系人','data-selectby':'input.select-clientele:clienteleid'})
-    , manage = $(".select-manageid").attr({'data-select':'Manage'})
-    , page_limit = 10
+    var page_limit = 10
     , defaultID = 'itemid'
     , formatMange = function(data){
         var result = "<table class='movie-result'><tr>";
@@ -17,6 +12,7 @@ var initSelects = function(){
           , format = arguments.length>=2?arguments[1]:false
          , arr = {
             'Clientele':{'s1':'clientele_name'},
+            'Memeber':{'s1':'company'},
             'ContactpPrson':{'s1':'nicename'},
             'Manage':{'func':formatMange,'id':'manageid'}
         };
@@ -79,10 +75,17 @@ var initSelects = function(){
                 loadSelects(elem[i]);
             };
             return true;
-        }        
-        var t = $(elem);
-        if (t.length==0) {return false;};
+        }  
 
+        if (elem.length>1) {
+            elem.each(function(i,el){
+                loadSelects(el);
+                 return true;
+            });
+        };      
+        var __t = $(elem);
+        if (__t.length==0) {return false;};
+        (function(t){
             var sType = t.attr('data-select')
             , ajaxUrl = sType+"/select"
             , result = {
@@ -111,6 +114,9 @@ var initSelects = function(){
                             _temp = _temp.split(':');
                             result[_temp[1]] = $(_temp[0]).val();
                         };
+                        if (t.attr('data-not')) {
+                           result['not']  = t.attr('data-not');
+                        };
                         return result;
                     },
                     results: function (data, page) { 
@@ -119,7 +125,7 @@ var initSelects = function(){
                     }
                 },
                 initSelection: function(element, callback) {
-                    var id= t.val();
+                    var id= element.val();
                     if (id!=="") {
                         $.ajax(createUrl(ajaxUrl,['id='+id])
                             , {dataType: "jsonp"}
@@ -130,20 +136,25 @@ var initSelects = function(){
                        });
                     }
                 }
-            };
-            t.select2(result).trigger('select-load');
+            };            
+             t.select2(result).trigger('select-load');
+        })(__t);
+           
       }
     ;
-    // clientele.css('width','100%');
-    // prson.css('width','101%'); 
+jQuery(function($){
+
+    $('#list-grid,body').on('takLoad',function(){ /*tselect();*/});
+
+    var clientele = $(".select-clientele").attr({'data-select':'Clientele','placeholder':'搜索客户'})
+    , prson = $(".select-prsonid").attr({'data-select':'ContactpPrson','placeholder':'搜索联系人','data-selectby':'input.select-clientele:clienteleid'})
+    , manage = $(".select-manageid").attr({'data-select':'Manage'})
+    , fromidS = $(".select-fromid").attr({'data-select':'Memeber'})
+    ;
     prson.on('select-load',function(){
         clientele.on("change", function(e) { 
             prson.select2('val','');
         })        
     });
-    loadSelects([clientele,prson,manage]);  
-        
-} 
-    $('#list-grid,body').on('takLoad',function(){ /*tselect();*/});
-    initSelects();
+    loadSelects([clientele,prson,manage,fromidS]);  
 });

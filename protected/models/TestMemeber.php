@@ -21,7 +21,7 @@ class TestMemeber extends ModuleRecord
 {
 
 	public $status = 1;
-	
+	public $linkName = 'company';
 	/**
 	 * @return string 数据表名字
 	 */
@@ -87,17 +87,20 @@ class TestMemeber extends ModuleRecord
 	{
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
-		$criteria->compare('itemid',$this->itemid,true);
+		$criteria->compare('itemid',$this->itemid);
 		$criteria->compare('manageid',$this->manageid);
 		$criteria->compare('company',$this->company,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('active_time',$this->active_time);
-		$criteria->compare('add_time',$this->add_time);
-		$criteria->compare('add_us',$this->add_us);
-		$criteria->compare('add_ip',$this->add_ip);
-		$criteria->compare('modified_time',$this->modified_time);
-		$criteria->compare('modified_us',$this->modified_us);
-		$criteria->compare('modified_ip',$this->modified_ip);
+
+		$this->setCriteriaTime($criteria,
+			array('add_time','active_time','modified_time')
+		);				
+		foreach (array('add_us','add_ip','modified_us','modified_ip') as $col) {
+			$v = $this->$col;
+			if ($v>0) {
+				$criteria->compare($col,$v);	
+			}			
+		}		
 		$criteria->compare('note',$this->note,true);
 		return $cActive;
 	}
@@ -125,7 +128,8 @@ class TestMemeber extends ModuleRecord
     	return $arr;
     }
 
-    public function getHtmlLink($isbtn=true)
+    // 继承
+    public function getHtmlLink($isbtn=true,$itemid=false,array $htmlOptions=array(),$action='view')
     {
     	$key = Tak::setCryptNum($this->itemid);
     	$htmlOptions = array('class'=>'copy','id'=>$this->itemid);
@@ -147,13 +151,12 @@ class TestMemeber extends ModuleRecord
 				WHERE itemid = :itemid ";
 			$command = Yii::app()->db->createCommand($sql);
 			$command->bindValue(':itemid', $itemid);
-			$tags = $command->queryRow();			
+			$tags = $command->queryRow();
 			if (!$tags) {
 				$tags = false;
 			}
 			return $tags;
     }
-
 	//保存数据前
 	protected function beforeSave(){
         //添加数据时候

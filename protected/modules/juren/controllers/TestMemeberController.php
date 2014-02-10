@@ -4,7 +4,7 @@ class TestMemeberController extends JController
 {
 	public $defaultAction = 'admin';
 	public function init(){
-		$this->modelName = 'TestMemeber';
+		$this->modelName = 'Test9Memeber';
 		parent::init();
 
 		$this->menu = array(

@@ -15,7 +15,7 @@ return array(
 	'language'=>'zh_cn', 
 	'name'=>'具人同行在线营销管理系统',
 	 'timeZone' => 'Asia/Shanghai',
-    'defaultController'=>'site',
+   	 'defaultController'=>'site',
 
 	'theme' => 'crm2013',
 	// preloading 'log' component
@@ -36,8 +36,8 @@ return array(
 
 		/* for ext yii-rights */
  		'application.modules.rights.*',
-    	'application.modules.rights.models.*',  
-    	'application.modules.rights.components.*', // Correct paths if necessary.  
+    		'application.modules.rights.models.*',  
+    		'application.modules.rights.components.*', // Correct paths if necessary.  
 
 	),
 
@@ -54,44 +54,15 @@ return array(
 			// Gii 在GiiModule::generatorPaths 属性指定的目录中查找可用的生成器。 当需要定制时，我们可以在应用程序的配置文件中做如下配置，
 			 'generatorPaths'=>array(
 			 	'application.gii',   // a path alias
-                'bootstrap.gii',
-            ),
+                		'bootstrap.gii',
+            	      ),
 		),
 		'juren',
-
-	    'rights' => array(  
-	        'debug' => false,  
-	        // 'install' => true,  
-	        'enableBizRuleData' => true,  
-	        	'userClass' => 'Manage',
-               'superuserName'=>'Admin', // Name of the role with super user privileges. 
-               'authenticatedName'=>'Authenticated',  // Name of the authenticated user role. 
-               'userIdColumn'=>'manageid', // Name of the user id column in the database. 
-               'userNameColumn'=>'user_name',  // Name of the user name column in the database. 
-               'enableBizRule'=>true,  // Whether to enable authorization item business rules. 
-               'enableBizRuleData'=>true,   // Whether to enable data for business rules. 
-               'displayDescription'=>true,  // Whether to use item description instead of name. 
-               'flashSuccessKey'=>'RightsSuccess', // Key to use for setting success flash messages. 
-               'flashErrorKey'=>'RightsError', // Key to use for setting error flash messages. 
- 
-               'baseUrl'=>'/rights', // Base URL for Rights. Change if module is nested. 
-               'layout'=>'//layouts/mainRight',  // Layout to use for displaying Rights. 
-               'appLayout'=>'//layouts/main', // Application layout. 
-               // 'cssFile'=>'rights.css', // Style sheet file to use for Rights. 
-	    ),  
-
+	    	'rights' => include( $tshiPatch.'/rights.conf.php' )
 	),
 	// application components components.authManager.assignmentTable
 	'components'=>array(
-        'authManager'=>array(
-            'class'=>'RDbAuthManager',
-            'connectionID'=>'db',
-            'itemTable'=>'tak_rbac_authitem',
-            'itemChildTable'=>'tak_rbac_authitemchild',
-            'assignmentTable'=>'tak_rbac_authassignment',
-            'rightsTable'=>'tak_rbac_rights',
-            'defaultRoles' => array('Authenticated', 'Guest'),
-        ),
+          'authManager'=> include( $tshiPatch.'/auth.conf.php' ),
 	    'mobileDetect' => array(
 	        'class' => 'ext.MobileDetect.MobileDetect'
 	    ),        
@@ -101,19 +72,11 @@ return array(
 	    'user' => array(  
 	        'class' => 'RWebUser',  
 	        'allowAutoLogin'=>true,
-            'loginUrl' => array('/site/login'),
+            	'loginUrl' => array('/site/login'),
 	    ),  
 	    'urlManager' => include( $tshiPatch.'/url.conf.php' ),
 		'db' => include( $tshiPatch.'/db.conf.php' ),
-		'db2' =>array(
-			'class'=>'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=_b2b_ak',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-            'tablePrefix'=>' destoon_'
-		),		
+		'db2' => include( $tshiPatch.'/db2.conf.php' ),
 		'errorHandler'=>array(
 			// 程序有错的时候跳到指定的action
 			'errorAction'=>'site/error',

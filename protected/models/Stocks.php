@@ -18,13 +18,14 @@
  */
 class Stocks extends ModuleRecord
 {
-	
+
+	public static $table = '{{stocks}}';
 	/**
 	 * @return string 数据表名字
 	 */
 	public function tableName()
 	{
-		return '{{stocks}}';
+		return self::$table;
 	}
 
 	public function init(){
@@ -93,7 +94,6 @@ class Stocks extends ModuleRecord
 	{
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
-
 		$criteria->compare('itemid',$this->itemid,true);
 		$criteria->compare('fromid',$this->fromid,true);
 		$criteria->compare('product_id',$this->product_id,true);
@@ -108,6 +108,17 @@ class Stocks extends ModuleRecord
 		return $cActive;
 	}
 
+	public  static function getStocks($productid){
+		$sql = 	'SELECT SUM(stocks) FROM :tabl WHERE product_id=:productid';
+		$sql = strtr($sql,array(
+			':tabl'=> self::$table,
+			':productid'=>$productid,
+		));
+     		$query = self::$db->createCommand($sql);
+     		// $query->bindParam(":productid",$productid);
+    		$count = $query->queryScalar();	
+		return $count;
+	}
 
 	public static function model($className=__CLASS__)
 	{
@@ -117,11 +128,15 @@ class Stocks extends ModuleRecord
 	//默认继承的搜索条件
     public function defaultScope()
     {
-    	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
-    	 $condition[] = ' product_id IN (SELECT itemid AS aid FROM {{product}} AS p WHERE p.status=1)';
-    	$arr['condition'] = join(" AND ",$condition);
+    	// $arr = parent::defaultScope();
+    	// $condition = array($arr['condition']);
+    	 // $condition[] = ' product_id IN (SELECT itemid AS aid FROM {{product}} AS p WHERE p.status=1)';
+    	// $arr['condition'] = join(" AND ",$condition);
+    	$arr = array(
+    		'condition' =>$this->getConAlias('fromid='.Tak::getFormid())
+    	);
     	return $arr;
+    	return array();
     }
 
 	//删除信息后

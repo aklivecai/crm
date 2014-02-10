@@ -135,10 +135,10 @@ class AdminLog extends CActiveRecord
 	}     	
 
 	//默认继承的搜索条件
-    public function defaultScope($isOrder=true)
+    public function defaultScope()
     {
     	$arr = array();
-    	if ($isOrder) {
+    	if ($isOrder||true) {
     		$arr['order'] = 'add_time DESC';
     	}
     	$condition = array();
@@ -157,17 +157,27 @@ class AdminLog extends CActiveRecord
 	//保存日志操作
 	public static function log($info='')
 	{
+
 		$m = new self;
 		$m->info = $info; 
 		$m->qstring = Yii::app()->request->getUrl(); 
+
 		$arr = Tak::getOM();
+		$arr['user_name'] = Tak::getManame();
+
+		if (func_num_args()>1&&is_array(func_get_arg(1))) {
+			 foreach (func_get_arg(1) as $key => $value) {
+					if (isset($arr[$key])) {
+						$arr[$key] = $value;
+					}	 	
+			 }
+		}		
     	$m->fromid =  $arr['fromid'];
     	$m->manageid =  $arr['manageid'];
-    	$m->user_name = Yii::app()->user->name;
+    	$m->user_name = $arr['user_name'];
     	$m->itemid = $arr['itemid'];
     	$m->add_time = $arr['time'];
     	$m->ip = $arr['ip'];
-
     	$m->save();
 	}
 }

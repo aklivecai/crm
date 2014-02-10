@@ -1,155 +1,5 @@
-<?php  
-class Tak {  
-#start
-    public static function KD($msg,$isexit=false){
-        if (is_object($msg)||is_array($msg)){
-            echo  "<pre>";
-            print_r($msg);
-            echo  "<pre>";
-        }elseif(is_array($msg)){
-                foreach ($msg as $key => $value) {
-                    self::KD($value);
-                }
-        }else{ 
-            $str = $msg;
-            $str = mb_convert_encoding($str,'gbk','UTF-8');
-            echo "<h1>$str</h1>";
-        }
-        if ($isexit) exit;
-    }
-
-    public static function checkSuperuser(){
-        $str = 'Admin';
-        if (Yii::app()->modules['rights']) {
-            $str = Rights::module()->superuserName;
-        }
-        return Yii::app()->user->checkAccess($str);
-    }
-    public static function checkAccess($operation,$params=array(),$allowCaching=true){
-        return Yii::app()->user->checkAccess($operation,$params);
-
-    }
-    public static function isGuest()
-    {
-        return Yii::app()->user->isGuest;
-    }   
-#end     
-    public static function getAdmin(){
-        return Yii::app()->user->fromid==1;
-    }
-    public static function getManageid(){
-        $result = -1;
-        if (isset(Yii::app()->user->id)) {
-            $result = Yii::app()->user->id;
-        }
-        return  $result;
-    }
-    public static function getFormid(){
-        $result = -1;
-        if (isset(Yii::app()->user->fromid)) {
-            $result = Yii::app()->user->fromid;
-        }
-        return  $result;
-    }
-    public static function formatNumber($num){
-        $result = number_format($num,0,'',',');
-        return $result;
-    }
-
-    //随机数
-   public static function createCode($codelen=4) {
-        $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789'; //随机因子
-        $_len = strlen($charset)-1;
-        $code = '';
-        for ($i=0;$i<$codelen;$i++) {
-                $code .= $charset[mt_rand(0,$_len)];
-        }
-        return $code;
-    }    
-    // 会员传入就不做修改
-    public static function setCryptNum($str,$rand=false){
-        $result = is_numeric($str);
-        if ($result) {
-            $result = base_convert($str, 10, 36);
-                $arr = str_split($result);
-                $length = count($arr);
-                if ($rand) {
-                   $str1 = $rand;
-                }else{
-                    $str1 = self::createCode(1);
-                }
-                
-                $strb = $arr[$length-1];
-                $arr[$length] = $strb;
-                $arr[$length-1] = $str1;
-            $result = join($arr);
-            $result = strtoupper($result);
-        }
-        return $result;
-    }
-
-    public static function getCryptNum($str,$rand=1){
-        // $result = !is_numeric($str)?strtolower($str):false;
-        $result = strtolower($str);
-        if ($result) {
-            // self::KD($result);
-                $arr = str_split($result);
-                $length = count($arr)-1;
-                $_length =$length-strlen($rand);
-                $arr[$_length] = $arr[$length];
-                for ($i=$_length+1; $i <= $length ; $i++) { 
-                    unset($arr[$i]);
-                }
-                
-                $result = join($arr);
-            // self::KD($result);
-            $result = base_convert($result, 36, 10);
-            if (!is_numeric($result)) {
-                $result = false;;
-            }
-            // self::KD($result,1);
-        }
-        return $result;
-    }
-
-    public static function getRandTime(){
-     //新时间截定义,基于世界未日2012-12-21的时间戳。 
-        $endtime=1356019200;//2012-12-21时间戳 
-        $curtime=time();//当前时间戳 
-        $newtime=$curtime-$endtime;//新时间戳 
-        $rand=rand(0,99);//两位随机 
-        $all=$rand.$newtime; 
-        return $all;
-    }
-
-    /*加密数字*/
-    public static function setCryptKey($str){
-        $key = new TakCrypt();
-        return $key->encode($str);
-
-    }
-    /*解密数字*/
-    public static function getCryptKey($str){
-        $key = new TakCrypt();
-        return $key->decode($str);
-    }
-    /*日期显示*/
-    public static function timetodate($time = 0, $type = 0) {
-        if(!$time) return '';
-        $types = array('Y-m-d', 'Y', 'm-d', 'Y-m-d', 'm-d H:i', 'Y-m-d H:i', 'Y-m-d H:i:s');
-        if(isset($types[$type])) $type = $types[$type];
-        return date($type, $time);
-    }
-    public static function format_price($val="0.00",$currency="￥",$ifval=false){
-        $result =  Yii::app()->numberFormatter->formatCurrency($val,$currency);
-        return $result;
-    }
-    /*获取iP数字*/
-    public static function getIps(){
-            $ip = self::getip();
-            $ip = self::IP2Num($ip);
-            return $ip;
-    }
+<?php 
+class Tak extends Ak{  
     /*获取操作数*/
     public static function getOM(){
         $ip = Yii::app()->user->getState('ip')!=''?Yii::app()->user->getState('ip'):false;
@@ -169,125 +19,6 @@ class Tak {
         return $arr;
     }
 
-    /*获取当前时间*/
-    public static function now(){
-        return time();
-    }
-
-    /*获取时间结束一天*/
-    public static function getDayEnd($time=false){
-        if (!$time) {
-            $time = time();
-        }
-        $dayEnd = false;
-        if (is_numeric($time)) {
-            $date = date("Y-m-d",$time);
-            $dayEnd = strtotime($date." 23:59:59");
-        }           
-        return $dayEnd;
-    }
-    public static function isDayOver($active_time,$day){
-        $time = self::now();
-        $e1 = mktime(23,59,59,date("m",$active_time),date("d",$active_time)+$day,date("Y",$active_time));
-        return $time>$e1;
-
-    }
-
-    public static function getDateTop($key=false){
-        $t = time(); 
-        $t1 = mktime(0,0,0,date("m",$t),date("d",$t),date("Y",$t)); 
-        $t2 = mktime(0,0,0,date("m",$t),1,date("Y",$t)); 
-        $t3 = mktime(0,0,0,date("m",$t)-1,1,date("Y",$t)); 
-        $t4 = mktime(0,0,0,1,1,date("Y",$t)); 
-        $e1 = mktime(23,59,59,date("m",$t),date("d",$t),date("Y",$t)); 
-        $e2 = mktime(23,59,59,date("m",$t),date("t"),date("Y",$t)); 
-        $e3 = mktime(23,59,59,date("m",$t)-1,date("t",$t3),date("Y",$t)); 
-        $e4 = mktime(23,59,59,12,31,date("Y",$t)); 
-       $datas =array(
-        'd'=>array(
-            'name' =>'今天',
-            'start' => $t1,
-            'end' => $e1,
-        ),
-        'm'=>array(
-            'name' =>'这个月',
-            'start'=> $t2,
-            'end' => $e2,
-        ),
-        'y'=>array(
-            'name' =>'今年',
-            'start'=> $t4,
-            'end' => $e4,
-        ),);  
-
-        if ($key) {
-            return isset($datas[$key])?$datas[$key]:false;
-        }else{
-            return $datas;
-        }           
-
-    }
-
-    /*唯一数字*/
-    public static function fastUuid($suffix_len=3){
-        //! 计算种子数的开始时间
-        static $being_timestamp = 1336681180;// 2012-5-10
-        $time = explode(' ', microtime());
-        $id = ($time[1] - $being_timestamp) . sprintf('%06u', substr($time[0], 2, 6));
-        if ($suffix_len > 0)
-        {
-            $id .= substr(sprintf('%010u', mt_rand()), 0, $suffix_len);
-        }
-        return $id;
-    }   
-
-    /*判断字符串是不是MD5加密的*/
-    public static function isValidMd5($md5 ='')
-    {
-        return  preg_match('/^[a-f0-9]{32}$/', $md5);
-    }
-
-    /*网址判断*/
-    public static function isUrl($str){
-        return preg_match("/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\’:+!]*([^<>\"])*$/", $str);
-    }  
-
-    /*判断一个数字是不是 时间数
-         return ( 1 === preg_match( '~^[1-9][0-9]*$~', $string ) );
-         return if (preg_match('/[0-9]{4}-[0-9]{2}-[0-9]{2}/', $timestamp));
-         return date("Y") - date("Y", strtotime($date));
-         return preg_match('/[^\d]/', $str)&&strtotime($str)
-    */
-    public static function isTimestamp($timestamp) {        
-        // self::KD(strtotime(date('Y-m-d H:i:s',$timestamp)));
-        $result = false;
-        if (is_numeric($timestamp)) {
-            $timestamp = (int)$timestamp;
-            if(strtotime(date('Y-m-d H:i:s',$timestamp)) === $timestamp) {
-                $result = $timestamp;
-            }
-        }
-        return $result;
-    }         
-
-    /*IP转成无符号数值*/
-   public static function IP2Num($ip)
-    {
-        $result = '';
-        if ($ip!='') {
-            $result = bindec(decbin(ip2long($ip)));
-        }
-        return $result;
-    }
-
-    /*无符号转成IP地址*/
-    public static function Num2IP($num){
-        $result = '';
-        if ($num!=''&&$num>0) {
-            $result = long2ip($num); 
-        }
-        return $result;
-    }  
 
     public static function giiColAdmin($col){
         $result = self::giiCol($col);
@@ -296,7 +27,6 @@ class Tak {
         }
         return $result;
     }
-
     public static function giiColNot($col){
         $result = self::giiCol($col);
         if (!$result) {
@@ -310,7 +40,8 @@ class Tak {
         return $result;
     }
 
-    public static function getEditMenu($itemid,$isNewRecord=true){
+    public static function getEditMenu($itemid,$isNewRecord=true)
+    {
            $items = array(  
                 'Save' => array(
                   'icon' =>'isw-edit',
@@ -405,110 +136,6 @@ class Tak {
            
        return $listMenu;    
     }   
-
-    public static function searchData($key=false){
-       $nowDate = date("Y").'-'.date("m").'-'.date("d");
-       $now = self::getDayEnd();
-       $datas =array(
-        '10'=>array(
-            'name' =>'当天',
-            'start' => strtotime($nowDate),
-            'end' => $now,
-        ),
-        '20'=>array(
-            'name' =>'最近三天',
-            'start'=> strtotime("$nowDate -3 day"),
-            'end' => $now,
-        ),
-        '30'=>array(
-            'name' =>'最近一周',
-            'start'=> strtotime("$nowDate -1 week"),
-            'end' => $now,
-        ),
-        '40'=>array(
-            'name' =>'最近半月',
-            'start'=> strtotime("$nowDate -15 day"),
-            'end' => $now,
-        ),
-        '50'=>array(
-            'name' =>'最近一月',
-            'start'=> strtotime("$nowDate -1 month"),
-            'end' => $now,
-        ),
-        '60'=>array(
-            'name' =>'最近两月',
-            'start'=> strtotime("$nowDate -2 month"),
-            'end' => $now,
-        ),
-        '70'=>array(
-            'name' =>'最近三月',
-            'start'=> strtotime("$nowDate -3 month"),
-            'end' => $now,
-        ),
-        '80'=>array(
-            'name' =>'最近六月',
-            'start'=> strtotime("$nowDate -6 month"),
-            'end' => $now,
-        ),);  
-
-        if ($key) {
-            return isset($datas[$key])?$datas[$key]:false;
-        }else{
-            return $datas;
-        }
-    }
-
-    public static function getip(){
-            static $realip = NULL;         
-            if ($realip !== NULL){
-                return $realip;
-            }
-            if (isset($_SERVER)){
-                if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-                {
-                    $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-                    /* 取X-Forwarded-For中第一个非unknown的有效IP字符串 */
-                    foreach ($arr AS $ip)
-                    {
-                        $ip = trim($ip);         
-                        if ($ip != 'unknown')
-                        {
-                            $realip = $ip;         
-                            break;
-                        }
-                    }
-                }
-                elseif (isset($_SERVER['HTTP_CLIENT_IP']))
-                {
-                    $realip = $_SERVER['HTTP_CLIENT_IP'];
-                }
-                else
-                {
-                    if (isset($_SERVER['REMOTE_ADDR']))
-                    {
-                        $realip = $_SERVER['REMOTE_ADDR'];
-                    }
-                    else
-                    {
-                        $realip = '0.0.0.0';
-                    }
-                }
-            }else{
-                if (getenv('HTTP_X_FORWARDED_FOR')){
-                    $realip = getenv('HTTP_X_FORWARDED_FOR');
-                }elseif (getenv('HTTP_CLIENT_IP')){
-                    $realip = getenv('HTTP_CLIENT_IP');
-                }else{
-                    $realip = getenv('REMOTE_ADDR');
-                }
-            }
-         
-            preg_match("/[\d\.]{7,15}/", $realip, $onlineip);
-            $realip = !empty($onlineip[0]) ? $onlineip[0] : '0.0.0.0';
-         
-            return $realip;   
-    }
-
     public static function getFileTypeId($file){
         $result = 0 ;
         $type = $file;
@@ -555,14 +182,7 @@ class Tak {
 
         return $result;
     }
-    public static function getUserDir($uid=false){
-        $dir = Yii::app()->getBaseUrl().Yii::app()->params['uploadUser'];
-        if (!$uid) {
-            $uid = self::getFormid();
-        }
-        $dir .= self::setCryptNum($uid,'JU').'/';
-        return $dir;
-    }
+
     
     public static function getFileSrc($str,$isWrite='',$dir=''){
         $path_info = pathinfo($str );  
@@ -590,32 +210,6 @@ class Tak {
         return $file2;
     }
 
-    /*
-       获取文件路径
-        48d4cb4ef423f858a9576a4e75ecd598ae966a1d -- 48/d4/cb/4e/48d4cb4ef423f858a9576a4e75ecd598ae966a1d
-    */
-    public static function getPathBySplitStr($str) {
-        $parts = str_split(substr($str,0,8), 2);
-        $path = join("/", $parts);
-        $path = $path . "/" . $str;
-        return $path;
-    }   
-
-    /*
-    生成目录
-    */
-    public static function MkDirs($dir, $mode = 0700, $recursive = true) {
-        if (is_null($dir) || $dir == "") {
-            return false;
-        }
-        if (is_dir($dir) || $dir == "/") {
-            return true;
-        }
-        self::MkDirs(dirname($dir), $mode, $recursive);
-        mkdir($dir,$mode);
-        return false;
-    }
-
     public static function getFileIco($typeid){
         // 2压缩包,3是文档
         $arr = TakType::items('filetype');
@@ -632,8 +226,8 @@ class Tak {
     public static function getMainMenu(){
         $controlName = Yii::app()->getController()->id;
         $arr = array(
-            'manage'=>'manage'
-            ,'AddressBook'=>',AddressBook,AddressGroups,'
+            'manage'=>'manage,permission,'
+            ,'addressbook'=>',AddressBook,AddressGroups,'
             ,'events'=>'events'
             ,'file'=>'file'
             ,'invite'=>',invite,'
@@ -650,6 +244,12 @@ class Tak {
               'url' => array('/site/index'),
               'label'=>'<span class="text">主页</span>',
             ),
+            array(
+              'icon' =>'isw-grid',
+              'url' => array('/site/wizard'),
+              'label'=>'<span class="text">测试</span>',
+              'visible'=>self::getAdmin(),
+            ),
             'manage' => array(
               'icon' =>'isw-users',
               'label'=>'<span class="text">'.Tk::g(array('Manage','Setting')).'</span>',
@@ -660,8 +260,16 @@ class Tak {
                        'icon' =>'user',
                       'label'=>'<span class="text">'.Tk::g(array('Manage','Permissions')).'</span>', 
                       'url'=>array('/rights/assignment/view'), 
-                      'visible'=>self::checkSuperuser(),
+                      'visible'=>self::checkSuperuser()&&YII_DEBUG,
+                      'linkOptions'=>array('id'=>'tak-permissions'),
                     ), 
+                    array(
+                       'icon' =>'user',
+                      'label'=>'<span class="text">'.Tk::g(array('Manage','Permissions')).'</span>', 
+                      'url'=>array('/permission/admin'), 
+                      
+                    ), 
+
                 array('icon'=>'plus','label'=>'<span class="text">'.Tk::g(array('Create','Manage')).'</span>',  'url'=>array('/manage/create'),),               
                 array('icon'=>'th','label'=>'<span class="text">'.Tk::g(array('Manage','Admin')).'</span>',  'url'=>array('/manage/admin'),),
                 // array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/manage/recycle'),),
@@ -679,7 +287,9 @@ class Tak {
                 array('icon'=>'th','label'=>'<span class="text">联系人管理</span>',  'url'=>array('/contactpPrson/admin'),),
                 array('icon'=>'th','label'=>'<span class="text">联系记录</span>',  'url'=>array('/contact/adminGroup'),),
                 array('icon'=>'th','label'=>'<span class="text">所有客户</span>',  'url'=>array('/clienteles/'),'visible'=>self::checkAccess('Clienteles.*')),
-                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/clientele/recycle'),),
+                array('icon'=>'th','label'=>'<span class="text">客户转移</span>',  'url'=>array('/moves/clienteles'),'visible'=>self::checkSuperuser()),
+                array('icon'=>'th','label'=>'<span class="text">公海</span>',  'url'=>array('/clientele/seas'),'visible'=>self::checkAccess('Clientele.*')),
+                array('icon'=>'trash','label'=>'<span class="text">'.Tk::g('Recycle').'</span>',  'url'=>array('/clientele/recycle'),'visible'=>self::checkSuperuser()),
               ),
             ), 
             'addressbook' => array(
@@ -731,7 +341,7 @@ class Tak {
 
                 array('icon'=>'th','label'=>'<span class="text">入库录入</span>', 'url'=>array('/purchase/admin')),
                 array('icon'=>'th','label'=>'<span class="text">出库录入</span>',  'url'=>array('/sell/admin'),),
-                    array('icon'=>'th','label'=>'<span class="text">'.Tk::g('Stocks').'</span>',  'url'=>array('/stocks/admin'),),
+                    array('icon'=>'th','label'=>'<span class="text">'.Tk::g('Stocks').'</span>',  'url'=>array('/stocks/index'),),
               ),
             ), 
            'order' => array(
@@ -740,15 +350,17 @@ class Tak {
               'label'=>'<span class="text">'.Tk::g('Order').'</span>',
               'url'=>array('/order/index'),
               'items'=>array(
+                array('icon'=>'certificate','label'=>'<span class="text">订单流程</span>',  'url'=>array('/order/config'),),
                 array('icon'=>'shopping-cart','label'=>'<span class="text">'.Tk::g(array('Order','Admin')).'</span>', 'url'=>array('/order/admin')),
                 array('icon'=>'th-large','label'=>'<span class="text">订单变更</span>',  'url'=>array('/site/order'),'visible'=>YII_DEBUG),
-                array('icon'=>'certificate','label'=>'<span class="text">'.订单流程.'</span>',  'url'=>array('/order/config'),),
-                array('icon'=>'certificate','label'=>'<span class="text">'.协议.'</span>',  'url'=>array('/order/config'),'visible'=>YII_DEBUG),
+                
+                array('icon'=>'certificate','label'=>'<span class="text">协议</span>',  'url'=>array('/order/config'),'visible'=>YII_DEBUG),
+                array('icon'=>'pencil','label'=>'<span class="text">自助下单</span>',  'url'=>'http://u.9juren.com/order/cart/'.self::getFormid(),'linkOptions'=>array('target'=>'_blank')),
               ),
             ), 
 
             'invite' => array(
-              'visible'=>self::checkAccess('Invite.*'),
+              'visible'=>self::checkAccess('Minvite.*'),
               'icon' =>'isb-tag',
               'label'=>'<span class="text">招标</span>',
               'url'=>array('/invite/index'),
@@ -760,7 +372,7 @@ class Tak {
               ),
             ),   
            'job' => array(
-              'visible'=>self::checkAccess('Job.*'),
+              'visible'=>self::checkAccess('Mjob.*'),
               'icon' =>'isb-graph',
               'label'=>'<span class="text">招聘</span>',
               'url'=>array('/job/index'),
@@ -773,7 +385,7 @@ class Tak {
               ),
             ), 
           'training' => array(
-              'visible'=>self::checkAccess('Training.*'),
+              'visible'=>self::checkAccess('Mtraining.*'),
               'icon' =>'isb-documents',
               'label'=>'<span class="text">培训</span>',
               'url'=>array('/training/index'),
@@ -786,10 +398,34 @@ class Tak {
               ),
             ),           
           );  
+        $items['msell'] = array(
+              'visible'=>self::checkAccess('Msell.*'),
+              'icon' =>'isb-graph',
+              'label'=>'<span class="text">供应</span>',
+              'url'=>array('/msell/index'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">供应管理</span>', 'url'=>array('/msell/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">供应录入</span>',  'url'=>array('/msell/create'),),
+              ),
+        );
+        $items['mbuy'] = array(
+              'visible'=>self::checkAccess('Mbuy.*'),
+              'icon' =>'isb-graph',
+              'label'=>'<span class="text">求购</span>',
+              'url'=>array('/msell/index'),
+              'items'=>array(
+                array('icon'=>'th-list','label'=>'<span class="text">求购管理</span>', 'url'=>array('/msell/admin')),
+                array('icon'=>'plus','label'=>'<span class="text">求购录入</span>',  'url'=>array('/msell/create'),),
+              ),
+        );
+
+
         unset($items['file']);
         unset($items['job']);
         unset($items['invite']);
         unset($items['training']);
+        unset($items['msell']);
+        unset($items['mbuy']);
         // unset($items['events']);
 
          $items[] = array(
@@ -798,17 +434,18 @@ class Tak {
                       'url'=>array('/site/help'), 
                     );
          $items[] = array(
-                       'icon' =>'isw-chat',
-                      'label'=>'<span class="text">系统其他功能</span>', 
-                      'url'=>Yii::app()->getBaseUrl().'/upload/functionality.jpg', 
+                      'icon' => 'isw-chat',
+                      'label' => '<span class="text">系统其他功能</span>', 
+                      'url' => Yii::app()->getBaseUrl().'/upload/functionality.jpg', 
                       'linkOptions'=>array('target'=>'_blank')
                     );
          $items[] = array(
-                       'icon' =>'isw-target',
+                      'icon' =>'isw-target',
                       'label'=>'<span class="text">客户案例</span>', 
                       'url'=>'http://www.9juren.net/', 
                       'linkOptions'=>array('target'=>'_blank')
                     );
+
 
         $controlName = Yii::app()->getController()->id;  
         $controlName = strtolower($controlName);
@@ -821,6 +458,7 @@ class Tak {
                         // array('icon'=>'wrench','label'=>'<span class="text">网站设置</span>', 'url'=>array('/settin/index')),
                         array('icon'=>'list-alt','label'=>'<span class="text">网站日志</span>',  'url'=>array('/adminLog/admin'),),
                          array('icon'=>'fire','label'=>'<span class="text">网站备份</span>',  'url'=>array('/site/Database'),'visible'=>YII_DEBUG),
+                         array('icon'=>'fire','label'=>'<span class="text">导入VIP</span>',  'url'=>array('/site/tak'),'visible'=>YII_DEBUG||self::getAdmin()),
                          array('icon'=>'','label'=>'<span class="text">Member</span>',  'url'=>array('/site/tak'),'visible'=>YII_DEBUG),
                       ),
                     );
@@ -913,7 +551,6 @@ class Tak {
             'name' => 'Product',
             'file' => 'product',   
             'type' => 'product',   
-
         );
 
         return $arr;
@@ -929,8 +566,8 @@ class Tak {
        return $type;
     }
     
-    public static function msg($msg,$title=''){
-        Yii::app()->clientScript->registerScript('bodyend', "notify_s('$title','$msg')");        
+    public static function msg($msg,$title='',$type='palert'){
+        Yii::app()->clientScript->registerScript('bodyend', "show_stack('$title','$msg','$type')");
     }
 
     public static function copyright(){
@@ -949,13 +586,14 @@ class Tak {
             'id' => 'list-grid',
             'dataProvider'=>null,
             'enableHistory'=>true,
+            'afterAjaxUpdate' =>'kloadCGridview',
             'loadingCssClass' => 'grid-view-loading',
             'summaryCssClass' => 'dataTables_info',
             'pagerCssClass' => 'pagination dataTables_paginate',
             'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
             'ajaxUpdate'=>true,    //禁用AJAX
             'enableSorting'=>true,
-            'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
+            'summaryText' => '共 <span class="badge">{pages}</span> 页,当前 <span class="badge badge-success">{page}</span> 页,总数 <span class="badge badge-info">{count}</span> ',
             'pager'=>array(
                 'header'=>'',
                 'maxButtonCount' => '5',
@@ -991,77 +629,6 @@ class Tak {
         return $result;
     }
 
-    public static function getFlash($key='source',$defaultValue=null,$delete=true){
-        $result = Yii::app()->user->getFlash($key,$defaultValue,$delete);
-        return $result;
-    }
-    public static function setFlash($value,$key='source',$defaultValue=null){
-        $result = Yii::app()->user->setFlash($key,$value,$defaultValue);
-        return $result;
-    }
-    public static function regScriptFile($arrUrl,$pf='base',$path=null,$position=null,array $htmlOptions=array()){
-        if (!is_array($arrUrl)) {
-            $arrUrl = array($arrUrl);
-        }
-        switch ($pf) {
-            case 'base':
-                $pf = yii::app()->theme->baseUrl.'/';                
-                break;
-            case 'static':
-                $pf = Yii::app()->params['staticUrl'];
-                break;            
-            default:
-                # code...
-                break;
-        }
-        if ($path!==null) {
-            $pf.= $path.'/';
-        }
-        foreach ($arrUrl as $url) {
-            if ($pf!='') {
-                $url = $pf.$url;
-            }
-            Yii::app()->clientScript->registerScriptFile($url,$position,$htmlOptions);
-        }
-    }
-    public static function  regScript($id,$script,$position=null,array $htmlOptions=array()){
-        Yii::app()->clientScript->registerScript($id,$script,$position,$htmlOptions);
-        return $this;
-    }
-
-    public function regCssFile($arrUrl,$pf='base',$path=null,$media='')
-    {
-        if (!is_array($arrUrl)) {
-            $arrUrl = array($arrUrl);
-        }        
-        switch ($pf) {
-            case 'base':
-                $pf = yii::app()->theme->baseUrl.'/';
-                break;
-            case 'static':
-                $pf = Yii::app()->params['staticUrl'];
-                break;            
-            default:
-                # code...
-                break;
-        }       
-        if ($path!==null) {
-            $pf.= $path.'/';
-        }
-        foreach ($arrUrl as $url) {
-            if ($pf!='') {
-                $url = $pf.$url;
-            }
-            Yii::app()->clientScript->registerCssFile($url,$media);
-        } 
-    }   
-    public static function getDataView($value){
-        if (self::isTimestamp($value)) {
-            $value = self::timetodate($value,6) ;
-        }
-        return $value;
-    }
-
     public static function getNP($nps,$view='view'){
         $result = array();        
         if (!is_array($nps)) {
@@ -1076,5 +643,22 @@ class Tak {
             );
          }
         return $result;
+    }
+
+    public static function showMsg(){
+      $result = self::getFlashes();      
+      if ($result) {
+        foreach ($result as $key => $value) {
+          self::msg($value,'',$key); 
+        }         
+      }
+    }
+
+    public static function tagNum($text,$type=''){
+      $badges = array('badge');
+      if ($type) {
+        $badges[]=$type;
+      }
+      return CHtml::tag('span',array('class'=>join(' ',$badges)),$text);
     }
 }  

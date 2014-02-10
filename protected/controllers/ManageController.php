@@ -1,18 +1,31 @@
-
 <?php
 
 class ManageController extends Controller
 {
 
+	protected $branchs = null;
+
 	public function init()  
 	{     
-    	parent::init();
-    	$this->primaryName = 'manageid';
-    	$this->modelName = 'Manage';
+    		parent::init();
+    		$this->primaryName = 'manageid';
+    		$this->modelName = 'Manage';
+    		$this->branchs = Permission::getList();
+    		if (count($this->branchs)==0) {
+    			$this->redirect(array('/permission/create'));
+    		}
 	  // Yii::app()->clientScript->registerCoreScript('jquery');
   //   	$cs = Yii::app()->getClientScript();
 		// $cs->enableJavaScript = false;
 	}
+	public function getBranch($key){
+		$result = isset($this->branchs[$key])?$this->branchs[$key]:'用户';
+		return $result;
+	}
+	public function allowedActions()
+	{
+	 	return 'actionSelectById,actionSelect';
+	}		
 
 	public function actionView($id)
 	{
@@ -38,13 +51,13 @@ class ManageController extends Controller
 		));
 	}
 
-	protected function getSelectOption($q){
+	protected function getSelectOption($q,$not = false) 
+	{
 		$result = parent::getSelectOption($q);
 		$result['data']['attributes'][] = 'user_nicename';
 		if ($q) {
-			$result['data']['criteria']->addSearchCondition('user_nicename',$q,false,'OR');
+			$result['data']['criteria']->addSearchCondition('user_nicename',$q,true,'OR');
 		}
 		return $result;
-	}	
-
+	}
 }

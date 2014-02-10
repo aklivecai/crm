@@ -35,7 +35,7 @@ return array (
   'Assigned items' => '已指派的授权项',
   'Assignments' => '授权',
   'Assignments for :username' => '对 :username 的授权',
-  'Authorization item' => '',
+  'Authorization item' => '权限',
   'Authorization items created.' => '',
   'Business rule' => '业务规则',
   'Business rule cannot be empty.' => '业务规则不能为空',

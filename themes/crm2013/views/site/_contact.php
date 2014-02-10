@@ -4,7 +4,7 @@
 </div>
 <div class="info"> 
 	<a href="<?php echo $data->getLink() ;?>">
-		<?php echo $data->iContactpPrson->nicename; ?>&nbsp;
+		<?php echo isset($data->iContactpPrson)?$data->iContactpPrson->nicename:''; ?>&nbsp;
 	</a>
   <span class="time">
   	<?php echo Tak::timetodate($data->contact_time,3);?>

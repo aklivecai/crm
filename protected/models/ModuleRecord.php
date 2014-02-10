@@ -1,9 +1,15 @@
 <?php
 class ModuleRecord extends MRecord
 {
-	public $scondition = ' status>0 ';/*默认搜索条件*/
+	public $scondition = ' status=1 ';/*默认搜索条件*/
 	private $_bycu = true; //搜索自己
 
+	public function init(){
+		parent::init();
+		if ($this->tableAlias&&false) {
+			$this->scondition = $this->tableAlias.$this->scondition;
+		}
+	}
 	public function attributeLabels()
 	{
 		return array(
@@ -13,27 +19,26 @@ class ModuleRecord extends MRecord
 	}
 
 	//默认继承的搜索条件
-    public function defaultScope($isOrder=true)
+    public function defaultScope()
     {
     	if ($this->getDefaultScopeDisabled()) {
     		return array();
     	}
     	$arr = array();
-
-    	if ($isOrder) {
-    		$arr['order'] = ' add_time DESC ';
+    	if (func_num_args()>0&&func_get_arg(0)) {
+    		$arr['order'] = 'add_time DESC ';
     	}
     	$condition = array();
-    	if ($this->scondition) {
+    	if ($this->scondition&&$this->scondition!='') {
     		$condition[] = $this->scondition;
     	}
-
     	if($this->hasAttribute('fromid')){
     		$condition[] = 'fromid='.Tak::getFormid();
     	}    	
-    	if ($this->getCu()) {
-    		$condition[] = ' manageid='.Tak::getManageid();
+    	if ($this->getCu()&&Tak::getManageid()) {
+    		$condition[] = 'manageid='.Tak::getManageid();
     	}
+
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
     }
@@ -48,7 +53,6 @@ class ModuleRecord extends MRecord
     		&&!Tak::checkSuperuser()
     		){
     		$result = true;
-
     	}
     	return $result;
     }
@@ -82,10 +86,14 @@ class ModuleRecord extends MRecord
 		}elseif(is_array($pcondition)){
 			$condition = array_merge_recursive($condition, $pcondition);
 		}
-		$criteria = new CDbCriteria(array(
-	    	'condition' => join(" AND ",$condition),
-	    	'order' => $order
-		));
+		$_temps = array(
+	    		'condition' => join(" AND ",$condition),
+		);
+		if ($order) {
+			$_temps['order'] = $order;
+		}
+		
+		$criteria = new CDbCriteria($_temps);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		    'pagination'=>array(
@@ -97,8 +105,8 @@ class ModuleRecord extends MRecord
 
 	public function search()
 	{
-
 		$criteria = parent::search();
+		$this->resetScope(false);
 		return $criteria;
 	}
 
@@ -114,8 +122,9 @@ class ModuleRecord extends MRecord
 	}
 
     // 设置搜索
-    public function setRecycle(){
-    	$this->scondition = 'status=0';
+    public function setRecycle($status=0){
+    	 $this->scondition = $this->getConAlias("status=$status");
+    	 $this->resetScope(false);
     }
 
     // 还原
@@ -129,11 +138,14 @@ class ModuleRecord extends MRecord
 				 $arr = $this->getErrors();
 			}
 		}
-		return result;
+			return $result;
     }
 
 	//保存数据前
-	protected function beforeSave($isok=false){
+	protected function beforeSave(){
+
+	    $isok = func_num_args()>0&&func_get_arg(0);
+
 	    $result = parent::beforeSave($isok);
 	    if(!$isok&&$result){
 	        //添加数据时候
@@ -174,7 +186,7 @@ class ModuleRecord extends MRecord
 	protected function afterSave(){
 		parent::afterSave();
 		if (!$this->isLog) {
-			return false;
+			return true;
 		}
 		$url = Yii::app()->request->getUrl();
 		if (strpos($url,'delete')>0){
@@ -196,7 +208,6 @@ class ModuleRecord extends MRecord
 	public function del(){
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {
-
 			$this->status = TakType::STATUS_DELETED;
 			if($this->save()){
 				$result = true;
@@ -206,6 +217,7 @@ class ModuleRecord extends MRecord
 		}
 		return $result;
 	}
+	
 	public function dels(){
 		$result = false;
 		if ($this->status!=TakType::STATUS_DELETED) {

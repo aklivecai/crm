@@ -18,6 +18,12 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ?>
 
 <?php 
+ if (Tak::getAdmin()) {
+  echo $form->textFieldRow($model,'manageid',array('class'=>'select-manageid','size'=>10,'style'=>'width:150px')); 
+ }
+?>
+
+<?php 
   $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Tk::g('Search'))); 
   $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'button', 'label'=>Tk::g('Reset'),'htmlOptions'=>array('class'=>'btn-reset'))); 
   echo CHtml::button(Tk::g('Reset'),array('type'=>'reset','class'=>'hide'));

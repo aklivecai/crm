@@ -1,6 +1,16 @@
 .kclear{visibility: hidden;display: block;font-size: 0;content: " ";height:0;clear: both;}
+.kr{float: right;}
+.grid-view-loading,
+.load-content{
+  -webkit-text-size-adjust:none
+  -moz-user-select:none;
+  -ms-user-select:none;  
+  -webkit-user-select:none;    
+  cursor:wait;
+}
 
-.red{
+
+#ibody .red{
   color: #F00;
 }
 .row-form .required span{color: #F00;} 
@@ -16,6 +26,10 @@
 }
 .breadLine .breadcrumb li{
   margin-right:2px\9;
+}
+.row-form{
+  padding:0 16px;
+  padding-top:8px;
 }
 .row-form input[type="text"],
 .row-form input[type="password"], 
@@ -72,24 +86,25 @@ ul.yiiPager .first, ul.yiiPager .last {
   cursor: not-allowed;
   border-color: #dddddd;
 }
+#list-grid{
+}
 .grid-view-loading {
-  background-position: 0 0;
-  background-color:#FFF;
-  opacity: .8;
+  background:#FFF url(../img/tak/loading.gif) no-repeat center 8px;
+  opacity: .5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=50)";  
 }
 .grid-view-loading table{
-  opacity: 5;
+  opacity: .3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=30)";  
 }
 .grid-view .filters input[type="text"]{
   margin:0;
   padding:0;
 }
  .grid-view .dataTables_info{
-    float: left;
     font-size: 11px;
     color: #333;
     line-height: 45px;
-    text-indent: 2em;
 }
 
 .list-view .pagination,
@@ -197,7 +212,8 @@ ul.yiiPager .first, ul.yiiPager .last {
 
 
 input[type=date]{
-  width:85px\0;  
+  width:128px;  
+  width:85px\0; 
 }
 
 .stor-date{
@@ -525,11 +541,12 @@ form.active .wap-flow-content{
 
 .load-content{
   min-height: 200px;
-  background:url(img/loading.gif) no-repeat center center; 
+  background:#FFF url(../img/tak/loading.gif) no-repeat center center;
 }
 .load-content>.block-fluid,
 .load-content>.row-fluid{
-  opacity: 0.5;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=20)";
 } 
 
 #ibody .menu .navigation > li,
@@ -557,4 +574,28 @@ form.active .wap-flow-content{
 }
 #ibody .purple .navigation > li.openable{
   background-color: #913F7F;
+}
+
+
+.modal-body .form-horizontal .control-label{
+  width:100px;
+}
+.modal-body .form-horizontal .controls{
+  margin-left: 120px;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.tak-order-status{
+  position: absolute;
+  right: 1%;
+  top: 2%;
+}
+
+@media only screen and (max-width: 800px) {
+    .tak-order-status{
+      opacity: .2;
+    }
 }

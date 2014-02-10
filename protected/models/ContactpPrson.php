@@ -105,9 +105,9 @@ class ContactpPrson extends ModuleRecord
 		$this->setCriteriaTime($criteria,
 			array('last_time','add_time','modified_time')
 		);		
-
 		$criteria->compare('note',$this->note,true);
 		$criteria->compare('status',$this->status);
+
 		return $cActive;
 	}
 
@@ -121,9 +121,12 @@ class ContactpPrson extends ModuleRecord
     public function defaultScope()
     {
     	$arr = parent::defaultScope();
-    	$condition = array($arr['condition']);
+    	$condition = array();
+    	if (isset($arr['condition'])) {
+    		$condition[] = $arr['condition'];
+    	}
     	// $condition[] = 'display>0';
-    	$arr['condition'] = join(" AND ",$condition);
+    	$arr['condition'] = join(" AND ",$condition);    	
     	return $arr;
     }
 
@@ -164,5 +167,60 @@ class ContactpPrson extends ModuleRecord
 	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
+	}	
+
+	private $_contact = null;
+	protected function getContact(){
+		if ($this->_contact===null) {
+			$m = Contact::model()->setGetCU();
+			$m->scondition = false;
+			$this->_contact = $m->findAllByAttributes(array('prsonid'=>$this->itemid));
+		}
+		return $this->_contact;
+	}
+	public function move($manageid){
+		$this ->isLog = false;
+		$this->manageid = $manageid;
+		$this->moveContact(array('manageid'=>$manageid));
+	}
+	protected function _del(){
+		$tags = $this->getContact();
+		$islog = $this->isLog;
+		foreach ($tags as $key => $value) {
+			$value ->isLog = $islog;
+			$value->del();
+		}
+		return true;
+	}
+	public function del(){
+		$result = parent::del();
+		if ($result) {
+			 $this->_del();
+		}
+		return $result;		
+	}
+
+	public function moveContact($arr){
+		$tags = $this->getContact();
+		foreach ($tags as $key => $value) {
+			$value ->isLog = false;
+			foreach ($arr as $k2 => $v2) {
+				$value->$k2 = $v2;
+			}
+			$value->save();
+		}
+		return true;
+	}	
+
+	public function setRestore(){
+		$result = parent::setRestore();
+		if ($result) {
+			$tags = $this->getContact();
+			foreach ($tags as $key => $value) {
+				$value ->isLog = false;
+				$value->setRestore();
+			}
+		}
+		return $result;
 	}	
 }

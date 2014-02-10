@@ -60,12 +60,11 @@ if (count($nps)>0) {
   }
 }    
 }
-
-
 $this->widget('application.components.MyMenu',array(
       'htmlOptions'=>array('class'=>'buttons'),
       'items'=> $items ,
 ));
+
 ?>  
 </div>
 <div class="block-fluid">
@@ -75,14 +74,20 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix">
     <?php echo $form->passwordFieldRow($model, 'user_pass', array('size'=>60,'maxlength'=>64)); ?>
 </div><div class="row-form clearfix">
+    <?php echo $form->dropDownListRow($model,'branch',$this->branchs); ?>
+</div><div class="row-form clearfix">
     <?php echo $form->textFieldRow($model, 'user_nicename', array('size'=>60,'maxlength'=>64)); ?>
 </div><div class="row-form clearfix">
     <?php echo $form->textFieldRow($model, 'user_email', array('size'=>60,'maxlength'=>100)); ?>
 </div><div class="row-form clearfix">
 	<?php echo $form->textAreaRow($model, 'note', array('maxlength'=>255)); ?>
+    </div><div class="row-form clearfix">    
+    <?php echo $form->checkBoxRow($model, 'isbranch'); ?>
   </div><div class="row-form">
   <div class="controls">
-      <?php echo CHtml::checkBox('Manage[user_status]',$model->user_status==1, array('class'=>'ibtn','value'=>1)); ?>
+      <?php 
+          echo CHtml::checkBox('Manage[user_status]',$model->user_status==1, array('class'=>'ibtn','value'=>1)); 
+      ?>
   </div>
     </div>    
 	</div>

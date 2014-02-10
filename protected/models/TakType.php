@@ -79,7 +79,10 @@ class TakType extends CActiveRecord
 		if ($content)
 		{
 			$className = 'label ';
-			$className .= self::$_items['label'][$typeid];
+			if (isset(self::$_items['label'][$typeid])) {
+				$className .= self::$_items['label'][$typeid];
+			}
+			
 			$content = CHtml::tag('span', array('class'=>$className), $content);
 		}
 		return $content;

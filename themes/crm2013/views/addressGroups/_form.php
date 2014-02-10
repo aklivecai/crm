@@ -36,7 +36,7 @@ $this->widget('application.components.MyMenu',array(
 		<?php echo $form->textFieldRow($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix">
-		<?php echo $form->radioButtonListRow($model,'display',Taktype::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
+		<?php echo $form->radioButtonListRow($model,'display',TakType::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>

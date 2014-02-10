@@ -552,10 +552,12 @@ class AuthItemController extends RController
 		if( $this->_model===null )
 		{
 			$itemName = $this->getItemName();
+
 			
 			if( $itemName!==null )
 			{
 				$this->_model = $this->_authorizer->authManager->getAuthItem($itemName);
+				
 				$this->_model = $this->_authorizer->attachAuthItemBehavior($this->_model);
 			}
 

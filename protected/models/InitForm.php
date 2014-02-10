@@ -61,9 +61,26 @@ class InitForm extends CFormModel
 			
 	}
 
-	public function install($admin='admin',$password='c0b266594634df51f07796e7ca31107e'){
-		$connection = Yii::app()->db;
-		$transaction = $connection->beginTransaction();
+	public function install($admin='admin',$password=false){
+		$connection = Tak::getDb('db');
+		$transaction = $connection->getCurrentTransaction();
+		if (!$password) {
+			$password = 'c0b266594634df51f07796e7ca31107e';
+			$salt = 'gXmz';
+		}
+		if (!Tak::isValidMd5($password)) {
+			$mod = new Manage;
+			$salt = $mod->generateSalt();
+			$password = $mod->hashPassword($password,$salt); 
+		}
+		   if ($transaction !== null) {
+		        // Transaction already started outside
+		        $transaction = null;
+		    }
+		    else {
+		        // There is no outer transaction, creating a local one
+		        $transaction = $connection->beginTransaction();
+		    }		
 		$sqls = array();
 		try
 		{
@@ -73,7 +90,6 @@ class InitForm extends CFormModel
 			$arr = array(
 				':time'=>$time,
 				':ip'=>$ip,
-				':userid'=>$itemid,
 				':itemid'=>$itemid,
 				':uname'=>$this->username,
 				':fromid'=>$this->fromid,
@@ -84,14 +100,35 @@ class InitForm extends CFormModel
 				':tab_type'=>'{{type}}',
 				':tab_admin_log'=>'{{admin_log}}',
 				':tab_test_memeber'=>'{{test_memeber}}',
+				':salt' =>$salt,
 			);
-			
+
+
+			if (is_string($admin)) {
+				$admin = array($admin);
+				if ($admin[0]!='admin') {
+					$admin[] = 'admin';
+				}
+			}
+
+			foreach ($admin as $key => $value) {
+				if ($value!='admin') {
+					$arr[":userid$key"] = $this->fromid;
+				}else{
+					$arr[":userid$key"] = Tak::fastUuid();
+				}				
+				$arr[":admin$key"] = $value;
 			//插入管理帐号
-			$sqls[] = "INSERT INTO :tab_Manage VALUES(:fromid,:userid,'$admin','$password','gXmz','管理员','',:time,0,0,0,0,1,'','',0);";
+		    $sqls[] = "INSERT INTO :tab_Manage VALUES(:fromid,:userid$key,0,0,':admin$key','$password',':salt','管理员:admin$key','',:time,0,0,0,0,1,'','',0);";
 
 		    //插入权限
-		    $sqls[] = "INSERT INTO :tab_rabc (`itemname`,`fromid`,`userid`,`bizrule`,`data`) VALUES ('Admin',:fromid, :userid, '', 'N;');";
-
+		    $sqls[] = "INSERT INTO :tab_rabc (`itemname`,`fromid`,`userid`,`bizrule`,`data`) VALUES ('Admin',:fromid, :userid$key, '', 'N;');";
+		    		// Tak::KD($sqls);
+			}
+			$arr[':userid'] = $this->fromid;
+			// Tak::KD($admin);
+			// Tak::KD($arr);
+			
 		    // #通讯录组
 		    $sqls[] = "INSERT INTO :tab_AddressG (`address_groups_id`, `fromid`, `name`, `display`, `add_time`, `add_us`, `add_ip`, `modified_time`, `modified_us`, `modified_ip`, `note`, `listorder`, `status`) VALUES (:itemid, :fromid, '销售部', 0, :time, :userid, 0, 0, 0, 0, '', 0, 1);";
 
@@ -101,20 +138,23 @@ class InitForm extends CFormModel
 		    //产品分类
 		    $sqls[] = " INSERT INTO :tab_type (`typeid`, `fromid`, `typename`, `item`, `listorder`) VALUES (:time, :fromid, '默认分类', 'product', 0);";
 
-		    $sqls[] = " INSERT INTO :tab_admin_log (`itemid`, `fromid`, `manageid`, `user_name`, `qstring`, `info`, `ip`, `add_time`) VALUES (:userid, :fromid, :userid, ':uname', '', '激活初始化数据', :ip, :time);";
+		    $sqls[] = " INSERT INTO :tab_admin_log (`itemid`, `fromid`, `manageid`, `user_name`, `qstring`, `info`, `ip`, `add_time`) VALUES (:itemid, :fromid, :userid, ':uname', '', '激活初始化数据', :ip, :time);";
 
 		    //开始激活用户时间
 		    $sqls[] = " UPDATE :tab_test_memeber SET  `active_time` =  ':time' WHERE `itemid` = :fromid;";
 
 		    foreach ($sqls as $value) {
 		    	$sql = strtr($value,$arr);
+		    	// Tak::KD($sql);
 		    	$connection->createCommand($sql)->execute();
 		    }
 		}
 		catch(Exception $e) // 如果有一条查询失败，则会抛出异常
 		{
-		    $transaction->rollBack();
-		    return false;
+			$transaction->rollBack();
+			// Tak::KD($e,1);
+			// Tak::KD('ERROR!!!!!');		    	
+		    	return false;
 		}		
 		return true;
 	}

@@ -29,6 +29,13 @@
 		<?php echo $form->textField($model,'note',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'note'); ?>
 	</div>
+	<?php if(Tak::getAdmin()):?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>	
+	<?php endif ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? Tk::g('添加') : Tk::g('Save')); ?>

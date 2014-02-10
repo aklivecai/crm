@@ -9,6 +9,10 @@ class DefaultController extends JController
 			$this->checkAccess();
 		}
 	}
+	public function allowedActions()
+	{
+	 	return 'login, error';
+	}	
 
 	public function actionIndex()
 	{
@@ -45,16 +49,22 @@ class DefaultController extends JController
             $model->attributes=$_POST['MailForm'];  
               
             if($model->validate()) {     
-				Yii::app()->mailer->Host = 'smtp.vip.163.com';
+				
 				Yii::app()->mailer->CharSet = "UTF-8";  
 				Yii::app()->mailer->IsHTML(true);
 				Yii::app()->mailer->IsSMTP();
 				Yii::app()->mailer->SMTPAuth = true;				
 				Yii::app()->mailer->Port = '25';
+				Yii::app()->mailer->Host = 'smtp.vip.163.com';
 				Yii::app()->mailer->Username = '9juren002';
 				Yii::app()->mailer->Password = 'juren002';
 
 				Yii::app()->mailer->From = '9juren002@vip.163.com';
+
+				// Yii::app()->mailer->Host = 'smtp.126.com';
+				// Yii::app()->mailer->Username = 'z01926';
+				// Yii::app()->mailer->Password = 'cb19880627';
+				// Yii::app()->mailer->From = 'z01926@126.com';
 
 				Yii::app()->mailer->FromName = $model->from;
 				Yii::app()->mailer->AddReplyTo($model->from);
@@ -95,6 +105,7 @@ class DefaultController extends JController
 		$model = new LoginForm;
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
+			$_POST['LoginForm']['fromid'] = 1;
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
@@ -108,6 +119,7 @@ class DefaultController extends JController
 			}else{
 				$fromid = 1;
 			}
+			$fromid = 1;
 			$_POST['LoginForm']['fromid'] = $fromid;
 			$model->attributes = $_POST['LoginForm'];
 			if($model->validate() && $model->login()){
@@ -117,10 +129,10 @@ class DefaultController extends JController
 		}
 		if ($itemid) {
 			$model->fromid = Tak::getCryptKey($itemid); 
+
 		}else{
 			$itemid = Tak::setCryptKey(1);
 		}		
-		
 		$model->attributes = array('fromid'=>$itemid);
 		// display the login form
 		$this->render('login',array('model'=>$model));

@@ -41,7 +41,7 @@
     'type'=>'primary',
     'label'=>'还没有部门,点击录入',
     'block'=>true,
-    'url' => Yii::app()->createUrl('addressGroups/create',array('type'=>'product','returnUrl'=>Yii::app()->request->url)),
+    'url' => Yii::app()->createUrl('AddressGroups/create',array('type'=>'product','returnUrl'=>Yii::app()->request->url)),
  )); 
  }	
 ?>
@@ -51,10 +51,13 @@
 		<?php echo $form->textFieldRow($model,'position',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->radioButtonListRow($model,'sex',Taktype::items('sex'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
+		<?php echo $form->radioButtonListRow($model,'sex',TakType::items('sex'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+	</div>
+	<div class="row-form clearfix" >
+		<?php echo $form->textFieldRow($model,'telephone',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'phone',array('size'=>60,'maxlength'=>255)); ?>
@@ -74,7 +77,7 @@
 	</div>
 	-->
 	<div class="row-form clearfix">
-		<?php echo $form->radioButtonListRow($model,'display',Taktype::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
+		<?php echo $form->radioButtonListRow($model,'display',TakType::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>')); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255)); ?>

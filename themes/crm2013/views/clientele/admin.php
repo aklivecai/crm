@@ -44,7 +44,7 @@ $columns = array(
 		array(
 			'name'=>'last_time',
 			'value'=>'Tak::timetodate($data->last_time,4)',
-            'headerHtmlOptions'=>array('style'=>'width: 85px'),
+            		'headerHtmlOptions'=>array('style'=>'width: 85px'),
 		),
 		array(
 			'name' => 'industry',

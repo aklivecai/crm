@@ -50,7 +50,7 @@ $this->breadcrumbs=array(
   $optionsAction[] = '---';
   $optionsAction['-1'] = array('label'=>'自定义','htmlOptions'=>array('style'=>'color:red'));
   
-  if ($model->status<999&&$model->status>100) {  	
+  if ($model->status<999&&$model->status>100) { 
   	$optionsAction['-1']['url'] ='javascript:setStatus(0,"自定义");';
   	$optionsAction[] = array('label'=>'关闭','url'=>'javascript:setStatus("","");');
   }else{
@@ -59,6 +59,11 @@ $this->breadcrumbs=array(
   }
   
 ?>
+
+<div class="tak-order-status">
+	<?php echo CHtml::image($this->getAssetsUrl().'img/tak/'.$model->status.'.png') ?>
+</div>
+
 <div class="well">
 
 <strong><?php echo $model->getAttributeLabel('itemid');?></strong>：

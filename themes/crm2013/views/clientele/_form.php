@@ -30,9 +30,11 @@ $this->widget('application.components.MyMenu',array(
 	<div class="row-form clearfix" style="border-top-width: 0px;">
 		<?php echo $form->textFieldRow($model,'clientele_name',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
+	<!--
 	<div class="row-form clearfix">
-		<?php echo $form->dropDownListRow($model,'rating',TakType::items('rating')); ?>
+		<?php  $form->dropDownListRow($model,'rating',TakType::items('rating')); ?>
 	</div>
+	-->
 	<div class="row-form clearfix">
 		<?php echo $form->dropDownListRow($model,'annual_revenue',TakType::items('annual_revenue')); ?>
 	</div>

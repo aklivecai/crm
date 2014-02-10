@@ -24,33 +24,23 @@ $items = Tak::getListMenu();
 
 <div class="block-fluid clearfix">
 <?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
-<?php $widget = $this->widget('bootstrap.widgets.TbGridView', array(
-    'type'=>'striped bordered condensed',
-    'id' => 'list-grid',
-	'dataProvider'=>$model->search(),
-	'template'=>"{items}",
-	'enableHistory'=>true,
-    'loadingCssClass' => 'grid-view-loading',
-    'summaryCssClass' => 'dataTables_info',
-    'pagerCssClass' => 'pagination dataTables_paginate',
-    'template' => '{pager}{summary}<div class="dr"><span></span></div>{items}{pager}',
-    'ajaxUpdate'=>true,    //禁用AJAX
-    'enableSorting'=>true,
-    'summaryText' => '<span>共{pages}页</span> <span>当前:{page}页</span> <span>总数:{count}</span> ',
-	'filter'=>$model,
-	'pager'=>array(
-		'header'=>'',
-		'maxButtonCount' => '5',
-		'hiddenPageCssClass' => 'disabled'
-		,'selectedPageCssClass' => 'active disabled'
-		,'htmlOptions'=>array('class'=>'')
-	),
-	'columns'=>array(
-		Tak::getAdminPageCol()		
-		,array(
+<?php 
+	
+	$this->renderPartial('_search',array('model'=>$model,));
+
+$options = Tak::gredViewOptions();
+$options['dataProvider'] = $model->search();
+$columns = array(	
+		array(
 			'name'=>'name',
 			'type'=>'raw',
-			'value'=>'$data->getLink()',
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
+			'value'=>'$data->getHtmlLink()',
+		)
+		,array(
+			'name'=>'telephone',
+			'type'=>'raw',
+            'sortable' => false,
 		)
 		,array(
 			'name'=>'phone',
@@ -63,33 +53,24 @@ $items = Tak::getListMenu();
             'sortable' => false,
 		)
 		,array(
-			'name'=>'address',
-			'type'=>'raw',
-             'filter' => false,
-            'sortable' => false,
-		)
-		,array(
 			'name'=>'position',
 			'type'=>'raw',
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
              'filter' => false,
             'sortable' => false,
 		)
 		,array(
 			'name' => 'groups_id',
-			'htmlOptions'=>array('style'=>'width: 50px'),
 			'type'=>'raw',
+			'headerHtmlOptions'=>array('style'=>'width: 85px'),
 			'value'=>'TakType::item("AddressGroups",$data->groups_id)',
 			'filter'=>TakType::items('AddressGroups'), 
-		)	
-		,array(
-			'name' => 'display',
-			'htmlOptions'=>array('style'=>'width: 50px'),
-			'value'=>'TakType::getStatus("display",$data->display)',
-			'type'=>'raw',
-			'filter'=>TakType::items('display'), 
 		)
-	),
-)); 
+	,
+	);
+	$columns = array_merge_recursive(array($options['columns']),$columns);
+	$options['columns'] = $columns;
+	$widget = $this->widget('bootstrap.widgets.TbGridView', $options); 
 ?>
 		</div>
 	</div>

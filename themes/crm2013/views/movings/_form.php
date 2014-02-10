@@ -11,25 +11,6 @@ if ($model->isNewRecord) {
 
 $items = Tak::getEditMenu($model->itemid,$model->isNewRecord);
 
-$strProducts =  false;
-$products = $_POST['Product'];
-
-
-if (!$products&&$model->itemid>0) {
-  $products = ProductMoving::getListByMovingid($model->itemid);
-}
-
-if ($products) {
-  $strProducts = '';
-  $str = '<tr id=":itemid"><td class="info"><span>:name</span></td>
-    <td><input type="number" class="stor-txt" name="Product[number][:itemid]" required="required" value=":value"/></td>
-   <td><input name="Product[note][:itemid]" type="text" class="stor-txt" value=":note"/></td>
-    <td><a href="#"><span class="icon-remove"></span></a></td>
-  </tr>';
-  foreach ($products as $key => $value) {
-    $strProducts.=strtr($str,array(':itemid'=>$key,':value'=>$value['numbers'],':note'=>$value['note'],':name'=>$value['name'],)); 
-}
-}
 ?>
 
 <div class="page-header">
@@ -57,7 +38,7 @@ $this->widget('application.components.MyMenu',array(
     <?php echo $form->hiddenField($model,'typeid'); ?>
     <div class="dr"><span></span></div>
     <?php echo $form->errorSummary($model,null,null,array('class'=>'alert alert-error'));?>
-    <div class="span6">
+    <div class="span4">
       <div class="block-fluid without-head">
         <div class="toolbar nopadding-toolbar clear clearfix">
           <h4>单据信息</h4>
@@ -72,7 +53,7 @@ $this->widget('application.components.MyMenu',array(
         <div class="row-form clearfix"> <span class="span3"><?php echo $form->labelEx($model,'note'); ?></span> <span class="span9"><?php echo $form->textArea($model,'note',array('size'=>60,'maxlength'=>255)); ?></span> </div>
       </div>
     </div>
-    <div class="span5">
+    <div class="span7">
       <div class="block-fluid without-head">
         <div class="toolbar nopadding-toolbar clearfix">
           <h4>产品明细</h4>
@@ -81,21 +62,32 @@ $this->widget('application.components.MyMenu',array(
           <thead>
             <tr>
               <th>产品</th>
-              <th width="80">数量</th>
-              <th width="80">备注</th>
+              <th >规格</th>
+              <th >材料</th>
+              <th >颜色</th>
+              <th width="65">单价</th>
+              <th width="50">数量</th>            
+              <th width="50">备注</th>
               <th width="30">移除</th>
             </tr>
           </thead>
           <tbody class="not-mpr" id="product-movings">
-          <?php echo $strProducts;?>
+            <tr id="data-loading">
+              <td colspan="8" class="grid-view-loading">...</td>
+            </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3">
+              <td colspan="6">
                     <div>
-                            <input type="text" class="select-prsonid" placeholder="搜索产品" />
+                            <input type="text" class="sele1ct-product" placeholder="搜索产品" />
                     </div>
               </td>
+            <td colspan="2" class="tar">
+            <span class="kr">
+      <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'link', 'label'=>Tk::g($action))); ?>
+      </span>
+            </td>
             </tr>
           </tfoot>
         </table>
@@ -104,12 +96,42 @@ $this->widget('application.components.MyMenu',array(
 </div>
 <div class="footer tar">
   <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'submit', 'label'=>Tk::g($action))); ?>
-
   <?php $this->widget('bootstrap.widgets.TbButton', array('size'=>'large','buttonType'=>'reset', 'label'=>Tk::g('Reset'))); ?>
 </div>
 
 <?php 
   $this->endWidget(); 
-  $this->regScriptFile('k-load-movings.js', CClientScript::POS_END);
+  $this->regScriptFile('k-load-movings.js?t=1', CClientScript::POS_END);
+
+
+$strProducts =  false;
+$products = isset($_POST['Product'])?$_POST['Product']:array();
+
+
+if (!$products&&$model->itemid>0) {
+  $products = ProductMoving::getListByMovingid($model->itemid);
+}
+
+if ($products) {
+  $strProducts = array();
+  foreach ($products as $key => $value) {
+    $strProducts[] = array(
+        'itemid'=>$key,
+        'spec'=>$value['spec'],
+        'material'=>$value['material'],
+        'number'=>$value['number'],
+        'note'=>$value['note'],
+        'name'=>$value['name'],
+        'price'=>$value['price'],
+      );
+  }
+  $script = 'takson =' ;
+  $script .= json_encode($strProducts);  
+}  
+$script .=";";
+Tak::regScript('bodyend',$script,CClientScript::POS_END);
 ?>
 </div>
+66849000-2
+<!-- 域名已被 musiaiya.com (DNSZone)占用 -->
+01:30miao

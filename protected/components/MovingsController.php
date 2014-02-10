@@ -9,12 +9,12 @@ class MovingsController extends Controller
 	public function init()  
 	{     
 		$this->dir = '//movings/';
-    	parent::init();
-    	$this->modelName = 'Movings';
-    	$this->typename = $typename = Tak::getMovingsType($this->type);
-    	$_type = $typename.'-type';
-    	$_type = strtolower($_type);
-    	$this->cates = TakType::items($_type);
+	    	parent::init();
+	    	$this->modelName = 'Movings';
+	    	$this->typename = $typename = Tak::getMovingsType($this->type);
+	    	$_type = $typename.'-type';
+	    	$_type = strtolower($_type);
+	    	$this->cates = TakType::items($_type);
 	}
 	public function loadModel($id=false,$recycle=false)
 	{

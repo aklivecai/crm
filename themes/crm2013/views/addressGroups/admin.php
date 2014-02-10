@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
  echo $form->textFieldRow($model,'listorder',array('size'=>60,'maxlength'=>255)); 
 
  echo $form->textAreaRow($model,'note',array('size'=>60,'maxlength'=>255));
- echo $form->radioButtonListRow($model,'display',Taktype::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>'));
+ echo $form->radioButtonListRow($model,'display',TakType::items('display'),array('class'=>'','template'=>'<label class="checkbox inline">{input}{label}</label>'));
   ?>
 
 <div class="tar">

@@ -62,14 +62,41 @@ class AssignmentController extends RController
 	*/
 	public function actionView()
 	{
-		$criteria = array();
 
-		   $criteria['condition'] = ' fromid = '.Yii::app()->user->fromid;
+			$fromid = AK::getFormid();
+			$criteria = new CDbCriteria;
+		   $criteria->compare('fromid',$fromid);
+		   $criteria->compare('manageid','<>'.$fromid);
+		   $criteria->compare('user_name','<>admin');
 
-		   $criteria['condition'].= " AND user_name<>'admin'";
+		$module = new AssignmentForm();
 
-// 找到管理员ID，然后屏蔽掉
-/*		   	if(Yii::app()->user){
+		$assignSelectOptions = Rights::getAuthItemSelectOptions(null);
+		array_unshift($assignSelectOptions,'操作');
+		$module->unsetAttributes();
+
+		$get = Tak::getParam('AssignmentForm',false);
+
+		if($get){
+			$module->attributes = $get;
+			if($module->itemname&&$module->itemname!='Authenticated') {
+        $comm = Ak::getDb('db')->createCommand("SELECT `userid` FROM {{Rbac_Authassignment}}  AS rbac WHERE fromid=$fromid AND itemname='{$module->itemname}'");
+        $tags = $comm->queryColumn();
+				$criteria->addInCondition("manageid",$tags);
+			}
+			if ($module->username) {
+
+				$sql = "(user_name LIKE :uname OR user_nicename LIKE :uname )";
+				$criteria->addCondition($sql);
+				 $criteria->params[':uname']="%$module->username%";  
+				// $criteria->compare('user_nicename',$module->username,'OR');
+			}
+			
+		}
+
+
+		// 找到管理员ID，然后屏蔽掉
+		/*	if(Yii::app()->user){
 		   		$criteria['condition'] .= ' AND userid!='.Yii::app()->user->id;
 		   	}*/
         //$criteria = new CDbCriteria;
@@ -94,7 +121,9 @@ class AssignmentController extends RController
 
 		// Render the view
 		$this->render('view', array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider' => $dataProvider,
+			'module' => $module,
+			'assignSelectOptions' => $assignSelectOptions,
 		));
 	}
 
@@ -223,8 +252,8 @@ class AssignmentController extends RController
 		$connection=Yii::app()->db;   // 假设你已经建立了一个 "db" 连接
 		// 如果没有，你可能需要显式建立一个连接：
 		$sql = 'SELECT name,t1.type,description,t1.bizrule,t1.data,weight
-							FROM {{Rbac_Authitem}} t1
-							LEFT JOIN {{Rbac_Rights}} t2 ON name=itemname WHERE t1.type=2 	
+							FROM {{rbac_authitem}} t1
+							LEFT JOIN {{rbac_rights}} t2 ON name=itemname WHERE t1.type=2 	
 							ORDER BY t1.type DESC, weight ASC';
 		$command=$connection->createCommand($sql);
 		$dataReader=$command->query();

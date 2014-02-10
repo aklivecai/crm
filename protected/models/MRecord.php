@@ -1,12 +1,12 @@
 <?php
 class MRecord extends CActiveRecord
 {
-	public $mName = "" ;/*当前类名字*/
+	public $mName = '' ;/*当前类名字*/
 	public $sName = "" ;/*显示名字*/
 	
 	public $isLog = true;/*是否记录日志*/
 
-    private $_defaultScopeDisabled = false; /* Flag - whether defaultScope is disabled or not*/
+      private $_defaultScopeDisabled = false; /* Flag - whether defaultScope is disabled or not*/
 
 	protected $tableName = '';/*表名*/
 
@@ -37,6 +37,14 @@ class MRecord extends CActiveRecord
           $this->_defaultScopeDisabled = true;
           return $this;
     }
+
+    public function getConAlias($sql){
+    	if (property_exists($this,'tableAlias')&&$this->tableAlias) {
+    		$alias = $this->tableAlias;
+    		$sql = $alias.'.'.$sql;
+    	}
+    	return $sql;
+    }  
 
     public function getDefaultScopeDisabled() {
         return $this->_defaultScopeDisabled;
@@ -72,12 +80,13 @@ class MRecord extends CActiveRecord
 			}
 		}
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria'=> $criteria,
 			'pagination' => array( 
 				'pageSize' => $pageSize, 
 			), 
 		));
 	}
+
 
 	public function setCriteriaTime(&$criteria,$cols){
 		$arr = is_array($cols)?$cols:array($cols);
@@ -127,9 +136,8 @@ class MRecord extends CActiveRecord
 	public function checkRepetition($attribute,$params)
 	{
 
-		$sql = array("LOWER(:col)=':val'");
+		$sql = array("LOWER(:col)=:val");
 		$arr = array(
-			':val' => strtolower($this->$attribute),
 			':col' => $attribute,
 		);
 		if ($this->primaryKey>0) {
@@ -147,7 +155,8 @@ class MRecord extends CActiveRecord
 		// Tak::KD(strtr($sql,$arr),1);
 		// Tak::KD($arr,1);
 		// 查找满足指定条件的结果中的第一行
-		$m = $this->find(strtr($sql,$arr));
+		$sql = strtr($sql,$arr);
+		$m = $this->find($sql,array(':val' => strtolower($this->$attribute)));
 		// Tak::KD($m,1);
 
 		if($m!=null){
@@ -165,7 +174,8 @@ class MRecord extends CActiveRecord
 	}	
 
 	//保存数据前
-	protected function beforeSave($isok=false){
+	protected function beforeSave(){
+		$isok = func_num_args()>0&&func_get_arg(0);		
 	    $result = parent::beforeSave();
 	    if(!$isok&&$result){
 	        //添加数据时候
@@ -248,9 +258,17 @@ class MRecord extends CActiveRecord
 	public function getLinkName($key=false){
 		$result = '';
 		$key = $key?$key:$this->linkName;
-		if ($key!==null
-			&&$this->hasAttribute($key)) {
-			$result = $this->{$key};	
+		if ($key!==null) {
+	        if (!is_array($key)) {
+	            $key = array($key);
+	        }
+	        $t = array();
+	        foreach ( $key as $k1 => $v1) {
+	        	if ($this->hasAttribute($v1)) {
+	        		$t[]= $this->$v1;	
+	        	}
+	        }
+			$result = join('-',$t);	
 		}
 		return $result;
 	}
@@ -262,7 +280,7 @@ class MRecord extends CActiveRecord
 		$link = Yii::app()->createUrl(strtolower($this->mName).'/'.$action,array('id'=>$itemid));
 		return $link;
 	}		
-	public function getHtmlLink($name=false,$itemid=false,$htmlOptions=array(),$action='view')
+	public function getHtmlLink($name=false,$itemid=false,array $htmlOptions=array(),$action='view')
 	{
 		if (!$name) {
 			$name = $this->getLinkName();
@@ -330,24 +348,32 @@ class MRecord extends CActiveRecord
 		// $sqlWhere = array_filter($sqlWhere);
 		$sql1 = ':itemid :opt :current_id';
 		$sqlWhere = array($this->getDefaultScopeSql());
+		
 		foreach ($_arr as $key => $value) {
 		  $sqlWhere['w'] = str_replace(':opt',$value['opt'],$sql1);
 		  $_sqlWhere = join(" AND ",$sqlWhere);
-		  $arrSql[] = " SELECT * FROM (SELECT $col,'$key' AS `ikey` FROM :tableName WHERE $_sqlWhere ORDER BY :itemid {$value['order']} LIMIT $top) AS `$key`";	
+		  $arrSql[] = " SELECT * FROM (SELECT $col,'$key' AS `ikey` FROM :tableName WHERE $_sqlWhere ORDER BY :itemid {$value['order']} LIMIT $top) AS `$key` ";
 		  $tags[$key] = array();
 		}
+
 		$sql = join(' UNION ALL ',$arrSql);
+
 		$sql = strtr($sql,array(
 			':tableName'=>$this->tableName()
 			,':itemid' => $this->primaryKey()
 			,':current_id' => $this->primaryKey
 		));
+
+		if ($this->tableAlias) {
+			$sql = str_replace(' '.$this->tableAlias.'.', ' ', $sql);
+		}
 		$dataReader = Yii::app()->db->createCommand($sql)->query();
 		
 		foreach($dataReader as $row) {
 			$tags[$row['ikey']][$row[$this->primaryKey()]] = $row;
 		}	
 		$tags = array_filter($tags);
+		
 		if (count($tags)>0) {
 			$result = $tags;
 		}

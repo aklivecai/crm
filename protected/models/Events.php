@@ -145,7 +145,7 @@ class Events extends ModuleRecord
 	    return $result;
 	}
 
-	public function getLink($itemid=false){
+	public function getLink($itemid=false,$action='view'){
 		if (!$itemid) {
 			$itemid = $this->itemid;
 		}		
@@ -161,7 +161,7 @@ class Events extends ModuleRecord
 		return $link;	
 	}
 
-	public function getHtmlLink($name=false,$itemid=false)
+	public function getHtmlLink($name=false,$itemid=false,array $htmlOptions=array(),$action='view')
 	{
 		if (!$name) {
 			$name = $this->subject;

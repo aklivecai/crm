@@ -9,7 +9,7 @@ $items = array(
 		'address',
 		'sex'=>array('name'=>'sex'
                 ,'type'=>'raw',
-                'value'=>TakType::getStatus('sex',$data->sex),),
+                'value'=> TakType::getStatus('sex',$data->sex),),
 	);
 
 if (!$isportion) {

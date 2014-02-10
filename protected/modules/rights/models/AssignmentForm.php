@@ -9,6 +9,7 @@
 class AssignmentForm extends CFormModel
 {
 	public $itemname;
+	public $username;
 
 	/**
 	 * Declares the validation rules.
@@ -16,7 +17,7 @@ class AssignmentForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('itemname', 'safe'),
+			array('itemname,username', 'safe'),
 		);
 	}
 
@@ -27,6 +28,7 @@ class AssignmentForm extends CFormModel
 	{
 		return array(
 			'itemname' => Rights::t('core', 'Authorization item'),
+			'username' => Rights::t('core', '用户名字或者登录帐号'),
 		);
 	}
 }

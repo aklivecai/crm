@@ -171,7 +171,7 @@ class Contact extends ModuleRecord
 	    return $result;
 	}
 
-	public function getHtmlLink($name=false,$itemid=false)
+	public function getHtmlLink($name=false,$itemid=false,array $htmlOptions=array(),$action='view')
 	{
 		if (!$name) {
 			$name = $this->iContactpPrson->nicename;

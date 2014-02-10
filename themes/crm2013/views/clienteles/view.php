@@ -11,8 +11,8 @@ $items = array();
 foreach ($model->getNP(true) as $key => $value) {
   $items[] = array('icon'=>'isw-bookmark','label'=>Tk::g($key),'url'=>array('view','id'=>$value));
 }
-$items[] = array('icon'=>'isw-left','label'=>Tk::g('Return'),'url'=>array('index'));
-$items[] = array('url'=>'#','itemOptions'=>array('class'=>'toggle'));	
+  $items[] = array('icon'=>'isw-left','label'=>Tk::g('Return'),'url'=>Yii::app()->request->urlReferrer);
+  $items[] = array('url'=>'#','itemOptions'=>array('class'=>'toggle'));	
 ?>
 
 <div class="row-fluid">
@@ -34,7 +34,6 @@ $items[] = array('url'=>'#','itemOptions'=>array('class'=>'toggle'));
 		'clientele_name',
 		array('name'=>'rating','type'=>'raw', 'value'=>TakType::getStatus('rating',$model->rating),),
 		array('name'=>'manageid','type'=>'raw', 'value'=>$model->iManage->user_nicename),
-		array('name'=>'annual_revenue','type'=>'raw', 'value'=>TakType::getStatus('annual_revenue',$model->annual_revenue),),
 		array('name'=>'industry','type'=>'raw', 'value'=>TakType::getStatus('industry',$model->industry),),
 		array('name'=>'profession','type'=>'raw', 'value'=>TakType::getStatus('profession',$model->profession),),
 		array('name'=>'origin','type'=>'raw', 'value'=>TakType::getStatus('origin',$model->origin),),

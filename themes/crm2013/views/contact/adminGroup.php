@@ -22,11 +22,9 @@ $items = Tak::getListMenu();
 		));
 		?>                                       
 	</div>	
-
 	<div class="block-fluid clearfix">
-
-
 <?php 
+
 $this->renderPartial('_search',array('model'=>$model,'route'=>'contact/admin'));
 
 $options = Tak::gredViewOptions();
@@ -35,12 +33,12 @@ $columns = array(
 		array(
 			'name'=>'clienteleid',
 			'type'=>'raw',
-			'value'=>'$data->iClientele->clientele_name'
+			'value'=>'$data->iClientele?$data->iClientele->clientele_name:""'
 		)		
 		,array(
 			'name'=>'prsonid',
 			'type'=>'raw',
-			'value'=>'$data->iContactpPrson->nicename'
+			'value'=>'$data->iContactpPrson?$data->iContactpPrson->nicename:""'
 		)
 		,array(
 			'name'=>'contact_time',

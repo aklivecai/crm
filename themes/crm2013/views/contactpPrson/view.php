@@ -7,6 +7,15 @@ $this->breadcrumbs=array(
 	$model->itemid,
 );
 	$items = Tak::getViewMenu($model->itemid);
+	$items['Create']['url'] = array('create','ContactpPrson[clienteleid]'=>$model->clienteleid);
+
+$_itemis = array('---',
+	'viewCompay' => array('label'=>Tk::g(array('View','Clientele')),'url'=>array('Clientele/view','id'=>$model->clienteleid)),
+	'viewContact' => array('label'=>Tk::g(array('View','Contact')),'url'=>array('Contact/admin','Contact[prsonid]'=>$model->itemid,'Contact[clienteleid]'=>$model->clienteleid)),
+	'createContact' => array('label'=>Tk::g(array('Create','Contact')),'url'=>array('Contact/create','Contact[prsonid]'=>$model->itemid,'Contact[clienteleid]'=>$model->clienteleid)),
+);
+ array_splice($items,count($items)-2,0,$_itemis);  	
+ 
 ?>
 
 <div class="block-fluid">

@@ -32,15 +32,15 @@ class RightsModule extends CWebModule
 	/**
 	* @property string the name of the user model class.
 	*/
-	public $userClass = 'User';
+	public $userClass = 'Manage';
 	/**
 	* @property string the name of the id column in the user table.
 	*/
-	public $userIdColumn = 'id';
+	public $userIdColumn = 'user_name';
 	/**
 	* @property string the name of the username column in the user table.
 	*/
-	public $userNameColumn = 'username';
+	public $userNameColumn = 'manageid';
 	/**
 	* @property boolean whether to enable business rules.
 	*/

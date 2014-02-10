@@ -34,6 +34,8 @@ $template ="{pager}".CHtml::dropDownList('pageSize'
       <th>{$mContact->getAttributeLabel('note')}</th>    
       <th width='40px'>{$mContact->getAttributeLabel('accessory')}</th>      
       </tr> </thead> <tbody>{items}</tbody> </table>" ;
+
+      // with('iContactpPrson')
  $this->widget('bootstrap.widgets.TbListView'
     , array(
         'id' =>'list-views',
@@ -45,6 +47,5 @@ $template ="{pager}".CHtml::dropDownList('pageSize'
         'template'=>$template,
         'htmlOptions'=>array('class'=>''),
         'emptyText'=>'<tr><td colspan="7" class="not-data"></td></tr>',
-        'viewData'=>array('cates'=>$cates),    
   ));
      ?>    	

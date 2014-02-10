@@ -46,11 +46,11 @@ $types = TakType::items('contact-type');
 		<?php echo $form->dropDownListRow($model,'stage',TakType::items('contact-stage')); ?>
 	</div>
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date','data-type'=>'now','data-type'=>'time')); ?>
+		<?php echo $form->textFieldRow($model,'contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date','data-type'=>'now','data-type'=>'time','data-date-max'=>'now')); ?>
 	</div>
 
 	<div class="row-form clearfix" >
-		<?php echo $form->textFieldRow($model,'next_contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date','data-type'=>'time')); ?>
+		<?php echo $form->textFieldRow($model,'next_contact_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date','data-type'=>'time','data-date-min'=>'now')); ?>
 	</div>
 	<div class="row-form clearfix" >
 		<?php echo $form->textFieldRow($model,'next_subject',array('size'=>60,'maxlength'=>255)); ?>

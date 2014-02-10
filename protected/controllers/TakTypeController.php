@@ -8,20 +8,20 @@ class TakTypeController extends Controller
 	public function init()  
 	{     
 		parent::init();
-    	$this->modelName = 'TakType';
-    	$this->primaryName = 'typeid';
-    	$type = Yii::app()->request->getParam('type',false);
-    	if ($type) {
-    		$arr = Tak::getTakTypes();
-			if($arr[$type]){
-				$this->type = $arr[$type];
-			}
-			$this->typeUrl = $this->createUrl('admin',array('type'=>$this->type['type']));
-			return ;
-    	}
-    	throw new CHttpException(404,'所请求的页面不存在。');
+	    	$this->modelName = 'TakType';
+	    	$this->primaryName = 'typeid';
+	    	$type = Yii::app()->request->getParam('type',false);
+	    	$arr = Tak::getTakTypes();
+	    	if ($type&&isset($arr[$type])) {
+				if($arr[$type]){
+					$this->type = $arr[$type];
+				}
+				$this->typeUrl = $this->createUrl('admin',array('type'=>$this->type['type']));
+				return ;
+	    	}
+	    	$this->error();
 	}
-	public function loadModel($id=false)
+	public function loadModel($id=false,$not=false)
 	{
 		if($this->_model===null)
 		{
@@ -66,13 +66,17 @@ class TakTypeController extends Controller
 		if (Yii::app()->request->getParam('returnUrl',false)) {
 			$this->typeUrl = $returnUrl = Yii::app()->request->getParam('returnUrl');
 		}
-		if(isset($_POST[$m]))
-		{
-
+		if(isset($_POST[$m])===true){
 			$model->attributes = $_POST[$m];
 			$model->initak($this->type);
 			if($model->save()){
 				$returnUrl = $_POST['returnUrl'];
+					$str = Tk::g(array('Success',$id?'Edit':'Create'),$model->item);
+					Tak::setFlash(
+						$str,
+						'success'
+					);			
+
 				if (!$returnUrl) {
 					if ($this->isAjax) {
 						if ($_POST['getItemid']) {

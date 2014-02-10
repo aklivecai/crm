@@ -88,7 +88,6 @@ class Order extends MRecord
 				'note' => '备注',
 				'add_ip' => '下单IP',
 		);
-
 		$_ts = parent::attributeLabels();
 		return $result;
 	}
@@ -146,7 +145,7 @@ class Order extends MRecord
     }
 
 	//保存数据前
-	protected function beforeSave($isok=false){
+	protected function beforeSave(){
 	    $result = parent::beforeSave(true);
 	    if(!$isok&&$result){
 	        //添加数据时候
@@ -228,6 +227,11 @@ class Order extends MRecord
 			$this->_flows = OrderFlow::model()->getListByOrder($arr);
 		}
 		return $this->_flows;
+	}
+	public function getFlowLast(){
+		return OrderFlow::model()->findByAttributes(array('order_id' => $this->itemid,),
+				array('order'=>'itemid DESC')
+			);
 	}
 	public function getListStatus(){
 		$result = array();

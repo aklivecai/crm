@@ -3,6 +3,7 @@ class Clientele extends ModuleRecord
 {
 	
 	public $linkName = 'clientele_name'; /*连接的显示的字段名字*/
+	public $profession = 4;
 	/**
 	 * @return string 数据表名字
 	 */
@@ -44,8 +45,9 @@ class Clientele extends ModuleRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'iManage' => array(self::BELONGS_TO
-				, 'Manage'
-				, 'manageid'
+					, 'Manage'
+					, 'manageid'
+					,'select'=>'user_nicename'
 				),
 
 		);
@@ -86,31 +88,35 @@ class Clientele extends ModuleRecord
 	}
 
 	//默认继承的搜索条件
-    public function defaultScope($isOrder=true)
-    {
-    	$arr = parent::defaultScope();
-    	$condition = array();
-    	if (isset($arr['condition'])) {
-    		$condition[] = $arr['condition'];
-    	}
-    	$arr['condition'] = join(" AND ",$condition);
-   
-    	return $arr;
-    }
+	public function defaultScope()
+	{
+		$arr = parent::defaultScope();
+		$condition = array();
+		if (isset($arr['condition'])) {
+			$condition[] = $arr['condition'];
+		}
+		$arr['order'] = $this->getConAlias('last_time DESC ');
+		$arr['condition'] = join(" AND ",$condition);
+		
+		return $arr;
+	}
 
 	public function search()
 	{
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
-		$criteria->compare('itemid',$this->itemid,true);
-		$criteria->compare('fromid',$this->fromid,true);
-		$criteria->compare('manageid',$this->manageid,true);
+		$criteria->compare('itemid',$this->itemid);
+		$criteria->compare('fromid',$this->fromid);
+		if ($this->manageid) {
+			$criteria->compare('manageid',$this->manageid);
+		}
+		
 		$criteria->compare('clientele_name',$this->clientele_name,true);
-		$criteria->compare('rating',$this->rating,true);
+		$criteria->compare('rating',$this->rating);
 		$criteria->compare('annual_revenue',$this->annual_revenue);
 		$criteria->compare('industry',$this->industry);
 		$criteria->compare('profession',$this->profession);
-		$criteria->compare('origin',$this->origin,true);
+		$criteria->compare('origin',$this->origin);
 		$criteria->compare('employees',$this->employees);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('address',$this->address,true);
@@ -124,13 +130,104 @@ class Clientele extends ModuleRecord
 		$this->setCriteriaTime($criteria,
 			array('last_time','add_time','modified_time')
 		);
-
 		$criteria->compare('note',$this->note,true);
-
 		return $cActive;
 	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	private $_prsons = null;
+	public  function getProsons(){
+		if ($this->_prsons===null) {
+			$m = ContactpPrson::model()->setGetCU();
+			$m->scondition = false;
+			$this->_prsons = $m->findAllByAttributes(array('clienteleid'=>$this->itemid));
+		}
+		return $this->_prsons;
+	}
+
+	public function move(){
+		$tags = $this->getProsons();
+		$manageid = $tihs->manageid;
+		foreach ($tags as $key => $value) {
+			$value->move($manageid);
+		}
+		return true;
+	}
+
+	protected function _del(){
+		$tags = $this->getProsons();
+		foreach ($tags as $key => $value) {
+			$value ->isLog = false;
+			$value->del();
+		}
+		return true;		
+	}
+	public function del(){
+		$result = parent::del();
+		if ($result) {
+			 $this->_del();
+		}
+		return $result;
+	}	
+
+	public function setRestore(){
+		$result = parent::setRestore();
+		if ($result) {	
+			$tags = $this->getProsons();
+			foreach ($tags as $key => $value) {
+				$value ->isLog = false;
+				$value->setRestore();
+			}
+		}
+		return $result;
+	}
+	   // 进公海
+    public function setSeas(){
+		$result = false;
+		if ($this->status!=3) {
+			$this->isLog = false;
+			$this->status = 3;
+			if($this->save()){
+				$result = true;
+				AdminLog::log($this->sName.'-'.Tk::g('仍进公海').' - 编号:'.$this->primaryKey);
+			}else{
+				 $arr = $this->getErrors();
+			}
+		}
+			return $result;
+    }
+
+    public function getBySeas($manageid=false){
+    		$result = false;
+    		if ($manageid==false) {
+    			$manageid = Tak::getManageid();
+    		}    		
+		$this->isLog = false;
+		$this->status = 1;
+		if($this->save()){
+			$m = new MovesForm();
+			$m->attributes = array('fMid'=>$this->manageid,'tMid'=>$manageid);
+			$arr = $m->moveClienteles($this->primaryKey);    				
+			if ($arr&&count($arr)>0) {
+				$result = true;
+				AdminLog::log($this->sName.'-'.Tk::g('在公海捞起').' - 编号:'.$this->primaryKey);	
+				
+			}
+		}else{
+			Tak::KD(1,1);
+		}
+    		return $result;
+    }
+
+	protected function afterDelete(){
+		 parent::afterDelete();
+			$tags = $this->getProsons();
+			foreach ($tags as $key => $value) {
+				$value ->isLog = false;
+				$value->delete();
+			}		 
 	}	
 }

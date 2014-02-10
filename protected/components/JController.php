@@ -17,8 +17,8 @@ class JController extends CController
 
 	public function init()  
 	{     
-    	parent::init();
-    	$this->isAjax  = Yii::app()->request->isAjaxRequest;
+    		parent::init();
+    		$this->isAjax  = Yii::app()->request->isAjaxRequest;
 		if($this->isAjax){
 			$this->_setLayout('columnAjax');
 			Yii::app()->clientScript->enableJavaScript = false;
@@ -52,7 +52,7 @@ class JController extends CController
 	}
 	public function allowedActions()
 	{
-	 	return 'error';
+	 	return 'error,login';
 	}
 	public function accessRules()
 	{
@@ -177,14 +177,11 @@ class JController extends CController
 	{
 		$model = $this->loadModel($id);
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		
-		$m = $this->modelName;
-		
+		// $this->performAjaxValidation($model);		
+		$m = $this->modelName;		
 		if(isset($_POST[$m]))
 		{
 			$model->attributes=$_POST[$m];
-
 			if($model->save()){
 				$this->redirect($this->returnUrl?$this->returnUrl:array('view','id'=>$model->primaryKey));
 			}

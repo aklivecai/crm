@@ -1,12 +1,16 @@
-<?php
-$this->pageTitle=Yii::app()->name . ' - ie6';
-$this->breadcrumbs=array(
-	'ie6 ',
-);
-?>      
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title> 您正在使用 Internet Explorer 6 浏览网页，如果您升级到 Internet Explorer 8 或转换到另一个浏览器，本站将能为您提供更好的服务。</title>
+<meta name="description" content=" 您正在使用 Internet Explorer 6 浏览网页，如果您升级到 Internet Explorer 8 或转换到另一个浏览器，本站将能为您提供更好的服务。">
+<meta name="keywords" content=" 您正在使用 Internet Explorer 6 浏览网页，如果您升级到 Internet Explorer 8 或转换到另一个浏览器，本站将能为您提供更好的服务。">
 <style type="text/css">
+body{
+	background-color:#2A2A2A;color:#CCC;
+}
 #ie6nomore,#ie6-tips,#ie6-dl,#ie6-tips p{float:left}
-#ie6nomore{width:100%;height:56px;background-color:#2A2A2A;color:#CCC;font-size:12px;font-family:Verdana, Geneva, sans-serif}
+#ie6nomore{width:100%;height:56px;font-size:12px;font-family:Verdana, Geneva, sans-serif}
 #ie6nomore a{text-decoration:none;color:#A8C779}
 #ie6-content{width:700px;margin:0 auto}
 #ie6-tips{width:250px}
@@ -15,19 +19,37 @@ $this->breadcrumbs=array(
 #up{font-weight:700;width:300px}
 #ie6-dl{width:400px;margin-top:18px}
 #ie6-dl span{margin-left:10px}
-#ff{background:url(http://cspromod.googlecode.com/files/ff.gif)}
-#ie8{background:url(http://cspromod.googlecode.com/files/ie8.gif)}
-#sa{background:url(http://cspromod.googlecode.com/files/sa.gif)}
-#ch{background:url(http://cspromod.googlecode.com/files/ch.gif)}
-#op{background:url(http://cspromod.googlecode.com/files/op.gif)}
+#ff{background:url(<?php echo $this->getAssetsUrl();?>tak/ie6/ff.gif)}
+#ie8{background:url(<?php echo $this->getAssetsUrl();?>tak/ie6/ie8.gif)}
+#sa{background:url(<?php echo $this->getAssetsUrl();?>tak/ie6/sa.gif)}
+#ch{background:url(<?php echo $this->getAssetsUrl();?>tak/ie6/ch.gif)}
+#op{background:url(<?php echo $this->getAssetsUrl();?>tak/ie6/op.gif)}
 #ff,#ie8,#sa,#ch,#op{background-repeat:no-repeat}
 #ff a,#ie8 a,#sa a,#ch a,#op a,{margin-left:20px}
+#ie6nomore{
+	height:500px;
+}
+.hlep{
+	position: absolute;
+	top: 125px;
+	padding: 25px;
+	background-color: #fff;
+	border:2px solid #0d0d0d;
+	color:#000;
+	font-size: 18px;
+	width:250px;
+	height:20px;
+	text-align: center;
+}
 </style>
+</head>
+<body>
+    
 <div id="ie6nomore">
 <div id="ie6-content">
 <div id="ie6-tips">
 <p id="ie6">请注意：您正在使用 IE 6 浏览器</p>
-<p id="up">升级或更换另一款浏览器</p>
+<p id="up">如果您升级到 Internet Explorer 8 或转换到另一个浏览器，本站将能为您提供更好的服务</p>
 </div>
 <div id="ie6-dl">
 <span id="ie8"><a rel="nofollow" href='http://www.browserforthebetter.com/download.html' title='下载 Internet Explorer 8' target='_blank'>IE 8</a></span>
@@ -36,3 +58,11 @@ $this->breadcrumbs=array(
 <span id="op"><a rel="nofollow" href='http://www.operachina.com/' title='下载 Opera' target='_blank'>Opera</a></span>
 <span id="sa"><a rel="nofollow" href='http://www.apple.com/safari/download/' title='下载 Safari' target='_blank'>Safari</a></span>
 </div>
+	
+<div class="hlep">
+<?php 
+	echo Yii::app()->params['help'];
+?>
+</div>
+</body>
+</html>

@@ -24,6 +24,8 @@
 class Manage extends ModuleRecord
 {
 	public $linkName = 'user_name'; /*连接的显示的字段名字*/
+	public $branch = 0;
+	public $isbranch = 0;
 	public function primaryKey()
 	{
 		return 'manageid';
@@ -44,8 +46,8 @@ class Manage extends ModuleRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_name, user_pass', 'required'),
-			array('login_count', 'numerical', 'integerOnly'=>true),
+			array('user_name, user_pass,branch', 'required'),
+			array('login_count,branch,isbranch', 'numerical', 'integerOnly'=>true),
 			array('user_name', 'length', 'max'=>60),
 			array('user_pass', 'length', 'min'=>6),
 			array('user_pass, user_nicename, activkey', 'length', 'max'=>64),
@@ -56,27 +58,64 @@ class Manage extends ModuleRecord
 			array('add_ip, last_login_ip', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('user_name, user_pass, salt, user_nicename, user_email, add_time, last_login_time, login_count, user_status, note,active_time', 'safe', 'on'=>'search'),
+			array('user_name, user_pass, salt, user_nicename, user_email, add_time, last_login_time, login_count, user_status, note,active_time,fromid', 'safe', 'on'=>'search'),
 
 			array('user_name','checkRepetition'),
 		);
 	}
+	/**
+	 * 检验重复
+	 */
+	public function checkRepetition($attribute,$params)
+	{
 
+		$sql = array("LOWER(:col)=:val");
+		$arr = array(
+			':col' => $attribute,
+		);
+		if ($this->primaryKey>0) {
+			$sql[] = ':ikey<>:itemid';
+			$arr[':ikey'] = $this->primaryKey();
+			$arr[':itemid'] = $this->primaryKey;
+		}
+		if (Tak::getAdmin()){
+			$sql[] = 'fromid='.Tak::getFormid();
+		}
+
+		$sql = join(' AND ',$sql);
+
+		// Tak::KD(strtr($sql,$arr),1);
+		// if (Tak::getAdmin()) 	 Tak::KD(strtr($sql,$arr),1);
+		// 查找满足指定条件的结果中的第一行
+		
+		$sql = strtr($sql,$arr);
+		$m = $this->find($sql,array(':val' => strtolower($this->$attribute)));
+		// Tak::KD($m,1);
+
+		if($m!=null){
+			$err = $this->getAttributeLabel($attribute).' 已经存在 :';
+			$err .= $m->getHtmlLink();
+			$this->addError($attribute,$err);
+		}
+	}
 	//默认继承的搜索条件
     public function defaultScope()
     {
-		$arr = array('order'=>'add_time DESC');
-	
-		$condition = array();
+			$arr = array('order'=>'add_time DESC');
+
+			$condition = array();
     	if($this->hasAttribute('fromid')){
     		$fromid = Tak::getFormid();
-			if($fromid>0){
-				$condition[] = 'fromid='.Tak::getFormid();	
-			}    		
-    	}
-    		
-    	$arr['condition'] = join(" AND ",$condition);
-		
+				if($fromid>0){
+					if (Tak::getAdmin()) {
+						$condition[] = 'fromid>0';	
+					}else{
+						$condition[] = 'fromid='.Tak::getFormid();	
+						// $condition[] = "user_name<>'admin'";	
+					}		
+				}
+    	}		
+	$arr['condition'] = join(" AND ",$condition);		
     	return $arr;
     }
 
@@ -85,24 +124,46 @@ class Manage extends ModuleRecord
 	 */
 	public function relations()
 	{
+		// Tak::KD($this->getAttributes());
 		return array(
+			'iBranch' => array(self::HAS_ONE
+				, 'Permission'
+				, 'branch'
+				,'condition'=>''
+				,'select'=>'name,description'
+				,'order'=>''
+				// ,'on'=>'name='.$this->branch
+				),			
 		);
 	}
 	public function search()
 	{
 		$criteria = new CDbCriteria;
 		
-		$criteria->addCondition("fromid=".Tak::getFormid());
-
+		if (Tak::getAdmin()) {
+				$criteria->compare('fromid',$this->fromid);
+				
+		}else{
+			$criteria->addCondition("fromid=".Tak::getFormid());
+			$criteria->addCondition("user_name<>'admin'");	
+		}
+		
+		$criteria->compare('manageid',$this->manageid);
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('user_nicename',$this->user_nicename,true);
 		$criteria->compare('user_email',$this->user_email,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('last_login_time',$this->last_login_time,true);
 		$criteria->compare('login_count',$this->login_count);
-		$criteria->compare('user_status',$this->user_status,true);
 		$criteria->compare('note',$this->note,true);
 
+		if ($this->branch>=0) {
+			$criteria->compare('branch',$this->branch);
+		}
+		if ($this->user_status>=0) {
+			$criteria->compare('user_status',$this->user_status);
+		}
+		$this->setCriteriaTime($criteria,
+			array('add_time','last_login_time')
+		);
 		$pageSize = parent::getPageSize();
 
 		return new CActiveDataProvider($this, array(
@@ -138,6 +199,8 @@ class Manage extends ModuleRecord
 			'salt' => '登录检验码',
 			'user_nicename' => '名字',
 			'user_email' => '邮箱',
+			'isbranch' => '?部门经理',
+			'branch' => '部门',
 			'add_time' => '添加时间',
 			'add_ip' => '添加IP',
 			'last_login_time' => '最后登录',
@@ -187,7 +250,7 @@ class Manage extends ModuleRecord
 		parent::afterSave();
 		// return $result;
 	}
-
+	
 	public  function upActivkey()
 	{
 		$arr = Tak::getOM();
@@ -206,7 +269,6 @@ class Manage extends ModuleRecord
 		$query->execute();	
 		 AdminLog::log('退出操作');
 		return true;
-
 	}
 
 	// 更新登录次数，时间信息
@@ -243,7 +305,7 @@ class Manage extends ModuleRecord
     	if(!Tak::isValidMd5($password)){
     		$chPass = $this->hashPassword($password,$this->salt);
     	}
-    	return $chPass===$this->user_pass;       
+    	return $chPass===$this->user_pass;
     }
 
     /**

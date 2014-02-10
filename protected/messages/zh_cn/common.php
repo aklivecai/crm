@@ -22,6 +22,7 @@ return array (
   'Data' => '数据',
   'Delete' => '删除',
   'Description' => '描述',
+  'List'=>'列表',
   'Item' => '项目',
   'Log' => '日志',
   'Modules' => '模块',
@@ -42,6 +43,7 @@ return array (
   'Recycle' => '回收站',
   'Deletes' => '彻底删除',
 
+  'Move' => '转移',
   'Return' => '返回',
   'Reset' => '重置',
   'Refresh' => '刷新',
@@ -115,7 +117,8 @@ return array (
   'Test Logs' => '测试帐号日志',
   'TestLogs' => '测试帐号日志',
 
-  'Permissions' => '权限',
+  'Permissions' => '部门',
+  'Permission' =>'部门',
 
   'View Roles' => '部门权限介绍',
 
@@ -127,6 +130,9 @@ return array (
   'contact-stage' => '销售阶段',
 
   'Product Type'=>'货物分类',
+  'Seas'=>'公海',
+  'Success' =>'成功',
+  'Total' => ''
  );
 
 

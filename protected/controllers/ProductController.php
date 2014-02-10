@@ -4,8 +4,8 @@ class ProductController extends Controller
 {
 	public function init()  
 	{     
-    	parent::init();
-    	$this->modelName = 'Product';
+    		parent::init();
+    		$this->modelName = 'Product';
 	}
 
 	public function actionSelect(){
@@ -33,7 +33,7 @@ class ProductController extends Controller
 		 	$criteria->addNotInCondition("itemid",$notitemid);
 		 }
 		 $dataProvider = new JSonActiveDataProvider($this->modelName,array(
-		 		'attributes' => array('itemid', 'name', 'material', 'spec'),
+		 		'attributes' => array('itemid', 'name', 'material', 'spec','color','price'),
 		 		'criteria' => $criteria,
 				'sort'=>array(
 					'defaultOrder'=>'name ASC', 

@@ -3,7 +3,7 @@
 /* @var $model Stocks */
 $product = Product::model()->findByPk($model->product_id);
 $this->breadcrumbs=array(
-	Tk::g($model->sName) => array('admin'),
+	Tk::g($model->sName) => array('index'),
 	$product->name,
 );
 ?>
@@ -25,6 +25,7 @@ foreach (array(1=>'purchase', 2=>'sell') as $key => $value) {
 	$_type = strtolower($m->getTypeName().'-type');
 	$cates = TakType::items($_type);
 	$tags = ProductMoving::model()->getProductMovings($key,$product_id);
+
 	$template ="<div class=\"list-view\">{pager}</div>\n<table class=\"items table table-striped table-bordered table-condensed\"> <thead> <tr> 
 				<th>{$m->getAttributeLabel('numbers')}</th>
 				<th>{$m->getAttributeLabel('enterprise')}</th>
@@ -44,6 +45,7 @@ foreach (array(1=>'purchase', 2=>'sell') as $key => $value) {
 		),true); 	
 
 $items[$value] = array('label'=>Tk::g(array(ucwords($value),'Detail')), 'content'=>$content);	
+	
 }
 
 $isactive = isset($_GET['tab'])&&isset($_GET['tab'])?$_GET['tab']:false;

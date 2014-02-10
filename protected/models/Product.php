@@ -22,16 +22,21 @@
  */
 class Product extends ModuleRecord
 {
+
+	public static $table = '{{product}}';
 	
 	public $linkName = 'name'; /*连接的显示的字段名字*/
 	protected $_stocks = null;
-	/**
-	 * @return string 数据表名字
-	 */
+
+	public $price = '0.00';
+	private $total = '0.00';
+	private $stock = 0;	
+
 	public function tableName()
 	{
-		return '{{product}}';
+		return self::$table;
 	}
+
 
 	/**
 	 * @return array validation rules for model attributes.字段校验的结果
@@ -43,6 +48,7 @@ class Product extends ModuleRecord
 		return array(
 			array(' name, typeid', 'required'),
 			array('stocks, status', 'numerical', 'integerOnly'=>true),
+			array('price', 'numerical',),			
 			array('itemid, add_us, modified_us', 'length', 'max'=>25),
 			array('fromid, typeid, unit, add_time, add_ip, modified_time, modified_ip', 'length', 'max'=>10),
 			array('name, material, spec,color', 'length', 'max'=>100),
@@ -60,8 +66,9 @@ class Product extends ModuleRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		$condition = array("item='product'");
-    	$condition[] = 'fromid='.Tak::getFormid();
+	    $condition = array("item='product'");
+    	     $condition[] = 'fromid='.Tak::getFormid();
+    	     $sqlStocks =$this->getConAlias('itemid=iStocks.product_id');
 		return array(
 			'iType' => array(
 				self::BELONGS_TO
@@ -70,7 +77,17 @@ class Product extends ModuleRecord
 				, 'select' => 'typename'
 				, 'condition'=> join(" AND ",$condition)
 			),
-		);
+			'iStocks' => array(self::HAS_ONE
+				, 'Stocks'
+				// , 'itemid'
+				// , 'product_id'
+				,''
+				,'condition'=>''
+				,'order'=>''
+				, 'select' => 'itemid,stocks,modified_time'
+				,'on'=>$sqlStocks
+				),				
+		);			
 	}
 
 	/**
@@ -88,6 +105,7 @@ class Product extends ModuleRecord
 				'color' => '颜色',
 				'unit' => '单位',
 				'stocks' => '库存', /*(可负)*/
+				'price' => '单价', 
 				'add_time' => '添加时间',
 				'add_us' => '添加人',
 				'add_ip' => '添加IP',
@@ -104,21 +122,21 @@ class Product extends ModuleRecord
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
 
-		$criteria->compare('itemid',$this->itemid,true);
-		$criteria->compare('fromid',$this->fromid,true);
+		$criteria->compare('itemid',$this->itemid);
+		$criteria->compare('fromid',$this->fromid);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('typeid',$this->typeid,true);
+		$criteria->compare('typeid',$this->typeid);
 		$criteria->compare('material',$this->material,true);
 		$criteria->compare('spec',$this->spec,true);
 		$criteria->compare('unit',$this->unit,true);
 		$criteria->compare('color',$this->color,true);
 		$criteria->compare('stocks',$this->stocks);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('add_us',$this->add_us,true);
-		$criteria->compare('add_ip',$this->add_ip,true);
-		$criteria->compare('modified_time',$this->modified_time,true);
-		$criteria->compare('modified_us',$this->modified_us,true);
-		$criteria->compare('modified_ip',$this->modified_ip,true);
+		$criteria->compare('add_time',$this->add_time);
+		$criteria->compare('add_us',$this->add_us);
+		$criteria->compare('add_ip',$this->add_ip);
+		$criteria->compare('modified_time',$this->modified_time);
+		$criteria->compare('modified_us',$this->modified_us);
+		$criteria->compare('modified_ip',$this->modified_ip);
 		$criteria->compare('note',$this->note,true);
 
 		$criteria->compare('status',$this->status);
@@ -135,15 +153,40 @@ class Product extends ModuleRecord
 	//默认继承的搜索条件
     public function defaultScope()
     {
-    	$arr = parent::defaultScope();
-    	$condition = array();
-    	if(isset($arr['condition'])){
-    		$condition[] = $arr['condition'];
+    	if ($this->getDefaultScopeDisabled()) {
+    		return array();
     	}
-    	// $condition[] = 'display>0';
+    	$arr = array();
+    	if (func_num_args()>0&&func_get_arg(0)) {
+    		$arr['order'] = $this->getConAlias('add_time DESC ');
+    	}
+    	$condition = array();
+    	if ($this->scondition&&$this->scondition!='') {
+    		$condition[] = $this->getConAlias($this->scondition);
+    	}
+
+    	$condition[] = $this->getConAlias('fromid='.Tak::getFormid());
+
+    	if ($this->getCu()&&Tak::getManageid()!='44720284384568199') {
+    		$condition[] = $this->getConAlias('manageid='.Tak::getManageid());
+    	}
+
     	$arr['condition'] = join(" AND ",$condition);
     	return $arr;
-    }
+    }  
+
+    public function getConAlias($sql){
+    	$alias = false;
+    	if (property_exists($this,'tableAlias')&&$this->tableAlias) {
+    		$alias = $this->tableAlias;
+    	}else{
+    		// $alias = 't';
+    	}
+    	if ($alias) {
+    		$sql = $alias.'.'.$sql;
+    	}
+    	return $sql;
+    }      
 
 	//保存数据前
 	protected function beforeSave(){
@@ -201,8 +244,6 @@ class Product extends ModuleRecord
 		}
 	}
 
-
-
 	//删除信息后
 	protected function afterDelete(){
 		parent::afterDelete();
@@ -218,4 +259,47 @@ class Product extends ModuleRecord
 		parent::afterDelete();
 
 	}	
+
+	public function getTotal(){
+		$result = 0 ;
+		if ($this->price>0&&$this->getStock()!=0) {
+			$result = $this->price*$this->getStock();
+		}
+		return $result;
+	}
+	public function getStock(){
+		$result = Stocks::getStocks($this->itemid);
+		return $result;		
+	}
+
+	public static function getTotals($sql=false){
+		$model = self::model();
+		$condition = $model->defaultScope(false);
+		if (is_array($condition)&&$condition['condition']) {
+			$condition = array($condition['condition']);
+		}else{
+			$condition = array();
+		}		
+	        if ($sql) {
+	            $condition[]= $sql;
+	        }	
+		$condition =  join(' AND ',$condition);
+	       $sql = ' SELECT  SUM(s.stotals) AS stotal,SUM(p.price*s.stotals) AS ptotal FROM :product p
+	       	,(SELECT SUM(stocks) AS stotals,product_id  FROM :stock WHERE product_id in ( 
+					SELECT itemid FROM :product WHERE :condition 
+	       		)  GROUP BY product_id) s
+	        WHERE p.itemid = s.product_id ';
+		
+		$sql = strtr($sql,array(
+			':stock'=> Stocks::$table,
+			':product'=> self::$table,
+			':productid'=>$productid,
+			':condition' => $condition?$condition:' 1=1 '
+		));
+		
+		$query = self::$db->createCommand($sql);
+		$result = $query->queryRow();	
+		return $result;
+	}
+
 }

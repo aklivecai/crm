@@ -12,11 +12,10 @@ $this->breadcrumbs=array(
 	<div class="span12">
 	<div class="head clearfix">
         <div class="isw-grid"></div>
-        <h1><?php echo Tk::g('Clienteles')?></h1>                              
+        <h1><?php echo Tk::g('Clienteles')?></h1>
 	</div>
 		<div class="block-fluid clearfix">
 <?php $this->renderPartial('//_search',array('model'=>$model,)); ?>
-
 <?php $this->renderPartial('_search',array('model'=>$model,)); ?>
 
 <?php
@@ -25,7 +24,7 @@ $listOptions['dataProvider'] = $model->search();
 $listOptions['columns'] = array(
 		array(
 			 'class'=>'bootstrap.widgets.TbButtonColumn'
-			  , 'template'=>' {view} '
+			  , 'template'=>' {view} | {move} '
 			  ,'header' => CHtml::dropDownList('pageSize'
 					,Yii::app()->user->getState('pageSize')
 					,TakType::items('pageSize')
@@ -33,6 +32,14 @@ $listOptions['columns'] = array(
 						'onchange'=>"$.fn.yiiGridView.update('list-grid',{data:{setPageSize: $(this).val()}})", 
 					)
 			  )
+		              ,'buttons'=>array(
+		                    'move' => array
+		                    (
+		                        'label'=>'',
+		                         'url'=>'Yii::app()->controller->createUrl("move", array("id"=>$data->primaryKey))',
+		                         'options'=>array('title'=>Tk::g(array('Move','Clientele')),'class'=>'icon-share-alt data-preview'),
+		                    ),
+		              )
 		),	
 		array(
 			'name'=>'clientele_name',
@@ -73,3 +80,14 @@ $listOptions['columns'] = array(
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery(function($) {
+	$(document).on('k-over','#myModal',function(){
+		$.fn.yiiGridView.update('list-grid');
+	})
+});
+/*]]>*/
+</script>

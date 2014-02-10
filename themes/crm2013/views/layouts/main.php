@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<!--[if gt IE 8]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <![endif]-->
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <link rel="icon" type="image/ico" href="/favicon.ico"/>
 <!--[if lt IE 8]>
@@ -14,31 +14,41 @@
 <link rel='stylesheet' type='text/css' href='<?php echo $this->getAssetsUrl();?>css/fullcalendar.print.css' media='print' />
 
 <?php
+Yii::app()->clientScript->registerCoreScript('history');
+
 Yii::app()->bootstrap->register();
 $jss = array(
-'plugins/jquery/jquery-ui-1.10.1.custom.min.js',
-'plugins/jquery/jquery-migrate-1.2.1.min.js',
-'plugins/jquery/jquery.mousewheel.min.js',
-'plugins/cookie/jquery.cookies.2.2.0.min.js',
-// <!-- 日历 -->
-'plugins/fullcalendar/fullcalendar.min.js',
-'plugins/uniform/uniform.js',
-// <!-- 滚动条 -->
-'plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js',
-// <!-- 弹窗 ，图片 -->
-'plugins/fancybox/jquery.fancybox.pack.js',
-// <!-- 消息提示 -->
-'plugins/pnotify/jquery.pnotify.min.js',
-// <!-- 美化按钮 -->
-'plugins/ibutton/jquery.ibutton.min.js',
-'plugins/scrollup/jquery.scrollUp.min.js',
-'cookies.js',
-'actions.js?2013-11-15',
-'plugins.js',
-'settings.js',
-'k-load-select.js',
+  'plugins/jquery/jquery-ui-1.10.1.custom.min.js',
+  'plugins/jquery/jquery-migrate-1.2.1.min.js',
+  'plugins/jquery/jquery.mousewheel.min.js',
+  'plugins/cookie/jquery.cookies.2.2.0.min.js',
+  // <!-- 日历 -->
+  'plugins/fullcalendar/fullcalendar.min.js',
+  'plugins/uniform/uniform.js',
+  // <!-- 滚动条 -->
+  'plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js',
+  // <!-- 弹窗 ，图片 -->
+  // 'plugins/fancybox/jquery.fancybox.pack.js',
+  // <!-- 消息提示 -->
+  'plugins/pnotify/jquery.pnotify.min.js',
+  // <!-- 美化按钮 -->
+  'plugins/ibutton/jquery.ibutton.min.js',
+  
+  // 向上滚动的图标
+  'plugins/scrollup/jquery.scrollUp.min.js',
+  'cookies.js',
+  'actions.js?2014-01-14',
+  'plugins.js?2014-01-14',
+  'settings.js',
+  'k-load-select.js',
+  //Guid
+  'plugins/intro/intro.js',
+
+  'plugins/stepywizard/jquery.stepy.js',
+  // 'plugins/validate/jquery.validate.min.js',
 );
-  $this->regCssFile('stylesheets.css')->regCssFile('ak.css?2013')->regScriptFile($jss);
+
+  $this->regCssFile(array('stylesheets.css','introjs.css','ak.css?2014'))->regScriptFile($jss);
 
   $scrpitS = array('_ak/js/modernizr.js');
   $cssS = array();
@@ -53,6 +63,7 @@ $jss = array(
   $scrpitS[] = $path.'select2.min.js';
   $scrpitS[] = $path.'select2_locale_zh.js';
 
+  // 颜色插件
   $path = '_ak/js/plugins/spectrum/';
   $cssS[] = $path.'spectrum.css';
   $scrpitS[] = $path.'spectrum.js';
@@ -61,7 +72,6 @@ $jss = array(
     $scrpitS[] = '_ak/js/jq.common.js';  
   }
   
-
   Tak::regScriptFile($scrpitS,'static');
   Tak::regCssFile($cssS,'static'); 
 ?>
@@ -132,7 +142,13 @@ $jss = array(
   <div class="menu <?php if(Yii::app()->user->getState('themeSettings_menu')) echo 'hidden'; ?>">
     <div class="breadLine">
       <div class="arrow"></div>
-      <div class="adminControl active"> 欢迎，<?php echo Yii::app()->user->name;?> </div>
+      <div class="adminControl active"> 欢迎，
+        <?php 
+          echo Tak::getManame();
+          // echo Tak::getManageid();
+        ?> 
+
+      </div>
     </div>
     <div class="admin">
       <div class="image">
@@ -147,9 +163,16 @@ $jss = array(
         <!-- <li><i class="icon-comment"></i> <a href="#<?php echo Yii::app()->createUrl('site/messate');?>">消息</a> <a href="<?php echo $this->createUrl('/site/message')?>" class="caption red">12</a></li> -->
         <li><i class="icon-user"></i><a href="<?php echo $this->createUrl('/site/profile')?>">个人资料</a></li>
 
-        <li style="position:relative;"><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/changepwd')?>" class="chage-pwd">修改密码</a>
+        <li id="tak-changepwd" style="position:relative;"><i class="icon-magnet"></i> <a href="<?php echo $this->createUrl('/site/changepwd')?>" class="chage-pwd">修改密码</a>
         </li>
         <li><i class="icon-share-alt"></i> <a href="<?php echo $this->createUrl('/site/logout')?>" class="logout "><span class="red">退出系统</span></a></li>
+        <li><i class="icon-share"></i>企业编号: 
+        <!--
+          <span class="label label-warning"><?php echo Tak::getFormid();?></span>
+        -->
+        <span href="messages.html" class="caption"><?php echo Tak::getFormid();?></span>
+
+         </li>
       </ul>
       <div class="info"> <span>上一次登录：<?php echo Yii::app()->user->last_login_time;?></span> </div>
     </div>
@@ -190,7 +213,19 @@ $items = Tak::getMainMenu();
       <?php echo $content; ?>
     </div>
   </div>
+  <div class="hide">
+<?php
+ CHtml::tag('iframe',
+    array(
+        'src'=>Yii::app()->createUrl('/site/appchace'),
+        'style'=>'width:0px; height:0px; visibility:hidden; position:absolute; border:none;'
+      )
+  ,'') ?>
 </div>
+</div>
+<?php
+  Tak::showMsg();
+?>
 <?php Tak::copyright() ?>
 </body>
 </html>

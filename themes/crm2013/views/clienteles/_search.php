@@ -12,12 +12,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ?>
 
 <?php 
-  echo $form->textFieldRow($model,'manageid',array('class'=>'select-manageid','size'=>10,'maxlength'=>10,'style'=>'width:150px')); ?>
-<?php 
-  echo $form->textFieldRow($model,'clientele_name',array('size'=>10,'maxlength'=>10)); 
+  echo $form->textFieldRow($model,'manageid',array('class'=>'select-manageid','size'=>10,'style'=>'width:150px')); 
 ?>
 <?php 
-  echo $form->textFieldRow($model,'last_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date')); 
+  echo $form->textFieldRow($model,'clientele_name',array('size'=>10,'maxlength'=>50)); 
+?>
+<?php 
+  echo $form->textFieldRow($model,'add_time',array('size'=>10,'maxlength'=>10,'class'=>'type-date')); 
 ?>
 
 <?php 

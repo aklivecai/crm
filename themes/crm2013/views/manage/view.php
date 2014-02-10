@@ -4,18 +4,20 @@
 
 $this->breadcrumbs=array(
 	Tk::g('Manages')=>array('admin'),
-	$model->primaryKey,
+	$model->getLinkName(),
 );
 
 ?>
 <div class="block-fluid">
                <div class="row-fluid">
                     <div class="span10">
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
+<?php 
+$att = array(
 		'user_name',
 		'user_nicename',
+		array('name'=>'branch','type'=>'raw' ,'value'=>$this->getBranch($model->branch)),
+		array('name'=>'isbranch','type'=>'raw' ,'value'=>TakType::getStatus("isok",$model->isbranch)),
+
 		'user_email',
 		array('name'=>'add_time', 'value'=>Tak::timetodate($model->add_time,6),),
 		array('name'=>'add_ip', 'value'=>Tak::Num2IP($model->add_ip),),
@@ -26,7 +28,14 @@ $this->breadcrumbs=array(
 
 		'note',
 		array('name'=>'active_time', 'value'=>Tak::timetodate($model->active_time,6),),
-	),
+	);
+if (Tak::getAdmin()) {
+	$att[] = 'manageid';
+}
+
+$this->widget('bootstrap.widgets.TbDetailView', array(
+	'data'=>$model,
+	'attributes'=>$att,
 )); ?>
 </div>
 <div class="span2">

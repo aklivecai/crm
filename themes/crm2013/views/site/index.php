@@ -61,7 +61,7 @@
 <?php 
 $items = array(1,2,5);
 $mclientele = Clientele::model();
-      $pre_html = '<table cellpadding="0" cellspacing="0" width="100%" class="sOrders"> <thead> <tr> <th width="80">等级</th> <th>名字</th> <th width="68">日期</th> </tr> </thead> <tbody>';
+      $pre_html = '<table cellpadding="0" cellspacing="0" width="100%" class="sOrders"> <thead> <tr> <th width="80">来源</th> <th>名字</th> <th width="68">日期</th> </tr> </thead> <tbody>';
 
 foreach ($items as $value) {
 ?>
@@ -149,3 +149,8 @@ foreach ($items as $value) {
   </div>
 </div>
 <div class="dr"><span></span></div>
+<!--
+<?php
+  echo Tak::fastUuid()+1;
+?>
+-->

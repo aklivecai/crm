@@ -11,7 +11,10 @@ if( YII_DEBUG )
         'class'=>'XWebDebugRouter',
         'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
         'levels'=>'error, warning, trace, profile, info',
-        'allowedIPs'=>array('127.0.0.1'),
+        'allowedIPs'=>array(
+            '127.0.0.1',
+            '192.168.1.201X',
+        ),
     );
 
     $log[] = $log_debug;

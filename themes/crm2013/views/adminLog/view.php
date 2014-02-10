@@ -18,7 +18,6 @@ $this->menu=array(
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'fromid',
 		'user_name',
 		'qstring',
 		'info',

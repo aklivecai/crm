@@ -14,6 +14,12 @@ if (count($nps)>0) {
   array_splice($items,count($items)-2,0,Tak::getNP($nps));  
 }
 
+  array_splice($items,count($items)-2,0,array(
+            '---',
+            'Delete' => array('label'=>'扔进公海', 'icon'=>'minus-sign','url'=>array('toSeas', 'id'=>$model->itemid),'linkOptions'=>array('class'=>'to-seas')),
+    )
+  );  
+
 ?>
 
 <div class="row-fluid">
@@ -21,9 +27,6 @@ if (count($nps)>0) {
     <div class="head clearfix">
       <div class="isw-zoom"></div>
       <h1><?php echo Tk::g('Clienteles')?></h1>
-      <ul class="buttons">
-        <li class="toggle active"><a href="#"></a></li>
-      </ul>
     </div>
     <div class="block">
       <div class="span9">
@@ -31,7 +34,7 @@ if (count($nps)>0) {
 	'data'=>$model,
 	'attributes'=>array(
 		'clientele_name',
-		array('name'=>'rating','type'=>'raw', 'value'=>TakType::getStatus('rating',$model->rating),),
+		// array('name'=>'rating','type'=>'raw', 'value'=>TakType::getStatus('rating',$model->rating),),
 		array('name'=>'annual_revenue','type'=>'raw', 'value'=>TakType::getStatus('annual_revenue',$model->annual_revenue),),
 		array('name'=>'industry','type'=>'raw', 'value'=>TakType::getStatus('industry',$model->industry),),
 		array('name'=>'profession','type'=>'raw', 'value'=>TakType::getStatus('profession',$model->profession),),
@@ -77,13 +80,12 @@ foreach ($items as $value) {
             <li>
             <a href="<?php echo Yii::app()->createUrl("$value/create",array($value."[clienteleid]"=>$model->itemid));?>" title="<?php echo Tk::g(array('Create',$value))?>"><i class="isw-plus"></i></a>
             </li>
-            <li class="toggle"><a href="#"></a></li>
           </ul>
         </div>
         <div class="block-fluid users">
 <?php
   $this->widget('ext.AkCListView', array(
-        'dataProvider'=>$value::model()->sort_time()->recently(4,'clienteleid='.$model->itemid),
+        'dataProvider'=>$value::model()->recently(4,'clienteleid='.$model->itemid),
         'itemView' => "_$value",
         'emptyText' => '<p>暂无数据</p>',
         'htmlOptions' => array('class'=>''),

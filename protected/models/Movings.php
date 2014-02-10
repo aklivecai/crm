@@ -23,7 +23,7 @@
 class Movings extends ModuleRecord
 {
 
-
+	public $linkName = array('enterprise','time');
 	public $type = null;
 	private $_typename = '';
 	private $product_movings = null; 
@@ -167,19 +167,27 @@ class Movings extends ModuleRecord
 		$cActive = parent::search();
 		$criteria = $cActive->criteria;
 
-      	$criteria->compare('itemid',$this->itemid,true);
-        $criteria->compare('fromid',$this->fromid,true);
+      	 $criteria->compare('itemid',$this->itemid);
+        $criteria->compare('fromid',$this->fromid);
         $criteria->compare('type',$this->type);
-        $criteria->compare('numbers',$this->numbers,true);
-        $criteria->compare('time',$this->time,true);
-        $criteria->compare('typeid',$this->typeid,true);
+        if ($this->typeid>=0) {
+        	$criteria->compare('typeid',$this->typeid);
+        }
+        
+       $criteria->compare('numbers',$this->numbers);
+
+	$this->setCriteriaTime($criteria,
+		array('time','add_time','modified_time')
+	);        
+
         $criteria->compare('enterprise',$this->enterprise,true);
+
         $criteria->compare('us_launch',$this->us_launch,true);
         $criteria->compare('time_stocked',$this->time_stocked,true);
-        $criteria->compare('add_time',$this->add_time,true);
+        
         $criteria->compare('add_us',$this->add_us,true);
         $criteria->compare('add_ip',$this->add_ip,true);
-        $criteria->compare('modified_time',$this->modified_time,true);
+        
         $criteria->compare('modified_us',$this->modified_us,true);
         $criteria->compare('modified_ip',$this->modified_ip,true);
         $criteria->compare('note',$this->note,true);
@@ -199,7 +207,15 @@ class Movings extends ModuleRecord
     	$arr = parent::defaultScope();
     	$condition = array($arr['condition']);
     	// $condition[] = 'display>0';
-    	$arr['condition'] = join(" AND ",$condition);
+    	$sql = join(" AND ",$condition);
+    	$t = explode("AND type = '1'",$sql);
+    	if (strpos($t[1],'type')!==false) {
+    		$sql = join($t);
+    	}
+    	
+    	$sql = str_replace("type = '1' AND","type",$sql);
+    	$arr['condition'] = $sql;
+    
     	return $arr;
     }
 
@@ -241,6 +257,7 @@ class Movings extends ModuleRecord
 		        		$_arr[$value->itemid] = array(
 		        			'name' => $value->name,
 		        			'numbers' => $proucts[$value->itemid],
+		        			'price' => $proucts['price'][$value->itemid],
 		        			'note' => $proucts['note'][$value->itemid],
 		        		);
 		        	}
@@ -269,6 +286,7 @@ class Movings extends ModuleRecord
 				   $m->itemid = Tak::fastUuid();
 				   $m->product_id = $key;
 				   $m->numbers = $value;
+				   $m->price = isset($this->products['price'][$key])?$this->products['price'][$key]:'0.00';
 				   $m->note = isset($this->products['note'][$key])?$this->products['note'][$key]:'';
 				   if(!$m->save()){
 				   		Tak::KD($m->getErrors());
@@ -316,6 +334,14 @@ class Movings extends ModuleRecord
 		    $transaction->rollBack();
 		}
 	}
+
+	public function getLink($itemid=false,$action='view'){
+		if (!$itemid) {
+			$itemid = $this->primaryKey;
+		}		
+		$link = Yii::app()->createUrl(strtolower($this->_typename).'/'.$action,array('id'=>$itemid));
+		return $link;
+	}			
 
 	//删除信息后
 	protected function afterDelete(){

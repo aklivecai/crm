@@ -5,16 +5,14 @@
 ?>
 <div class="row-fluid">
 <?php 
-
-$_action = $this->getAction()->id=='recycle'?'recycle':'admin';
-
-
 $items = array(
 	'product' => array('label'=>Tk::g('Product'), 'url'=>Yii::app()->createUrl('product/admin')),
-	'takType' => array('label'=>Tk::g('Product Type'), 'url'=>Yii::app()->createUrl('takType/admin',array('type'=>'product'))
+	'taktype' => array('label'=>Tk::g('Product Type'), 'url'=>Yii::app()->createUrl('taktype/admin',array('type'=>'product'))
 	),
 );
-if ($items[$this->getId()]) {
+if (isset($items[$this->getId()])) {
+	$items[$this->getId()]['active'] = true;
+}elseif ($this->id=='taktype') {
 	$items[$this->getId()]['active'] = true;
 }
 $this->widget('bootstrap.widgets.TbMenu', array(

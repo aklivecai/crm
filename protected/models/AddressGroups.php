@@ -142,7 +142,7 @@ class AddressGroups extends ModuleRecord
 		$items= CHtml::listData($m, 'address_groups_id', 'name');
 		return $items;
 	}
-	public function getLink()
+	public function getLink($itemid=false,$action='view')
 	{
 		$markup = CHtml::link($this->name, array(
 			'addressGroups/update',
