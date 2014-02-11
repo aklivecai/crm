@@ -2,6 +2,7 @@
 <?php
 // <!-- #!/usr/bin/php -->
 // change the following paths if necessary
+// git test
 $yii=dirname(__FILE__).'/../Yii/framework/yii.php';
 
 // $yii=dirname(__FILE__).'/../yii/framework/yiilite.php';
