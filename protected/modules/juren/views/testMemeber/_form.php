@@ -2,6 +2,8 @@
 /* @var $this TestMemeberController */
 /* @var $model TestMemeber */
 /* @var $form CActiveForm */
+
+
 ?>
 
 <div class="form">
