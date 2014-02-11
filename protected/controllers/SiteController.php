@@ -18,7 +18,7 @@ class SiteController extends Controller
 
 	protected function beforeRender($view){
 		// Tak::KD(Yii::app()->getController()->getAction()->id,1);
-		$uage = $_SERVER['HTTP_USER_AGENT'];
+		$uage = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
 		$aid = Yii::app()->getController()->getAction()->id;
 		if(
 			(
