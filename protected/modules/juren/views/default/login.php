@@ -1,9 +1,11 @@
 <?php
+/*login*/
 $this->pageTitle=Yii::app()->name . '登录';
 $this->breadcrumbs=array(
 	'登录',
 );
-?>	
+?>
+
 <div class="form">
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',

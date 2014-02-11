@@ -1,5 +1,5 @@
 <?php
-
+/*livecai 2014*/
 class TestMemeberController extends JController
 {
 	public $defaultAction = 'admin';

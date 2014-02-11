@@ -1,5 +1,5 @@
 <?php
-
+/*livecai 2013*/
 class TestLogController extends JController
 {
 
