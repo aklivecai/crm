@@ -1,4 +1,5 @@
 <?php
+/*livecai */
 class DefaultController extends JController
 {
 
